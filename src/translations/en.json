@@ -1,4 +1,5 @@
 {
+  "CardDrawer.title": "Select card",
   "CardNames.BarbastelleBat": "Barbastelle Bat",
   "CardNames.BechsteinsBat": "Bechsteins Bat",
   "CardNames.Beech": "Beech",
@@ -57,6 +58,9 @@
   "CardNames.WildStrawberries": "Wild Strawberries",
   "CardNames.Wolf": "Wolf",
   "CardNames.WoodAnt": "Wood Ant",
+  "CardSelect.header.cardName": "Card",
+  "CardSelect.header.treeSymbol": "Tree symbol",
+  "CardSelect.remove": "Remove card",
   "TreeSymbols.Beech": "Beech",
   "TreeSymbols.Birch": "Birch",
   "TreeSymbols.DouglasFir": "Douglas Fir",
