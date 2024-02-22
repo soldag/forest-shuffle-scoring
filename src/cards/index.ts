@@ -5,5 +5,13 @@ export {
   getDwellerCandidates,
   getTreeCandidates,
 } from "./helpers";
+export {
+  addPlayer,
+  removePlayer,
+  playTree,
+  playDweller,
+  removeTree,
+  removeDweller,
+} from "./operations";
 export { scoreForest, scoreGame } from "./scoring/game";
 export * from "./types";
