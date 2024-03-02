@@ -2,15 +2,15 @@ import React from "react";
 
 import { Stack } from "@mui/joy";
 
+import AddDwellerButton from "@/components/common/AddDwellerButton";
+import DwellerCard from "@/components/common/DwellerCard";
 import {
   DwellerCard as DwellerCardType,
   DwellerPosition,
   Game,
   TreeCard as TreeCardType,
   getDwellerCandidates,
-} from "@/cards";
-import AddDwellerButton from "@/components/common/AddDwellerButton";
-import DwellerCard from "@/components/common/DwellerCard";
+} from "@/game";
 
 interface DwellerSlotProps {
   game: Game;

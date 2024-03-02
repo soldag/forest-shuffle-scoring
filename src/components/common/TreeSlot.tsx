@@ -2,14 +2,14 @@ import React from "react";
 
 import { Box, Stack } from "@mui/joy";
 
+import DwellerSlot from "@/components/common/DwellerSlot";
+import TreeCard from "@/components/common/TreeCard";
 import {
   DwellerCard as DwellerCardType,
   DwellerPosition,
   Game,
   TreeCard as TreeCardType,
-} from "@/cards";
-import DwellerSlot from "@/components/common/DwellerSlot";
-import TreeCard from "@/components/common/TreeCard";
+} from "@/game";
 
 interface TreeSlotProps {
   game: Game;

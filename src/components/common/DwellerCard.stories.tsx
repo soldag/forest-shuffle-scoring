@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { CardType, DwellerPosition, TreeSymbol } from "@/cards";
-import { DEFAULT_MODIFIERS } from "@/cards/dwellers/modifiers";
 import DwellerCard from "@/components/common/DwellerCard";
+import { CardType, DwellerPosition, TreeSymbol } from "@/game";
+import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
 const meta = {
   title: "Game Components/Cards/DwellerCard",

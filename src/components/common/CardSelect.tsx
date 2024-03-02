@@ -6,9 +6,9 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Button, IconButton, Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
-import { Card, CardType, TreeSymbol } from "@/cards";
 import CardButton from "@/components/common/CardButton";
 import TreeSymbolButton from "@/components/common/TreeSymbolButton";
+import { Card, CardType, TreeSymbol } from "@/game";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
 import { getLocalizedTreeSymbol } from "@/translations/messages/TreeSymbols";
 

@@ -4,15 +4,15 @@ import { fn } from "@storybook/test";
 
 import { Box } from "@mui/joy";
 
+import CardSelect from "@/components/common/CardSelect";
 import {
   CardType,
   DwellerCard,
   DwellerPosition,
   TreeCard,
   TreeSymbol,
-} from "@/cards";
-import { DEFAULT_MODIFIERS } from "@/cards/dwellers/modifiers";
-import CardSelect from "@/components/common/CardSelect";
+} from "@/game";
+import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
 const meta = {
   title: "Game Components/Card Selector/CardSelect",

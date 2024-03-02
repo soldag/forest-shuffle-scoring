@@ -2,9 +2,9 @@ import React from "react";
 
 import { Stack } from "@mui/joy";
 
-import { DwellerCard, DwellerPosition, Game, TreeCard } from "@/cards";
 import AddTreeButton from "@/components/common/AddTreeButton";
 import TreeSlot from "@/components/common/TreeSlot";
+import { DwellerCard, DwellerPosition, Game, TreeCard } from "@/game";
 
 interface TreeStackProps {
   game: Game;

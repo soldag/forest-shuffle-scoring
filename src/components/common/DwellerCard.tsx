@@ -5,8 +5,8 @@ import { useIntl } from "react-intl";
 import { Card, CardContent, Link, Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
-import { DwellerCard as DwellerCardType, DwellerPosition } from "@/cards/types";
 import TreeSymbol from "@/components/common/TreeSymbol";
+import { DwellerCard as DwellerCardType, DwellerPosition } from "@/game/types";
 import { getBackgroundForCardTypes } from "@/styles/colors";
 import { CARD_SIZES } from "@/styles/sizes";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";

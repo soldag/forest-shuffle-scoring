@@ -4,6 +4,7 @@ import { fn } from "@storybook/test";
 
 import { Button } from "@mui/joy";
 
+import CardDrawer from "@/components/common/CardDrawer";
 import {
   Card,
   CardType,
@@ -11,9 +12,8 @@ import {
   DwellerPosition,
   TreeCard,
   TreeSymbol,
-} from "@/cards";
-import { DEFAULT_MODIFIERS } from "@/cards/dwellers/modifiers";
-import CardDrawer from "@/components/common/CardDrawer";
+} from "@/game";
+import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
 const meta = {
   title: "Game Components/Card Selector/CardDrawer",

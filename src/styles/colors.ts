@@ -1,6 +1,6 @@
 import tinycolor from "tinycolor2";
 
-import { CardType, TreeSymbol } from "@/cards";
+import { CardType, TreeSymbol } from "@/game";
 
 const CARD_TYPE_COLORS = {
   [CardType.Amphibian]: "#918c88",

@@ -3,7 +3,7 @@ import { useIntl } from "react-intl";
 
 import { Button, ButtonProps } from "@mui/joy";
 
-import { Card, CardType } from "@/cards";
+import { Card, CardType } from "@/game";
 import {
   ACTIVE_BRIGHTNESS,
   HOVER_BRIGHTNESS,

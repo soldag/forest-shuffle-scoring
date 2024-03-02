@@ -5,8 +5,8 @@ import ParkIcon from "@mui/icons-material/Park";
 import { Card, CardContent, Link, Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
-import { TreeCard as TreeCardType } from "@/cards/types";
 import TreeSymbol from "@/components/common/TreeSymbol";
+import { TreeCard as TreeCardType } from "@/game/types";
 import { getBackgroundForCardTypes } from "@/styles/colors";
 import { CARD_SIZES } from "@/styles/sizes";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";

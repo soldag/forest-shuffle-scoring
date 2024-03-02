@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import { CardType, DwellerPosition, TreeSymbol, createGame } from "@/cards";
-import { DEFAULT_MODIFIERS } from "@/cards/dwellers/modifiers";
 import TreeSlot from "@/components/common/TreeSlot";
+import { CardType, DwellerPosition, TreeSymbol, createGame } from "@/game";
+import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
 const meta = {
   title: "Game Components/Forest/TreeSlot",

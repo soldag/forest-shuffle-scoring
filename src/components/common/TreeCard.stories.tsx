@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { CardType, DwellerPosition, TreeSymbol } from "@/cards";
 import TreeCard from "@/components/common/TreeCard";
+import { CardType, DwellerPosition, TreeSymbol } from "@/game";
 
 const meta = {
   title: "Game Components/Cards/TreeCard",

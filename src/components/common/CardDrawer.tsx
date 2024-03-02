@@ -3,8 +3,8 @@ import { FormattedMessage } from "react-intl";
 
 import { DialogContent, DialogTitle, Drawer, ModalClose } from "@mui/joy";
 
-import { Card, TreeSymbol } from "@/cards";
 import CardSelect from "@/components/common/CardSelect";
+import { Card, TreeSymbol } from "@/game";
 
 const TRANSITION_DURATION = 300;
 

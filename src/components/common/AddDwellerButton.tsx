@@ -3,7 +3,7 @@ import React from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { ButtonProps, IconButton } from "@mui/joy";
 
-import { DwellerPosition } from "@/cards";
+import { DwellerPosition } from "@/game";
 import { CARD_SIZES } from "@/styles/sizes";
 
 interface AddDwellerButtonProps extends ButtonProps {
