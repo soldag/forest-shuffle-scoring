@@ -81,7 +81,7 @@ export const scoreByCardMajority = (
 ): number => {
   const count = countCards(forest, filter, options);
   const maxCount = Math.max(
-    ...Object.values(game.forests).map((f) => countCards(f, filter, options)),
+    ...game.players.map((p) => countCards(p.forest, filter, options)),
   );
 
   return count === maxCount ? pointsMajority : pointsMinority;

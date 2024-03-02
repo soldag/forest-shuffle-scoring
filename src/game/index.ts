@@ -1,4 +1,4 @@
-export { createGame, createForest, createSapling } from "./factory";
+export { createGame, createPlayer } from "./factory";
 export {
   getDwellersOfTree,
   getDwellersOfForest,
@@ -13,5 +13,5 @@ export {
   removeTree,
   removeDweller,
 } from "./operations";
-export { scoreForest, scoreGame } from "./scoring/game";
+export { scorePlayer, scoreGame } from "./scoring/game";
 export * from "./types";

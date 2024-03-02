@@ -4,9 +4,9 @@ import {
   DwellerPosition,
   DwellerScoringArgs,
   Forest,
-  ForestScoring,
   Game,
   GameScoring,
+  PlayerScoring,
   TreeCard,
   TreeScoringArgs,
 } from "../types";
@@ -55,20 +55,24 @@ const scoreTrees = (game: Game, forest: Forest): number =>
     .map((tree) => scoreTree({ game, forest, tree }))
     .reduce((a, b) => a + b, 0);
 
-export const scoreForest = (game: Game, forest: Forest): ForestScoring => ({
-  trees: scoreTrees(game, forest),
-  dwellerTop: scoreDwellers(game, forest, DwellerPosition.Top),
-  dwellerBottom: scoreDwellers(game, forest, DwellerPosition.Bottom),
-  dwellerLeft: scoreDwellers(game, forest, DwellerPosition.Left),
-  dwellerRight: scoreDwellers(game, forest, DwellerPosition.Right),
-  cave: scoreCave(forest),
-});
+export const scorePlayer = (game: Game, playerId: string): PlayerScoring => {
+  const forest = game.players.find((p) => p.id === playerId)?.forest;
+  if (!forest) {
+    throw new Error("A player with this ID does not exist");
+  }
+
+  return {
+    trees: scoreTrees(game, forest),
+    dwellerTop: scoreDwellers(game, forest, DwellerPosition.Top),
+    dwellerBottom: scoreDwellers(game, forest, DwellerPosition.Bottom),
+    dwellerLeft: scoreDwellers(game, forest, DwellerPosition.Left),
+    dwellerRight: scoreDwellers(game, forest, DwellerPosition.Right),
+    cave: scoreCave(forest),
+  };
+};
 
 export const scoreGame = (game: Game): GameScoring => ({
-  forests: Object.fromEntries(
-    Object.entries(game.forests).map(([playerId, forest]) => [
-      playerId,
-      scoreForest(game, forest),
-    ]),
+  players: Object.fromEntries(
+    game.players.map((player) => [player.id, scorePlayer(game, player.id)]),
   ),
 });

@@ -4,7 +4,6 @@ import { getDwellersOfTree } from "@/game/helpers";
 import * as Trees from "@/game/trees";
 
 import {
-  Deck,
   DwellerCard,
   DwellerCardBlueprint,
   Forest,
@@ -148,12 +147,14 @@ export function createCompleteForestWithDweller({
   });
 }
 
-export const createGame: (...forests: Forest[]) => Game = (...forests) => {
-  const deck: Deck = { trees: [], dwellers: [] };
-  const game: Game = {
-    deck,
-    forests: Object.fromEntries(forests.map((f, i) => [`player${i}`, f])),
-  };
-
-  return game;
-};
+export const createGame: (...forests: Forest[]) => Game = (...forests) => ({
+  deck: {
+    trees: [],
+    dwellers: [],
+  },
+  players: forests.map((forest, i) => ({
+    id: generateId(),
+    name: `Player ${i}`,
+    forest,
+  })),
+});

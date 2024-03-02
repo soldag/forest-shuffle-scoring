@@ -1,3 +1,4 @@
+import { createSapling } from "./factory";
 import {
   Card,
   CardType,
@@ -6,8 +7,7 @@ import {
   Forest,
   Game,
   TreeCard,
-  createSapling,
-} from "@/game";
+} from "./types";
 
 export const getDwellersOfTree = (tree: TreeCard): DwellerCard[] =>
   Object.values(tree.dwellers).flatMap((d) => d);
@@ -32,11 +32,11 @@ export const getDwellerCandidates = (
   position: DwellerPosition,
   ignoreDweller: DwellerCard | null = null,
 ) => {
-  const tree = Object.values(game.forests)
-    .flatMap((f) => f.trees)
+  const tree = Object.values(game.players)
+    .flatMap((f) => f.forest.trees)
     .find((t) => t.id === treeId);
   if (!tree) {
-    throw Error("A tree with this id hasn't been played, yet.");
+    throw new Error("A tree with this id hasn't been played, yet.");
   }
 
   const candidates = game.deck.dwellers.filter((d) => d.position === position);

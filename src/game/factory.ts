@@ -12,6 +12,7 @@ import {
   DwellerVariant,
   Forest,
   Game,
+  Player,
   TreeCard,
   TreeCardBlueprint,
 } from "./types";
@@ -84,7 +85,13 @@ export const createDeck = (): Deck => ({
     ),
 });
 
+export const createPlayer = (name: string): Player => ({
+  id: generateId(),
+  name,
+  forest: createForest(),
+});
+
 export const createGame = (): Game => ({
   deck: createDeck(),
-  forests: {},
+  players: [],
 });

@@ -67,9 +67,15 @@ export interface Forest {
   cave: Card[];
 }
 
+export interface Player {
+  id: string;
+  name: string;
+  forest: Forest;
+}
+
 export interface Game {
   deck: Deck;
-  forests: { [playerId: string]: Forest };
+  players: Player[];
 }
 
 export interface CardBlueprint {
@@ -111,7 +117,7 @@ export interface DwellerCardBlueprint extends CardBlueprint {
   score: (args: DwellerScoringArgs) => number;
 }
 
-export interface ForestScoring {
+export interface PlayerScoring {
   trees: number;
   dwellerTop: number;
   dwellerBottom: number;
@@ -121,5 +127,5 @@ export interface ForestScoring {
 }
 
 export interface GameScoring {
-  forests: { [playerId: string]: ForestScoring };
+  players: { [playerId: string]: PlayerScoring };
 }

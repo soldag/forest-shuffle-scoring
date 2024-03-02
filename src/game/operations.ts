@@ -5,18 +5,18 @@ import {
   DwellerPosition,
   Forest,
   Game,
+  Player,
   TreeCard,
   getDwellersOfTree,
 } from "@/game";
-import { createForest } from "@/game/factory";
 
-const requireForest = (game: Game, playerId: string): Forest => {
-  const forest = game.forests[playerId];
-  if (!forest) {
+const requirePlayer = (game: Game, playerId: string): Player => {
+  const player = game.players.find((p) => p.id === playerId);
+  if (!player) {
     throw new Error(`Player with ID ${playerId} was not found`);
   }
 
-  return forest;
+  return player;
 };
 
 const findTree = (
@@ -25,7 +25,7 @@ const findTree = (
 ):
   | { forest: Forest; tree: TreeCard; index: number }
   | Record<string, never> => {
-  for (const forest of Object.values(game.forests)) {
+  for (const { forest } of game.players) {
     const index = forest.trees.findIndex((t) => t.id === treeId);
     if (index >= 0) {
       const tree = forest.trees[index];
@@ -42,7 +42,7 @@ const findDweller = (
 ):
   | { forest: Forest; tree: TreeCard; dweller: DwellerCard; index: number }
   | Record<string, never> => {
-  for (const forest of Object.values(game.forests)) {
+  for (const { forest } of game.players) {
     for (const tree of forest.trees) {
       for (const dwellers of Object.values(tree.dwellers)) {
         const index = dwellers.findIndex((d) => d.id === dwellerId);
@@ -67,24 +67,29 @@ const clearTree = (tree: TreeCard): TreeCard => ({
   },
 });
 
-export const addPlayer = (game: Game, playerId: string) =>
+export const addPlayer = (game: Game, player: Player) =>
   produce(game, (draft) => {
-    draft.forests[playerId] = createForest();
+    if (draft.players.some((p) => p.id === player.id)) {
+      throw new Error("A player with this ID already exists");
+    }
+
+    draft.players.push(player);
   });
 
 export const removePlayer = (game: Game, playerId: string) => {
-  const forest = requireForest(game, playerId);
+  const player = requirePlayer(game, playerId);
   return produce(
-    forest.trees.reduce((game, tree) => removeTree(game, tree.id), game),
+    player.forest.trees.reduce((game, tree) => removeTree(game, tree.id), game),
     (draft) => {
-      delete draft.forests[playerId];
+      draft.players = draft.players.filter((p) => p.id !== playerId);
     },
   );
 };
 
 export const playTree = (game: Game, playerId: string, tree: TreeCard): Game =>
   produce(game, (draft) => {
-    requireForest(draft, playerId).trees.push(tree);
+    const player = requirePlayer(draft, playerId);
+    player.forest.trees.push(tree);
 
     if (tree.isPartOfDeck) {
       draft.deck.trees = draft.deck.trees.filter((t) => t.id !== tree.id);
@@ -98,9 +103,8 @@ export const playDweller = (
   dweller: DwellerCard,
 ) =>
   produce(game, (draft) => {
-    const tree = requireForest(draft, playerId).trees.find(
-      (t) => t.id === treeId,
-    );
+    const player = requirePlayer(draft, playerId);
+    const tree = player.forest.trees.find((t) => t.id === treeId);
     if (!tree) {
       throw new Error(`Tree with ID ${treeId} was not found in forest`);
     }
