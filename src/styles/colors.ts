@@ -13,7 +13,7 @@ const CARD_TYPE_COLORS = {
   [CardType.Mushroom]: "#782f04",
   [CardType.PawedAnimal]: "#b06139",
   [CardType.Plant]: "#3a7a50",
-  [CardType.Tree]: "#a9d049",
+  [CardType.Tree]: "#9ac81d",
 };
 
 const TREE_SYMBOL_COLORS = {
