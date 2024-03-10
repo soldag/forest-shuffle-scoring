@@ -118,6 +118,7 @@ export interface DwellerCardBlueprint extends CardBlueprint {
 }
 
 export interface PlayerScoring {
+  total: number;
   trees: number;
   dwellerTop: number;
   dwellerBottom: number;

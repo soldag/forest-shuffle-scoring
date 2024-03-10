@@ -2,14 +2,13 @@ import React, { ReactNode } from "react";
 
 import { Box, Sheet } from "@mui/joy";
 
-import Footer from "@/components/common/Footer";
-import Header from "@/components/common/Header";
-
 interface ViewProps {
+  header?: ReactNode;
+  footer?: ReactNode;
   children?: ReactNode;
 }
 
-const View: React.FC<ViewProps> = ({ children }) => (
+const View: React.FC<ViewProps> = ({ header, footer, children }) => (
   <Sheet
     sx={{
       height: "100dvh",
@@ -21,9 +20,9 @@ const View: React.FC<ViewProps> = ({ children }) => (
       boxSizing: "border-box",
     }}
   >
-    <Header />
+    {header}
     <Box sx={{ flexGrow: 1 }}>{children}</Box>
-    <Footer />
+    {footer}
   </Sheet>
 );
 

@@ -9,6 +9,7 @@ import GameContext from "@/components/contexts/GameContext";
 import CreateGameForm, {
   CreateGameFormFields,
 } from "./components/CreateGameForm";
+import Header from "./components/Header";
 
 const CreateGameView = () => {
   const { dispatch } = useContext(GameContext);
@@ -17,7 +18,7 @@ const CreateGameView = () => {
     dispatch(createGame(values));
 
   return (
-    <View>
+    <View header={<Header />}>
       <Container
         sx={{
           display: "flex",

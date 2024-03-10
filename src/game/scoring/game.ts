@@ -61,13 +61,18 @@ export const scorePlayer = (game: Game, playerId: string): PlayerScoring => {
     throw new Error("A player with this ID does not exist");
   }
 
-  return {
+  const pointsPerCategory = {
     trees: scoreTrees(game, forest),
     dwellerTop: scoreDwellers(game, forest, DwellerPosition.Top),
     dwellerBottom: scoreDwellers(game, forest, DwellerPosition.Bottom),
     dwellerLeft: scoreDwellers(game, forest, DwellerPosition.Left),
     dwellerRight: scoreDwellers(game, forest, DwellerPosition.Right),
     cave: scoreCave(forest),
+  };
+
+  return {
+    ...pointsPerCategory,
+    total: Object.values(pointsPerCategory).reduce((a, b) => a + b, 0),
   };
 };
 

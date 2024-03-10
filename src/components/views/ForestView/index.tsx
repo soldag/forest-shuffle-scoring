@@ -22,6 +22,9 @@ import {
   getTreeCandidates,
 } from "@/game";
 
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+
 const ForestView: React.FC = () => {
   const { game, playerId, dispatch } = useContext(GameContext);
 
@@ -138,7 +141,7 @@ const ForestView: React.FC = () => {
   };
 
   return (
-    <View>
+    <View header={<Header />} footer={<Footer />}>
       <Box
         sx={{
           height: "100%",
