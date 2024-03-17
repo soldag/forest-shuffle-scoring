@@ -12,6 +12,7 @@ export enum GameActionType {
   ExchangeDweller = "EXCHANGE_DWELLER",
   RemoveTree = "REMOVE_TREE",
   RemoveDweller = "REMOVE_DWELLER",
+  ScoreGame = "SCORE_GAME",
 }
 
 interface CreateGamePayload {
@@ -183,6 +184,14 @@ export const removeDweller = (
   payload,
 });
 
+interface ScoreGameAction {
+  type: GameActionType.ScoreGame;
+}
+
+export const scoreGame = (): ScoreGameAction => ({
+  type: GameActionType.ScoreGame,
+});
+
 export type GameAction =
   | CreateGameAction
   | ResetGameAction
@@ -194,4 +203,5 @@ export type GameAction =
   | ExchangeTreeAction
   | ExchangeDwellerAction
   | RemoveTreeAction
-  | RemoveDwellerAction;
+  | RemoveDwellerAction
+  | ScoreGameAction;

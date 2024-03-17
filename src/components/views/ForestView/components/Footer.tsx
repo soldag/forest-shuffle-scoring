@@ -5,7 +5,7 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { Button, Stack } from "@mui/joy";
 
-import { addPlayer } from "@/components/actions/game";
+import { addPlayer, scoreGame } from "@/components/actions/game";
 import AddPlayerModal from "@/components/common/AddPlayerModal";
 import FooterContainer from "@/components/common/FooterContainer";
 import GameContext from "@/components/contexts/GameContext";
@@ -20,6 +20,8 @@ const Footer: React.FC = () => {
 
   const handleAddPlayer = (values: { playerName: string }) =>
     dispatch(addPlayer(values));
+
+  const handleScoreGame = () => dispatch(scoreGame());
 
   return (
     <FooterContainer>
@@ -42,7 +44,12 @@ const Footer: React.FC = () => {
             defaultMessage="Next player"
           />
         </Button>
-        <Button fullWidth startDecorator={<EmojiEventsIcon />} color="primary">
+        <Button
+          fullWidth
+          startDecorator={<EmojiEventsIcon />}
+          color="primary"
+          onClick={handleScoreGame}
+        >
           <FormattedMessage
             id="ForestView.Footer.scoreGame"
             defaultMessage="Score game"

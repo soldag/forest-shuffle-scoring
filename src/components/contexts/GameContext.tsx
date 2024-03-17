@@ -14,31 +14,30 @@ import {
 import { createPlayer } from "@/game/factory";
 import { exchangeDweller, exchangeTree } from "@/game/operations";
 
-interface GameContextType {
+interface State {
   game: Game | null;
   playerId: string | null;
+  showScoring: boolean;
+}
+
+const defaultState: State = {
+  game: null,
+  playerId: null,
+  showScoring: false,
+};
+
+interface GameContextType extends State {
   dispatch: React.Dispatch<GameAction>;
 }
 
 const GameContext = createContext<GameContextType>({
-  game: null,
-  playerId: null,
+  ...defaultState,
   dispatch: () => {},
 });
 
 interface GameContextProviderProps {
   children?: ReactNode;
 }
-
-interface State {
-  game: Game | null;
-  playerId: string | null;
-}
-
-const defaultState: State = {
-  game: null,
-  playerId: null,
-};
 
 const reducer: Reducer<State, GameAction> = (state, action) => {
   if (!state.game) {
@@ -61,6 +60,7 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
         ...state,
         game: null,
         playerId: null,
+        showScoring: false,
       };
 
     case GameActionType.AddPlayer: {
@@ -135,6 +135,12 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
       return {
         ...state,
         game: removeDweller(state.game, action.payload.dwellerId),
+      };
+
+    case GameActionType.ScoreGame:
+      return {
+        ...state,
+        showScoring: true,
       };
 
     default:
