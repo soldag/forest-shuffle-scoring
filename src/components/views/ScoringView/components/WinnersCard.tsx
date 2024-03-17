@@ -1,6 +1,5 @@
-import { maxBy } from "lodash";
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedList, FormattedMessage } from "react-intl";
 
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import { Card, CardContent, Typography } from "@mui/joy";
@@ -15,12 +14,11 @@ interface WinnersCardProps {
 }
 
 const WinnersCard: React.FC<WinnersCardProps> = ({ game, scoring, sx }) => {
-  const winnerId = maxBy(
-    Object.entries(scoring.players),
-    (x) => x[1].total,
-  )?.[0];
-  const score = winnerId ? scoring.players[winnerId].total : 0;
-  const playerName = game.players.find((p) => p.id === winnerId)?.name;
+  const winnerScorings = scoring.players.filter((s) => s.rank === 1);
+  const score = winnerScorings[0]?.total;
+  const playerNames = winnerScorings.map(
+    (s) => game.players.find((p) => p.id === s.playerId)?.name,
+  );
 
   return (
     <Card variant="solid" color="primary" sx={sx}>
@@ -29,12 +27,16 @@ const WinnersCard: React.FC<WinnersCardProps> = ({ game, scoring, sx }) => {
         <Typography level="body-lg" textColor="inherit">
           <FormattedMessage
             id="ScoringView.WinnersCard.text"
-            defaultMessage="<b>{playerName}</b> wins the game with a total of {score}{nbsp}victory points."
+            defaultMessage="{playerNames} {playerCount, plural, =1 {wins} other {win}} the game with a total of {score, plural, =1 {#{nbsp}victory point} other {#{nbsp}victory points}}{playerCount, plural, =1 {} other { each}}."
             values={{
-              playerName,
               score,
+              playerCount: playerNames.length,
+              playerNames: (
+                <Typography fontWeight="lg">
+                  <FormattedList value={playerNames} />
+                </Typography>
+              ),
               nbsp: <>&nbsp;</>,
-              b: (chunks) => <Typography fontWeight="lg">{chunks}</Typography>,
             }}
           />
         </Typography>

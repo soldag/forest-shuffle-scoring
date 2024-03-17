@@ -85,7 +85,7 @@
   "ScoringView.ScoringTable.headers.player": "Player",
   "ScoringView.ScoringTable.headers.rank": "#",
   "ScoringView.ScoringTable.headers.score": "Victory points",
-  "ScoringView.WinnersCard.text": "<b>{playerName}</b> wins the game with a total of {score}{nbsp}victory points.",
+  "ScoringView.WinnersCard.text": "{playerNames} {playerCount, plural, =1 {wins} other {win}} the game with a total of {score, plural, =1 {#{nbsp}victory point} other {#{nbsp}victory points}}{playerCount, plural, =1 {} other { each}}.",
   "ScoringView.results": "Results",
   "TreeSymbols.Beech": "Beech",
   "TreeSymbols.Birch": "Birch",

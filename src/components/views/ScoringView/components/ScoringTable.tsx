@@ -16,15 +16,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({
   scoring,
   ...otherProps
 }) => {
-  const rowData = orderBy(
-    Object.entries(scoring.players).map(([playerId, playerScoring]) => ({
-      playerId,
-      playerName: game.players.find((p) => p.id === playerId)?.name,
-      score: playerScoring.total,
-    })),
-    (x) => x.score,
-    "desc",
-  );
+  const sortedScorings = orderBy(scoring.players, ["rank", "playerId"]);
 
   return (
     <Table
@@ -62,11 +54,11 @@ const ScoringTable: React.FC<ScoringTableProps> = ({
         </tr>
       </thead>
       <tbody>
-        {rowData.map(({ playerId, playerName, score }, i) => (
+        {sortedScorings.map(({ playerId, rank, total }) => (
           <tr key={playerId}>
-            <td>{i + 1}</td>
-            <td>{playerName}</td>
-            <td>{score}</td>
+            <td>{rank}</td>
+            <td>{game.players.find((p) => p.id === playerId)?.name}</td>
+            <td>{total}</td>
           </tr>
         ))}
       </tbody>

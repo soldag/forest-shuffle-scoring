@@ -1,3 +1,5 @@
+import { orderBy } from "lodash";
+
 import * as Dwellers from "../dwellers";
 import * as Trees from "../trees";
 import {
@@ -71,13 +73,23 @@ export const scorePlayer = (game: Game, playerId: string): PlayerScoring => {
   };
 
   return {
+    playerId,
     ...pointsPerCategory,
     total: Object.values(pointsPerCategory).reduce((a, b) => a + b, 0),
   };
 };
 
-export const scoreGame = (game: Game): GameScoring => ({
-  players: Object.fromEntries(
-    game.players.map((player) => [player.id, scorePlayer(game, player.id)]),
-  ),
-});
+export const scoreGame = (game: Game): GameScoring => {
+  const playerScorings = game.players.map(({ id }) => scorePlayer(game, id));
+  const playerScoringsWithRank = orderBy(
+    playerScorings.map((scoring) => ({
+      ...scoring,
+      rank: playerScorings.filter((s) => s.total > scoring.total).length + 1,
+    })),
+    (s) => s.rank,
+  );
+
+  return {
+    players: playerScoringsWithRank,
+  };
+};

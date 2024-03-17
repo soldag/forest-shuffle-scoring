@@ -118,6 +118,7 @@ export interface DwellerCardBlueprint extends CardBlueprint {
 }
 
 export interface PlayerScoring {
+  playerId: string;
   total: number;
   trees: number;
   dwellerTop: number;
@@ -127,6 +128,10 @@ export interface PlayerScoring {
   cave: number;
 }
 
+export interface PlayerScoringWithRank extends PlayerScoring {
+  rank: number;
+}
+
 export interface GameScoring {
-  players: { [playerId: string]: PlayerScoring };
+  players: PlayerScoringWithRank[];
 }

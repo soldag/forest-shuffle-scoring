@@ -85,7 +85,7 @@
   "ScoringView.ScoringTable.headers.player": "Person",
   "ScoringView.ScoringTable.headers.rank": "#",
   "ScoringView.ScoringTable.headers.score": "Siegpunkte",
-  "ScoringView.WinnersCard.text": "<b>{playerName}</b> gewinnt die Partie mit {score}{nbsp}Siegpunkten.",
+  "ScoringView.WinnersCard.text": "{playerNames} {playerCount, plural, =1 {gewinnt} other {gewinnen}} die Partie mit {playerCount, plural, =1 {} other {jeweils }}{score, plural, =1 {#{nbsp}Siegpunkt} other {#{nbsp}Siegpunkten}}.",
   "ScoringView.results": "Ergebnisse",
   "TreeSymbols.Beech": "Buche",
   "TreeSymbols.Birch": "Birke",
