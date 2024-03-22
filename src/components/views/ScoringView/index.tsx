@@ -5,8 +5,10 @@ import { Container, Typography } from "@mui/joy";
 
 import View from "@/components/common/View";
 import GameContext from "@/components/contexts/GameContext";
+import BGStatsButton from "@/components/views/ScoringView/components/BGStatsButton";
 import ScoringTable from "@/components/views/ScoringView/components/ScoringTable";
 import { scoreGame } from "@/game";
+import { isAndroid, isIOS } from "@/utils/os";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -20,6 +22,7 @@ const ScoringView: React.FC = () => {
   }
 
   const scoring = scoreGame(game);
+  const showBGStatsButton = isAndroid() || isIOS() || import.meta.env.DEV;
 
   return (
     <View header={<Header />} footer={<Footer />}>
@@ -28,7 +31,14 @@ const ScoringView: React.FC = () => {
         <Typography level="title-md">
           <FormattedMessage id="ScoringView.results" defaultMessage="Results" />
         </Typography>
-        <ScoringTable game={game} scoring={scoring} />
+        <ScoringTable game={game} scoring={scoring} sx={{ mb: 1 }} />
+        {showBGStatsButton && (
+          <BGStatsButton
+            game={game}
+            scoring={scoring}
+            sx={{ width: { xs: "100%", sm: "auto" } }}
+          />
+        )}
       </Container>
     </View>
   );
