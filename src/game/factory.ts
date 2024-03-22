@@ -92,6 +92,7 @@ export const createPlayer = (name: string): Player => ({
 });
 
 export const createGame = (): Game => ({
+  id: generateId(),
   deck: createDeck(),
   players: [],
 });
