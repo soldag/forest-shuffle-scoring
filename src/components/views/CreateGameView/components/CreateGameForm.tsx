@@ -34,7 +34,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ sx, onSubmit }) => {
     formState: { isValid, errors },
     handleSubmit,
   } = useForm<CreateGameFormFields>({
-    mode: "onTouched",
+    mode: "onChange",
     defaultValues: {
       playerName: "",
     },

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 
 import PersonIcon from "@mui/icons-material/Person";
 import {
@@ -19,14 +19,28 @@ import FormController from "@/components/common/FormController";
 import { MAX_PLAYER_NAME_LENGTH } from "@/utils/constants";
 import { buildRules } from "@/utils/forms";
 
+const VALIDATION_MESSAGES = defineMessages({
+  playerNameUnique: {
+    id: "AddPlayerModal.validation.playerName.unique",
+    defaultMessage: "This name is already taken.",
+  },
+});
+
+const cleanPlayerName = (value: string) => value.toLowerCase().trim();
+
+const validateUniqueName = (name: string, existingNames: string[]) =>
+  existingNames.every((x) => cleanPlayerName(x) !== cleanPlayerName(name));
+
 interface AddPlayerModalProps {
   open: boolean;
+  existingPlayerNames: string[];
   onConfirm: (values: { playerName: string }) => void;
   onClose: () => void;
 }
 
 const AddPlayerModal: React.FC<AddPlayerModalProps> = ({
   open = false,
+  existingPlayerNames,
   onConfirm,
   onClose,
 }) => {
@@ -38,7 +52,7 @@ const AddPlayerModal: React.FC<AddPlayerModalProps> = ({
     reset,
     handleSubmit,
   } = useForm({
-    mode: "onTouched",
+    mode: "onChange",
     defaultValues: {
       playerName: "",
     },
@@ -83,9 +97,15 @@ const AddPlayerModal: React.FC<AddPlayerModalProps> = ({
                 <FormController
                   name="playerName"
                   control={control}
-                  rules={buildRules(intl, {
+                  rules={buildRules<string>(intl, {
                     required: true,
                     maxLength: MAX_PLAYER_NAME_LENGTH,
+                    validate: {
+                      unique: {
+                        fn: (v) => validateUniqueName(v, existingPlayerNames),
+                        message: VALIDATION_MESSAGES.playerNameUnique,
+                      },
+                    },
                   })}
                   label={label}
                   render={({ field }) => (

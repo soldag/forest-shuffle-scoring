@@ -4,6 +4,7 @@
   "AddPlayerModal.instructions": "Bitte gib den Namen der nächsten Person ein.",
   "AddPlayerModal.playerName.label": "Name",
   "AddPlayerModal.title": "Person hinzufügen",
+  "AddPlayerModal.validation.playerName.unique": "Dieser Name ist bereits vergeben.",
   "CardDrawer.title": "Karte auswählen",
   "CardNames.BarbastelleBat": "Mopsfledermaus",
   "CardNames.BechsteinsBat": "Bechsteinfledermaus",

@@ -16,6 +16,7 @@ const Footer: React.FC = () => {
 
   const [isAddPlayerModalOpen, setIsAddPlayerModalOpen] = useState(false);
 
+  const playerNames = game?.players?.map((p) => p.name) ?? [];
   const hasMaxPlayers = game?.players?.length === MAX_PLAYERS;
 
   const handleAddPlayer = (values: { playerName: string }) =>
@@ -59,6 +60,7 @@ const Footer: React.FC = () => {
 
       <AddPlayerModal
         open={isAddPlayerModalOpen}
+        existingPlayerNames={playerNames}
         onConfirm={handleAddPlayer}
         onClose={() => setIsAddPlayerModalOpen(false)}
       />

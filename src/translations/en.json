@@ -4,6 +4,7 @@
   "AddPlayerModal.instructions": "Please enter the name of the player you want to add.",
   "AddPlayerModal.playerName.label": "Name",
   "AddPlayerModal.title": "Add player",
+  "AddPlayerModal.validation.playerName.unique": "This name is already taken.",
   "CardDrawer.title": "Select card",
   "CardNames.BarbastelleBat": "Barbastelle Bat",
   "CardNames.BechsteinsBat": "Bechsteins Bat",
