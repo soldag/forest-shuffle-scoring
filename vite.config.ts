@@ -3,6 +3,7 @@ import path from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  base: "/forest-shuffle-scoring/",
   plugins: [react()],
   resolve: {
     alias: {
