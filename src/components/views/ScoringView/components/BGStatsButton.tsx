@@ -1,28 +1,13 @@
-import {
-  FormattedMessage,
-  IntlShape,
-  defineMessages,
-  useIntl,
-} from "react-intl";
+import { FormattedMessage, IntlShape, useIntl } from "react-intl";
 
 import { Button, ButtonProps } from "@mui/joy";
 
 import bgStatsIcon from "@/assets/images/bgStatsIcon.png";
 import { Game, GameScoring } from "@/game";
+import CommonMessages from "@/translations/messages/Common";
 
 const SOURCE_GAME_ID = 1;
 const BGG_GAME_ID = 391163;
-
-const MESSAGES = defineMessages({
-  gameName: {
-    id: "ScoringView.BGStatsButton.gameName",
-    defaultMessage: "Forest Shuffle",
-  },
-  sourceName: {
-    id: "ScoringView.BGStatsButton.sourceName",
-    defaultMessage: "Forest Shuffle Scoring App",
-  },
-});
 
 const getTimestampUtc = () => {
   const now = new Date();
@@ -39,12 +24,12 @@ const getTimestampUtc = () => {
 const getUrl = (intl: IntlShape, game: Game, scoring: GameScoring) => {
   const data = {
     sourcePlayId: game.id,
-    sourceName: intl.formatMessage(MESSAGES.sourceName),
+    sourceName: intl.formatMessage(CommonMessages.appName),
     playDate: getTimestampUtc(),
     game: {
       sourceGameId: SOURCE_GAME_ID,
       bggId: BGG_GAME_ID,
-      name: intl.formatMessage(MESSAGES.gameName),
+      name: intl.formatMessage(CommonMessages.gameName),
       highestWins: true,
       noPoints: false,
     },
