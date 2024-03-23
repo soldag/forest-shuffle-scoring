@@ -1,0 +1,21 @@
+name: Prepare environment
+description: Sets up Node and installs dependencies
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 21
+
+    - name: Cache dependencies
+      id: cache-dependencies
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-deps-${{ hashFiles('**/package-lock.json') }}
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
