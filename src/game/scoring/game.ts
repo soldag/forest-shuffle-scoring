@@ -1,4 +1,4 @@
-import { orderBy } from "lodash";
+import * as _ from "lodash-es";
 
 import * as Dwellers from "../dwellers";
 import * as Trees from "../trees";
@@ -81,7 +81,7 @@ export const scorePlayer = (game: Game, playerId: string): PlayerScoring => {
 
 export const scoreGame = (game: Game): GameScoring => {
   const playerScorings = game.players.map(({ id }) => scorePlayer(game, id));
-  const playerScoringsWithRank = orderBy(
+  const playerScoringsWithRank = _.orderBy(
     playerScorings.map((scoring) => ({
       ...scoring,
       rank: playerScorings.filter((s) => s.total > scoring.total).length + 1,

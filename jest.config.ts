@@ -14,6 +14,7 @@ const config: Config = {
   transform: {
     "^.+\\.(t|j)sx?$": "@swc/jest",
   },
+  transformIgnorePatterns: ["<rootDir>/node_modules/(?!lodash-es)"],
 };
 
 export default config;

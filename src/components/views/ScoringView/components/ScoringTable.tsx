@@ -1,4 +1,4 @@
-import { orderBy } from "lodash";
+import * as _ from "lodash-es";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -16,7 +16,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({
   scoring,
   ...otherProps
 }) => {
-  const sortedScorings = orderBy(scoring.players, ["rank", "playerId"]);
+  const sortedScorings = _.orderBy(scoring.players, ["rank", "playerId"]);
 
   return (
     <Table

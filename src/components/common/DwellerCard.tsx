@@ -1,4 +1,4 @@
-import { upperFirst } from "lodash";
+import * as _ from "lodash-es";
 import React from "react";
 import { useIntl } from "react-intl";
 
@@ -26,7 +26,7 @@ const getAttachedStyles = (attached?: AttachPosition) => {
     return {};
   }
 
-  const cssAttached = upperFirst(attached);
+  const cssAttached = _.upperFirst(attached);
   return {
     [`padding${cssAttached}`]: "calc(var(--Card-padding) + var(--Card-radius))",
     [`margin${cssAttached}`]: "calc(-1 * var(--Card-radius))",

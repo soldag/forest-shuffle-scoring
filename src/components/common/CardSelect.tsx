@@ -1,4 +1,4 @@
-import { chain } from "lodash";
+import * as _ from "lodash-es";
 import { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
@@ -37,13 +37,12 @@ const CardSelect = <TCard extends Card>({
 }: CardSelectProps<TCard>) => {
   const intl = useIntl();
 
-  const cardNameOptions = chain(cards)
+  const cardNameOptions = _.chain(cards)
     .uniqBy((c) => c.name)
-    .sortBy((c) => getLocalizedCardName(intl, c.name) ?? c.name)
-    .sortBy((c) => c.types)
+    .orderBy((c) => [c.types, getLocalizedCardName(intl, c.name) ?? c.name])
     .value();
 
-  const treeSymbolOptions = chain(cards)
+  const treeSymbolOptions = _.chain(cards)
     .filter((c) => c.name === cardName && !!c.treeSymbol)
     .uniqBy((c) => c.treeSymbol)
     .sortBy((c) => getLocalizedTreeSymbol(intl, c.treeSymbol!))
