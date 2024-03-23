@@ -14,7 +14,7 @@
     "i18n:check": "tsx scripts/checkTranslations.ts",
     "test": "jest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook:build": "storybook build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
