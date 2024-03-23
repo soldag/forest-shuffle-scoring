@@ -7,7 +7,7 @@ import {
 
 import { Button, ButtonProps } from "@mui/joy";
 
-import bgStatsIcon from "@/assets/images/bg_stats_icon.png";
+import bgStatsIcon from "@/assets/images/bgStatsIcon.png";
 import { Game, GameScoring } from "@/game";
 
 const SOURCE_GAME_ID = 1;
