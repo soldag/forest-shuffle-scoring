@@ -7,6 +7,7 @@ import {
 
 import { Button, ButtonProps } from "@mui/joy";
 
+import bgStatsIcon from "@/assets/images/bg_stats_icon.png";
 import { Game, GameScoring } from "@/game";
 
 const SOURCE_GAME_ID = 1;
@@ -84,10 +85,7 @@ const BGStatsButton: React.FC<BGStatsButtonProps> = ({
         variant="soft"
         color="neutral"
         startDecorator={
-          <img
-            src="/images/bg_stats_icon.png"
-            style={{ width: "24px", height: "24px" }}
-          />
+          <img src={bgStatsIcon} style={{ width: "24px", height: "24px" }} />
         }
       >
         <FormattedMessage
