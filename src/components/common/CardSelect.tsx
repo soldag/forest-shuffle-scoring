@@ -37,16 +37,18 @@ const CardSelect = <TCard extends Card>({
 }: CardSelectProps<TCard>) => {
   const intl = useIntl();
 
-  const cardNameOptions = _.chain(cards)
-    .uniqBy((c) => c.name)
-    .orderBy((c) => [c.types, getLocalizedCardName(intl, c.name) ?? c.name])
-    .value();
+  const cardNameOptions = _.orderBy(
+    _.uniqBy(cards, (c) => c.name),
+    (c) => [c.types, getLocalizedCardName(intl, c.name) ?? c.name],
+  );
 
-  const treeSymbolOptions = _.chain(cards)
-    .filter((c) => c.name === cardName && !!c.treeSymbol)
-    .uniqBy((c) => c.treeSymbol)
-    .sortBy((c) => getLocalizedTreeSymbol(intl, c.treeSymbol!))
-    .value();
+  const treeSymbolOptions = _.orderBy(
+    _.uniqBy(
+      cards.filter((c) => c.name === cardName && !!c.treeSymbol),
+      (c) => c.treeSymbol,
+    ),
+    (c) => getLocalizedTreeSymbol(intl, c.treeSymbol!),
+  );
   const canSelectTreeSymbol =
     cardName &&
     treeSymbolOptions?.length > 0 &&
