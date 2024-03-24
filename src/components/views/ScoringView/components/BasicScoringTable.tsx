@@ -11,7 +11,7 @@ interface ScoringTableProps extends TableProps {
   scoring: GameScoring;
 }
 
-const ScoringTable: React.FC<ScoringTableProps> = ({
+const BasicScoringTable: React.FC<ScoringTableProps> = ({
   game,
   scoring,
   ...otherProps
@@ -21,33 +21,30 @@ const ScoringTable: React.FC<ScoringTableProps> = ({
   return (
     <Table
       {...otherProps}
-      stripe="even"
       sx={{
         ...otherProps.sx,
         "tableLayout": "auto",
-        "& tr > *:nth-child(2)": { width: "100%" },
-        "& tr > *:nth-child(3)": { textAlign: "right" },
-        "--TableRow-stripeBackground": (theme) =>
-          theme.vars.palette.primary[100],
+        "& tr > *:nth-of-type(2)": { width: "100%" },
+        "& tr > *:nth-of-type(3)": { textAlign: "right" },
       }}
     >
       <thead>
         <tr>
           <th>
             <FormattedMessage
-              id="ScoringView.ScoringTable.headers.rank"
+              id="ScoringView.BasicScoringTable.headers.rank"
               defaultMessage="#"
             />
           </th>
           <th>
             <FormattedMessage
-              id="ScoringView.ScoringTable.headers.player"
+              id="ScoringView.BasicScoringTable.headers.player"
               defaultMessage="Player"
             />
           </th>
           <th>
             <FormattedMessage
-              id="ScoringView.ScoringTable.headers.score"
+              id="ScoringView.BasicScoringTable.headers.score"
               defaultMessage="Victory points"
             />
           </th>
@@ -66,4 +63,4 @@ const ScoringTable: React.FC<ScoringTableProps> = ({
   );
 };
 
-export default ScoringTable;
+export default BasicScoringTable;
