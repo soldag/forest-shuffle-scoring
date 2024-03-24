@@ -21,7 +21,16 @@ const View: React.FC<ViewProps> = ({ header, footer, children }) => (
     }}
   >
     {header}
-    <Box sx={{ flexGrow: 1 }}>{children}</Box>
+    <Box
+      sx={{
+        flexGrow: 1,
+        flexShrink: 1,
+        py: 2,
+        overflowY: "scroll",
+      }}
+    >
+      {children}
+    </Box>
     {footer}
   </Sheet>
 );

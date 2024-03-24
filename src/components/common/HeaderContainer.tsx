@@ -14,7 +14,6 @@ const HeaderContainer: React.FC<HeaderContainerProps> = ({ children }) => (
       borderColor: "divider",
       boxShadow: "sm",
       p: 2,
-      mb: 2,
     }}
   >
     <Container sx={{ px: { xs: 0 } }}>{children}</Container>

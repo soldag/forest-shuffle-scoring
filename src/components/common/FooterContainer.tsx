@@ -14,7 +14,6 @@ const FooterContainer: React.FC<FooterContainerProps> = ({ children }) => (
       borderColor: "divider",
       boxShadow: "sm",
       p: 2,
-      mt: 2,
     }}
   >
     <Container sx={{ px: { xs: 0 } }}>{children}</Container>

@@ -24,7 +24,7 @@ const CreateGameView = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          height: "100%",
+          minHeight: "100%",
         }}
       >
         <CreateGameForm onSubmit={handleSubmit} />
