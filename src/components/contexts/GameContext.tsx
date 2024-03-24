@@ -78,7 +78,7 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
         game: removePlayer(state.game, action.payload.playerId),
       };
 
-    case GameActionType.ChangePlayer:
+    case GameActionType.SelectPlayer:
       return {
         ...state,
         playerId: action.payload.playerId,

@@ -4,7 +4,7 @@ import CountUp from "react-countup";
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Box, IconButton, Stack, Typography } from "@mui/joy";
 
-import { changePlayer, resetGame } from "@/components/actions/game";
+import { SelectPlayer, resetGame } from "@/components/actions/game";
 import ConfirmResetModal from "@/components/common/ConfirmResetModal";
 import HeaderContainer from "@/components/common/HeaderContainer";
 import HeaderTitle from "@/components/common/HeaderTitle";
@@ -20,9 +20,9 @@ const Header: React.FC = () => {
   const playerScore =
     game && playerId ? scorePlayer(game, playerId).total : null;
 
-  const handleChangePlayer = (playerId: string | null) => {
+  const handleSelectPlayer = (playerId: string | null) => {
     if (playerId) {
-      dispatch(changePlayer({ playerId }));
+      dispatch(SelectPlayer({ playerId }));
     }
   };
   const handleReset = () => dispatch(resetGame());
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
             variant="plain"
             players={game.players}
             value={playerId}
-            onChange={(_, value) => handleChangePlayer(value)}
+            onChange={(_, value) => handleSelectPlayer(value)}
             sx={{
               flexGrow: { xs: 1, sm: 0 },
               flexBasis: { xs: "0", sm: "auto" },

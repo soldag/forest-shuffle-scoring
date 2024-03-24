@@ -4,7 +4,7 @@ export enum GameActionType {
   CreateGame = "CREATE_GAME",
   ResetGame = "RESET_GAME",
   AddPlayer = "ADD_PLAYER",
-  ChangePlayer = "CHANGE_PLAYER",
+  SelectPlayer = "SELECT_PLAYER",
   RemovePlayer = "REMOVE_PLAYER",
   PlayTree = "PLAY_TREE",
   PlayDweller = "PLAY_DWELLER",
@@ -67,19 +67,19 @@ export const removePlayer = (
   payload,
 });
 
-interface ChangePlayerPayload {
+interface SelectPlayerPayload {
   playerId: string;
 }
 
-interface ChangePlayerAction {
-  type: GameActionType.ChangePlayer;
-  payload: ChangePlayerPayload;
+interface SelectPlayerAction {
+  type: GameActionType.SelectPlayer;
+  payload: SelectPlayerPayload;
 }
 
-export const changePlayer = (
-  payload: ChangePlayerPayload,
-): ChangePlayerAction => ({
-  type: GameActionType.ChangePlayer,
+export const SelectPlayer = (
+  payload: SelectPlayerPayload,
+): SelectPlayerAction => ({
+  type: GameActionType.SelectPlayer,
   payload,
 });
 
@@ -197,7 +197,7 @@ export type GameAction =
   | ResetGameAction
   | AddPlayerAction
   | RemovePlayerAction
-  | ChangePlayerAction
+  | SelectPlayerAction
   | PlayTreeAction
   | PlayDwellerAction
   | ExchangeTreeAction
