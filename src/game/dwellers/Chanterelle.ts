@@ -24,7 +24,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
     },
     {
       position: DwellerPosition.Bottom,
-      treeSymbol: TreeSymbol.DouglasFir,
+      treeSymbol: TreeSymbol.SilverFir,
       count: 1,
     },
   ],

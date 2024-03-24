@@ -24,7 +24,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
   variants: [
     {
       position: DwellerPosition.Bottom,
-      treeSymbol: TreeSymbol.Birch,
+      treeSymbol: TreeSymbol.Beech,
       count: 1,
     },
     {

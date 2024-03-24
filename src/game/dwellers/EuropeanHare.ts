@@ -53,7 +53,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
     },
     {
       position: DwellerPosition.Right,
-      treeSymbol: TreeSymbol.DouglasFir,
+      treeSymbol: TreeSymbol.SilverFir,
       count: 1,
     },
     {
