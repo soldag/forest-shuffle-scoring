@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { forwardRef, useCallback } from "react";
 
 import StyleIcon from "@mui/icons-material/Style";
 import { Input, InputProps } from "@mui/joy";
@@ -12,11 +12,10 @@ interface CaveCardCountInputProps
   onChange?: (value: number | null) => void;
 }
 
-const CaveCardCountInput: React.FC<CaveCardCountInputProps> = ({
-  value,
-  onChange,
-  ...remainingProps
-}) => {
+const CaveCardCountInput = forwardRef<
+  HTMLInputElement,
+  CaveCardCountInputProps
+>(({ value, onChange, ...remainingProps }, ref) => {
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = parseInt(e.target.value, 10);
@@ -28,13 +27,14 @@ const CaveCardCountInput: React.FC<CaveCardCountInputProps> = ({
   return (
     <Input
       {...remainingProps}
+      ref={ref}
       type="number"
       startDecorator={<StyleIcon />}
       slotProps={{ input: { min: 0 } }}
-      value={value === null ? "" : value}
+      value={value === null ? "" : value.toString()}
       onChange={handleChange}
     />
   );
-};
+});
 
 export default CaveCardCountInput;

@@ -1,3 +1,5 @@
+import { forwardRef } from "react";
+
 import PersonIcon from "@mui/icons-material/Person";
 import { Input, InputProps } from "@mui/joy";
 
@@ -8,16 +10,19 @@ type PlayerNameInputProps = Omit<
   "startDecorator" | "slotProps" | "type"
 >;
 
-const PlayerNameInput: React.FC<PlayerNameInputProps> = (props) => (
-  <Input
-    {...props}
-    startDecorator={<PersonIcon />}
-    slotProps={{
-      input: {
-        maxLength: MAX_PLAYER_NAME_LENGTH,
-      },
-    }}
-  />
+const PlayerNameInput = forwardRef<HTMLInputElement, PlayerNameInputProps>(
+  (props, ref) => (
+    <Input
+      {...props}
+      ref={ref}
+      startDecorator={<PersonIcon />}
+      slotProps={{
+        input: {
+          maxLength: MAX_PLAYER_NAME_LENGTH,
+        },
+      }}
+    />
+  ),
 );
 
 export default PlayerNameInput;
