@@ -86,6 +86,12 @@ export const removePlayer = (game: Game, playerId: string) => {
   );
 };
 
+export const setCaveCardCount = (game: Game, playerId: string, count: number) =>
+  produce(game, (draft) => {
+    const player = requirePlayer(draft, playerId);
+    player.forest.caveCardCount = count;
+  });
+
 export const playTree = (game: Game, playerId: string, tree: TreeCard): Game =>
   produce(game, (draft) => {
     const player = requirePlayer(draft, playerId);

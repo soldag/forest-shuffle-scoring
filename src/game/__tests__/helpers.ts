@@ -65,7 +65,7 @@ export const createForestWithTrees: (...trees: TreeCard[]) => Forest = (
   ...trees
 ) => ({
   trees,
-  cave: [],
+  caveCardCount: 0,
 });
 
 export function createForestWithDweller({
@@ -108,7 +108,7 @@ export function createForestWithDweller({
 
   const forest = {
     trees,
-    cave: [],
+    caveCardCount: 0,
   };
 
   return {

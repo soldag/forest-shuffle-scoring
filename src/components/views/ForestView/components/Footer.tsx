@@ -19,11 +19,6 @@ const Footer: React.FC = () => {
   const playerNames = game?.players?.map((p) => p.name) ?? [];
   const hasMaxPlayers = game?.players?.length === MAX_PLAYERS;
 
-  const handleAddPlayer = (values: { playerName: string }) =>
-    dispatch(addPlayer(values));
-
-  const handleScoreGame = () => dispatch(scoreGame());
-
   return (
     <FooterContainer>
       <Stack
@@ -49,7 +44,7 @@ const Footer: React.FC = () => {
           fullWidth
           startDecorator={<EmojiEventsIcon />}
           color="primary"
-          onClick={handleScoreGame}
+          onClick={() => dispatch(scoreGame())}
         >
           <FormattedMessage
             id="ForestView.Footer.scoreGame"
@@ -61,7 +56,7 @@ const Footer: React.FC = () => {
       <AddPlayerModal
         open={isAddPlayerModalOpen}
         existingPlayerNames={playerNames}
-        onConfirm={handleAddPlayer}
+        onConfirm={(values) => dispatch(addPlayer(values))}
         onClose={() => setIsAddPlayerModalOpen(false)}
       />
     </FooterContainer>

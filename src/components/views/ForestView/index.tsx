@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, useState } from "react";
 
-import { Box } from "@mui/joy";
+import { Box, Container } from "@mui/joy";
 
 import {
   exchangeDweller,
@@ -9,6 +9,7 @@ import {
   playTree,
   removeDweller,
   removeTree,
+  setCave,
 } from "@/components/actions/game";
 import CardDrawer from "@/components/common/CardDrawer";
 import TreeStack from "@/components/common/TreeStack";
@@ -23,6 +24,7 @@ import {
 } from "@/game";
 
 import Footer from "./components/Footer";
+import ForestSummary from "./components/ForestSummary";
 import Header from "./components/Header";
 
 const ForestView: React.FC = () => {
@@ -59,6 +61,11 @@ const ForestView: React.FC = () => {
     ],
     [game, dwellerTreeId, dwellerPosition, selectedDweller],
   );
+
+  const handleForestChange = ({ caveCardCount }: { caveCardCount: number }) => {
+    if (!playerId) return;
+    dispatch(setCave({ playerId, count: caveCardCount }));
+  };
 
   const handleAddTree = () => {
     setIsAddingTree(true);
@@ -169,24 +176,31 @@ const ForestView: React.FC = () => {
             onTreeClick={handleTreeClick}
             onDwellerClick={handleDwellerClick}
           />
-          <CardDrawer
-            open={isAddingTree || !!selectedTree}
-            onClose={handleCloseTreeDrawer}
-            cards={treeOptions}
-            selectedCard={selectedTree}
-            onSelectCard={handleSelectTree}
-            onRemoveCard={handleRemoveTree}
-          />
-          <CardDrawer
-            open={isAddingDweller || !!selectedDweller}
-            onClose={handleCloseDwellerDrawer}
-            cards={dwellerOptions}
-            selectedCard={selectedDweller}
-            onSelectCard={handleSelectDweller}
-            onRemoveCard={handleRemoveDweller}
-          />
         </Box>
+
+        <Container sx={{ mt: 2 }}>
+          {forest && (
+            <ForestSummary forest={forest} onChange={handleForestChange} />
+          )}
+        </Container>
       </Box>
+
+      <CardDrawer
+        open={isAddingTree || !!selectedTree}
+        onClose={handleCloseTreeDrawer}
+        cards={treeOptions}
+        selectedCard={selectedTree}
+        onSelectCard={handleSelectTree}
+        onRemoveCard={handleRemoveTree}
+      />
+      <CardDrawer
+        open={isAddingDweller || !!selectedDweller}
+        onClose={handleCloseDwellerDrawer}
+        cards={dwellerOptions}
+        selectedCard={selectedDweller}
+        onSelectCard={handleSelectDweller}
+        onRemoveCard={handleRemoveDweller}
+      />
     </View>
   );
 };

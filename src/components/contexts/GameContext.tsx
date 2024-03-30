@@ -12,7 +12,11 @@ import {
   removeTree,
 } from "@/game";
 import { createPlayer } from "@/game/factory";
-import { exchangeDweller, exchangeTree } from "@/game/operations";
+import {
+  exchangeDweller,
+  exchangeTree,
+  setCaveCardCount,
+} from "@/game/operations";
 
 interface State {
   game: Game | null;
@@ -43,7 +47,10 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
   if (!state.game) {
     if (action.type === GameActionType.CreateGame) {
       const game = createGame();
-      const player = createPlayer(action.payload.playerName);
+      const player = createPlayer(
+        action.payload.playerName,
+        action.payload.caveCardCount,
+      );
       return {
         ...state,
         game: addPlayer(game, player),
@@ -64,7 +71,10 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
       };
 
     case GameActionType.AddPlayer: {
-      const player = createPlayer(action.payload.playerName);
+      const player = createPlayer(
+        action.payload.playerName,
+        action.payload.caveCardCount,
+      );
       return {
         ...state,
         game: addPlayer(state.game, player),
@@ -82,6 +92,16 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
       return {
         ...state,
         playerId: action.payload.playerId,
+      };
+
+    case GameActionType.SetCave:
+      return {
+        ...state,
+        game: setCaveCardCount(
+          state.game,
+          action.payload.playerId,
+          action.payload.count,
+        ),
       };
 
     case GameActionType.PlayTree:

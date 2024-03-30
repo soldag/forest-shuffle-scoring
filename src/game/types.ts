@@ -64,7 +64,7 @@ export interface Deck {
 
 export interface Forest {
   trees: TreeCard[];
-  cave: Card[];
+  caveCardCount: number;
 }
 
 export interface Player {

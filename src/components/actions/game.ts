@@ -6,6 +6,7 @@ export enum GameActionType {
   AddPlayer = "ADD_PLAYER",
   SelectPlayer = "SELECT_PLAYER",
   RemovePlayer = "REMOVE_PLAYER",
+  SetCave = "SET_CAVE",
   PlayTree = "PLAY_TREE",
   PlayDweller = "PLAY_DWELLER",
   ExchangeTree = "EXCHANGE_TREE",
@@ -17,6 +18,7 @@ export enum GameActionType {
 
 interface CreateGamePayload {
   playerName: string;
+  caveCardCount: number;
 }
 
 interface CreateGameAction {
@@ -39,6 +41,7 @@ export const resetGame = (): ResetGameAction => ({
 
 interface AddPlayerPayload {
   playerName: string;
+  caveCardCount: number;
 }
 
 interface AddPlayerAction {
@@ -80,6 +83,21 @@ export const SelectPlayer = (
   payload: SelectPlayerPayload,
 ): SelectPlayerAction => ({
   type: GameActionType.SelectPlayer,
+  payload,
+});
+
+interface SetCavePayload {
+  playerId: string;
+  count: number;
+}
+
+interface SetCaveAction {
+  type: GameActionType.SetCave;
+  payload: SetCavePayload;
+}
+
+export const setCave = (payload: SetCavePayload): SetCaveAction => ({
+  type: GameActionType.SetCave,
   payload,
 });
 
@@ -198,6 +216,7 @@ export type GameAction =
   | AddPlayerAction
   | RemovePlayerAction
   | SelectPlayerAction
+  | SetCaveAction
   | PlayTreeAction
   | PlayDwellerAction
   | ExchangeTreeAction

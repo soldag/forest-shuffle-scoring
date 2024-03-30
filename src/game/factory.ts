@@ -67,9 +67,9 @@ export const createTree = (blueprint: TreeCardBlueprint): TreeCard => {
 
 export const createSapling = (): TreeCard => createTree(SaplingBlueprint);
 
-export const createForest = (): Forest => ({
+export const createForest = (caveCardCount: number = 0): Forest => ({
   trees: [],
-  cave: [],
+  caveCardCount,
 });
 
 export const createDeck = (): Deck => ({
@@ -85,10 +85,13 @@ export const createDeck = (): Deck => ({
     ),
 });
 
-export const createPlayer = (name: string): Player => ({
+export const createPlayer = (
+  name: string,
+  caveCardCount: number = 0,
+): Player => ({
   id: generateId(),
   name,
-  forest: createForest(),
+  forest: createForest(caveCardCount),
 });
 
 export const createGame = (): Game => ({
