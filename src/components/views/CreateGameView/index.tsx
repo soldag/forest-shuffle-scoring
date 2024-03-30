@@ -6,15 +6,15 @@ import { createGame } from "@/components/actions/game";
 import View from "@/components/common/View";
 import GameContext from "@/components/contexts/GameContext";
 
-import CreateGameForm, {
-  CreateGameFormFields,
-} from "./components/CreateGameForm";
+import CreateGameCard, {
+  CreateGameCardFields,
+} from "./components/CreateGameCard";
 import Header from "./components/Header";
 
 const CreateGameView = () => {
   const { dispatch } = useContext(GameContext);
 
-  const handleSubmit = (values: CreateGameFormFields) =>
+  const handleSubmit = (values: CreateGameCardFields) =>
     dispatch(createGame(values));
 
   return (
@@ -27,7 +27,7 @@ const CreateGameView = () => {
           minHeight: "100%",
         }}
       >
-        <CreateGameForm onSubmit={handleSubmit} />
+        <CreateGameCard onSubmit={handleSubmit} />
       </Container>
     </View>
   );

@@ -18,22 +18,22 @@ import FormController from "@/components/common/FormController";
 import { MAX_PLAYER_NAME_LENGTH } from "@/utils/constants";
 import { buildRules } from "@/utils/forms";
 
-export interface CreateGameFormFields {
+export interface CreateGameCardFields {
   playerName: string;
 }
 
-interface CreateGameFormProps {
+interface CreateGameCardProps {
   sx?: SxProps;
-  onSubmit: (values: CreateGameFormFields) => void;
+  onSubmit: (values: CreateGameCardFields) => void;
 }
 
-const CreateGameForm: React.FC<CreateGameFormProps> = ({ sx, onSubmit }) => {
+const CreateGameCard: React.FC<CreateGameCardProps> = ({ sx, onSubmit }) => {
   const intl = useIntl();
   const {
     control,
     formState: { isValid, errors },
     handleSubmit,
-  } = useForm<CreateGameFormFields>({
+  } = useForm<CreateGameCardFields>({
     mode: "onChange",
     defaultValues: {
       playerName: "",
@@ -45,7 +45,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ sx, onSubmit }) => {
       <Card color="neutral" variant="outlined" sx={sx}>
         <Typography level="title-lg" startDecorator={<AddIcon />}>
           <FormattedMessage
-            id="CreateGameView.CreateGameForm.header"
+            id="CreateGameView.CreateGameCard.header"
             defaultMessage="Score a new game"
           />
         </Typography>
@@ -54,14 +54,14 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ sx, onSubmit }) => {
 
         <Typography level="body-sm">
           <FormattedMessage
-            id="CreateGameView.CreateGameForm.introduction"
+            id="CreateGameView.CreateGameCard.introduction"
             defaultMessage="To start scoring your Forest Shuffle game please enter the name of the player you want to start with."
           />
         </Typography>
 
         <CardContent>
           <FormattedMessage
-            id="CreateGameView.CreateGameForm.playerName.label"
+            id="CreateGameView.CreateGameCard.playerName.label"
             defaultMessage="Name"
           >
             {([label]) => (
@@ -95,7 +95,7 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ sx, onSubmit }) => {
           <CardActions>
             <Button type="submit" disabled={!isValid}>
               <FormattedMessage
-                id="CreateGameView.CreateGameForm.startScoring"
+                id="CreateGameView.CreateGameCard.startScoring"
                 defaultMessage="Start scoring"
               />
             </Button>
@@ -106,4 +106,4 @@ const CreateGameForm: React.FC<CreateGameFormProps> = ({ sx, onSubmit }) => {
   );
 };
 
-export default CreateGameForm;
+export default CreateGameCard;
