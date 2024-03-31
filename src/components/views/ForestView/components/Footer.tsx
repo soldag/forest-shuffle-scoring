@@ -33,7 +33,13 @@ const Footer: React.FC = () => {
         <ForestSummary forest={forest} onChange={handleForestChange} />
       )}
 
-      <Divider sx={{ my: 2, mx: -2 }} />
+      <Divider
+        sx={{
+          my: 2,
+          boxShadow: "0 0 0 100vmax var(--Divider-lineColor)",
+          clipPath: "inset(0px -100vmax)",
+        }}
+      />
 
       <Stack
         direction="row"
