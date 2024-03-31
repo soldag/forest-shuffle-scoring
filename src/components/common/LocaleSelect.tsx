@@ -23,7 +23,7 @@ const LOCALES = _.orderBy(
 const LocaleSelect: React.FC<SelectProps<Locale, false>> = (props) => (
   <Select {...props}>
     {LOCALES.map(({ code, flag, label }) => (
-      <Option value={code} label={flag}>
+      <Option key={code} value={code} label={flag}>
         <Typography startDecorator={flag}>{label}</Typography>
       </Option>
     ))}
