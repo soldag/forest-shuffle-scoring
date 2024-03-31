@@ -1,4 +1,4 @@
-import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "usehooks-ts";
 
 import { useTheme } from "@mui/joy";
 import { Breakpoints } from "@mui/system";
@@ -8,5 +8,5 @@ export const useBreakpoint = (
 ) => {
   const theme = useTheme();
   const query = querySelector(theme.breakpoints).replace("@media", "");
-  return useMediaQuery({ query });
+  return useMediaQuery(query);
 };
