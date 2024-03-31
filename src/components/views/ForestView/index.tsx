@@ -157,8 +157,8 @@ const ForestView: React.FC = () => {
             display: "flex",
             height: "100%",
             maxWidth: "100%",
-            p: 2,
-            overflowY: "auto",
+            overflowX: "auto",
+            scrollSnapType: { xs: "x proximity", sm: "none" },
           }}
         >
           <TreeStack
