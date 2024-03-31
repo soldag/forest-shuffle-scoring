@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { FormattedMessage } from "react-intl";
+import { useBoolean } from "usehooks-ts";
 
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -16,7 +17,11 @@ import ForestSummary from "./ForestSummary";
 const Footer: React.FC = () => {
   const { game, playerId, dispatch } = useContext(GameContext);
 
-  const [isAddPlayerModalOpen, setIsAddPlayerModalOpen] = useState(false);
+  const {
+    value: isAddPlayerModalOpen,
+    setTrue: openAddPlayerModal,
+    setFalse: closeAddPlayerModal,
+  } = useBoolean(false);
 
   const playerNames = game?.players?.map((p) => p.name) ?? [];
   const hasMaxPlayers = game?.players?.length === MAX_PLAYERS;
@@ -53,7 +58,7 @@ const Footer: React.FC = () => {
           color="neutral"
           startDecorator={<PersonAddIcon />}
           disabled={hasMaxPlayers}
-          onClick={() => setIsAddPlayerModalOpen(true)}
+          onClick={openAddPlayerModal}
         >
           <FormattedMessage
             id="ForestView.Footer.nextPlayer"
@@ -77,7 +82,7 @@ const Footer: React.FC = () => {
         open={isAddPlayerModalOpen}
         existingPlayerNames={playerNames}
         onConfirm={(values) => dispatch(addPlayer(values))}
-        onClose={() => setIsAddPlayerModalOpen(false)}
+        onClose={closeAddPlayerModal}
       />
     </FooterContainer>
   );

@@ -1,5 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import CountUp from "react-countup";
+import { useBoolean } from "usehooks-ts";
 
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Box, IconButton, Stack, Typography } from "@mui/joy";
@@ -15,7 +16,11 @@ import { scorePlayer } from "@/game";
 const Header: React.FC = () => {
   const { game, playerId, dispatch } = useContext(GameContext);
 
-  const [isResetModalOpen, setIsResetModalOpen] = useState(false);
+  const {
+    value: isResetModalOpen,
+    setTrue: openResetModal,
+    setFalse: closeResetModal,
+  } = useBoolean(false);
 
   const playerScore =
     game && playerId ? scorePlayer(game, playerId).total : null;
@@ -40,7 +45,7 @@ const Header: React.FC = () => {
         <IconButton
           size="sm"
           sx={{ order: { sm: 5 } }}
-          onClick={() => setIsResetModalOpen(true)}
+          onClick={openResetModal}
         >
           <ReplayIcon />
         </IconButton>
@@ -70,7 +75,7 @@ const Header: React.FC = () => {
       <ConfirmResetModal
         open={isResetModalOpen}
         onConfirm={handleReset}
-        onClose={() => setIsResetModalOpen(false)}
+        onClose={closeResetModal}
       />
     </HeaderContainer>
   );

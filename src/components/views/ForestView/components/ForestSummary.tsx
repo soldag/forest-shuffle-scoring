@@ -1,5 +1,6 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
+import { useBoolean } from "usehooks-ts";
 
 import EditIcon from "@mui/icons-material/Edit";
 import { Link, Stack, Typography } from "@mui/joy";
@@ -46,7 +47,11 @@ interface ForestSummaryProps {
 }
 
 const ForestSummary: React.FC<ForestSummaryProps> = ({ forest, onChange }) => {
-  const [showCaveModal, setShowCaveModal] = useState(false);
+  const {
+    value: isCaveModalOpen,
+    setTrue: openCaveModal,
+    setFalse: closeCaveModal,
+  } = useBoolean(false);
 
   return (
     <Stack direction="row" alignItems="center" gap={4}>
@@ -77,16 +82,16 @@ const ForestSummary: React.FC<ForestSummaryProps> = ({ forest, onChange }) => {
         }
         value={forest.caveCardCount}
         endDecorator={
-          <Link color="neutral" onClick={() => setShowCaveModal(true)}>
+          <Link color="neutral" onClick={openCaveModal}>
             <EditIcon />
           </Link>
         }
       />
 
       <CaveModal
-        open={showCaveModal}
+        open={isCaveModalOpen}
         count={forest.caveCardCount}
-        onClose={() => setShowCaveModal(false)}
+        onClose={closeCaveModal}
         onConfirm={({ count }) => onChange({ caveCardCount: count })}
       />
     </Stack>
