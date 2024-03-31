@@ -3,24 +3,38 @@ import { FormattedMessage } from "react-intl";
 
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import { Button, Stack } from "@mui/joy";
+import { Button, Divider, Stack } from "@mui/joy";
 
-import { addPlayer, scoreGame } from "@/components/actions/game";
+import { addPlayer, scoreGame, setCave } from "@/components/actions/game";
 import AddPlayerModal from "@/components/common/AddPlayerModal";
 import FooterContainer from "@/components/common/FooterContainer";
 import GameContext from "@/components/contexts/GameContext";
 import { MAX_PLAYERS } from "@/utils/constants";
 
+import ForestSummary from "./ForestSummary";
+
 const Footer: React.FC = () => {
-  const { game, dispatch } = useContext(GameContext);
+  const { game, playerId, dispatch } = useContext(GameContext);
 
   const [isAddPlayerModalOpen, setIsAddPlayerModalOpen] = useState(false);
 
   const playerNames = game?.players?.map((p) => p.name) ?? [];
   const hasMaxPlayers = game?.players?.length === MAX_PLAYERS;
+  const forest = game?.players?.find((p) => p.id === playerId)?.forest;
+
+  const handleForestChange = ({ caveCardCount }: { caveCardCount: number }) => {
+    if (!playerId) return;
+    dispatch(setCave({ playerId, count: caveCardCount }));
+  };
 
   return (
     <FooterContainer>
+      {forest && (
+        <ForestSummary forest={forest} onChange={handleForestChange} />
+      )}
+
+      <Divider sx={{ my: 2, mx: -2 }} />
+
       <Stack
         direction="row"
         alignItems="center"
