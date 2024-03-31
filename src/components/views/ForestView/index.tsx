@@ -141,7 +141,7 @@ const ForestView: React.FC = () => {
   };
 
   return (
-    <View header={<Header />} footer={<Footer />}>
+    <View header={<Header />} footer={<Footer />} sx={{ p: 0 }}>
       <Box
         sx={{
           height: "100%",

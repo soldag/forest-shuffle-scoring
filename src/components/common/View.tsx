@@ -1,14 +1,16 @@
 import React, { ReactNode } from "react";
 
 import { Box, Sheet } from "@mui/joy";
+import { SxProps } from "@mui/joy/styles/types";
 
 interface ViewProps {
+  sx?: SxProps;
   header?: ReactNode;
   footer?: ReactNode;
   children?: ReactNode;
 }
 
-const View: React.FC<ViewProps> = ({ header, footer, children }) => (
+const View: React.FC<ViewProps> = ({ sx, header, footer, children }) => (
   <Sheet
     sx={{
       height: "100dvh",
@@ -27,6 +29,7 @@ const View: React.FC<ViewProps> = ({ header, footer, children }) => (
         flexShrink: 1,
         py: 2,
         overflowY: "scroll",
+        ...sx,
       }}
     >
       {children}
