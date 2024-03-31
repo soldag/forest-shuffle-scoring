@@ -17,7 +17,7 @@ const SnapContainer: React.FC<SnapContainerProps> = ({ children }) => (
       justifyContent: "center",
       p: 2,
       minWidth: { xs: "100vw", sm: 0 },
-      scrollSnapAlign: "center",
+      scrollSnapAlign: "start",
     }}
   >
     {children}
