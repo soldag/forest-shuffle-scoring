@@ -12,7 +12,7 @@ const FooterContainer: React.FC<FooterContainerProps> = ({ children }) => (
       bgcolor: "background.surface",
       borderTop: "1px solid",
       borderColor: "divider",
-      boxShadow: "sm",
+      boxShadow: "smInverse",
       p: 2,
     }}
   >
