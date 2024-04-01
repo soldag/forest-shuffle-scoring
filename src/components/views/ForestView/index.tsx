@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useMemo, useState } from "react";
 
 import { Box } from "@mui/joy";
 
@@ -33,9 +27,6 @@ import Header from "./components/Header";
 
 const ForestView: React.FC = () => {
   const { game, playerId, dispatch } = useContext(GameContext);
-
-  const scrollContainer = useRef<HTMLElement>();
-  const scrollLeftRef = useRef<number>();
 
   const [isAddingTree, setIsAddingTree] = useState(false);
   const [selectedTree, setSelectedTree] = useState<TreeCard | null>(null);
@@ -68,19 +59,6 @@ const ForestView: React.FC = () => {
     ],
     [game, dwellerTreeId, dwellerPosition, selectedDweller],
   );
-
-  // Keep scroll position when adding trees
-  scrollLeftRef.current = scrollContainer.current?.scrollLeft;
-  useLayoutEffect(() => {
-    const treeCount = forest?.trees.length;
-    const scrollLeft = scrollLeftRef.current;
-    if (treeCount && scrollLeft != null) {
-      scrollContainer.current?.scrollTo({
-        left: scrollLeft,
-        behavior: "instant",
-      });
-    }
-  }, [forest?.trees.length]);
 
   const handleAddTree = () => {
     setIsAddingTree(true);
@@ -175,7 +153,6 @@ const ForestView: React.FC = () => {
         }}
       >
         <Box
-          ref={scrollContainer}
           sx={{
             display: "flex",
             height: "100%",

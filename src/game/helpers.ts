@@ -29,9 +29,15 @@ export const getTreeCandidates = (game: Game) => [
 export const getDwellerCandidates = (
   game: Game,
   treeId: string,
-  position: DwellerPosition,
+  position: DwellerPosition | null = null,
   ignoreDweller: DwellerCard | null = null,
-) => {
+): DwellerCard[] => {
+  if (!position) {
+    return Object.values(DwellerPosition)
+      .map((p) => getDwellerCandidates(game, treeId, p, ignoreDweller))
+      .flat();
+  }
+
   const tree = Object.values(game.players)
     .flatMap((f) => f.forest.trees)
     .find((t) => t.id === treeId);
