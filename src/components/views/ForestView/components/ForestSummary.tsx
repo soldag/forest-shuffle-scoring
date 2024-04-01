@@ -54,7 +54,12 @@ const ForestSummary: React.FC<ForestSummaryProps> = ({ forest, onChange }) => {
   } = useBoolean(false);
 
   return (
-    <Stack direction="row" alignItems="center" gap={4}>
+    <Stack
+      direction="row"
+      alignItems="center"
+      justifyContent="space-evenly"
+      gap={4}
+    >
       <CardCount
         label={
           <FormattedMessage
