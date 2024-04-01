@@ -1,3 +1,4 @@
+import * as _ from "lodash-es";
 import { v4 as uuidv4 } from "uuid";
 
 import * as Dwellers from "./dwellers";
@@ -75,13 +76,13 @@ export const createForest = (caveCardCount: number = 0): Forest => ({
 export const createDeck = (): Deck => ({
   dwellers: Object.values(Dwellers).flatMap((blueprint) =>
     blueprint.variants.flatMap((variant) =>
-      Array(variant.count).fill(createDweller(blueprint, variant)),
+      _.times(variant.count, () => createDweller(blueprint, variant)),
     ),
   ),
   trees: Object.values(Trees)
     .filter((blueprint) => isFinite(blueprint.count))
     .flatMap((blueprint) =>
-      Array.from(Array(blueprint.count)).map(() => createTree(blueprint)),
+      _.times(blueprint.count, () => createTree(blueprint)),
     ),
 });
 
