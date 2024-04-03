@@ -3,6 +3,8 @@ import React, { ReactNode } from "react";
 import { Box, Sheet } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
+import { mergeSx } from "@/utils/sx";
+
 interface ViewProps {
   sx?: SxProps;
   header?: ReactNode;
@@ -24,13 +26,12 @@ const View: React.FC<ViewProps> = ({ sx, header, footer, children }) => (
   >
     {header}
     <Box
-      sx={{
+      sx={mergeSx(sx, {
         flexGrow: 1,
         flexShrink: 1,
         py: 2,
         overflowY: "scroll",
-        ...sx,
-      }}
+      })}
     >
       {children}
     </Box>

@@ -10,6 +10,7 @@ import { TreeCard as TreeCardType } from "@/game/types";
 import { getBackgroundForCardTypes } from "@/styles/colors";
 import { CARD_SIZES } from "@/styles/sizes";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
+import { mergeSx } from "@/utils/sx";
 
 interface ForestCardProps {
   card: TreeCardType;
@@ -23,12 +24,10 @@ const TreeCard: React.FC<ForestCardProps> = ({ card, sx, onClick }) => {
   return (
     <Card
       variant="plain"
-      sx={{
-        ...sx,
-        ...CARD_SIZES,
+      sx={mergeSx(sx, CARD_SIZES, {
         background: getBackgroundForCardTypes(card.types),
         boxShadow: "card",
-      }}
+      })}
     >
       <CardContent>
         <Stack direction="column" alignItems="center" sx={{ height: "100%" }}>
@@ -40,7 +39,7 @@ const TreeCard: React.FC<ForestCardProps> = ({ card, sx, onClick }) => {
             <Link
               overlay
               underline="none"
-              sx={{ color: "inherit " }}
+              sx={{ color: "inherit" }}
               onClick={onClick}
             >
               {getLocalizedCardName(intl, card.name)}

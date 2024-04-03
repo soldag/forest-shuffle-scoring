@@ -10,6 +10,7 @@ import { DwellerCard as DwellerCardType, DwellerPosition } from "@/game/types";
 import { getBackgroundForCardTypes } from "@/styles/colors";
 import { CARD_SIZES } from "@/styles/sizes";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
+import { mergeSx } from "@/utils/sx";
 
 type AttachPosition = "top" | "bottom" | "left" | "right";
 
@@ -61,8 +62,7 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
   return (
     <Card
       variant="plain"
-      sx={{
-        ...sx,
+      sx={mergeSx(sx, {
         ...getAttachedStyles(attached),
         background: getBackgroundForCardTypes(
           card.types,
@@ -71,7 +71,7 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
         width: hasHorizontalSplit || !compact ? CARD_SIZES.width : "auto",
         height: !hasHorizontalSplit || !compact ? CARD_SIZES.height : "auto",
         boxShadow: "card",
-      }}
+      })}
     >
       <CardContent>
         <Stack

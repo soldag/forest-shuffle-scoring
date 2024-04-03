@@ -5,6 +5,7 @@ import { SxProps } from "@mui/system";
 
 import { TreeSymbol as TreeSymbolType } from "@/game/types";
 import { getColorOfTreeSymbol } from "@/styles/colors";
+import { mergeSx } from "@/utils/sx";
 
 interface TreeSymbolProps {
   value: TreeSymbolType;
@@ -14,7 +15,7 @@ interface TreeSymbolProps {
 const TreeSymbol: React.FC<TreeSymbolProps> = ({ value, sx }) => (
   <CircleIcon
     fontSize="small"
-    sx={{ ...sx, color: getColorOfTreeSymbol(value) }}
+    sx={mergeSx(sx, { color: getColorOfTreeSymbol(value) })}
   />
 );
 

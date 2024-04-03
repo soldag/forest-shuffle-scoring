@@ -5,6 +5,7 @@ import { ButtonProps, IconButton } from "@mui/joy";
 
 import { DwellerPosition } from "@/game";
 import { CARD_SIZES } from "@/styles/sizes";
+import { mergeSx } from "@/utils/sx";
 
 interface AddDwellerButtonProps extends ButtonProps {
   position: DwellerPosition;
@@ -56,10 +57,7 @@ const AddDwellerButton: React.FC<AddDwellerButtonProps> = ({
     {...otherProps}
     variant="outlined"
     size="lg"
-    sx={{
-      ...sx,
-      ...getStyle(position),
-    }}
+    sx={mergeSx(sx, getStyle(position))}
   >
     <AddIcon />
   </IconButton>
