@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import CountUp from "react-countup";
 import { useBoolean } from "usehooks-ts";
+import { useLocation } from "wouter";
 
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Box, IconButton, Stack, Typography } from "@mui/joy";
@@ -14,6 +15,7 @@ import GameContext from "@/components/contexts/GameContext";
 import { scorePlayer } from "@/game";
 
 const Header: React.FC = () => {
+  const [, navigate] = useLocation();
   const { game, playerId, dispatch } = useContext(GameContext);
 
   const {
@@ -30,7 +32,10 @@ const Header: React.FC = () => {
       dispatch(SelectPlayer({ playerId }));
     }
   };
-  const handleReset = () => dispatch(resetGame());
+  const handleReset = () => {
+    dispatch(resetGame());
+    navigate("/new");
+  };
 
   return (
     <HeaderContainer>

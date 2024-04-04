@@ -1,8 +1,9 @@
 import { useContext } from "react";
+import { useLocation } from "wouter";
 
 import { Container } from "@mui/joy";
 
-import { createGame } from "@/components/actions/game";
+import { CreateGamePayload, createGame } from "@/components/actions/game";
 import View from "@/components/common/View";
 import GameContext from "@/components/contexts/GameContext";
 
@@ -10,7 +11,13 @@ import CreateGameCard from "./components/CreateGameCard";
 import Header from "./components/Header";
 
 const CreateGameView = () => {
+  const [, navigate] = useLocation();
   const { dispatch } = useContext(GameContext);
+
+  const handleSubmit = (values: CreateGamePayload) => {
+    dispatch(createGame(values));
+    navigate("/forest");
+  };
 
   return (
     <View header={<Header />}>
@@ -22,7 +29,7 @@ const CreateGameView = () => {
           minHeight: "100%",
         }}
       >
-        <CreateGameCard onSubmit={(values) => dispatch(createGame(values))} />
+        <CreateGameCard onSubmit={handleSubmit} />
       </Container>
     </View>
   );

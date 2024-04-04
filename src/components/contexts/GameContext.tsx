@@ -21,13 +21,11 @@ import {
 interface State {
   game: Game | null;
   playerId: string | null;
-  showScoring: boolean;
 }
 
 const defaultState: State = {
   game: null,
   playerId: null,
-  showScoring: false,
 };
 
 interface GameContextType extends State {
@@ -67,7 +65,6 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
         ...state,
         game: null,
         playerId: null,
-        showScoring: false,
       };
 
     case GameActionType.AddPlayer: {
@@ -155,12 +152,6 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
       return {
         ...state,
         game: removeDweller(state.game, action.payload.dwellerId),
-      };
-
-    case GameActionType.ScoreGame:
-      return {
-        ...state,
-        showScoring: true,
       };
 
     default:

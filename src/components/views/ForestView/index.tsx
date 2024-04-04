@@ -21,12 +21,13 @@ import {
   getDwellerCandidates,
   getTreeCandidates,
 } from "@/game";
+import { requireGame } from "@/utils/hoc";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-const ForestView: React.FC = () => {
-  const { game, playerId, dispatch } = useContext(GameContext);
+const ForestView: React.FC = requireGame(({ game }) => {
+  const { playerId, dispatch } = useContext(GameContext);
 
   const [isAddingTree, setIsAddingTree] = useState(false);
   const [selectedTree, setSelectedTree] = useState<TreeCard | null>(null);
@@ -37,12 +38,9 @@ const ForestView: React.FC = () => {
     useState<DwellerPosition | null>();
   const [selectedDweller, setSelectedDweller] = useState<DwellerCard | null>();
 
-  const forest = game?.players?.find((p) => p.id === playerId)?.forest;
+  const forest = game.players.find((p) => p.id === playerId)?.forest;
   const treeOptions = useMemo(
-    () => [
-      ...(selectedTree ? [selectedTree] : []),
-      ...(game ? getTreeCandidates(game) : []),
-    ],
+    () => [...getTreeCandidates(game), ...(selectedTree ? [selectedTree] : [])],
     [game, selectedTree],
   );
   const dwellerOptions = useMemo(
@@ -190,5 +188,6 @@ const ForestView: React.FC = () => {
       />
     </View>
   );
-};
+});
+
 export default ForestView;

@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
 import { FormattedMessage } from "react-intl";
 import { useBoolean } from "usehooks-ts";
+import { Link } from "wouter";
 
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { Button, Divider, Stack } from "@mui/joy";
 
-import { addPlayer, scoreGame, setCave } from "@/components/actions/game";
+import { addPlayer, setCave } from "@/components/actions/game";
 import AddPlayerModal from "@/components/common/AddPlayerModal";
 import FooterContainer from "@/components/common/FooterContainer";
 import GameContext from "@/components/contexts/GameContext";
@@ -69,7 +70,8 @@ const Footer: React.FC = () => {
           fullWidth
           startDecorator={<EmojiEventsIcon />}
           color="primary"
-          onClick={() => dispatch(scoreGame())}
+          component={Link}
+          to="/scoring"
         >
           <FormattedMessage
             id="ForestView.Footer.scoreGame"

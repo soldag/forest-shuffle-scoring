@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { FormattedMessage } from "react-intl";
+import { useLocation } from "wouter";
 
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Button } from "@mui/joy";
@@ -9,9 +10,13 @@ import FooterContainer from "@/components/common/FooterContainer";
 import GameContext from "@/components/contexts/GameContext";
 
 const Footer: React.FC = () => {
+  const [, navigate] = useLocation();
   const { dispatch } = useContext(GameContext);
 
-  const handleReset = () => dispatch(resetGame());
+  const handleReset = () => {
+    dispatch(resetGame());
+    navigate("/new");
+  };
 
   return (
     <FooterContainer>

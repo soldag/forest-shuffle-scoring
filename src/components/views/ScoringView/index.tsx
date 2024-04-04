@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { FormattedMessage } from "react-intl";
 import { useLocalStorage } from "usehooks-ts";
 
 import { Box, Container, Stack, Typography } from "@mui/joy";
 
 import View from "@/components/common/View";
-import GameContext from "@/components/contexts/GameContext";
 import { scoreGame } from "@/game";
+import { requireGame } from "@/utils/hoc";
 import { isAndroid, isIOS } from "@/utils/os";
 
 import BGStatsButton from "./components/BGStatsButton";
@@ -17,17 +16,11 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import WinnersCard from "./components/WinnersCard";
 
-const ScoringView: React.FC = () => {
-  const { game } = useContext(GameContext);
-
+const ScoringView: React.FC = requireGame(({ game }) => {
   const [showDetails, setShowDetails] = useLocalStorage(
     "showScoringDetails",
     false,
   );
-
-  if (!game) {
-    return null;
-  }
 
   const scoring = scoreGame(game);
   const showBGStatsButton = isAndroid() || isIOS() || import.meta.env.DEV;
@@ -68,6 +61,6 @@ const ScoringView: React.FC = () => {
       </Container>
     </View>
   );
-};
+});
 
 export default ScoringView;
