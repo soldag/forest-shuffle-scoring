@@ -2,7 +2,6 @@ import { DwellerCard, TreeCard } from "@/game";
 
 export enum GameActionType {
   CreateGame = "CREATE_GAME",
-  ResetGame = "RESET_GAME",
   AddPlayer = "ADD_PLAYER",
   SelectPlayer = "SELECT_PLAYER",
   RemovePlayer = "REMOVE_PLAYER",
@@ -28,14 +27,6 @@ export interface CreateGameAction {
 export const createGame = (payload: CreateGamePayload): CreateGameAction => ({
   type: GameActionType.CreateGame,
   payload,
-});
-
-export interface ResetGameAction {
-  type: GameActionType.ResetGame;
-}
-
-export const resetGame = (): ResetGameAction => ({
-  type: GameActionType.ResetGame,
 });
 
 export interface AddPlayerPayload {
@@ -78,7 +69,7 @@ export interface SelectPlayerAction {
   payload: SelectPlayerPayload;
 }
 
-export const SelectPlayer = (
+export const selectPlayer = (
   payload: SelectPlayerPayload,
 ): SelectPlayerAction => ({
   type: GameActionType.SelectPlayer,
@@ -203,7 +194,6 @@ export const removeDweller = (
 
 export type GameAction =
   | CreateGameAction
-  | ResetGameAction
   | AddPlayerAction
   | RemovePlayerAction
   | SelectPlayerAction

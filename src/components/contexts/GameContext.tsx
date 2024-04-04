@@ -60,13 +60,6 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
   }
 
   switch (action.type) {
-    case GameActionType.ResetGame:
-      return {
-        ...state,
-        game: null,
-        playerId: null,
-      };
-
     case GameActionType.AddPlayer: {
       const player = createPlayer(
         action.payload.playerName,

@@ -6,7 +6,7 @@ import { useLocation } from "wouter";
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Box, IconButton, Stack, Typography } from "@mui/joy";
 
-import { SelectPlayer, resetGame } from "@/components/actions/game";
+import { selectPlayer } from "@/components/actions/game";
 import ConfirmResetModal from "@/components/common/ConfirmResetModal";
 import HeaderContainer from "@/components/common/HeaderContainer";
 import HeaderTitle from "@/components/common/HeaderTitle";
@@ -29,11 +29,10 @@ const Header: React.FC = () => {
 
   const handleSelectPlayer = (playerId: string | null) => {
     if (playerId) {
-      dispatch(SelectPlayer({ playerId }));
+      dispatch(selectPlayer({ playerId }));
     }
   };
   const handleReset = () => {
-    dispatch(resetGame());
     navigate("/new");
   };
 
