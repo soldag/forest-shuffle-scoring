@@ -42,20 +42,20 @@ interface GameContextProviderProps {
 }
 
 const reducer: Reducer<State, GameAction> = (state, action) => {
-  if (!state.game) {
-    if (action.type === GameActionType.CreateGame) {
-      const game = createGame();
-      const player = createPlayer(
-        action.payload.playerName,
-        action.payload.caveCardCount,
-      );
-      return {
-        ...state,
-        game: addPlayer(game, player),
-        playerId: player.id,
-      };
-    }
+  if (action.type === GameActionType.CreateGame) {
+    const game = createGame();
+    const player = createPlayer(
+      action.payload.playerName,
+      action.payload.caveCardCount,
+    );
+    return {
+      ...state,
+      game: addPlayer(game, player),
+      playerId: player.id,
+    };
+  }
 
+  if (!state.game) {
     return state;
   }
 
