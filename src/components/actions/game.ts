@@ -16,12 +16,12 @@ export enum GameActionType {
   ScoreGame = "SCORE_GAME",
 }
 
-interface CreateGamePayload {
+export interface CreateGamePayload {
   playerName: string;
   caveCardCount: number;
 }
 
-interface CreateGameAction {
+export interface CreateGameAction {
   type: GameActionType.CreateGame;
   payload: CreateGamePayload;
 }
@@ -31,7 +31,7 @@ export const createGame = (payload: CreateGamePayload): CreateGameAction => ({
   payload,
 });
 
-interface ResetGameAction {
+export interface ResetGameAction {
   type: GameActionType.ResetGame;
 }
 
@@ -39,12 +39,12 @@ export const resetGame = (): ResetGameAction => ({
   type: GameActionType.ResetGame,
 });
 
-interface AddPlayerPayload {
+export interface AddPlayerPayload {
   playerName: string;
   caveCardCount: number;
 }
 
-interface AddPlayerAction {
+export interface AddPlayerAction {
   type: GameActionType.AddPlayer;
   payload: AddPlayerPayload;
 }
@@ -54,11 +54,11 @@ export const addPlayer = (payload: AddPlayerPayload): AddPlayerAction => ({
   payload,
 });
 
-interface RemovePlayerPayload {
+export interface RemovePlayerPayload {
   playerId: string;
 }
 
-interface RemovePlayerAction {
+export interface RemovePlayerAction {
   type: GameActionType.RemovePlayer;
   payload: RemovePlayerPayload;
 }
@@ -70,11 +70,11 @@ export const removePlayer = (
   payload,
 });
 
-interface SelectPlayerPayload {
+export interface SelectPlayerPayload {
   playerId: string;
 }
 
-interface SelectPlayerAction {
+export interface SelectPlayerAction {
   type: GameActionType.SelectPlayer;
   payload: SelectPlayerPayload;
 }
@@ -86,12 +86,12 @@ export const SelectPlayer = (
   payload,
 });
 
-interface SetCavePayload {
+export interface SetCavePayload {
   playerId: string;
   count: number;
 }
 
-interface SetCaveAction {
+export interface SetCaveAction {
   type: GameActionType.SetCave;
   payload: SetCavePayload;
 }
@@ -101,12 +101,12 @@ export const setCave = (payload: SetCavePayload): SetCaveAction => ({
   payload,
 });
 
-interface PlayTreePayload {
+export interface PlayTreePayload {
   playerId: string;
   tree: TreeCard;
 }
 
-interface PlayTreeAction {
+export interface PlayTreeAction {
   type: GameActionType.PlayTree;
   payload: PlayTreePayload;
 }
@@ -116,13 +116,13 @@ export const playTree = (payload: PlayTreePayload): PlayTreeAction => ({
   payload,
 });
 
-interface PlayDwellerPayload {
+export interface PlayDwellerPayload {
   playerId: string;
   treeId: string;
   dweller: DwellerCard;
 }
 
-interface PlayDwellerAction {
+export interface PlayDwellerAction {
   type: GameActionType.PlayDweller;
   payload: PlayDwellerPayload;
 }
@@ -134,13 +134,13 @@ export const playDweller = (
   payload,
 });
 
-interface ExchangeTreePayload {
+export interface ExchangeTreePayload {
   playerId: string;
   oldTreeId: string;
   newTree: TreeCard;
 }
 
-interface ExchangeTreeAction {
+export interface ExchangeTreeAction {
   type: GameActionType.ExchangeTree;
   payload: ExchangeTreePayload;
 }
@@ -152,13 +152,13 @@ export const exchangeTree = (
   payload,
 });
 
-interface ExchangeDwellerPayload {
+export interface ExchangeDwellerPayload {
   playerId: string;
   oldDwellerId: string;
   newDweller: DwellerCard;
 }
 
-interface ExchangeDwellerAction {
+export interface ExchangeDwellerAction {
   type: GameActionType.ExchangeDweller;
   payload: ExchangeDwellerPayload;
 }
@@ -170,12 +170,12 @@ export const exchangeDweller = (
   payload,
 });
 
-interface RemoveTreePayload {
+export interface RemoveTreePayload {
   playerId: string;
   treeId: string;
 }
 
-interface RemoveTreeAction {
+export interface RemoveTreeAction {
   type: GameActionType.RemoveTree;
   payload: RemoveTreePayload;
 }
@@ -185,12 +185,12 @@ export const removeTree = (payload: RemoveTreePayload): RemoveTreeAction => ({
   payload,
 });
 
-interface RemoveDwellerPayload {
+export interface RemoveDwellerPayload {
   playerId: string;
   dwellerId: string;
 }
 
-interface RemoveDwellerAction {
+export interface RemoveDwellerAction {
   type: GameActionType.RemoveDweller;
   payload: RemoveDwellerPayload;
 }
@@ -202,7 +202,7 @@ export const removeDweller = (
   payload,
 });
 
-interface ScoreGameAction {
+export interface ScoreGameAction {
   type: GameActionType.ScoreGame;
 }
 
