@@ -32,9 +32,25 @@ const TreeCard: React.FC<ForestCardProps> = ({ card, sx, onClick }) => {
       <CardContent>
         <Stack direction="column" alignItems="center" sx={{ height: "100%" }}>
           {card.treeSymbol && (
-            <TreeSymbol value={card.treeSymbol} sx={{ alignSelf: "end" }} />
+            <TreeSymbol
+              attach="top"
+              value={card.treeSymbol}
+              sx={{
+                alignSelf: "end",
+                mt: "calc(-1 * var(--Card-padding))",
+              }}
+            />
           )}
-          <ParkIcon sx={{ color: "neutral.100", width: "80%", flexGrow: 1 }} />
+
+          <ParkIcon
+            sx={{
+              color: "neutral.100",
+              width: "80%",
+              flexGrow: 1,
+              mt: card.treeSymbol ? 0 : "18px",
+            }}
+          />
+
           <Typography level="title-lg" textColor="neutral.100">
             <Link
               overlay

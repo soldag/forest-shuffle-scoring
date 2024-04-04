@@ -81,7 +81,7 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
         >
           <Stack
             direction={hasHorizontalSplit ? "row" : "column"}
-            alignItems="center"
+            alignItems={hasHorizontalSplit ? "start" : "end"}
             justifyContent="space-between"
             sx={{
               height: hasHorizontalSplit ? "fit-content" : "100%",
@@ -106,7 +106,16 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
                 {getLocalizedCardName(intl, card.name)}
               </Link>
             </Typography>
-            {card.treeSymbol && <TreeSymbol value={card.treeSymbol} />}
+            {card.treeSymbol && (
+              <TreeSymbol
+                attach={hasHorizontalSplit ? "top" : "right"}
+                value={card.treeSymbol}
+                sx={{
+                  [hasHorizontalSplit ? "mt" : "mr"]:
+                    "calc(-1 * var(--Card-padding))",
+                }}
+              />
+            )}
           </Stack>
         </Stack>
       </CardContent>
