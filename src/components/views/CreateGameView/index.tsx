@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useLocation } from "wouter";
 
-import { Container } from "@mui/joy";
+import { Box } from "@mui/joy";
 
 import { CreateGamePayload, createGame } from "@/components/actions/game";
 import View from "@/components/common/View";
@@ -21,7 +21,7 @@ const CreateGameView = () => {
 
   return (
     <View header={<Header />}>
-      <Container
+      <Box
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -30,7 +30,7 @@ const CreateGameView = () => {
         }}
       >
         <CreateGameCard onSubmit={handleSubmit} />
-      </Container>
+      </Box>
     </View>
   );
 };

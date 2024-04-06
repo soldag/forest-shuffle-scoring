@@ -5,11 +5,10 @@ import { Link } from "wouter";
 
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import { Button, Divider, Stack } from "@mui/joy";
+import { Box, Button, Divider, Stack } from "@mui/joy";
 
 import { addPlayer, setCave } from "@/components/actions/game";
 import AddPlayerModal from "@/components/common/AddPlayerModal";
-import FooterContainer from "@/components/common/FooterContainer";
 import GameContext from "@/components/contexts/GameContext";
 import { MAX_PLAYERS } from "@/utils/constants";
 
@@ -34,7 +33,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <FooterContainer>
+    <Box>
       {forest && (
         <ForestSummary forest={forest} onChange={handleForestChange} />
       )}
@@ -86,7 +85,7 @@ const Footer: React.FC = () => {
         onConfirm={(values) => dispatch(addPlayer(values))}
         onClose={closeAddPlayerModal}
       />
-    </FooterContainer>
+    </Box>
   );
 };
 

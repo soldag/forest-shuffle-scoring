@@ -1,7 +1,7 @@
 import { FormattedMessage } from "react-intl";
 import { useLocalStorage } from "usehooks-ts";
 
-import { Box, Container, Stack, Typography } from "@mui/joy";
+import { Box, Stack, Typography } from "@mui/joy";
 
 import View from "@/components/common/View";
 import { scoreGame } from "@/game";
@@ -27,38 +27,33 @@ const ScoringView: React.FC = requireGame(({ game }) => {
 
   return (
     <View header={<Header />} footer={<Footer />}>
-      <Container>
-        <WinnersCard game={game} scoring={scoring} sx={{ mb: 4 }} />
+      <WinnersCard game={game} scoring={scoring} sx={{ mb: 4 }} />
 
-        <Stack direction="row" justifyContent="space-between">
-          <Typography level="title-md">
-            <FormattedMessage
-              id="ScoringView.results"
-              defaultMessage="Results"
-            />
-          </Typography>
-          <DetailsSwitch
-            checked={showDetails}
-            onChange={(e) => setShowDetails(e.target.checked)}
-          />
-        </Stack>
+      <Stack direction="row" justifyContent="space-between">
+        <Typography level="title-md">
+          <FormattedMessage id="ScoringView.results" defaultMessage="Results" />
+        </Typography>
+        <DetailsSwitch
+          checked={showDetails}
+          onChange={(e) => setShowDetails(e.target.checked)}
+        />
+      </Stack>
 
-        <Box sx={{ mt: 1, mb: 2 }}>
-          {showDetails ? (
-            <DetailedScoringTable game={game} scoring={scoring} />
-          ) : (
-            <BasicScoringTable game={game} scoring={scoring} />
-          )}
-        </Box>
-
-        {showBGStatsButton && (
-          <BGStatsButton
-            game={game}
-            scoring={scoring}
-            sx={{ width: { xs: "100%", sm: "auto" } }}
-          />
+      <Box sx={{ mt: 1, mb: 2 }}>
+        {showDetails ? (
+          <DetailedScoringTable game={game} scoring={scoring} />
+        ) : (
+          <BasicScoringTable game={game} scoring={scoring} />
         )}
-      </Container>
+      </Box>
+
+      {showBGStatsButton && (
+        <BGStatsButton
+          game={game}
+          scoring={scoring}
+          sx={{ width: { xs: "100%", sm: "auto" } }}
+        />
+      )}
     </View>
   );
 });

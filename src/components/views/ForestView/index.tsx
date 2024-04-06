@@ -139,7 +139,7 @@ const ForestView: React.FC = requireGame(({ game }) => {
   };
 
   return (
-    <View header={<Header />} footer={<Footer />} sx={{ p: 0 }}>
+    <View disableGutters header={<Header />} footer={<Footer />}>
       <Box
         sx={{
           height: "100%",
