@@ -7,3 +7,7 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 end_of_line = lf
 charset = utf-8
+
+# These files are auto-generated
+[src/translations/*.json]
+insert_final_newline = false
