@@ -64,19 +64,17 @@ const View: React.FC<ViewProps> = ({
       </ContentContainer>
     )}
 
-    {children && (
-      <ContentContainer
-        sx={{
-          flexGrow: 1,
-          flexShrink: 1,
-          overflowY: "scroll",
-          zIndex: 1,
-        }}
-        disableGutters={disableGutters}
-      >
-        {children}
-      </ContentContainer>
-    )}
+    <ContentContainer
+      sx={{
+        flexGrow: 1,
+        flexShrink: 1,
+        overflowY: "scroll",
+        zIndex: 1,
+      }}
+      disableGutters={disableGutters}
+    >
+      {children}
+    </ContentContainer>
 
     {footer && (
       <ContentContainer

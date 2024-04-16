@@ -1,7 +1,9 @@
 import { useContext } from "react";
-import { useLocation } from "wouter";
+import { FormattedMessage } from "react-intl";
+import { Link, useLocation } from "wouter";
 
-import { Box } from "@mui/joy";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Button, Stack } from "@mui/joy";
 
 import { CreateGamePayload, createGame } from "@/components/actions/game";
 import View from "@/components/common/View";
@@ -21,16 +23,24 @@ const CreateGameView = () => {
 
   return (
     <View header={<Header />}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          minHeight: "100%",
-        }}
-      >
-        <CreateGameCard onSubmit={handleSubmit} />
-      </Box>
+      <Stack direction="column" sx={{ minHeight: "100%" }}>
+        <Stack direction="column" justifyContent="center" sx={{ flexGrow: 1 }}>
+          <CreateGameCard onSubmit={handleSubmit} />
+        </Stack>
+
+        <Button
+          variant="plain"
+          color="primary"
+          startDecorator={<InfoOutlinedIcon />}
+          component={Link}
+          to="/about"
+        >
+          <FormattedMessage
+            id="CreateGameView.about"
+            defaultMessage="About this app"
+          />
+        </Button>
+      </Stack>
     </View>
   );
 };
