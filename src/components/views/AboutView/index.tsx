@@ -1,5 +1,5 @@
 import { ReactNode, useContext } from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage, defineMessage, useIntl } from "react-intl";
 
 import { List, ListItem, Typography } from "@mui/joy";
 
@@ -20,7 +20,20 @@ const PUBLISHER_URL = "https://lookout-spiele.de";
 const GITHUB_URL = "https://github.com/soldag/forest-shuffle-scoring";
 
 const CONTRIBUTIONS = [
-  { title: "BG Stats icon", url: "https://www.bgstatsapp.com" },
+  {
+    title: defineMessage({
+      id: "AboutView.contributions.bgStatsIcon",
+      defaultMessage: "BG Stats icon",
+    }),
+    url: "https://www.bgstatsapp.com",
+  },
+  {
+    title: defineMessage({
+      id: "AboutView.contributions.forestIcon",
+      defaultMessage: "Forest icon created by Freepik - Flaticon",
+    }),
+    url: "https://www.flaticon.com/free-icons/forest",
+  },
 ];
 
 interface HeadlineProps {
@@ -120,9 +133,9 @@ const AboutView: React.FC = () => {
       </Typography>
       <List marker="disc">
         {CONTRIBUTIONS.map(({ title, url }) => (
-          <ListItem>
-            <Typography>{title}</Typography>
-            <ExternalLink href={url}>{url}</ExternalLink>
+          <ListItem key={title.id}>
+            <Typography>{intl.formatMessage(title)}</Typography>
+            <ExternalLink href={url} />
           </ListItem>
         ))}
       </List>

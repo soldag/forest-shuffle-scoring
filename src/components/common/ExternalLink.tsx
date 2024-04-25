@@ -4,12 +4,12 @@ import { Link } from "@mui/joy";
 
 interface ExternalLinkProps {
   href: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const ExternalLink: React.FC<ExternalLinkProps> = ({ href, children }) => (
   <Link href={href} target="_blank" rel="noopener noreferrer">
-    {children}
+    {children || href}
   </Link>
 );
 

@@ -13,6 +13,7 @@
     "format:check": "prettier --check '**/*.{js,jsx,cjs,ts,tsx,css,md,json}'",
     "i18n:extract": "formatjs extract 'src/**/*.{js,jsx,ts,tsx}' --out-file messages.json && formatjs compile messages.json --out-file src/translations/en.json && echo '' >> src/translations/en.json && rm messages.json",
     "i18n:check": "tsx scripts/checkTranslations.ts",
+    "manifests:generate": "tsx scripts/generateManifests.ts",
     "test": "jest",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build"
@@ -28,6 +29,7 @@
     "react": "^18.2.0",
     "react-countup": "^6.5.0",
     "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
     "react-hook-form": "^7.51.0",
     "react-intl": "^6.6.2",
     "tinycolor2": "^1.6.0",
@@ -54,6 +56,7 @@
     "@types/node": "^20",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
+    "@types/react-helmet": "^6.1.11",
     "@types/tinycolor2": "^1.4.6",
     "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
@@ -78,6 +81,7 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.7.1",
     "typescript": "^5.2.2",
-    "vite": "^5.1.0"
+    "vite": "^5.1.0",
+    "vite-plugin-pwa": "^0.19.8"
   }
 }
