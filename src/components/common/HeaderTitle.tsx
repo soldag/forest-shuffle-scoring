@@ -1,11 +1,11 @@
 import React from "react";
 import { useIntl } from "react-intl";
 
-import { Typography } from "@mui/joy";
+import { Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
+import icon from "@/assets/icons/icon.svg";
 import CommonMessages from "@/translations/messages/Common";
-import { mergeSx } from "@/utils/sx";
 
 interface HeaderTitleProps {
   sx?: SxProps;
@@ -15,9 +15,12 @@ const HeaderTitle: React.FC<HeaderTitleProps> = ({ sx }) => {
   const intl = useIntl();
 
   return (
-    <Typography level="title-lg" sx={mergeSx(sx, { py: 0.5 })}>
-      {intl.formatMessage(CommonMessages.appName)}
-    </Typography>
+    <Stack direction="row" alignItems="center" gap={1.5} sx={sx}>
+      <img src={icon} style={{ height: "32px", width: "32px" }} />
+      <Typography level="title-lg">
+        {intl.formatMessage(CommonMessages.appName)}
+      </Typography>
+    </Stack>
   );
 };
 
