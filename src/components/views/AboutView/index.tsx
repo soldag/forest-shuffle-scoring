@@ -87,7 +87,6 @@ const AboutView: React.FC = () => {
           defaultMessage="This is an unofficial scoring app developed as a private project and is not affiliated with Lookout Games."
         />
       </Typography>
-
       <Headline>
         <FormattedMessage
           id="AboutView.privacy.headline"
@@ -100,7 +99,6 @@ const AboutView: React.FC = () => {
           defaultMessage="This app does not collect any personal data from its users. It does not gather, store, or process any information that could be used to identify you personally."
         />
       </Typography>
-
       <Headline>
         <FormattedMessage
           id="AboutView.sourceCode.headline"
@@ -118,7 +116,6 @@ const AboutView: React.FC = () => {
           }}
         />
       </Typography>
-
       <Headline>
         <FormattedMessage
           id="AboutView.credits.headline"
@@ -131,7 +128,7 @@ const AboutView: React.FC = () => {
           defaultMessage="This app uses a few images and icons whose creators are attributed in the following:"
         />
       </Typography>
-      <List marker="disc">
+      <List marker="disc" sx={{ py: 0 }}>
         {CONTRIBUTIONS.map(({ title, url }) => (
           <ListItem key={title.id}>
             <Typography>{intl.formatMessage(title)}</Typography>
@@ -139,6 +136,13 @@ const AboutView: React.FC = () => {
           </ListItem>
         ))}
       </List>
+      <Headline>
+        <FormattedMessage
+          id="AboutView.version.headline"
+          defaultMessage="App version"
+        />
+      </Headline>
+      {import.meta.env.PACKAGE_VERSION} ({import.meta.env.COMMIT_HASH})
     </View>
   );
 };

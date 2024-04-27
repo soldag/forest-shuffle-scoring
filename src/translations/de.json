@@ -11,6 +11,7 @@
   "AboutView.privacy.text": "Diese App sammelt keine persönlichen Daten von ihren Nutzern. Sie erfasst, speichert oder verarbeitet keine Informationen, die dazu verwendet werden könnten, dich persönlich zu identifizieren.",
   "AboutView.sourceCode.headline": "Quellcode",
   "AboutView.sourceCode.text": "Diese App ist Open-Source. Wenn du ein Software-Entwickler bist, schau dir gern das <githubLink>Repository auf GitHub</githubLink> an. Pull Requests sind gern gesehen, insbesondere für Bugfixes und die Unterstützung weiterer Sprachen.",
+  "AboutView.version.headline": "App-Version",
   "AddPlayerForm.caveCardCount.label": "Anzahl der Karten in der Höhle",
   "AddPlayerForm.playerName.label": "Name",
   "AddPlayerForm.playerName.validation.unique": "Dieser Name ist bereits vergeben.",
