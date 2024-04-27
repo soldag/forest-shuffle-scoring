@@ -2,7 +2,7 @@ import React from "react";
 import { useIntl } from "react-intl";
 
 import ParkIcon from "@mui/icons-material/Park";
-import { Card, CardContent, Link, Stack, Typography } from "@mui/joy";
+import { Card, CardContent, Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
 import TreeSymbol from "@/components/common/TreeSymbol";
@@ -24,6 +24,7 @@ const TreeCard: React.FC<ForestCardProps> = ({ card, sx, onClick }) => {
   return (
     <Card
       variant="plain"
+      onClick={onClick}
       sx={mergeSx(sx, CARD_SIZES, {
         background: getBackgroundForCardTypes(card.types),
         boxShadow: "card",
@@ -52,14 +53,7 @@ const TreeCard: React.FC<ForestCardProps> = ({ card, sx, onClick }) => {
           />
 
           <Typography level="title-lg" textColor="neutral.100">
-            <Link
-              overlay
-              underline="none"
-              sx={{ color: "inherit" }}
-              onClick={onClick}
-            >
-              {getLocalizedCardName(intl, card.name)}
-            </Link>
+            {getLocalizedCardName(intl, card.name)}
           </Typography>
         </Stack>
       </CardContent>

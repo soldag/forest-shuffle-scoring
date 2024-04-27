@@ -2,7 +2,7 @@ import * as _ from "lodash-es";
 import React from "react";
 import { useIntl } from "react-intl";
 
-import { Card, CardContent, Link, Stack, Typography } from "@mui/joy";
+import { Card, CardContent, Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
 import TreeSymbol from "@/components/common/TreeSymbol";
@@ -62,6 +62,7 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
   return (
     <Card
       variant="plain"
+      onClick={onClick}
       sx={mergeSx(sx, {
         ...getAttachedStyles(attached),
         background: getBackgroundForCardTypes(
@@ -97,14 +98,7 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
                   : "vertical-lr",
               }}
             >
-              <Link
-                overlay
-                underline="none"
-                sx={{ color: "inherit" }}
-                onClick={onClick}
-              >
-                {getLocalizedCardName(intl, card.name)}
-              </Link>
+              {getLocalizedCardName(intl, card.name)}
             </Typography>
             {card.treeSymbol && (
               <TreeSymbol
