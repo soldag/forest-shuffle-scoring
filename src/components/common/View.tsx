@@ -19,11 +19,14 @@ const ContentContainer: React.FC<ContentContainerProps> = ({
   <Box
     sx={mergeSx(sx, {
       display: "flex",
+      flexDirection: "column",
       backgroundColor: "background.surface",
       p: disableGutters ? 0 : 2,
     })}
   >
-    <Container disableGutters>{children}</Container>
+    <Container disableGutters sx={{ flexGrow: 1 }}>
+      {children}
+    </Container>
   </Box>
 );
 
