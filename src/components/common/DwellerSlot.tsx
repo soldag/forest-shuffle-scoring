@@ -12,6 +12,8 @@ import {
   getDwellerCandidates,
 } from "@/game";
 
+const BUTTON_MARGIN = 1;
+
 interface DwellerSlotProps {
   game: Game;
   tree: TreeCardType;
@@ -46,6 +48,19 @@ const getAttachPosition = (position: DwellerPosition) => {
   }
 };
 
+const getButtonStyle = (position: DwellerPosition) => {
+  switch (position) {
+    case DwellerPosition.Top:
+      return { mb: BUTTON_MARGIN };
+    case DwellerPosition.Bottom:
+      return { mt: BUTTON_MARGIN };
+    case DwellerPosition.Left:
+      return { mr: BUTTON_MARGIN };
+    case DwellerPosition.Right:
+      return { ml: BUTTON_MARGIN };
+  }
+};
+
 const DwellerSlot: React.FC<DwellerSlotProps> = ({
   game,
   tree,
@@ -60,7 +75,11 @@ const DwellerSlot: React.FC<DwellerSlotProps> = ({
   return (
     <Stack direction={getDirection(position)}>
       {canAddDweller && (
-        <AddDwellerButton position={position} onClick={onAdd} />
+        <AddDwellerButton
+          position={position}
+          onClick={onAdd}
+          sx={getButtonStyle(position)}
+        />
       )}
 
       {dwellers.toReversed().map((dweller) => (
