@@ -1,18 +1,13 @@
-import * as _ from "lodash-es";
 import React from "react";
 import { useIntl } from "react-intl";
 
-import { Card, CardContent, Stack, Typography } from "@mui/joy";
+import { Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
+import ForestCard, { AttachPosition } from "@/components/common/ForestCard";
 import TreeSymbol from "@/components/common/TreeSymbol";
 import { DwellerCard as DwellerCardType, DwellerPosition } from "@/game/types";
-import { getBackgroundForCardTypes } from "@/styles/colors";
-import { CARD_SIZES } from "@/styles/sizes";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
-import { mergeSx } from "@/utils/sx";
-
-type AttachPosition = "top" | "bottom" | "left" | "right";
 
 interface DwellerCardProps {
   card: DwellerCardType;
@@ -21,26 +16,6 @@ interface DwellerCardProps {
   sx?: SxProps;
   onClick?: () => void;
 }
-
-const getAttachedStyles = (attached?: AttachPosition) => {
-  if (!attached) {
-    return {};
-  }
-
-  const cssAttached = _.upperFirst(attached);
-  return {
-    [`padding${cssAttached}`]: "calc(var(--Card-padding) + var(--Card-radius))",
-    [`margin${cssAttached}`]: "calc(-1 * var(--Card-radius))",
-    ...(["top", "bottom"].includes(attached) && {
-      [`border${cssAttached}LeftRadius`]: 0,
-      [`border${cssAttached}RightRadius`]: 0,
-    }),
-    ...(["left", "right"].includes(attached) && {
-      [`borderTop${cssAttached}Radius`]: 0,
-      [`borderBottom${cssAttached}Radius`]: 0,
-    }),
-  };
-};
 
 const DwellerCard: React.FC<DwellerCardProps> = ({
   card,
@@ -60,60 +35,49 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
   );
 
   return (
-    <Card
-      variant="plain"
+    <ForestCard
+      attached={attached}
+      card={card}
+      compact={compact}
       onClick={onClick}
-      sx={mergeSx(sx, {
-        ...getAttachedStyles(attached),
-        background: getBackgroundForCardTypes(
-          card.types,
-          hasHorizontalSplit ? "horizontal" : "vertical",
-        ),
-        width: hasHorizontalSplit || !compact ? CARD_SIZES.width : "auto",
-        height: !hasHorizontalSplit || !compact ? CARD_SIZES.height : "auto",
-        boxShadow: "card",
-      })}
+      sx={sx}
     >
-      <CardContent>
+      <Stack
+        direction={hasHorizontalSplit ? "column" : "row"}
+        justifyContent={isTopOrLeft ? "flex-start" : "flex-end"}
+        sx={{ height: "100%", width: "100%" }}
+      >
         <Stack
-          direction={hasHorizontalSplit ? "column" : "row"}
-          justifyContent={isTopOrLeft ? "flex-start" : "flex-end"}
-          sx={{ height: "100%", width: "100%" }}
+          direction={hasHorizontalSplit ? "row" : "column"}
+          alignItems={hasHorizontalSplit ? "start" : "end"}
+          justifyContent="space-between"
+          sx={{
+            height: hasHorizontalSplit ? "fit-content" : "100%",
+            width: hasHorizontalSplit ? "100%" : "fit-content",
+          }}
         >
-          <Stack
-            direction={hasHorizontalSplit ? "row" : "column"}
-            alignItems={hasHorizontalSplit ? "start" : "end"}
-            justifyContent="space-between"
+          <Typography
+            level="title-lg"
+            textColor="neutral.100"
             sx={{
-              height: hasHorizontalSplit ? "fit-content" : "100%",
-              width: hasHorizontalSplit ? "100%" : "fit-content",
+              writingMode: hasHorizontalSplit ? "horizontal-tb" : "vertical-lr",
             }}
           >
-            <Typography
-              level="title-lg"
-              textColor="neutral.100"
+            {getLocalizedCardName(intl, card.name)}
+          </Typography>
+          {card.treeSymbol && (
+            <TreeSymbol
+              attach={hasHorizontalSplit ? "top" : "right"}
+              value={card.treeSymbol}
               sx={{
-                writingMode: hasHorizontalSplit
-                  ? "horizontal-tb"
-                  : "vertical-lr",
+                [hasHorizontalSplit ? "mt" : "mr"]:
+                  "calc(-1 * var(--Card-padding))",
               }}
-            >
-              {getLocalizedCardName(intl, card.name)}
-            </Typography>
-            {card.treeSymbol && (
-              <TreeSymbol
-                attach={hasHorizontalSplit ? "top" : "right"}
-                value={card.treeSymbol}
-                sx={{
-                  [hasHorizontalSplit ? "mt" : "mr"]:
-                    "calc(-1 * var(--Card-padding))",
-                }}
-              />
-            )}
-          </Stack>
+            />
+          )}
         </Stack>
-      </CardContent>
-    </Card>
+      </Stack>
+    </ForestCard>
   );
 };
 

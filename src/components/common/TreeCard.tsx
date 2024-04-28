@@ -2,15 +2,13 @@ import React from "react";
 import { useIntl } from "react-intl";
 
 import ParkIcon from "@mui/icons-material/Park";
-import { Card, CardContent, Stack, Typography } from "@mui/joy";
+import { Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
+import ForestCard from "@/components/common/ForestCard";
 import TreeSymbol from "@/components/common/TreeSymbol";
 import { TreeCard as TreeCardType } from "@/game/types";
-import { getBackgroundForCardTypes } from "@/styles/colors";
-import { CARD_SIZES } from "@/styles/sizes";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
-import { mergeSx } from "@/utils/sx";
 
 interface ForestCardProps {
   card: TreeCardType;
@@ -22,42 +20,33 @@ const TreeCard: React.FC<ForestCardProps> = ({ card, sx, onClick }) => {
   const intl = useIntl();
 
   return (
-    <Card
-      variant="plain"
-      onClick={onClick}
-      sx={mergeSx(sx, CARD_SIZES, {
-        background: getBackgroundForCardTypes(card.types),
-        boxShadow: "card",
-      })}
-    >
-      <CardContent>
-        <Stack direction="column" alignItems="center" sx={{ height: "100%" }}>
-          {card.treeSymbol && (
-            <TreeSymbol
-              attach="top"
-              value={card.treeSymbol}
-              sx={{
-                alignSelf: "end",
-                mt: "calc(-1 * var(--Card-padding))",
-              }}
-            />
-          )}
-
-          <ParkIcon
+    <ForestCard card={card} onClick={onClick} sx={sx}>
+      <Stack direction="column" alignItems="center" sx={{ height: "100%" }}>
+        {card.treeSymbol && (
+          <TreeSymbol
+            attach="top"
+            value={card.treeSymbol}
             sx={{
-              color: "neutral.100",
-              width: "80%",
-              flexGrow: 1,
-              mt: card.treeSymbol ? 0 : "18px",
+              alignSelf: "end",
+              mt: "calc(-1 * var(--Card-padding))",
             }}
           />
+        )}
 
-          <Typography level="title-lg" textColor="neutral.100">
-            {getLocalizedCardName(intl, card.name)}
-          </Typography>
-        </Stack>
-      </CardContent>
-    </Card>
+        <ParkIcon
+          sx={{
+            color: "neutral.100",
+            width: "80%",
+            flexGrow: 1,
+            mt: card.treeSymbol ? 0 : "18px",
+          }}
+        />
+
+        <Typography level="title-lg" textColor="neutral.100">
+          {getLocalizedCardName(intl, card.name)}
+        </Typography>
+      </Stack>
+    </ForestCard>
   );
 };
 
