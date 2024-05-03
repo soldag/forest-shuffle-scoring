@@ -2,7 +2,7 @@ import React from "react";
 
 import { Stack } from "@mui/joy";
 
-import AddDwellerButton from "@/components/common/AddDwellerButton";
+import AddCardButton from "@/components/common/AddCardButton";
 import DwellerCard from "@/components/common/DwellerCard";
 import {
   DwellerCard as DwellerCardType,
@@ -12,12 +12,13 @@ import {
   getDwellerCandidates,
 } from "@/game";
 
-const BUTTON_MARGIN = 1;
+export type DwellerSlotSize = "sm" | "md" | "lg";
 
 interface DwellerSlotProps {
   game: Game;
   tree: TreeCardType;
   position: DwellerPosition;
+  size?: DwellerSlotSize;
   onAdd?: () => void;
   onDwellerClick?: (dweller: DwellerCardType) => void;
 }
@@ -49,15 +50,16 @@ const getAttachPosition = (position: DwellerPosition) => {
 };
 
 const getButtonStyle = (position: DwellerPosition) => {
+  const margin = 1;
   switch (position) {
     case DwellerPosition.Top:
-      return { mb: BUTTON_MARGIN };
+      return { mb: margin };
     case DwellerPosition.Bottom:
-      return { mt: BUTTON_MARGIN };
+      return { mt: margin };
     case DwellerPosition.Left:
-      return { mr: BUTTON_MARGIN };
+      return { mr: margin };
     case DwellerPosition.Right:
-      return { ml: BUTTON_MARGIN };
+      return { ml: margin };
   }
 };
 
@@ -65,6 +67,7 @@ const DwellerSlot: React.FC<DwellerSlotProps> = ({
   game,
   tree,
   position,
+  size = "md",
   onAdd,
   onDwellerClick,
 }) => {
@@ -75,8 +78,8 @@ const DwellerSlot: React.FC<DwellerSlotProps> = ({
   return (
     <Stack direction={getDirection(position)}>
       {canAddDweller && (
-        <AddDwellerButton
-          position={position}
+        <AddCardButton
+          size={size}
           onClick={onAdd}
           sx={getButtonStyle(position)}
         />
@@ -88,6 +91,7 @@ const DwellerSlot: React.FC<DwellerSlotProps> = ({
           key={dweller.id}
           card={dweller}
           attached={getAttachPosition(position)}
+          size={size}
           onClick={() => onDwellerClick?.(dweller)}
         />
       ))}

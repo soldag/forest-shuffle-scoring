@@ -4,15 +4,19 @@ import { useIntl } from "react-intl";
 import { Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
-import ForestCard, { AttachPosition } from "@/components/common/ForestCard";
+import ForestCard, {
+  ForestCardAttachPosition,
+  ForestCardSize,
+} from "@/components/common/ForestCard";
 import TreeSymbol from "@/components/common/TreeSymbol";
 import { DwellerCard as DwellerCardType, DwellerPosition } from "@/game/types";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
 
 interface DwellerCardProps {
   card: DwellerCardType;
-  attached?: AttachPosition;
+  attached?: ForestCardAttachPosition;
   compact?: boolean;
+  size?: ForestCardSize;
   sx?: SxProps;
   onClick?: () => void;
 }
@@ -21,6 +25,7 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
   card,
   attached,
   compact,
+  size,
   sx,
   onClick,
 }) => {
@@ -40,6 +45,7 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
       card={card}
       compact={compact}
       onClick={onClick}
+      size={size}
       sx={sx}
     >
       <Stack
@@ -57,7 +63,8 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
           }}
         >
           <Typography
-            level="title-lg"
+            fontSize="inherit"
+            fontWeight="lg"
             textColor="neutral.100"
             sx={{
               writingMode: hasHorizontalSplit ? "horizontal-tb" : "vertical-lr",
@@ -69,9 +76,12 @@ const DwellerCard: React.FC<DwellerCardProps> = ({
             <TreeSymbol
               attach={hasHorizontalSplit ? "top" : "right"}
               value={card.treeSymbol}
+              size={size}
               sx={{
                 [hasHorizontalSplit ? "mt" : "mr"]:
                   "calc(-1 * var(--Card-padding))",
+                [hasHorizontalSplit ? "height" : "width"]:
+                  "calc(var(--Card-padding) + var(--TreeSymbol-iconSize) + var(--TreeSymbol-padding))",
               }}
             />
           )}

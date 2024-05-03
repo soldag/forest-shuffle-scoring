@@ -6,22 +6,29 @@ import { SxProps } from "@mui/joy/styles/types";
 
 import { DwellerCard, TreeCard } from "@/game/types";
 import { getBackgroundForCardTypes } from "@/styles/colors";
-import { CARD_SIZES } from "@/styles/sizes";
-import { hasHorizontalSplit, hasVerticalSplit } from "@/utils/cards";
+import {
+  CARD_HEIGHT,
+  CARD_WIDTH,
+  hasHorizontalSplit,
+  hasVerticalSplit,
+} from "@/utils/cards";
 import { mergeSx } from "@/utils/sx";
 
-export type AttachPosition = "top" | "bottom" | "left" | "right";
+export type ForestCardAttachPosition = "top" | "bottom" | "left" | "right";
+
+export type ForestCardSize = "sm" | "md" | "lg";
 
 interface ForestCardProps {
-  attached?: AttachPosition;
+  attached?: ForestCardAttachPosition;
   card: TreeCard | DwellerCard;
   children: ReactNode;
   compact?: boolean;
   onClick?: () => void;
+  size?: ForestCardSize;
   sx?: SxProps;
 }
 
-const getAttachedStyles = (attached?: AttachPosition) => {
+const getAttachedStyles = (attached?: ForestCardAttachPosition) => {
   if (!attached) {
     return {};
   }
@@ -47,20 +54,33 @@ const ForestCard: React.FC<ForestCardProps> = ({
   children,
   compact,
   onClick,
+  size = "md",
   sx,
 }) => (
   <Card
     variant="plain"
     onClick={onClick}
-    sx={mergeSx(sx, getAttachedStyles(attached), {
-      boxShadow: "card",
-      background: getBackgroundForCardTypes(
-        card.types,
-        hasHorizontalSplit(card) ? "horizontal" : "vertical",
-      ),
-      width: !compact || hasHorizontalSplit(card) ? CARD_SIZES.width : "auto",
-      height: !compact || hasVerticalSplit(card) ? CARD_SIZES.height : "auto",
-    })}
+    size={size}
+    sx={mergeSx(
+      getAttachedStyles(attached),
+      (theme) => ({
+        "--Card-padding": {
+          sm: "0.5rem",
+          md: "0.75rem",
+          lg: "1rem",
+        }[size],
+        "boxShadow": "card",
+        "background": getBackgroundForCardTypes(
+          card.types,
+          hasHorizontalSplit(card) ? "horizontal" : "vertical",
+        ),
+        "fontSize": theme.fontSize[size],
+        "height":
+          compact || hasHorizontalSplit(card) ? "auto" : CARD_HEIGHT[size],
+        "width": compact || hasVerticalSplit(card) ? "auto" : CARD_WIDTH[size],
+      }),
+      sx,
+    )}
   >
     <CardContent>{children}</CardContent>
   </Card>

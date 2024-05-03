@@ -5,22 +5,23 @@ import ParkIcon from "@mui/icons-material/Park";
 import { Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
-import ForestCard from "@/components/common/ForestCard";
+import ForestCard, { ForestCardSize } from "@/components/common/ForestCard";
 import TreeSymbol from "@/components/common/TreeSymbol";
 import { TreeCard as TreeCardType } from "@/game/types";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
 
 interface ForestCardProps {
   card: TreeCardType;
+  size?: ForestCardSize;
   sx?: SxProps;
   onClick?: () => void;
 }
 
-const TreeCard: React.FC<ForestCardProps> = ({ card, sx, onClick }) => {
+const TreeCard: React.FC<ForestCardProps> = ({ card, size, sx, onClick }) => {
   const intl = useIntl();
 
   return (
-    <ForestCard card={card} onClick={onClick} sx={sx}>
+    <ForestCard card={card} onClick={onClick} size={size} sx={sx}>
       <Stack direction="column" alignItems="center" sx={{ height: "100%" }}>
         {card.treeSymbol && (
           <TreeSymbol
@@ -29,6 +30,8 @@ const TreeCard: React.FC<ForestCardProps> = ({ card, sx, onClick }) => {
             sx={{
               alignSelf: "end",
               mt: "calc(-1 * var(--Card-padding))",
+              height:
+                "calc(var(--Card-padding) + var(--TreeSymbol-iconSize) + var(--TreeSymbol-padding))",
             }}
           />
         )}
@@ -42,7 +45,7 @@ const TreeCard: React.FC<ForestCardProps> = ({ card, sx, onClick }) => {
           }}
         />
 
-        <Typography level="title-lg" textColor="neutral.100">
+        <Typography fontSize="inherit" fontWeight="lg" textColor="neutral.100">
           {getLocalizedCardName(intl, card.name)}
         </Typography>
       </Stack>

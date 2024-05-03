@@ -1,4 +1,5 @@
 import React, { useContext, useMemo, useState } from "react";
+import { useMediaQuery } from "usehooks-ts";
 
 import { Box } from "@mui/joy";
 
@@ -25,6 +26,19 @@ import { requireGame } from "@/utils/hoc";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+
+const useResponsiveSize = () => {
+  const isLg = useMediaQuery("(min-height: 900px)");
+  const isMd = useMediaQuery("(min-height: 800px)");
+
+  if (isLg) {
+    return "lg";
+  } else if (isMd) {
+    return "md";
+  } else {
+    return "sm";
+  }
+};
 
 const ForestView: React.FC = requireGame(({ game }) => {
   const { playerId, dispatch } = useContext(GameContext);
@@ -57,6 +71,8 @@ const ForestView: React.FC = requireGame(({ game }) => {
     ],
     [game, dwellerTreeId, dwellerPosition, selectedDweller],
   );
+
+  const treeStackSize = useResponsiveSize();
 
   const handleAddTree = () => {
     setIsAddingTree(true);
@@ -162,6 +178,7 @@ const ForestView: React.FC = requireGame(({ game }) => {
           <TreeStack
             game={game!}
             trees={forest?.trees || []}
+            size={treeStackSize}
             onAddTree={handleAddTree}
             onAddDweller={handleAddDweller}
             onTreeClick={handleTreeClick}

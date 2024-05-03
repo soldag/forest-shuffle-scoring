@@ -2,47 +2,54 @@ import React from "react";
 
 import CircleIcon from "@mui/icons-material/Circle";
 import { Box } from "@mui/joy";
-import { SxProps } from "@mui/joy/styles/types";
+import { SxProps, Theme } from "@mui/joy/styles/types";
 
 import { TreeSymbol as TreeSymbolType } from "@/game/types";
 import { getColorOfTreeSymbol } from "@/styles/colors";
 import { mergeSx } from "@/utils/sx";
 
-type AttachPosition = "top" | "right" | "bottom" | "left";
+export type TreeSymbolAttachPosition = "top" | "right" | "bottom" | "left";
 
-const getBorderRadius = (direction: AttachPosition, value: string) => {
+export type TreeSymbolSize = "sm" | "md" | "lg";
+
+const getBorderRadius = (position: TreeSymbolAttachPosition, value: string) => {
   const values: string[] = Array(4).fill(value);
-  const index = ["top", "right", "bottom", "left"].indexOf(direction);
+  const index = ["top", "right", "bottom", "left"].indexOf(position);
   values[index] = values[(index + 1) % 4] = "0";
 
   return values.join(" ");
 };
 
+const getIconSize = (theme: Theme, size: TreeSymbolSize) =>
+  ({
+    sm: theme.fontSize.xs,
+    md: theme.fontSize.sm,
+    lg: theme.fontSize.md,
+  })[size];
+
 interface TreeSymbolProps {
-  attach: "top" | "right" | "bottom" | "left";
+  attach: TreeSymbolAttachPosition;
   value: TreeSymbolType;
+  size?: TreeSymbolSize;
   sx?: SxProps;
 }
 
-const TreeSymbol: React.FC<TreeSymbolProps> = ({ attach, value, sx }) => {
+const TreeSymbol: React.FC<TreeSymbolProps> = ({
+  attach,
+  value,
+  size = "md",
+  sx,
+}) => {
   const isTopOrBottom = ["top", "bottom"].includes(attach);
   const isTopOrLeft = ["top", "left"].includes(attach);
-
-  const dimensions = [
-    "calc(var(--TreeSymbol-iconSize) + 2 * var(--TreeSymbol-padding))",
-    "34px",
-  ];
-  const [width, height] = isTopOrBottom
-    ? dimensions
-    : dimensions.slice().reverse();
 
   return (
     <Box
       sx={mergeSx(sx, (theme) => ({
         "--TreeSymbol-padding": "2px",
-        "--TreeSymbol-iconSize": theme.fontSize.sm,
-        "width": width,
-        "height": height,
+        "--TreeSymbol-iconSize": getIconSize(theme, size),
+        [isTopOrBottom ? "width" : "height"]:
+          "calc(var(--TreeSymbol-iconSize) + 2 * var(--TreeSymbol-padding))",
         "p": "var(--TreeSymbol-padding)",
         "display": "flex",
         "flexDirection": isTopOrBottom ? "row" : "column",

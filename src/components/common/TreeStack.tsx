@@ -3,7 +3,7 @@ import React, { ReactNode, forwardRef, useEffect, useRef } from "react";
 
 import { Box, Stack } from "@mui/joy";
 
-import AddTreeButton from "@/components/common/AddTreeButton";
+import AddCardButton from "@/components/common/AddCardButton";
 import TreeSlot from "@/components/common/TreeSlot";
 import {
   DwellerCard,
@@ -13,6 +13,7 @@ import {
   getDwellerCandidates,
   getDwellersOfTree,
 } from "@/game";
+import { CARD_HEIGHT, CARD_WIDTH } from "@/utils/cards";
 import { useBreakpoint, usePrevious } from "@/utils/hooks";
 
 const SCROLL_BUTTON_DELAY = 750;
@@ -38,9 +39,12 @@ const SnapContainer = forwardRef<HTMLElement, SnapContainerProps>(
   ),
 );
 
+export type TreeStackSize = "sm" | "md" | "lg";
+
 interface TreeStackProps {
   game: Game;
   trees: TreeCard[];
+  size?: TreeStackSize;
   onAddDweller?: (treeId: string, position: DwellerPosition) => void;
   onAddTree?: () => void;
   onDwellerClick?: (tree: TreeCard, dweller: DwellerCard) => void;
@@ -50,13 +54,14 @@ interface TreeStackProps {
 const TreeStack: React.FC<TreeStackProps> = ({
   game,
   trees,
+  size = "md",
   onAddDweller,
   onAddTree,
   onDwellerClick,
   onTreeClick,
 }) => {
   const treeSlotRefs = useRef<{ [key: string]: HTMLElement | null }>({});
-  const addButtonRef = useRef<HTMLButtonElement>(null);
+  const addButtonRef = useRef<HTMLElement>(null);
 
   const prevTrees = usePrevious(trees);
 
@@ -121,6 +126,7 @@ const TreeStack: React.FC<TreeStackProps> = ({
           <TreeSlot
             game={game}
             tree={tree}
+            size={size}
             onAddDweller={(position) => onAddDweller?.(tree.id, position)}
             onDwellerClick={(dweller) => onDwellerClick?.(tree, dweller)}
             onTreeClick={() => onTreeClick?.(tree)}
@@ -128,11 +134,15 @@ const TreeStack: React.FC<TreeStackProps> = ({
         </SnapContainer>
       ))}
 
-      <SnapContainer key="add">
-        <AddTreeButton
-          ref={addButtonRef}
+      <SnapContainer key="add" ref={addButtonRef}>
+        <AddCardButton
+          size={size}
+          sx={{
+            flexShrink: 0,
+            height: CARD_HEIGHT[size],
+            width: CARD_WIDTH[size],
+          }}
           onClick={onAddTree}
-          sx={{ flexShrink: 0 }}
         />
       </SnapContainer>
     </Stack>

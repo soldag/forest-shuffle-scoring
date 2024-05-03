@@ -11,9 +11,12 @@ import {
   TreeCard as TreeCardType,
 } from "@/game";
 
+export type TreeSlotSize = "sm" | "md" | "lg";
+
 interface TreeSlotProps {
   game: Game;
   tree: TreeCardType;
+  size?: TreeSlotSize;
   onAddDweller?: (position: DwellerPosition) => void;
   onDwellerClick?: (dweller: DwellerCardType) => void;
   onTreeClick?: () => void;
@@ -22,6 +25,7 @@ interface TreeSlotProps {
 const TreeSlot: React.FC<TreeSlotProps> = ({
   game,
   tree,
+  size = "md",
   onAddDweller,
   onDwellerClick,
   onTreeClick,
@@ -41,6 +45,7 @@ const TreeSlot: React.FC<TreeSlotProps> = ({
           game={game}
           tree={tree}
           position={DwellerPosition.Top}
+          size={size}
           onAdd={() => onAddDweller?.(DwellerPosition.Top)}
           onDwellerClick={onDwellerClick}
         />
@@ -55,18 +60,25 @@ const TreeSlot: React.FC<TreeSlotProps> = ({
           game={game}
           tree={tree}
           position={DwellerPosition.Left}
+          size={size}
           onAdd={() => onAddDweller?.(DwellerPosition.Left)}
           onDwellerClick={onDwellerClick}
         />
       </Stack>
 
-      <TreeCard card={tree} sx={{ zIndex: 3 }} onClick={onTreeClick} />
+      <TreeCard
+        card={tree}
+        size={size}
+        sx={{ zIndex: 3 }}
+        onClick={onTreeClick}
+      />
 
       <Stack direction="row" justifyContent="flex-start" sx={{ zIndex: 2 }}>
         <DwellerSlot
           game={game}
           tree={tree}
           position={DwellerPosition.Right}
+          size={size}
           onAdd={() => onAddDweller?.(DwellerPosition.Right)}
           onDwellerClick={onDwellerClick}
         />
@@ -81,6 +93,7 @@ const TreeSlot: React.FC<TreeSlotProps> = ({
           game={game}
           tree={tree}
           position={DwellerPosition.Bottom}
+          size={size}
           onAdd={() => onAddDweller?.(DwellerPosition.Bottom)}
           onDwellerClick={onDwellerClick}
         />
