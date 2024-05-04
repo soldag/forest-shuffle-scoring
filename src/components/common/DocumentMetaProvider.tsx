@@ -36,7 +36,7 @@ const DocumentMetaProvider: React.FC = () => {
         href={resolvePublic("icons/apple-touch-icon-180x180.png")}
         sizes="180x180"
       />
-      <meta name="theme-color" content={theme.palette.primary[500]} />
+      <meta name="theme-color" content={theme.palette.neutral[50]} />
     </Helmet>
   );
 };

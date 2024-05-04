@@ -9,9 +9,9 @@ import theme from "@/styles/theme";
 
 const App = () => (
   <LocaleContextProvider>
-    <DocumentMetaProvider />
     <CssVarsProvider theme={theme}>
       <CssBaseline />
+      <DocumentMetaProvider />
       <GameContextProvider>
         <RootContainer />
       </GameContextProvider>
