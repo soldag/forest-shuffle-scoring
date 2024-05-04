@@ -7,8 +7,8 @@ import { useTheme } from "@mui/joy";
 import appleTouchIcon from "@/assets/icons/apple-touch-icon-180x180.png";
 import favIcon from "@/assets/icons/favicon.ico";
 import icon from "@/assets/icons/icon.svg";
-import manifestDe from "@/assets/manifests/de.webmanifest";
-import manifestEn from "@/assets/manifests/en.webmanifest";
+import manifestDe from "@/assets/manifests/de.webmanifest?url";
+import manifestEn from "@/assets/manifests/en.webmanifest?url";
 import LocaleContext from "@/components/contexts/LocaleContext";
 import CommonMessages from "@/translations/messages/Common";
 
