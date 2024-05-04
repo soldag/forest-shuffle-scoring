@@ -4,18 +4,9 @@ import { useIntl } from "react-intl";
 
 import { useTheme } from "@mui/joy";
 
-import appleTouchIcon from "@/assets/icons/apple-touch-icon-180x180.png";
-import favIcon from "@/assets/icons/favicon.ico";
-import icon from "@/assets/icons/icon.svg";
-import manifestDe from "@/assets/manifests/de.webmanifest?url";
-import manifestEn from "@/assets/manifests/en.webmanifest?url";
 import LocaleContext from "@/components/contexts/LocaleContext";
 import CommonMessages from "@/translations/messages/Common";
-
-const manifests = {
-  de: manifestDe,
-  en: manifestEn,
-};
+import { resolvePublic } from "@/utils/assets";
 
 const DocumentMetaProvider: React.FC = () => {
   const theme = useTheme();
@@ -30,10 +21,21 @@ const DocumentMetaProvider: React.FC = () => {
         name="description"
         content={intl.formatMessage(CommonMessages.appDescription)}
       />
-      <link rel="manifest" href={manifests[locale]} />
-      <link rel="icon" href={favIcon} />
-      <link rel="mask-icon" href={icon} color="#ffffff" />
-      <link rel="apple-touch-icon" href={appleTouchIcon} sizes="180x180" />
+      <link
+        rel="manifest"
+        href={resolvePublic(`manifests/${locale}.webmanifest`)}
+      />
+      <link rel="icon" href={resolvePublic("icons/favicon.ico")} />
+      <link
+        rel="mask-icon"
+        href={resolvePublic("icons/mask-icon.svg")}
+        color="#ffffff"
+      />
+      <link
+        rel="apple-touch-icon"
+        href={resolvePublic("icons/apple-touch-icon-180x180.png")}
+        sizes="180x180"
+      />
       <meta name="theme-color" content={theme.palette.primary[500]} />
     </Helmet>
   );

@@ -11,7 +11,7 @@ const ROOT_DIR = path.resolve(
   "..",
 );
 const TRANSLATIONS_DIR = path.resolve(ROOT_DIR, "src/translations");
-const OUTPUT_DIR = path.resolve(ROOT_DIR, "src/assets/manifests");
+const OUTPUT_DIR = path.resolve(ROOT_DIR, "public/manifests");
 
 const LOCALES: Locale[] = ["en", "de"];
 
@@ -23,7 +23,7 @@ const getLocalizedString = (locale: Locale, messageId: string) => {
 
 const getIconPath = (filename: string) => {
   const { base = "" } = viteConfig;
-  return `${base}/src/assets/icons/${filename}`;
+  return `${base}/icons/${filename}`;
 };
 
 for (const locale of LOCALES) {

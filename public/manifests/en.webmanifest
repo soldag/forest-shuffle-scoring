@@ -7,22 +7,22 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "/forest-shuffle-scoring/src/assets/icons/pwa-64x64.png",
+      "src": "/forest-shuffle-scoring/icons/pwa-64x64.png",
       "sizes": "64x64",
       "type": "image/png"
     },
     {
-      "src": "/forest-shuffle-scoring/src/assets/icons/pwa-192x192.png",
+      "src": "/forest-shuffle-scoring/icons/pwa-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/forest-shuffle-scoring/src/assets/icons/pwa-512x512.png",
+      "src": "/forest-shuffle-scoring/icons/pwa-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/forest-shuffle-scoring/src/assets/icons/maskable-icon-512x512.png",
+      "src": "/forest-shuffle-scoring/icons/maskable-icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
