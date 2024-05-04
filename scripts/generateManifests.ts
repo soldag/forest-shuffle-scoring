@@ -11,7 +11,7 @@ const ROOT_DIR = path.resolve(
   "..",
 );
 const TRANSLATIONS_DIR = path.resolve(ROOT_DIR, "src/translations");
-const OUTPUT_DIR = path.resolve(ROOT_DIR, "public/manifests");
+const OUTPUT_DIR = path.resolve(ROOT_DIR, "src/assets/manifests");
 
 const LOCALES: Locale[] = ["en", "de"];
 
