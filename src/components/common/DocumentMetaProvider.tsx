@@ -28,7 +28,7 @@ const DocumentMetaProvider: React.FC = () => {
       <link rel="icon" href={resolvePublic("icons/favicon.ico")} />
       <link
         rel="mask-icon"
-        href={resolvePublic("icons/mask-icon.svg")}
+        href={resolvePublic("icons/maskable-icon-512x512.png")}
         color="#ffffff"
       />
       <link
