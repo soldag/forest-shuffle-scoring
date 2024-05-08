@@ -6,7 +6,7 @@ import { useLocation } from "wouter";
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Box, IconButton, Stack, Typography } from "@mui/joy";
 
-import { selectPlayer } from "@/components/actions/game";
+import { selectPlayer } from "@/actions/game";
 import ConfirmResetModal from "@/components/common/ConfirmResetModal";
 import HeaderTitle from "@/components/common/HeaderTitle";
 import PlayerSelect from "@/components/common/PlayerSelect";

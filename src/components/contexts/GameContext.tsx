@@ -1,6 +1,6 @@
 import { ReactNode, Reducer, createContext, useReducer } from "react";
 
-import { GameAction, GameActionType } from "@/components/actions/game";
+import { GameAction, GameActionType } from "@/actions/game";
 import {
   Game,
   addPlayer,

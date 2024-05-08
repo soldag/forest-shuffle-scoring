@@ -5,7 +5,7 @@ import { Link, useLocation } from "wouter";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Button, Stack } from "@mui/joy";
 
-import { CreateGamePayload, createGame } from "@/components/actions/game";
+import { CreateGamePayload, createGame } from "@/actions/game";
 import View from "@/components/common/View";
 import GameContext from "@/components/contexts/GameContext";
 

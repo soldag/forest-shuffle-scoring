@@ -7,7 +7,7 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { Box, Button, Divider, Stack } from "@mui/joy";
 
-import { addPlayer, setCave } from "@/components/actions/game";
+import { addPlayer, setCave } from "@/actions/game";
 import AddPlayerModal from "@/components/common/AddPlayerModal";
 import GameContext from "@/components/contexts/GameContext";
 import { MAX_PLAYERS } from "@/utils/constants";

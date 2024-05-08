@@ -10,7 +10,7 @@ import {
   playTree,
   removeDweller,
   removeTree,
-} from "@/components/actions/game";
+} from "@/actions/game";
 import CardDrawer from "@/components/common/CardDrawer";
 import TreeStack from "@/components/common/TreeStack";
 import View from "@/components/common/View";
