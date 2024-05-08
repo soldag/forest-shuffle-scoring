@@ -16,8 +16,9 @@ module.exports = {
   plugins: ["react-refresh"],
   rules: {
     "comma-dangle": ["error", "always-multiline"],
-    "no-empty": ["error", { allowEmptyCatch: true }],
     "no-duplicate-imports": ["error", { includeExports: true }],
+    "no-empty": ["error", { allowEmptyCatch: true }],
+    "object-shorthand": "error",
 
     "@typescript-eslint/naming-convention": [
       "error",

@@ -114,7 +114,7 @@ export function createForestWithDweller({
   return {
     dweller: dwellerUnderTest,
     tree: treeUnderTest,
-    forest: forest,
+    forest,
   };
 }
 
