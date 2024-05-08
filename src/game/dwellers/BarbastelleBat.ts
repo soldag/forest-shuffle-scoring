@@ -7,10 +7,10 @@ import {
 } from "../types";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "BARBASTELLE_BAT";
+const name = "BARBASTELLE_BAT";
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.Bat],
   modifiers: DEFAULT_MODIFIERS,
   cost: 1,
@@ -36,4 +36,4 @@ const BLUEPRINT: DwellerCardBlueprint = {
   score: ({ forest }) => scoreBats(forest),
 };
 
-export default BLUEPRINT;
+export default blueprint;

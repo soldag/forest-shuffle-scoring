@@ -6,11 +6,11 @@ import {
 } from "../types";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "RACCOON";
-const POINTS = 0;
+const name = "RACCOON";
+const points = 0;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.PawedAnimal],
   modifiers: DEFAULT_MODIFIERS,
   cost: 1,
@@ -38,7 +38,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
       count: 1,
     },
   ],
-  score: () => POINTS,
+  score: () => points,
 };
 
-export default BLUEPRINT;
+export default blueprint;

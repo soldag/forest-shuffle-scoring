@@ -7,11 +7,11 @@ import {
 } from "../types";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "FALLOW_DEER";
-const POINTS_PER_CLOVENHOOFED_ANIMAL = 3;
+const name = "FALLOW_DEER";
+const pointsPerClovenhoofedAnimal = 3;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.ClovenhoofedAnimal, CardType.Deer],
   modifiers: DEFAULT_MODIFIERS,
   cost: 2,
@@ -36,7 +36,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
   ],
   score: ({ forest }) =>
     countCardTypes(forest, [CardType.ClovenhoofedAnimal]) *
-    POINTS_PER_CLOVENHOOFED_ANIMAL,
+    pointsPerClovenhoofedAnimal,
 };
 
-export default BLUEPRINT;
+export default blueprint;

@@ -9,7 +9,7 @@ import PlayerNameInput from "@/components/common/PlayerNameInput";
 import { MAX_PLAYER_NAME_LENGTH } from "@/utils/constants";
 import { buildRules } from "@/utils/forms";
 
-const VALIDATION_MESSAGES = defineMessages({
+const validationMessages = defineMessages({
   playerNameUnique: {
     id: "AddPlayerForm.playerName.validation.unique",
     defaultMessage: "This name is already taken.",
@@ -58,7 +58,7 @@ const AddPlayerForm: React.FC<AddPlayerFormProps> = ({
                 validate: {
                   unique: {
                     fn: (v) => validateUniqueName(v, existingPlayerNames),
-                    message: VALIDATION_MESSAGES.playerNameUnique,
+                    message: validationMessages.playerNameUnique,
                   },
                 },
               })}

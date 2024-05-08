@@ -11,13 +11,13 @@ interface Issue {
   level?: "error" | "warning";
 }
 
-const ROOT_DIR = path.resolve(
+const rootDir = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "..",
 );
-const TRANSLATIONS_DIR = path.resolve(ROOT_DIR, "src/translations");
-const FILE_GLOB = path.resolve(TRANSLATIONS_DIR, "*.json");
-const DEFAULT_LOCALE_FILE_PATH = path.resolve(TRANSLATIONS_DIR, "en.json");
+const translationsDir = path.resolve(rootDir, "src/translations");
+const fileGlob = path.resolve(translationsDir, "*.json");
+const defaultLocaleFilePath = path.resolve(translationsDir, "en.json");
 
 const readMessages = (filename: string) =>
   fs.existsSync(filename) ? JSON.parse(fs.readFileSync(filename, "utf-8")) : {};
@@ -64,10 +64,10 @@ const checkMessages = (
 };
 
 const fix = process.argv.includes("--fix");
-const defaultMessageIds = Object.keys(readMessages(DEFAULT_LOCALE_FILE_PATH));
+const defaultMessageIds = Object.keys(readMessages(defaultLocaleFilePath));
 
-const results = glob.sync(FILE_GLOB).map((filePath) => {
-  if (filePath === DEFAULT_LOCALE_FILE_PATH) return true;
+const results = glob.sync(fileGlob).map((filePath) => {
+  if (filePath === defaultLocaleFilePath) return true;
 
   let messages = readMessages(filePath);
   let issues = checkMessages(defaultMessageIds, messages);
@@ -89,7 +89,7 @@ const results = glob.sync(FILE_GLOB).map((filePath) => {
   }
 
   if (issues.length > 0 || numFixedIssues > 0) {
-    const relativeFilePath = path.relative(ROOT_DIR, filePath);
+    const relativeFilePath = path.relative(rootDir, filePath);
     console.error(relativeFilePath.underline);
 
     if (issues.length > 0) {

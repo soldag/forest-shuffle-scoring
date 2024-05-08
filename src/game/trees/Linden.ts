@@ -1,21 +1,21 @@
 import { scoreByCardMajority } from "../scoring/helpers";
 import { CardType, TreeCardBlueprint, TreeSymbol } from "../types";
 
-const NAME = "LINDEN";
-const POINTS_MINORITY = 1;
-const POINTS_MAJORITY = 3;
+const name = "LINDEN";
+const pointsMinority = 1;
+const pointsMajority = 3;
 
-const BLUEPRINT: TreeCardBlueprint = {
-  name: NAME,
+const blueprint: TreeCardBlueprint = {
+  name,
   types: [CardType.Tree],
   treeSymbol: TreeSymbol.Linden,
   cost: 1,
   count: 9,
   isPartOfDeck: true,
   score: ({ game, forest }) =>
-    scoreByCardMajority(game, forest, POINTS_MINORITY, POINTS_MAJORITY, {
-      names: [NAME],
+    scoreByCardMajority(game, forest, pointsMinority, pointsMajority, {
+      names: [name],
     }),
 };
 
-export default BLUEPRINT;
+export default blueprint;

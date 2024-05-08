@@ -6,11 +6,11 @@ import {
 } from "../types";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "BEECH_MARTEN";
-const POINTS_PER_TREE = 5;
+const name = "BEECH_MARTEN";
+const pointsPerTree = 5;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.PawedAnimal],
   modifiers: DEFAULT_MODIFIERS,
   cost: 1,
@@ -43,8 +43,8 @@ const BLUEPRINT: DwellerCardBlueprint = {
       Object.values(t.dwellers).every((d) => d.length > 0),
     );
 
-    return fullyOccupiedTrees.length * POINTS_PER_TREE;
+    return fullyOccupiedTrees.length * pointsPerTree;
   },
 };
 
-export default BLUEPRINT;
+export default blueprint;

@@ -6,11 +6,11 @@ import {
 } from "../types";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "COMMON_TOAD";
-const POINTS_IF_PAIRED = 5;
+const name = "COMMON_TOAD";
+const pointsIfPaired = 5;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.Amphibian],
   modifiers: {
     ...DEFAULT_MODIFIERS,
@@ -53,10 +53,10 @@ const BLUEPRINT: DwellerCardBlueprint = {
   ],
   score: ({ tree }) => {
     const bottomDwellers = tree.dwellers[DwellerPosition.Bottom];
-    return bottomDwellers.filter((c) => c.name === NAME).length > 1
-      ? POINTS_IF_PAIRED
+    return bottomDwellers.filter((c) => c.name === name).length > 1
+      ? pointsIfPaired
       : 0;
   },
 };
 
-export default BLUEPRINT;
+export default blueprint;

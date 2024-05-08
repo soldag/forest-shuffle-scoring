@@ -1,16 +1,16 @@
 import { CardType, TreeCardBlueprint, TreeSymbol } from "../types";
 
-const NAME = "BIRCH";
-const POINTS = 1;
+const name = "BIRCH";
+const points = 1;
 
-const BLUEPRINT: TreeCardBlueprint = {
-  name: NAME,
+const blueprint: TreeCardBlueprint = {
+  name,
   types: [CardType.Tree],
   treeSymbol: TreeSymbol.Birch,
   cost: 0,
   count: 10,
   isPartOfDeck: true,
-  score: () => POINTS,
+  score: () => points,
 };
 
-export default BLUEPRINT;
+export default blueprint;

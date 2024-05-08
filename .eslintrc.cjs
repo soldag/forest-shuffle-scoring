@@ -19,6 +19,35 @@ module.exports = {
     "no-empty": ["error", { allowEmptyCatch: true }],
     "no-duplicate-imports": ["error", { includeExports: true }],
 
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        selector: "default",
+        format: ["camelCase"],
+        filter: { match: false, regex: "_" },
+        leadingUnderscore: "forbid",
+        trailingUnderscore: "forbid",
+      },
+      {
+        selector: ["import", "parameter", "variable"],
+        format: ["camelCase", "PascalCase"],
+        filter: { match: false, regex: "_" },
+      },
+      {
+        selector: "variable",
+        modifiers: ["const", "exported"],
+        format: ["PascalCase", "UPPER_CASE"],
+      },
+      {
+        selector: ["typeLike", "enumMember"],
+        format: ["PascalCase"],
+      },
+      {
+        selector: ["property"],
+        format: null,
+      },
+    ],
+
     "react/react-in-jsx-scope": "off",
 
     "react-hooks/rules-of-hooks": "error",

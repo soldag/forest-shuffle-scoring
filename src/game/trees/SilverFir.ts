@@ -1,17 +1,17 @@
 import { getDwellersOfTree } from "../helpers";
 import { CardType, TreeCardBlueprint, TreeSymbol } from "../types";
 
-const NAME = "SILVER_FIR";
-const POINTS_PER_DWELLER = 2;
+const name = "SILVER_FIR";
+const pointsPerDweller = 2;
 
-const BLUEPRINT: TreeCardBlueprint = {
-  name: NAME,
+const blueprint: TreeCardBlueprint = {
+  name,
   types: [CardType.Tree],
   treeSymbol: TreeSymbol.SilverFir,
   cost: 2,
   count: 6,
   isPartOfDeck: true,
-  score: ({ tree }) => getDwellersOfTree(tree).length * POINTS_PER_DWELLER,
+  score: ({ tree }) => getDwellersOfTree(tree).length * pointsPerDweller,
 };
 
-export default BLUEPRINT;
+export default blueprint;

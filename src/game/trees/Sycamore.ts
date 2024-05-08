@@ -1,18 +1,18 @@
 import { countCardTypes } from "../scoring/helpers";
 import { CardType, TreeCardBlueprint, TreeSymbol } from "../types";
 
-const NAME = "SYCAMORE";
-const POINTS_PER_TREE = 1;
+const name = "SYCAMORE";
+const pointsPerTree = 1;
 
-const BLUEPRINT: TreeCardBlueprint = {
-  name: NAME,
+const blueprint: TreeCardBlueprint = {
+  name,
   types: [CardType.Tree],
   treeSymbol: TreeSymbol.Sycamore,
   cost: 2,
   count: 6,
   isPartOfDeck: true,
   score: ({ forest }) =>
-    countCardTypes(forest, [CardType.Tree]) * POINTS_PER_TREE,
+    countCardTypes(forest, [CardType.Tree]) * pointsPerTree,
 };
 
-export default BLUEPRINT;
+export default blueprint;

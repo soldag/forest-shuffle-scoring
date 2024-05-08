@@ -4,7 +4,7 @@ import * as Dwellers from "../../dwellers";
 import * as Trees from "../../trees";
 import { CardType, DwellerPosition } from "../../types";
 
-const ALLOWED_TYPE_COMBINATIONS = [
+const allowedTypeCombinations = [
   new Set([CardType.Amphibian]),
   new Set([CardType.Bat]),
   new Set([CardType.Bird]),
@@ -17,7 +17,7 @@ const ALLOWED_TYPE_COMBINATIONS = [
   new Set([CardType.Butterfly, CardType.Insect]),
 ];
 
-const ALLOWED_POSITIONS_BY_TYPE: { [key in CardType]: Set<DwellerPosition> } = {
+const allowedPositionsByType: { [key in CardType]: Set<DwellerPosition> } = {
   [CardType.Amphibian]: new Set([DwellerPosition.Bottom]),
   [CardType.Bat]: new Set([DwellerPosition.Left, DwellerPosition.Right]),
   [CardType.Bird]: new Set([DwellerPosition.Top]),
@@ -63,7 +63,7 @@ describe("The dweller blueprint", () => {
       });
 
       it("has allowed type combination", () => {
-        expect(ALLOWED_TYPE_COMBINATIONS).toContainEqual(
+        expect(allowedTypeCombinations).toContainEqual(
           new Set(blueprint.types),
         );
       });
@@ -85,7 +85,7 @@ describe("The dweller blueprint", () => {
         const positions = new Set(blueprint.variants.map((v) => v.position));
         for (const position in positions) {
           for (const cardType of blueprint.types) {
-            expect(ALLOWED_POSITIONS_BY_TYPE[cardType]).toContain(position);
+            expect(allowedPositionsByType[cardType]).toContain(position);
           }
         }
       });

@@ -6,8 +6,8 @@ import bgStatsIcon from "@/assets/images/bgStatsIcon.png";
 import { Game, GameScoring } from "@/game";
 import CommonMessages from "@/translations/messages/Common";
 
-const SOURCE_GAME_ID = 1;
-const BGG_GAME_ID = 391163;
+const sourceGameId = 1;
+const bggId = 391163;
 
 const getTimestampUtc = () => {
   const now = new Date();
@@ -27,8 +27,8 @@ const getUrl = (intl: IntlShape, game: Game, scoring: GameScoring) => {
     sourceName: intl.formatMessage(CommonMessages.appName),
     playDate: getTimestampUtc(),
     game: {
-      sourceGameId: SOURCE_GAME_ID,
-      bggId: BGG_GAME_ID,
+      sourceGameId,
+      bggId,
       name: intl.formatMessage(CommonMessages.gameName),
       highestWins: true,
       noPoints: false,

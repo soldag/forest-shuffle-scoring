@@ -5,11 +5,11 @@ import { useLocalStorage } from "usehooks-ts";
 import translations from "@/translations";
 import { Locale } from "@/types";
 
-const FALLBACK_LOCALE = "en";
-const BROWSER_LOCALE = navigator?.language?.split(/[-_]/)[0]?.toLowerCase();
-const DEFAULT_LOCALE = Object.keys(translations).includes(BROWSER_LOCALE)
-  ? (BROWSER_LOCALE as Locale)
-  : FALLBACK_LOCALE;
+const fallbackLocale = "en";
+const browserLocale = navigator?.language?.split(/[-_]/)[0]?.toLowerCase();
+const defaultLocale = Object.keys(translations).includes(browserLocale)
+  ? (browserLocale as Locale)
+  : fallbackLocale;
 
 interface LocaleContextType {
   locale: Locale;
@@ -17,7 +17,7 @@ interface LocaleContextType {
 }
 
 const LocaleContext = createContext<LocaleContextType>({
-  locale: DEFAULT_LOCALE,
+  locale: defaultLocale,
   setLocale: () => {},
 });
 
@@ -28,11 +28,11 @@ interface LocaleContextProviderProps {
 export const LocaleContextProvider: React.FC<LocaleContextProviderProps> = ({
   children,
 }) => {
-  const [locale, setLocale] = useLocalStorage("locale", DEFAULT_LOCALE);
+  const [locale, setLocale] = useLocalStorage("locale", defaultLocale);
 
   useEffect(() => {
     if (!Object.keys(translations).includes(locale)) {
-      setLocale(DEFAULT_LOCALE);
+      setLocale(defaultLocale);
     }
   }, [locale, setLocale]);
 

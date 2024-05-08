@@ -2,7 +2,7 @@ import tinycolor from "tinycolor2";
 
 import { CardType, TreeSymbol } from "@/game";
 
-const CARD_TYPE_COLORS = {
+const cardTypeColors = {
   [CardType.Amphibian]: "#918c88",
   [CardType.Bat]: "#22191a",
   [CardType.Bird]: "#44aae4",
@@ -16,7 +16,7 @@ const CARD_TYPE_COLORS = {
   [CardType.Tree]: "#9ac81d",
 };
 
-const TREE_SYMBOL_COLORS = {
+const treeSymbolColors = {
   [TreeSymbol.Sycamore]: "#e30942",
   [TreeSymbol.Birch]: "#56b547",
   [TreeSymbol.Beech]: "#55814c",
@@ -36,7 +36,7 @@ export const getBackgroundForCardTypes = (
   adjustBrightness: number = 0,
 ) => {
   const colors = cardTypes.map((t) =>
-    tinycolor(CARD_TYPE_COLORS[t]).lighten(adjustBrightness).toString(),
+    tinycolor(cardTypeColors[t]).lighten(adjustBrightness).toString(),
   );
 
   if (colors.length <= 1) {
@@ -51,4 +51,4 @@ export const getBackgroundForCardTypes = (
 export const getColorOfTreeSymbol = (
   symbol: TreeSymbol,
   adjustBrightness: number = 0,
-) => tinycolor(TREE_SYMBOL_COLORS[symbol]).lighten(adjustBrightness).toString();
+) => tinycolor(treeSymbolColors[symbol]).lighten(adjustBrightness).toString();

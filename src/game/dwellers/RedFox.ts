@@ -8,11 +8,11 @@ import {
 import EuropeanHare from "./EuropeanHare";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "RED_FOX";
-const POINTS_PER_EUROPEAN_HARE = 2;
+const name = "RED_FOX";
+const pointsPerEuropeanHare = 2;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.PawedAnimal],
   modifiers: DEFAULT_MODIFIERS,
   cost: 2,
@@ -41,7 +41,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
     },
   ],
   score: ({ forest }) =>
-    countCardNames(forest, [EuropeanHare.name]) * POINTS_PER_EUROPEAN_HARE,
+    countCardNames(forest, [EuropeanHare.name]) * pointsPerEuropeanHare,
 };
 
-export default BLUEPRINT;
+export default blueprint;

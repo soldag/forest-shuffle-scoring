@@ -6,11 +6,11 @@ import {
 } from "../types";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "WOOD_ANT";
-const POINTS_PER_BOTTOM_CARD = 2;
+const name = "WOOD_ANT";
+const pointsPerBottomCard = 2;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.Insect],
   modifiers: DEFAULT_MODIFIERS,
   cost: 0,
@@ -30,7 +30,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
   ],
   score: ({ forest }) =>
     forest.trees.flatMap((t) => t.dwellers[DwellerPosition.Bottom]).length *
-    POINTS_PER_BOTTOM_CARD,
+    pointsPerBottomCard,
 };
 
-export default BLUEPRINT;
+export default blueprint;

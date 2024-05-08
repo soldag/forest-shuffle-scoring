@@ -1,8 +1,8 @@
 import { getDwellersOfForest } from "../helpers";
 import { CardType, Forest } from "../types";
 
-const MIN_COUNT = 3;
-const POINTS = 5;
+const minCount = 3;
+const points = 5;
 
 export const scoreBats = (forest: Forest): number => {
   const batNames = new Set(
@@ -11,5 +11,5 @@ export const scoreBats = (forest: Forest): number => {
       .map((c) => c.name),
   );
 
-  return batNames.size >= MIN_COUNT ? POINTS : 0;
+  return batNames.size >= minCount ? points : 0;
 };

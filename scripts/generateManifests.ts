@@ -6,17 +6,17 @@ import { fileURLToPath } from "url";
 import { Locale } from "../src/types";
 import viteConfig from "../vite.config";
 
-const ROOT_DIR = path.resolve(
+const rootDir = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "..",
 );
-const TRANSLATIONS_DIR = path.resolve(ROOT_DIR, "src/translations");
-const OUTPUT_DIR = path.resolve(ROOT_DIR, "public/manifests");
+const translationsDir = path.resolve(rootDir, "src/translations");
+const outputDir = path.resolve(rootDir, "public/manifests");
 
-const LOCALES: Locale[] = ["en", "de"];
+const locales: Locale[] = ["en", "de"];
 
 const getLocalizedString = (locale: Locale, messageId: string) => {
-  const filename = path.resolve(TRANSLATIONS_DIR, `${locale}.json`);
+  const filename = path.resolve(translationsDir, `${locale}.json`);
   const translations = JSON.parse(fs.readFileSync(filename, "utf-8"));
   return translations[messageId];
 };
@@ -26,7 +26,7 @@ const getIconPath = (filename: string) => {
   return `${base}/icons/${filename}`;
 };
 
-for (const locale of LOCALES) {
+for (const locale of locales) {
   const manifest = {
     name: getLocalizedString(locale, "Common.appName"),
     short_name: getLocalizedString(locale, "Common.gameName"),
@@ -72,6 +72,6 @@ for (const locale of LOCALES) {
     start_url: viteConfig.base,
   };
 
-  const filename = path.resolve(OUTPUT_DIR, `${locale}.webmanifest`);
+  const filename = path.resolve(outputDir, `${locale}.webmanifest`);
   fs.writeFileSync(filename, JSON.stringify(manifest, null, 2) + os.EOL);
 }

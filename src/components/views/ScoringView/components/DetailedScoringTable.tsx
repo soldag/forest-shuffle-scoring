@@ -6,7 +6,7 @@ import { Table, TableProps, Typography } from "@mui/joy";
 
 import { Game, GameScoring, PlayerScoringWithRank } from "@/game";
 
-const HEADER_MESSAGES = defineMessages({
+const headerMessages = defineMessages({
   trees: {
     id: "ScoringView.DetailedScoringTable.headers.trees",
     defaultMessage: "Trees",
@@ -44,7 +44,7 @@ const HEADER_MESSAGES = defineMessages({
 const renderRow = (
   intl: IntlShape,
   scorings: PlayerScoringWithRank[],
-  key: keyof typeof HEADER_MESSAGES & keyof PlayerScoringWithRank,
+  key: keyof typeof headerMessages & keyof PlayerScoringWithRank,
   options?: { nested?: boolean; footer?: boolean },
 ) => {
   const Cell = options?.footer ? "th" : "td";
@@ -57,7 +57,7 @@ const renderRow = (
             ml: options?.nested ? "1em" : 0,
           }}
         >
-          {intl.formatMessage(HEADER_MESSAGES[key])}
+          {intl.formatMessage(headerMessages[key])}
         </Typography>
       </th>
       {scorings.map((scoring) => (
@@ -108,7 +108,7 @@ const DetailsScoringTable: React.FC<ScoringTableProps> = ({
         {renderRow(intl, sortedScorings, "trees")}
         <tr>
           <th scope="row" colSpan={playerCount + 1}>
-            {intl.formatMessage(HEADER_MESSAGES.dweller)}
+            {intl.formatMessage(headerMessages.dweller)}
           </th>
         </tr>
         {renderRow(intl, sortedScorings, "dwellerTop", { nested: true })}

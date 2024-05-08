@@ -8,11 +8,11 @@ import {
 import RoeDeer from "./RoeDeer";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "LYNX";
-const POINTS_WITH_ROE_DEER = 10;
+const name = "LYNX";
+const pointsWithRoeDeer = 10;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.PawedAnimal],
   modifiers: DEFAULT_MODIFIERS,
   cost: 1,
@@ -47,8 +47,8 @@ const BLUEPRINT: DwellerCardBlueprint = {
   ],
   score: ({ forest }) => {
     const deerCount = countCardNames(forest, [RoeDeer.name]);
-    return deerCount > 0 ? POINTS_WITH_ROE_DEER : 0;
+    return deerCount > 0 ? pointsWithRoeDeer : 0;
   },
 };
 
-export default BLUEPRINT;
+export default blueprint;

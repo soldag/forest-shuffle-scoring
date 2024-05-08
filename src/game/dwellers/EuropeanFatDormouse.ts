@@ -6,11 +6,11 @@ import {
 } from "../types";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "EUROPEAN_FAT_DORMOUSE";
-const POINTS_WITH_BAT = 15;
+const name = "EUROPEAN_FAT_DORMOUSE";
+const pointsWithBat = 15;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.PawedAnimal],
   modifiers: DEFAULT_MODIFIERS,
   cost: 1,
@@ -45,9 +45,9 @@ const BLUEPRINT: DwellerCardBlueprint = {
         : tree?.dwellers[DwellerPosition.Left];
 
     return oppositeDwellers?.some((c) => c.types.includes(CardType.Bat))
-      ? POINTS_WITH_BAT
+      ? pointsWithBat
       : 0;
   },
 };
 
-export default BLUEPRINT;
+export default blueprint;

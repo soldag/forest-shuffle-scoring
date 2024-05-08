@@ -7,11 +7,11 @@ import {
 } from "../types";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "WILD_STRAWBERRIES";
-const POINTS = 10;
+const name = "WILD_STRAWBERRIES";
+const points = 10;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.Plant],
   modifiers: DEFAULT_MODIFIERS,
   cost: 0,
@@ -29,7 +29,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
       count: 2,
     },
   ],
-  score: ({ forest }) => (hasAllTreeSpecies(forest) ? POINTS : 0),
+  score: ({ forest }) => (hasAllTreeSpecies(forest) ? points : 0),
 };
 
-export default BLUEPRINT;
+export default blueprint;

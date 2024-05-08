@@ -23,7 +23,7 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {},
   decorators: [
-    function Component(Story, ctx) {
+    (Story, ctx) => {
       const [, setArgs] = useArgs<typeof ctx.args>();
 
       const handleCardNameChange = (value?: string) => {

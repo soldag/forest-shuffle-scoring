@@ -8,11 +8,11 @@ import {
 import Squeaker from "./Squeaker";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "WILD_BOAR";
-const POINTS = 10;
+const name = "WILD_BOAR";
+const points = 10;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.ClovenhoofedAnimal],
   modifiers: DEFAULT_MODIFIERS,
   cost: 2,
@@ -41,7 +41,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
     },
   ],
   score: ({ forest }) =>
-    countCardNames(forest, [Squeaker.name]) > 0 ? POINTS : 0,
+    countCardNames(forest, [Squeaker.name]) > 0 ? points : 0,
 };
 
-export default BLUEPRINT;
+export default blueprint;

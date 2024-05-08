@@ -7,15 +7,15 @@ import {
 } from "../types";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "FIREFLIES";
-const POINTS_BY_COUNT = {
+const name = "FIREFLIES";
+const pointsByCount = {
   2: 10,
   3: 15,
   4: 20,
 };
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.Insect],
   modifiers: DEFAULT_MODIFIERS,
   cost: 0,
@@ -43,7 +43,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
       count: 1,
     },
   ],
-  score: ({ forest, dweller }) => scoreSet(forest, dweller, POINTS_BY_COUNT),
+  score: ({ forest, dweller }) => scoreSet(forest, dweller, pointsByCount),
 };
 
-export default BLUEPRINT;
+export default blueprint;

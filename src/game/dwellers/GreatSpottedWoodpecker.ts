@@ -7,12 +7,12 @@ import {
 } from "../types";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "GREAT_SPOTTED_WOODPECKER";
-const POINTS_MINORITY = 0;
-const POINTS_MAJORITY = 10;
+const name = "GREAT_SPOTTED_WOODPECKER";
+const pointsMinority = 0;
+const pointsMajority = 10;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.Bird],
   modifiers: DEFAULT_MODIFIERS,
   cost: 1,
@@ -31,9 +31,9 @@ const BLUEPRINT: DwellerCardBlueprint = {
     },
   ],
   score: ({ game, forest }) =>
-    scoreByCardMajority(game, forest, POINTS_MINORITY, POINTS_MAJORITY, {
+    scoreByCardMajority(game, forest, pointsMinority, pointsMajority, {
       types: [CardType.Tree],
     }),
 };
 
-export default BLUEPRINT;
+export default blueprint;

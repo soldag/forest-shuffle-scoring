@@ -1,8 +1,8 @@
 import { scoreSet } from "../scoring/helpers";
 import { CardType, TreeCardBlueprint, TreeSymbol } from "../types";
 
-const NAME = "HORSE_CHESTNUT";
-const POINTS_BY_COUNT = {
+const name = "HORSE_CHESTNUT";
+const pointsByCount = {
   1: 1,
   2: 4,
   3: 9,
@@ -11,14 +11,14 @@ const POINTS_BY_COUNT = {
   6: 36,
 };
 
-const BLUEPRINT: TreeCardBlueprint = {
-  name: NAME,
+const blueprint: TreeCardBlueprint = {
+  name,
   types: [CardType.Tree],
   treeSymbol: TreeSymbol.HorseChestnut,
   cost: 2,
   count: 11,
   isPartOfDeck: true,
-  score: ({ forest, tree }) => scoreSet(forest, tree, POINTS_BY_COUNT),
+  score: ({ forest, tree }) => scoreSet(forest, tree, pointsByCount),
 };
 
-export default BLUEPRINT;
+export default blueprint;

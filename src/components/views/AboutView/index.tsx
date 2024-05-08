@@ -12,14 +12,14 @@ import { Locale } from "@/types";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-const GAME_URLS: { [key in Locale]: string } = {
+const gameUrls: { [key in Locale]: string } = {
   de: "https://lookout-spiele.de/de/games/mischwald.html",
   en: "https://lookout-spiele.de/en/games/forrestshuffle.html",
 };
-const PUBLISHER_URL = "https://lookout-spiele.de";
-const GITHUB_URL = "https://github.com/soldag/forest-shuffle-scoring";
+const publisherUrl = "https://lookout-spiele.de";
+const githubUrl = "https://github.com/soldag/forest-shuffle-scoring";
 
-const CONTRIBUTIONS = [
+const contributions = [
   {
     title: defineMessage({
       id: "AboutView.contributions.bgStatsIcon",
@@ -58,7 +58,7 @@ const AboutView: React.FC = () => {
   const intl = useIntl();
   const { locale } = useContext(LocaleContext);
 
-  const gameUrl = GAME_URLS[locale];
+  const gameUrl = gameUrls[locale];
   const gameName = intl.formatMessage(CommonMessages.gameName);
 
   return (
@@ -76,7 +76,7 @@ const AboutView: React.FC = () => {
           values={{
             gameName: <ExternalLink href={gameUrl}>{gameName}</ExternalLink>,
             publisherLink: (chunks) => (
-              <ExternalLink href={PUBLISHER_URL}>{chunks}</ExternalLink>
+              <ExternalLink href={publisherUrl}>{chunks}</ExternalLink>
             ),
           }}
         />
@@ -111,7 +111,7 @@ const AboutView: React.FC = () => {
           defaultMessage="This app is open source. If you're a developer, feel free to check out the <githubLink>repository on GitHub</githubLink>. Pull requests are highly appreciated, particularly for bug fixes and language support."
           values={{
             githubLink: (chunks) => (
-              <ExternalLink href={GITHUB_URL}>{chunks}</ExternalLink>
+              <ExternalLink href={githubUrl}>{chunks}</ExternalLink>
             ),
           }}
         />
@@ -129,7 +129,7 @@ const AboutView: React.FC = () => {
         />
       </Typography>
       <List marker="disc" sx={{ py: 0 }}>
-        {CONTRIBUTIONS.map(({ title, url }) => (
+        {contributions.map(({ title, url }) => (
           <ListItem key={title.id}>
             <Typography>{intl.formatMessage(title)}</Typography>
             <ExternalLink href={url} />

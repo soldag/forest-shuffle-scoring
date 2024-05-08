@@ -16,7 +16,7 @@ import {
 import { CARD_HEIGHT, CARD_WIDTH } from "@/utils/cards";
 import { useBreakpoint, usePrevious } from "@/utils/hooks";
 
-const SCROLL_BUTTON_DELAY = 750;
+const scrollToButtonDelay = 750;
 
 interface SnapContainerProps {
   children: ReactNode;
@@ -110,7 +110,7 @@ const TreeStack: React.FC<TreeStackProps> = ({
           behavior: "smooth",
           inline: "center",
         });
-      }, SCROLL_BUTTON_DELAY);
+      }, scrollToButtonDelay);
 
       return () => clearTimeout(handle);
     }

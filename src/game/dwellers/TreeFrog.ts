@@ -8,11 +8,11 @@ import {
 import Gnat from "./Gnat";
 import { DEFAULT_MODIFIERS } from "./modifiers";
 
-const NAME = "TREE_FROG";
-const POINTS_PER_GNAT = 5;
+const name = "TREE_FROG";
+const pointsPerGnat = 5;
 
-const BLUEPRINT: DwellerCardBlueprint = {
-  name: NAME,
+const blueprint: DwellerCardBlueprint = {
+  name,
   types: [CardType.Amphibian],
   modifiers: DEFAULT_MODIFIERS,
   cost: 0,
@@ -30,7 +30,7 @@ const BLUEPRINT: DwellerCardBlueprint = {
       count: 2,
     },
   ],
-  score: ({ forest }) => countCardNames(forest, [Gnat.name]) * POINTS_PER_GNAT,
+  score: ({ forest }) => countCardNames(forest, [Gnat.name]) * pointsPerGnat,
 };
 
-export default BLUEPRINT;
+export default blueprint;

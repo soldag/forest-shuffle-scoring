@@ -6,7 +6,7 @@ import { DialogContent, DialogTitle, Drawer, ModalClose } from "@mui/joy";
 import CardSelect from "@/components/common/CardSelect";
 import { Card, TreeSymbol } from "@/game";
 
-const TRANSITION_DURATION = 300;
+const transitionDuration = 300;
 
 interface CardDrawerProps<TCard extends Card> {
   open: boolean;
@@ -38,12 +38,12 @@ const CardDrawer = <TCard extends Card>({
   }, [open, selectedCard]);
 
   const handleSelectCard = (card: TCard) => {
-    setTimeout(() => onSelectCard?.(card), TRANSITION_DURATION);
+    setTimeout(() => onSelectCard?.(card), transitionDuration);
     onClose();
   };
 
   const handleRemoveCard = () => {
-    setTimeout(() => onRemoveCard?.(), TRANSITION_DURATION);
+    setTimeout(() => onRemoveCard?.(), transitionDuration);
     onClose();
   };
 
@@ -53,7 +53,7 @@ const CardDrawer = <TCard extends Card>({
       size="sm"
       open={open}
       onClose={onClose}
-      sx={{ "--Drawer-transitionDuration": `${TRANSITION_DURATION}ms` }}
+      sx={{ "--Drawer-transitionDuration": `${transitionDuration}ms` }}
     >
       <ModalClose />
       <DialogTitle>

@@ -1,7 +1,7 @@
 import { getDwellersOfForest } from "../helpers";
 import { CardType, DwellerCard, Forest } from "../types";
 
-const POINTS_BY_COUNT: { [count: number]: number } = {
+const pointsByCount: { [count: number]: number } = {
   2: 3,
   3: 6,
   4: 12,
@@ -36,6 +36,6 @@ export const scoreButterflies = (
   }, [] as string[][]);
 
   return sets
-    .map((s) => POINTS_BY_COUNT[s.length] ?? 0)
+    .map((s) => pointsByCount[s.length] ?? 0)
     .reduce((a, b) => a + b, 0);
 };
