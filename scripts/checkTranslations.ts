@@ -5,6 +5,12 @@ import _ from "lodash";
 import path from "path";
 import { fileURLToPath } from "url";
 
+interface Issue {
+  code: string;
+  description: string;
+  level?: "error" | "warning";
+}
+
 const ROOT_DIR = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "..",
@@ -20,7 +26,7 @@ const checkMessages = (
   defaultMessageIds: string[],
   messages: { [key: string]: string },
 ) => {
-  const issues = [];
+  const issues: Issue[] = [];
   const messageIds = Object.keys(messages);
 
   const missingIds = defaultMessageIds.filter((id) => !messageIds.includes(id));
