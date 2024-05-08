@@ -12,7 +12,16 @@ const commitHash = child
 
 export default defineConfig({
   base: "/forest-shuffle-scoring",
-  plugins: [react(), VitePWA({ manifest: false })],
+  plugins: [
+    react(),
+    VitePWA({
+      manifest: false,
+      includeAssets: ["**/**.{ico,png,svg}"],
+      workbox: {
+        globPatterns: ["**/*.{html,png,svg}"],
+      },
+    }),
+  ],
   define: {
     "import.meta.env.PACKAGE_VERSION": JSON.stringify(
       process.env.npm_package_version,

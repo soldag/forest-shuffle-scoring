@@ -6,6 +6,7 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Button, Stack } from "@mui/joy";
 
 import { CreateGamePayload, createGame } from "@/actions/game";
+import AppUpdateModal from "@/components/common/AppUpdateModal";
 import View from "@/components/common/View";
 import GameContext from "@/components/contexts/GameContext";
 
@@ -41,6 +42,8 @@ const CreateGameView = () => {
           />
         </Button>
       </Stack>
+
+      <AppUpdateModal />
     </View>
   );
 };

@@ -30,6 +30,12 @@ module.exports = {
     ],
 
     "import/no-relative-packages": "error",
+    "import/no-unresolved": [
+      "error",
+      {
+        ignore: ["^virtual:pwa-register"],
+      },
+    ],
   },
   settings: {
     "import/resolver": {
