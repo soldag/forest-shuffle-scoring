@@ -3,13 +3,22 @@ import { useEffect } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import EditIcon from "@mui/icons-material/Edit";
-import { Button, IconButton, Stack, Typography } from "@mui/joy";
+import {
+  Button,
+  IconButton,
+  List,
+  ListItem,
+  ListSubheader,
+  Stack,
+  Typography,
+} from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
 import CardButton from "@/components/common/CardButton";
 import TreeSymbolButton from "@/components/common/TreeSymbolButton";
 import { Card, CardType, TreeSymbol } from "@/game";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
+import CardTypeMessages from "@/translations/messages/CardTypes";
 import { getLocalizedTreeSymbol } from "@/translations/messages/TreeSymbols";
 
 interface CardSelectProps<TCard extends Card> {
@@ -39,8 +48,12 @@ const CardSelect = <TCard extends Card>({
 
   const cardNameOptions = _.orderBy(
     _.uniqBy(cards, (c) => c.name),
-    (c) => [c.types, getLocalizedCardName(intl, c.name) ?? c.name],
+    (c) => getLocalizedCardName(intl, c.name) ?? c.name,
   );
+  const cardNameOptionsByType = _.groupBy(
+    cardNameOptions,
+    (c) => c.types[0],
+  ) as { [key in CardType]: TCard[] };
 
   const treeSymbolOptions = _.orderBy(
     _.uniqBy(
@@ -104,14 +117,33 @@ const CardSelect = <TCard extends Card>({
             </IconButton>
           </Stack>
         ) : (
-          cardNameOptions.map((card) => (
-            <CardButton
-              key={card.name}
-              size="sm"
-              card={card}
-              onClick={() => handleSelectCardName(card)}
-            />
-          ))
+          <List
+            sx={(theme) => ({
+              "--List-padding": 0,
+              "--ListItem-paddingX": 0,
+              "--ListItem-stickyBackground": theme.palette.background.surface,
+            })}
+          >
+            {Object.entries(cardNameOptionsByType).map(([type, cards]) => (
+              <ListItem nested key={type}>
+                {Object.keys(cardNameOptionsByType).length > 1 && (
+                  <ListSubheader sticky>
+                    {intl.formatMessage(CardTypeMessages[type])}
+                  </ListSubheader>
+                )}
+                {cards.map((card) => (
+                  <ListItem key={card.name}>
+                    <CardButton
+                      fullWidth
+                      size="sm"
+                      card={card}
+                      onClick={() => handleSelectCardName(card)}
+                    />
+                  </ListItem>
+                ))}
+              </ListItem>
+            ))}
+          </List>
         )}
 
         {canSelectTreeSymbol && (
