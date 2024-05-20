@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import * as Dwellers from "./dwellers";
 import * as Trees from "./trees";
-import SaplingBlueprint from "./trees/Sapling";
+import { Sapling } from "./trees";
 import {
   CardType,
   Deck,
@@ -66,7 +66,7 @@ export const createTree = (blueprint: TreeCardBlueprint): TreeCard => {
   return tree;
 };
 
-export const createSapling = (): TreeCard => createTree(SaplingBlueprint);
+export const createSapling = (): TreeCard => createTree(Sapling);
 
 export const createForest = (caveCardCount: number = 0): Forest => ({
   trees: [],

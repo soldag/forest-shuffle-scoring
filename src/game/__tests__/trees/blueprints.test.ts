@@ -2,7 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 
 import * as Dwellers from "../../dwellers";
 import * as Trees from "../../trees";
-import Sapling from "../../trees/Sapling";
+import { Sapling } from "../../trees";
 import { CardType } from "../../types";
 
 describe("The tree blueprint", () => {
