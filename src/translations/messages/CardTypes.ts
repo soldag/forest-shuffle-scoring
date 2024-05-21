@@ -3,6 +3,10 @@ import { MessageDescriptor, defineMessages } from "react-intl";
 import { CardType } from "@/game";
 
 const messages = defineMessages<CardType, MessageDescriptor>({
+  ALPS: {
+    id: "CardTypes.Alps",
+    defaultMessage: "Alps",
+  },
   AMPHIBIAN: {
     id: "CardTypes.Amphibian",
     defaultMessage: "Amphibian",

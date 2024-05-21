@@ -3,6 +3,7 @@ import tinycolor from "tinycolor2";
 import { CardType, TreeSymbol } from "@/game";
 
 const cardTypeColors = {
+  [CardType.Alps]: "#9d92c0",
   [CardType.Amphibian]: "#918c88",
   [CardType.Bat]: "#22191a",
   [CardType.Bird]: "#44aae4",
@@ -17,6 +18,7 @@ const cardTypeColors = {
 };
 
 const treeSymbolColors = {
+  [TreeSymbol.AlpineLarch]: "#927aaf",
   [TreeSymbol.Sycamore]: "#e30942",
   [TreeSymbol.Birch]: "#56b547",
   [TreeSymbol.Beech]: "#55814c",
@@ -25,6 +27,7 @@ const treeSymbolColors = {
   [TreeSymbol.HorseChestnut]: "#f79d4d",
   [TreeSymbol.Linden]: "#f3c909",
   [TreeSymbol.SilverFir]: "#568f9c",
+  [TreeSymbol.SwissPine]: "#dea0c1",
 };
 
 export const HOVER_BRIGHTNESS = -5;

@@ -1,4 +1,4 @@
-import { hasAllTreeSpecies } from "../../scoring/helpers";
+import { countTreeSpecies } from "../../scoring/helpers";
 import {
   CardType,
   DwellerCardBlueprint,
@@ -9,6 +9,7 @@ import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "WILD_STRAWBERRIES";
 const points = 10;
+const minTreeSpeciesCount = 8;
 
 const blueprint: DwellerCardBlueprint = {
   name,
@@ -29,7 +30,8 @@ const blueprint: DwellerCardBlueprint = {
       count: 2,
     },
   ],
-  score: ({ forest }) => (hasAllTreeSpecies(forest) ? points : 0),
+  score: ({ forest }) =>
+    countTreeSpecies(forest) < minTreeSpeciesCount ? 0 : points,
 };
 
 export default blueprint;

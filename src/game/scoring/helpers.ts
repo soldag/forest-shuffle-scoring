@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import { getDwellersOfForest, getDwellersOfTree } from "../helpers";
 import { Card, CardType, Forest, Game, TreeSymbol } from "../types";
 
@@ -5,6 +7,7 @@ interface CardFilter {
   names?: string[];
   types?: CardType[];
   treeSymbols?: TreeSymbol[];
+  distinctNames?: boolean;
 }
 
 interface CountOptions {
@@ -13,15 +16,18 @@ interface CountOptions {
 
 const applyFilter = <Type extends Card>(
   cards: Type[],
-  { names, types, treeSymbols }: CardFilter,
-): Type[] =>
-  cards
+  { names, types, treeSymbols, distinctNames }: CardFilter,
+): Type[] => {
+  const result = cards
     .filter((c) => !names || names.includes(c.name))
     .filter((c) => !types || types.some((t) => c.types.includes(t)))
     .filter(
       (c) =>
         !treeSymbols || (c.treeSymbol && treeSymbols.includes(c.treeSymbol)),
     );
+
+  return distinctNames ? _.uniqBy(result, (c) => c.name) : result;
+};
 
 export const countTrees = (
   forest: Forest,
@@ -56,19 +62,23 @@ export const countCards = (
 export const countCardNames = (forest: Forest, names: string[]): number =>
   countCards(forest, { names }, { ignoreModifiers: false });
 
-export const countCardTypes = (forest: Forest, types: CardType[]): number =>
-  countCards(forest, { types }, { ignoreModifiers: true });
+export const countCardTypes = (
+  forest: Forest,
+  types: CardType[],
+  distinctNames: boolean = false,
+): number =>
+  countCards(forest, { types, distinctNames }, { ignoreModifiers: true });
 
 export const countTreeSymbols = (
   forest: Forest,
   treeSymbols: TreeSymbol[],
 ): number => countCards(forest, { treeSymbols }, { ignoreModifiers: true });
 
-export const hasAllTreeSpecies = (forest: Forest) => {
+export const countTreeSpecies = (forest: Forest) => {
   const treeSymbols = new Set(
     forest.trees.map((t) => t.treeSymbol).filter((t) => !!t),
   );
-  return Object.values(TreeSymbol).every((s) => treeSymbols.has(s));
+  return treeSymbols.size;
 };
 
 export const scoreByCardMajority = (

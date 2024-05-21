@@ -1,4 +1,9 @@
+export enum Expansion {
+  Alpine = "ALPINE",
+}
+
 export enum CardType {
+  Alps = "ALPS",
   Amphibian = "AMPHIBIAN",
   Bat = "BAT",
   Bird = "BIRD",
@@ -20,14 +25,16 @@ export enum DwellerPosition {
 }
 
 export enum TreeSymbol {
-  Sycamore = "SYCAMORE",
-  Birch = "BIRCH",
+  AlpineLarch = "ALPINE_LARCH",
   Beech = "BEECH",
+  Birch = "BIRCH",
   DouglasFir = "DOUGLAS_FIR",
-  Oak = "OAK",
   HorseChestnut = "HORSE_CHESTNUT",
   Linden = "LINDEN",
+  Oak = "OAK",
   SilverFir = "SILVER_FIR",
+  SwissPine = "SWISS_PINE",
+  Sycamore = "SYCAMORE",
 }
 
 export interface Card {
@@ -81,6 +88,7 @@ export interface Game {
 
 export interface CardBlueprint {
   name: string;
+  expansion?: Expansion;
   types: CardType[];
   cost: number;
   count: number;

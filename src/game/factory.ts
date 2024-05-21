@@ -11,6 +11,7 @@ import {
   DwellerCardBlueprint,
   DwellerPosition,
   DwellerVariant,
+  Expansion,
   Forest,
   Game,
   Player,
@@ -45,7 +46,7 @@ export const createDweller = (
 };
 
 export const createTree = (blueprint: TreeCardBlueprint): TreeCard => {
-  if (blueprint.types.some((t) => t !== CardType.Tree)) {
+  if (blueprint.types.every((t) => t !== CardType.Tree)) {
     throw new TypeError("The blueprint must be a tree blueprint");
   }
 
@@ -73,14 +74,17 @@ export const createForest = (caveCardCount: number = 0): Forest => ({
   caveCardCount,
 });
 
-export const createDeck = (): Deck => ({
-  dwellers: Object.values(Dwellers).flatMap((blueprint) =>
-    blueprint.variants.flatMap((variant) =>
-      _.times(variant.count, () => createDweller(blueprint, variant)),
+export const createDeck = (expansions: Expansion[] = []): Deck => ({
+  dwellers: Object.values(Dwellers)
+    .filter(({ expansion }) => !expansion || expansions.includes(expansion))
+    .flatMap((blueprint) =>
+      blueprint.variants.flatMap((variant) =>
+        _.times(variant.count, () => createDweller(blueprint, variant)),
+      ),
     ),
-  ),
   trees: Object.values(Trees)
     .filter((blueprint) => isFinite(blueprint.count))
+    .filter(({ expansion }) => !expansion || expansions.includes(expansion))
     .flatMap((blueprint) =>
       _.times(blueprint.count, () => createTree(blueprint)),
     ),
