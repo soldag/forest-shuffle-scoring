@@ -1,6 +1,8 @@
-import { IntlShape, MessageDescriptor, defineMessages } from "react-intl";
+import { MessageDescriptor, defineMessages } from "react-intl";
 
-const messages = defineMessages<string, MessageDescriptor | undefined>({
+import { TreeSymbol } from "@/game";
+
+const messages = defineMessages<TreeSymbol, MessageDescriptor>({
   BEECH: {
     id: "TreeSymbols.Beech",
     defaultMessage: "Beech",
@@ -36,8 +38,3 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
 });
 
 export default messages;
-
-export const getLocalizedTreeSymbol = (intl: IntlShape, name: string) => {
-  const message = messages[name];
-  return message ? intl.formatMessage(message) : null;
-};

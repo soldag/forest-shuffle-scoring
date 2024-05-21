@@ -19,7 +19,7 @@ import TreeSymbolButton from "@/components/common/TreeSymbolButton";
 import { Card, CardType, TreeSymbol } from "@/game";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
 import CardTypeMessages from "@/translations/messages/CardTypes";
-import { getLocalizedTreeSymbol } from "@/translations/messages/TreeSymbols";
+import TreeSymbolMessages from "@/translations/messages/TreeSymbols";
 
 interface CardSelectProps<TCard extends Card> {
   sx?: SxProps;
@@ -60,7 +60,7 @@ const CardSelect = <TCard extends Card>({
       cards.filter((c) => c.name === cardName && !!c.treeSymbol),
       (c) => c.treeSymbol,
     ),
-    (c) => getLocalizedTreeSymbol(intl, c.treeSymbol!),
+    (c) => intl.formatMessage(TreeSymbolMessages[c.treeSymbol!]),
   );
   const canSelectTreeSymbol =
     cardName &&
@@ -161,7 +161,7 @@ const CardSelect = <TCard extends Card>({
                 alignItems="center"
               >
                 <Typography level="body-sm">
-                  {getLocalizedTreeSymbol(intl, treeSymbol)}
+                  {intl.formatMessage(TreeSymbolMessages[treeSymbol])}
                 </Typography>
                 <IconButton size="sm" onClick={handleResetTreeSymbol}>
                   <EditIcon />

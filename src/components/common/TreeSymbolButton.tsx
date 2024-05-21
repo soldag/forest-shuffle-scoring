@@ -9,7 +9,7 @@ import {
   HOVER_BRIGHTNESS,
   getColorOfTreeSymbol,
 } from "@/styles/colors";
-import { getLocalizedTreeSymbol } from "@/translations/messages/TreeSymbols";
+import TreeSymbolMessages from "@/translations/messages/TreeSymbols";
 
 interface TreeSymbolButtonProps extends ButtonProps {
   treeSymbol: TreeSymbol;
@@ -20,8 +20,6 @@ const TreeSymbolButton: React.FC<TreeSymbolButtonProps> = ({
   ...otherProps
 }) => {
   const intl = useIntl();
-
-  const text = getLocalizedTreeSymbol(intl, treeSymbol) ?? treeSymbol;
 
   return (
     <Button
@@ -36,7 +34,7 @@ const TreeSymbolButton: React.FC<TreeSymbolButtonProps> = ({
         },
       }}
     >
-      {text}
+      {intl.formatMessage(TreeSymbolMessages[treeSymbol])}
     </Button>
   );
 };
