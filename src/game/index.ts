@@ -14,4 +14,5 @@ export {
   removeDweller,
 } from "./operations";
 export { scorePlayer, scoreGame } from "./scoring/game";
+export * from "./constants";
 export * from "./types";

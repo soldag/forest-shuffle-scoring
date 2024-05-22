@@ -1,6 +1,6 @@
 import tinycolor from "tinycolor2";
 
-import { CardType, TreeSymbol } from "@/game";
+import { CardType, EXPANSION_CARD_TYPES, TreeSymbol } from "@/game";
 
 const cardTypeColors = {
   [CardType.Alps]: "#9d92c0",
@@ -38,9 +38,11 @@ export const getBackgroundForCardTypes = (
   gradientDirection: "horizontal" | "vertical" = "horizontal",
   adjustBrightness: number = 0,
 ) => {
-  const colors = cardTypes.map((t) =>
-    tinycolor(cardTypeColors[t]).lighten(adjustBrightness).toString(),
-  );
+  const colors = cardTypes
+    .filter((t) => !EXPANSION_CARD_TYPES.includes(t))
+    .map((t) =>
+      tinycolor(cardTypeColors[t]).lighten(adjustBrightness).toString(),
+    );
 
   if (colors.length <= 1) {
     return colors[0];

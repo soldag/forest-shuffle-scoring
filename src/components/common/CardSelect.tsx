@@ -16,7 +16,7 @@ import { SxProps } from "@mui/joy/styles/types";
 
 import CardButton from "@/components/common/CardButton";
 import TreeSymbolButton from "@/components/common/TreeSymbolButton";
-import { Card, CardType, TreeSymbol } from "@/game";
+import { Card, CardType, EXPANSION_CARD_TYPES, TreeSymbol } from "@/game";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
 import CardTypeMessages from "@/translations/messages/CardTypes";
 import TreeSymbolMessages from "@/translations/messages/TreeSymbols";
@@ -52,7 +52,7 @@ const CardSelect = <TCard extends Card>({
   );
   const cardNameOptionsByType = _.groupBy(
     cardNameOptions,
-    (c) => c.types[0],
+    (c) => c.types.filter((t) => !EXPANSION_CARD_TYPES.includes(t))[0],
   ) as { [key in CardType]: TCard[] };
 
   const treeSymbolOptions = _.orderBy(
