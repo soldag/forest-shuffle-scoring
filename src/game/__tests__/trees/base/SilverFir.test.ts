@@ -5,11 +5,7 @@ import { SilverFir } from "@/game/trees";
 import { DwellerPosition } from "@/game/types";
 
 import { createFakeDwellers } from "../../fake";
-import {
-  addDwellersToTree,
-  createForestWithTrees,
-  createGame,
-} from "../../helpers";
+import { addDwellersToTree, createForestWith, createGame } from "../../helpers";
 
 describe("A Silver Fir card", () => {
   it.each([
@@ -29,7 +25,7 @@ describe("A Silver Fir card", () => {
         ...createFakeDwellers(left, DwellerPosition.Left),
         ...createFakeDwellers(right, DwellerPosition.Right),
       );
-      const forest = createForestWithTrees(tree);
+      const forest = createForestWith({ trees: [tree] });
       const game = createGame(forest);
 
       const points = SilverFir.score({ game, forest, tree });

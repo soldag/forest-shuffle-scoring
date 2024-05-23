@@ -7,7 +7,7 @@ import { createFakeDwellers } from "../../fake";
 import {
   createAllDwellers,
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -19,7 +19,7 @@ describe("A Blackberries card", () => {
   ])(
     "scores %i points with %i other plant cards",
     (expectedPoints, otherPlantCount) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Blackberries),
         otherDwellers: [
           ...createFakeDwellers(otherPlantCount, DwellerPosition.Bottom, {
@@ -43,7 +43,7 @@ describe("A Blackberries card", () => {
 
   it("also scores for other Blackberries", () => {
     const allDwellers = createAllDwellers(Blackberries);
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: allDwellers[0],
       otherDwellers: allDwellers.slice(1, 3),
     });

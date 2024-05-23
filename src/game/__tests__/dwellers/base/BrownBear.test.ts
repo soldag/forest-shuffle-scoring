@@ -5,13 +5,13 @@ import { BrownBear } from "@/game/dwellers";
 import {
   createAnyDweller,
   createCompleteForestWithDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
 describe("A Brown Bear card", () => {
   it("scores no points in an empty forest", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(BrownBear),
     });
     const game = createGame(forest);

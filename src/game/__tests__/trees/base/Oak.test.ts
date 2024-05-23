@@ -5,7 +5,7 @@ import { createTree } from "@/game/factory";
 import * as Trees from "@/game/trees";
 import { Oak, Sapling } from "@/game/trees";
 
-import { createForestWithTrees, createGame } from "../../helpers";
+import { createForestWith, createGame } from "../../helpers";
 
 describe("A Oak card", () => {
   // The Sapling does not count as species
@@ -16,7 +16,7 @@ describe("A Oak card", () => {
   it("scores 10 points if forest has all tree species", () => {
     const trees = treeSpecies.map(createTree);
     const oak = trees.find((t) => t.name === Oak.name)!;
-    const forest = createForestWithTrees(...trees);
+    const forest = createForestWith({ trees });
     const game = createGame(forest);
 
     const points = Oak.score({ game, forest, tree: oak });
@@ -29,7 +29,7 @@ describe("A Oak card", () => {
     (otherTreeCount) => {
       const otherTrees = treeSpecies.slice(0, otherTreeCount).map(createTree);
       const oak = createTree(Oak);
-      const forest = createForestWithTrees(oak, ...otherTrees);
+      const forest = createForestWith({ trees: [oak, ...otherTrees] });
       const game = createGame(forest);
 
       const points = Oak.score({ game, forest, tree: oak });

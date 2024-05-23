@@ -6,7 +6,7 @@ import { CardType, DwellerPosition } from "@/game/types";
 import { createFakeDwellers } from "../../fake";
 import {
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -18,7 +18,7 @@ describe("A Hedgehog card", () => {
   ])(
     "scores %i points if there are %i butterfly cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Hedgehog),
         otherDwellers: createFakeDwellers(count, DwellerPosition.Top, {
           types: [CardType.Butterfly],

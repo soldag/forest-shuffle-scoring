@@ -5,13 +5,13 @@ import { Squeaker } from "@/game/dwellers";
 import {
   createAnyDweller,
   createCompleteForestWithDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
 describe("A Squeaker card", () => {
   it("scores 1 point in an empty forest", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(Squeaker),
     });
     const game = createGame(forest);

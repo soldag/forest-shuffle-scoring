@@ -1,6 +1,5 @@
 import * as Dwellers from "@/game/dwellers";
 import { createDweller, createTree, generateId } from "@/game/factory";
-import { getDwellersOfTree } from "@/game/helpers";
 import * as Trees from "@/game/trees";
 
 import {
@@ -61,14 +60,49 @@ export const addDwellersToTree = (tree: TreeCard, ...dwellers: DwellerCard[]) =>
     };
   }, tree);
 
-export const createForestWithTrees: (...trees: TreeCard[]) => Forest = (
-  ...trees
-) => ({
-  trees,
-  caveCardCount: 0,
-});
+export const createForestWith = ({
+  trees = [],
+  dwellers = [],
+}: {
+  trees?: TreeCard[];
+  dwellers?: DwellerCard[];
+}) => {
+  for (const dweller of dwellers) {
+    const tree = addDwellersToTree(
+      trees.find((t) => t.dwellers[dweller.position].length === 0) ??
+        createFakeTree(),
+      dweller,
+    );
+    trees = [...trees.filter((t) => t.id !== tree.id), tree];
+  }
 
-export function createForestWithDweller({
+  return {
+    trees,
+    caveCardCount: 0,
+  };
+};
+
+export const createForestForTreeTest = ({
+  treeUnderTest,
+  otherTrees = [],
+  dwellers = [],
+}: {
+  treeUnderTest: TreeCard;
+  otherTrees?: TreeCard[];
+  dwellers?: DwellerCard[];
+}) => {
+  const forest = createForestWith({
+    trees: [treeUnderTest, ...otherTrees],
+    dwellers,
+  });
+
+  return {
+    forest,
+    tree: forest.trees.find((t) => t.id === treeUnderTest.id)!,
+  };
+};
+
+export const createForestForDwellerTest = ({
   dwellerUnderTest,
   treeUnderTest,
   otherDwellers = [],
@@ -78,45 +112,24 @@ export function createForestWithDweller({
   treeUnderTest?: TreeCard;
   otherDwellers?: DwellerCard[];
   otherTrees?: TreeCard[];
-}): {
-  dweller: DwellerCard;
-  tree: TreeCard;
-  forest: Forest;
-} {
-  let trees: TreeCard[];
-  let dwellersToAdd: DwellerCard[];
-  if (treeUnderTest) {
-    trees = [addDwellersToTree(treeUnderTest, dwellerUnderTest), ...otherTrees];
-    dwellersToAdd = [...otherDwellers];
-  } else {
-    trees = [...otherTrees];
-    dwellersToAdd = [dwellerUnderTest, ...otherDwellers];
+}) => {
+  if (!treeUnderTest) {
+    [treeUnderTest, ...otherTrees] = otherTrees;
   }
-
-  for (const dweller of dwellersToAdd) {
-    const tree = addDwellersToTree(
-      trees.find((t) => t.dwellers[dweller.position].length === 0) ??
-        createFakeTree(),
-      dweller,
-    );
-    trees = [...trees.filter((t) => t.id !== tree.id), tree];
-  }
-
-  treeUnderTest = trees.find((t) =>
-    getDwellersOfTree(t).includes(dwellerUnderTest),
-  )!;
-
-  const forest = {
-    trees,
-    caveCardCount: 0,
-  };
+  treeUnderTest = addDwellersToTree(
+    treeUnderTest ?? createFakeTree(),
+    dwellerUnderTest,
+  );
 
   return {
+    ...createForestForTreeTest({
+      treeUnderTest,
+      otherTrees,
+      dwellers: otherDwellers,
+    }),
     dweller: dwellerUnderTest,
-    tree: treeUnderTest,
-    forest,
   };
-}
+};
 
 export function createCompleteForestWithDweller({
   dwellerUnderTest,
@@ -140,7 +153,7 @@ export function createCompleteForestWithDweller({
     .map((b) => createTree(b))
     .filter(filterTrees);
 
-  return createForestWithDweller({
+  return createForestForDwellerTest({
     dwellerUnderTest,
     otherDwellers: dwellers,
     otherTrees: trees,

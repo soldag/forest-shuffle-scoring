@@ -6,7 +6,7 @@ import { StagBeetle } from "@/game/dwellers";
 import { createFakeDwellers } from "../../fake";
 import {
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -18,7 +18,7 @@ describe("A Stag Beetle card", () => {
   ])(
     "scores %i points if there are %i pawed animal cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(StagBeetle),
         otherDwellers: createFakeDwellers(count, DwellerPosition.Left, {
           types: [CardType.PawedAnimal],

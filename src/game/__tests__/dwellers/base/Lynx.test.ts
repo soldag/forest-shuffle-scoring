@@ -5,7 +5,7 @@ import { Lynx, RoeDeer } from "@/game/dwellers";
 import {
   createAllDwellers,
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -17,7 +17,7 @@ describe("A Lynx card", () => {
   ])(
     "scores %i points if there are %i Roe Deer cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Lynx),
         otherDwellers: createAllDwellers(RoeDeer).slice(0, count),
       });

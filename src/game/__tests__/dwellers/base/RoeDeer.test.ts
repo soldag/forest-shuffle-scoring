@@ -8,7 +8,7 @@ import { Sapling } from "@/game/trees";
 import { createFakeDwellers, createFakeTree } from "../../fake";
 import {
   createCompleteForestWithDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -45,7 +45,7 @@ describe("A Roe Deer card", () => {
     [TreeSymbol.Birch, 18],
     [TreeSymbol.HorseChestnut, 21],
   ])("with %s symbol scores %i points", (treeSymbol, expectedPoints) => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createDweller(
         RoeDeer,
         RoeDeer.variants.find((v) => v.treeSymbol === treeSymbol)!,

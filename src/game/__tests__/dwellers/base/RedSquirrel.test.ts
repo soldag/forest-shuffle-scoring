@@ -16,7 +16,7 @@ import {
 
 import {
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -34,7 +34,7 @@ describe("A Red Squirrel card", () => {
   ])(
     "scores %i points on top on a %s tree",
     (expectedPoints, _, treeBlueprint) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(RedSquirrel),
         treeUnderTest: createTree(treeBlueprint),
       });

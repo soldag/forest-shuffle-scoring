@@ -6,7 +6,7 @@ import { CardType, DwellerPosition } from "@/game/types";
 import { createFakeDwellers } from "../../fake";
 import {
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -16,7 +16,7 @@ describe("A Gnat card", () => {
     [1, 1],
     [5, 5],
   ])("scores %i points if there are %i bat cards", (expectedPoints, count) => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(Gnat),
       otherDwellers: createFakeDwellers(count, DwellerPosition.Left, {
         types: [CardType.Bat],

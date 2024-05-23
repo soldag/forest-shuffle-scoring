@@ -8,17 +8,17 @@ import { DwellerPosition } from "@/game/types";
 import { createFakeDweller } from "../../fake";
 import {
   addDwellersToTree,
-  createForestWithTrees,
+  createForestWith,
   createGame,
   createTrees,
 } from "../../helpers";
 
 describe("A Linden card", () => {
   const trees = createTrees(Linden, 2);
-  const forest = createForestWithTrees(...trees);
+  const forest = createForestWith({ trees });
 
   it("scores 3 points if forest has the most Linden trees", () => {
-    const otherForest = createForestWithTrees(createTree(Linden));
+    const otherForest = createForestWith({ trees: createTrees(Linden, 1) });
     const game = createGame(forest, otherForest);
 
     const points = Linden.score({ game, forest, tree: trees[0]! });
@@ -27,7 +27,7 @@ describe("A Linden card", () => {
   });
 
   it("scores 3 points if forest is tied for the most Linden trees", () => {
-    const otherForest = createForestWithTrees(...createTrees(Linden, 2));
+    const otherForest = createForestWith({ trees: createTrees(Linden, 2) });
     const game = createGame(forest, otherForest);
 
     const points = Linden.score({ game, forest, tree: trees[0]! });
@@ -36,7 +36,7 @@ describe("A Linden card", () => {
   });
 
   it("scores 1 point if forest doesn't have the most Linden trees", () => {
-    const otherForest = createForestWithTrees(...createTrees(Linden, 3));
+    const otherForest = createForestWith({ trees: createTrees(Linden, 3) });
     const game = createGame(forest, otherForest);
 
     const points = Linden.score({ game, forest, tree: trees[0]! });
@@ -54,7 +54,7 @@ describe("A Linden card", () => {
         },
       }),
     );
-    const otherForest = createForestWithTrees(otherTree);
+    const otherForest = createForestWith({ trees: [otherTree] });
     const game = createGame(forest, otherForest);
 
     const points = Linden.score({ game, forest, tree: trees[0]! });

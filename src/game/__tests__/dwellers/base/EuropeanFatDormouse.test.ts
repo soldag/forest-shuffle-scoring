@@ -5,11 +5,7 @@ import { createDweller } from "@/game/factory";
 import { CardType, DwellerPosition } from "@/game/types";
 
 import { createFakeDweller, createFakeTree } from "../../fake";
-import {
-  addDwellersToTree,
-  createForestWithTrees,
-  createGame,
-} from "../../helpers";
+import { addDwellersToTree, createForestWith, createGame } from "../../helpers";
 
 describe("A European Fat Dormouse card", () => {
   it.each([
@@ -40,7 +36,7 @@ describe("A European Fat Dormouse card", () => {
       }
 
       const tree = addDwellersToTree(createFakeTree(), ...dwellers);
-      const forest = createForestWithTrees(tree);
+      const forest = createForestWith({ trees: [tree] });
       const game = createGame(forest);
 
       const points = EuropeanFatDormouse.score({

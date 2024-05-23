@@ -6,16 +6,12 @@ import { createTree } from "@/game/factory";
 import { Sapling, Sycamore } from "@/game/trees";
 
 import { createFakeDweller, createFakeTrees } from "../../fake";
-import {
-  addDwellersToTree,
-  createForestWithTrees,
-  createGame,
-} from "../../helpers";
+import { addDwellersToTree, createForestWith, createGame } from "../../helpers";
 
 describe("A Sycamore card", () => {
   it("scores 1 point if there are no other trees", () => {
     const tree = createTree(Sycamore);
-    const forest = createForestWithTrees(tree);
+    const forest = createForestWith({ trees: [tree] });
     const game = createGame(forest);
 
     const points = Sycamore.score({ game, forest, tree });
@@ -26,7 +22,7 @@ describe("A Sycamore card", () => {
   it("scores 3 points if there are 3 trees", () => {
     const tree = createTree(Sycamore);
     const otherTrees = createFakeTrees(2);
-    const forest = createForestWithTrees(tree, ...otherTrees);
+    const forest = createForestWith({ trees: [tree, ...otherTrees] });
     const game = createGame(forest);
 
     const points = Sycamore.score({ game, forest, tree });
@@ -37,7 +33,7 @@ describe("A Sycamore card", () => {
   it("scores for Saplings", () => {
     const tree = createTree(Sycamore);
     const otherTree = createTree(Sapling);
-    const forest = createForestWithTrees(tree, otherTree);
+    const forest = createForestWith({ trees: [tree, otherTree] });
     const game = createGame(forest);
 
     const points = Sycamore.score({ game, forest, tree });
@@ -55,7 +51,7 @@ describe("A Sycamore card", () => {
         },
       }),
     );
-    const forest = createForestWithTrees(tree);
+    const forest = createForestWith({ trees: [tree] });
     const game = createGame(forest);
 
     const points = Sycamore.score({ game, forest, tree });

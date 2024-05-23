@@ -8,7 +8,7 @@ import { DwellerPosition } from "@/game/types";
 import { createFakeDweller, createFakeTrees } from "../../fake";
 import {
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
   createTrees,
 } from "../../helpers";
@@ -22,7 +22,7 @@ describe("A Moss card", () => {
   ])(
     "scores %i points if forest has at least %i trees",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Moss),
         otherTrees: createFakeTrees(count),
       });
@@ -40,7 +40,7 @@ describe("A Moss card", () => {
   );
 
   it("takes into account Sapling cards when scoring", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(Moss),
       otherTrees: createTrees(Sapling, 10),
     });
@@ -57,7 +57,7 @@ describe("A Moss card", () => {
   });
 
   it("takes into account cards increasing the tree count when scoring", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(Moss),
       otherDwellers: [
         createFakeDweller(DwellerPosition.Left, {

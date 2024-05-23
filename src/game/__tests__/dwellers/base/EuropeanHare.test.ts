@@ -4,7 +4,7 @@ import { EuropeanHare } from "@/game/dwellers";
 
 import {
   createAllDwellers,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -17,7 +17,7 @@ describe("A European Hare card", () => {
     "scores %i points if there are %i European Hare cards",
     (expectedPoints, count) => {
       const allDwellers = createAllDwellers(EuropeanHare);
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: allDwellers[0],
         otherDwellers: allDwellers.slice(1, count),
       });

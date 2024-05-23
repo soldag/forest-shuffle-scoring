@@ -8,7 +8,7 @@ import { Beech } from "@/game/trees";
 import { createFakeDweller, createFakeTree } from "../../fake";
 import {
   addDwellersToTree,
-  createForestWithTrees,
+  createForestWith,
   createGame,
   createTrees,
 } from "../../helpers";
@@ -24,7 +24,7 @@ describe("A Beech card", () => {
     "scores %i points if there are %i Beech cards",
     (expectedPoints, count) => {
       const trees = createTrees(Beech, count);
-      const forest = createForestWithTrees(...trees);
+      const forest = createForestWith({ trees });
       const game = createGame(forest);
 
       const points = Beech.score({ game, forest, tree: trees[0]! });
@@ -38,7 +38,7 @@ describe("A Beech card", () => {
       ...createTrees(Beech, 3),
       createFakeTree({ treeSymbol: TreeSymbol.Oak }),
     ];
-    const forest = createForestWithTrees(...trees);
+    const forest = createForestWith({ trees });
     const game = createGame(forest);
 
     const points = Beech.score({ game, forest, tree: trees[0]! });
@@ -59,7 +59,7 @@ describe("A Beech card", () => {
         }),
       ),
     ];
-    const forest = createForestWithTrees(...trees);
+    const forest = createForestWith({ trees });
     const game = createGame(forest);
 
     const points = Beech.score({

@@ -5,13 +5,13 @@ import { VioletCarpenterBee } from "@/game/dwellers";
 import {
   createAnyDweller,
   createCompleteForestWithDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
 describe("A Violet Carpenter Bee card", () => {
   it("scores 0 points in an empty forest", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(VioletCarpenterBee),
     });
     const game = createGame(forest);

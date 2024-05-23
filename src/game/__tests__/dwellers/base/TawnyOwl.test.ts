@@ -5,13 +5,13 @@ import { TawnyOwl } from "@/game/dwellers";
 import {
   createAnyDweller,
   createCompleteForestWithDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
 describe("A Tawny Owl card", () => {
   it("scores 5 points in an empty forest", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(TawnyOwl),
     });
     const game = createGame(forest);

@@ -5,7 +5,7 @@ import { Squeaker, WildBoar } from "@/game/dwellers";
 import {
   createAllDwellers,
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -17,7 +17,7 @@ describe("A Wild Boar card", () => {
   ])(
     "scores %i points if there are %i Squeaker cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(WildBoar),
         otherDwellers: createAllDwellers(Squeaker).slice(0, count),
       });

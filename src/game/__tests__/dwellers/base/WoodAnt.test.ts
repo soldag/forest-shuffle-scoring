@@ -6,7 +6,7 @@ import { DwellerPosition } from "../../..";
 import { createFakeDweller, createFakeDwellers } from "../../fake";
 import {
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -18,7 +18,7 @@ describe("A Wood Ant card", () => {
   ])(
     "scores %i points if there are %i other cards in any bottom slot",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(WoodAnt),
         otherDwellers: [
           createFakeDweller(DwellerPosition.Top),

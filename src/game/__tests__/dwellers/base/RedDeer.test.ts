@@ -12,7 +12,7 @@ import {
 } from "../../fake";
 import {
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
   createTrees,
 } from "../../helpers";
@@ -25,7 +25,7 @@ describe("A Red Deer card", () => {
   ])(
     "scores %i points for %i plant and %i tree cards",
     (expectedPoints, plantCount, treeCount) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(RedDeer),
         otherDwellers: createFakeDwellers(plantCount, DwellerPosition.Bottom, {
           types: [CardType.Plant],
@@ -46,7 +46,7 @@ describe("A Red Deer card", () => {
   );
 
   it("takes into account Sapling cards when scoring", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(RedDeer),
       otherTrees: createTrees(Sapling, 2),
     });
@@ -63,7 +63,7 @@ describe("A Red Deer card", () => {
   });
 
   it("ignores cards increasing the tree count when scoring", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(RedDeer),
       otherDwellers: [
         createFakeDweller(DwellerPosition.Left, {

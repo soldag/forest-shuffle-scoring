@@ -8,7 +8,7 @@ import { Sapling } from "@/game/trees";
 
 import {
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -17,7 +17,7 @@ describe("A Wild Strawberries card", () => {
   const treeSpecies = Object.values(Trees).filter((t) => t !== Sapling);
 
   it("scores 10 points if forest has all tree species", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(WildStrawberries),
       otherTrees: treeSpecies.map(createTree),
     });
@@ -37,7 +37,7 @@ describe("A Wild Strawberries card", () => {
     "scores no points if forest has %i trees",
     (treeCount) => {
       const trees = treeSpecies.slice(0, treeCount).map(createTree);
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(WildStrawberries),
         otherTrees: trees,
       });

@@ -5,13 +5,13 @@ import { EurasianJay } from "@/game/dwellers";
 import {
   createAnyDweller,
   createCompleteForestWithDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
 describe("A European Badger card", () => {
   it("scores 3 points in an empty forest", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(EurasianJay),
     });
     const game = createGame(forest);

@@ -10,7 +10,7 @@ import {
 import {
   createAllDwellers,
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -23,7 +23,7 @@ describe("A Brown Long-Eared Bat card", () => {
   ])(
     "scores %i points if there %i other bat species",
     (expectedPoints, _, otherBatBlueprints) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(BrownLongEaredBat),
         otherDwellers: otherBatBlueprints.map(createAnyDweller),
       });
@@ -41,7 +41,7 @@ describe("A Brown Long-Eared Bat card", () => {
   );
 
   it("ignores multiple instances of the same bat", () => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(BrownLongEaredBat),
       otherDwellers: createAllDwellers(BarbastelleBat),
     });

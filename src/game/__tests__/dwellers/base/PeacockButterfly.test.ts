@@ -13,7 +13,7 @@ import { createFakeDweller } from "../../fake";
 import {
   createAnyDweller,
   createDwellerSets,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
   generateCardIds,
 } from "../../helpers";
@@ -44,7 +44,7 @@ describe("A Peacock Butterfly card", () => {
         ],
         lengths,
       );
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest,
         otherDwellers,
       });
@@ -63,7 +63,7 @@ describe("A Peacock Butterfly card", () => {
 
   it("scores 0 points if there's another butterfly with a smaller id", () => {
     const ids = generateCardIds(2).toSorted();
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: {
         ...createAnyDweller(PeacockButterfly),
         id: ids[1],

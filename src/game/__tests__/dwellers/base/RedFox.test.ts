@@ -9,8 +9,8 @@ import {
   addDwellersToTree,
   createAllDwellers,
   createAnyDweller,
-  createForestWithDweller,
-  createForestWithTrees,
+  createForestForDwellerTest,
+  createForestWith,
   createGame,
 } from "../../helpers";
 
@@ -22,7 +22,7 @@ describe("A Red Fox card", () => {
   ])(
     "scores %i points if there are %i European Hare cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(RedFox),
         otherDwellers: createAllDwellers(EuropeanHare).slice(0, count),
       });
@@ -48,7 +48,7 @@ describe("A Red Fox card", () => {
       .filter((v) => v.position === DwellerPosition.Right)
       .slice(0, 2);
     const tree = addDwellersToTree(createFakeTree(), dweller, ...otherDwellers);
-    const forest = createForestWithTrees(tree);
+    const forest = createForestWith({ trees: [tree] });
     const game = createGame(forest);
 
     const points = RedFox.score({

@@ -6,7 +6,7 @@ import { CardType, DwellerPosition } from "@/game/types";
 import { createFakeDwellers } from "../../fake";
 import {
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -18,7 +18,7 @@ describe("A Fallow Deer card", () => {
   ])(
     "scores %i points if there are %i other cloven-hoofed animal cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestWithDweller({
+      const { dweller, tree, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(FallowDeer),
         otherDwellers: createFakeDwellers(count, DwellerPosition.Left, {
           types: [CardType.ClovenhoofedAnimal],

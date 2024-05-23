@@ -5,7 +5,7 @@ import { Gnat, TreeFrog } from "@/game/dwellers";
 import {
   createAllDwellers,
   createAnyDweller,
-  createForestWithDweller,
+  createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
@@ -15,7 +15,7 @@ describe("A Tree Frog card", () => {
     [5, 1],
     [15, 3],
   ])("scores %i points if there are %i Gnat cards", (expectedPoints, count) => {
-    const { dweller, tree, forest } = createForestWithDweller({
+    const { dweller, tree, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(TreeFrog),
       otherDwellers: createAllDwellers(Gnat).slice(0, count),
     });

@@ -8,7 +8,7 @@ import { HorseChestnut } from "@/game/trees";
 import { createFakeDweller } from "../../fake";
 import {
   addDwellersToTree,
-  createForestWithTrees,
+  createForestWith,
   createGame,
   createTrees,
 } from "../../helpers";
@@ -23,7 +23,7 @@ describe("A Horse Chestnut card", () => {
     [36, 6],
   ])("scores %i points for a set of %i", (expectedPoints, count) => {
     const trees = createTrees(HorseChestnut, count);
-    const forest = createForestWithTrees(...trees);
+    const forest = createForestWith({ trees });
     const game = createGame(forest);
 
     const points = trees
@@ -43,7 +43,7 @@ describe("A Horse Chestnut card", () => {
         },
       }),
     );
-    const forest = createForestWithTrees(tree);
+    const forest = createForestWith({ trees: [tree] });
     const game = createGame(forest);
 
     const points = HorseChestnut.score({ game, forest, tree });
