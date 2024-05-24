@@ -4,6 +4,7 @@ import {
   CamberwellBeauty,
   LargeTortoiseshell,
   PeacockButterfly,
+  PhoebusApollo,
   PurpleEmperor,
   SilverWashedFritillary,
 } from "@/game/dwellers";
@@ -25,6 +26,7 @@ describe("A Purple Emperor card", () => {
     [6, [3]],
     [12, [4]],
     [20, [5]],
+    [35, [6]],
     [3, [1, 2]],
     [9, [2, 3]],
     [18, [3, 4]],
@@ -37,6 +39,7 @@ describe("A Purple Emperor card", () => {
       const { dwellerUnderTest, otherDwellers } = createDwellerSets(
         PurpleEmperor,
         [
+          PhoebusApollo,
           CamberwellBeauty,
           LargeTortoiseshell,
           PeacockButterfly,

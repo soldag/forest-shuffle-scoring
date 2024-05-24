@@ -4,6 +4,7 @@ import {
   CamberwellBeauty,
   LargeTortoiseshell,
   PeacockButterfly,
+  PhoebusApollo,
   PurpleEmperor,
   SilverWashedFritillary,
 } from "@/game/dwellers";
@@ -25,6 +26,7 @@ describe("A Silver-Washed Fritillary card", () => {
     [6, [3]],
     [12, [4]],
     [20, [5]],
+    [35, [6]],
     [3, [1, 2]],
     [9, [2, 3]],
     [18, [3, 4]],
@@ -36,7 +38,13 @@ describe("A Silver-Washed Fritillary card", () => {
     (expectedPoints, lengths) => {
       const { dwellerUnderTest, otherDwellers } = createDwellerSets(
         SilverWashedFritillary,
-        [CamberwellBeauty, LargeTortoiseshell, PeacockButterfly, PurpleEmperor],
+        [
+          PhoebusApollo,
+          CamberwellBeauty,
+          LargeTortoiseshell,
+          PeacockButterfly,
+          PurpleEmperor,
+        ],
         lengths,
       );
       const { dweller, tree, forest } = createForestForDwellerTest({

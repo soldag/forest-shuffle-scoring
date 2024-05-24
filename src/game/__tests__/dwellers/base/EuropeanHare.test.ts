@@ -1,9 +1,10 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { EuropeanHare } from "@/game/dwellers";
+import { EuropeanHare, MountainHare } from "@/game/dwellers";
 
 import {
   createAllDwellers,
+  createAnyDweller,
   createForestForDwellerTest,
   createGame,
 } from "../../helpers";
@@ -33,4 +34,21 @@ describe("A European Hare card", () => {
       expect(points).toBe(expectedPoints);
     },
   );
+
+  it("doesn't score for Mountain Hare cards", () => {
+    const { dweller, tree, forest } = createForestForDwellerTest({
+      dwellerUnderTest: createAnyDweller(EuropeanHare),
+      otherDwellers: [createAnyDweller(MountainHare)],
+    });
+    const game = createGame(forest);
+
+    const points = EuropeanHare.score({
+      game,
+      forest,
+      tree,
+      dweller,
+    });
+
+    expect(points).toBe(1);
+  });
 });

@@ -5,6 +5,7 @@ import {
   BechsteinsBat,
   BrownLongEaredBat,
   GreaterHorseshoeBat,
+  SavisPipistrelle,
 } from "@/game/dwellers";
 
 import {
@@ -15,12 +16,18 @@ import {
 } from "../../helpers";
 
 describe("A Barbastelle Bat card", () => {
+  const otherBats = [
+    BechsteinsBat,
+    BrownLongEaredBat,
+    GreaterHorseshoeBat,
+    SavisPipistrelle,
+  ];
   it.each([
     [0, 0, []],
-    [0, 1, [BechsteinsBat]],
-    [5, 2, [BechsteinsBat, BrownLongEaredBat]],
-    [5, 3, [BechsteinsBat, BrownLongEaredBat]],
-    [5, 3, [BechsteinsBat, BrownLongEaredBat, GreaterHorseshoeBat]],
+    [0, 1, otherBats.slice(0, 1)],
+    [5, 2, otherBats.slice(0, 2)],
+    [5, 3, otherBats.slice(0, 3)],
+    [5, 3, otherBats.slice(0, 4)],
   ])(
     "scores %i points if there %i other bat species",
     (expectedPoints, _, otherBatBlueprints) => {
