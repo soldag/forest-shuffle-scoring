@@ -19,7 +19,11 @@ export const generateCardIds = (count: number) =>
 
 export const createAllDwellers = (blueprint: DwellerCardBlueprint) =>
   blueprint.variants
-    .map((v) => createDweller(blueprint, v))
+    .flatMap((v) =>
+      Array(v.count)
+        .fill(0)
+        .map(() => createDweller(blueprint, v)),
+    )
     .toSorted((a, b) => a.id.localeCompare(b.id));
 
 export const createAnyDweller = (blueprint: DwellerCardBlueprint) =>
@@ -63,9 +67,11 @@ export const addDwellersToTree = (tree: TreeCard, ...dwellers: DwellerCard[]) =>
 export const createForestWith = ({
   trees = [],
   dwellers = [],
+  caveCardCount = 0,
 }: {
   trees?: TreeCard[];
   dwellers?: DwellerCard[];
+  caveCardCount?: number;
 }) => {
   for (const dweller of dwellers) {
     const tree = addDwellersToTree(
@@ -76,24 +82,24 @@ export const createForestWith = ({
     trees = [...trees.filter((t) => t.id !== tree.id), tree];
   }
 
-  return {
-    trees,
-    caveCardCount: 0,
-  };
+  return { trees, caveCardCount };
 };
 
 export const createForestForTreeTest = ({
   treeUnderTest,
   otherTrees = [],
   dwellers = [],
+  caveCardCount = 0,
 }: {
   treeUnderTest: TreeCard;
   otherTrees?: TreeCard[];
   dwellers?: DwellerCard[];
+  caveCardCount?: number;
 }) => {
   const forest = createForestWith({
     trees: [treeUnderTest, ...otherTrees],
     dwellers,
+    caveCardCount,
   });
 
   return {
@@ -107,11 +113,13 @@ export const createForestForDwellerTest = ({
   treeUnderTest,
   otherDwellers = [],
   otherTrees = [],
+  caveCardCount = 0,
 }: {
   dwellerUnderTest: DwellerCard;
   treeUnderTest?: TreeCard;
   otherDwellers?: DwellerCard[];
   otherTrees?: TreeCard[];
+  caveCardCount?: number;
 }) => {
   if (!treeUnderTest) {
     [treeUnderTest, ...otherTrees] = otherTrees;
@@ -126,6 +134,7 @@ export const createForestForDwellerTest = ({
       treeUnderTest,
       otherTrees,
       dwellers: otherDwellers,
+      caveCardCount,
     }),
     dweller: dwellerUnderTest,
   };
