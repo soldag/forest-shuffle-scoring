@@ -15,12 +15,24 @@ interface FakeDwellerOptionalArgs {
   treeSymbol?: TreeSymbol;
   modifiers?: DwellerModifiers;
   isPartOfDeck?: boolean;
+  uniqueName?: boolean;
 }
 
 interface FakeTreeOptionalArgs {
+  types?: CardType[];
   treeSymbol?: TreeSymbol;
   isPartOfDeck?: boolean;
+  uniqueName?: boolean;
 }
+
+const getFakeName = (type: "dweller" | "tree", unique: boolean) => {
+  let name = `FAKE_${type.toUpperCase()}`;
+  if (unique) {
+    name += `_${generateId()}`;
+  }
+
+  return name;
+};
 
 export const createFakeDweller: (
   position: DwellerPosition,
@@ -33,10 +45,11 @@ export const createFakeDweller: (
     treeSymbol,
     modifiers = DEFAULT_MODIFIERS,
     isPartOfDeck = true,
+    uniqueName = true,
   } = {},
 ) => ({
   id: id ?? generateId(),
-  name: "FAKE_DWELLER",
+  name: getFakeName("dweller", uniqueName),
   types,
   treeSymbol,
   position,
@@ -55,10 +68,15 @@ export const createFakeDwellers: (
 
 export const createFakeTree: (
   optionalArgs?: FakeTreeOptionalArgs,
-) => TreeCard = ({ treeSymbol, isPartOfDeck = true } = {}) => ({
+) => TreeCard = ({
+  types = [CardType.Tree],
+  treeSymbol,
+  isPartOfDeck = true,
+  uniqueName = true,
+} = {}) => ({
   id: generateId(),
-  name: "FAKE_TREE",
-  types: [CardType.Tree],
+  name: getFakeName("tree", uniqueName),
+  types,
   treeSymbol,
   isPartOfDeck,
   dwellers: {
