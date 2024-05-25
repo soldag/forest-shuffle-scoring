@@ -13,9 +13,9 @@ import {
 describe("An Enzian card", () => {
   it.each([
     [0, 0],
-    [2, 1],
-    [4, 2],
-    [10, 5],
+    [3, 1],
+    [6, 2],
+    [15, 5],
   ])(
     "scores %i points for %i butterfly cards",
     (expectedPoints, butterflyCount) => {

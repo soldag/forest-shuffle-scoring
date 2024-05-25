@@ -7,7 +7,7 @@ import {
 } from "../../types";
 
 const name = "SWISS_PINE";
-const pointsPerAlpsCard = 3;
+const pointsPerAlpsCard = 1;
 
 const blueprint: TreeCardBlueprint = {
   name,

@@ -10,7 +10,7 @@ import {
 import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "ENZIAN";
-const pointsPerButterfly = 2;
+const pointsPerButterfly = 3;
 
 const blueprint: DwellerCardBlueprint = {
   name,

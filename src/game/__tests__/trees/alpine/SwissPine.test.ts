@@ -9,10 +9,10 @@ import { createForestForTreeTest, createGame } from "../../helpers";
 
 describe("A Swiss Pine card", () => {
   it.each([
-    [3, 0, 0],
-    [6, 0, 1],
-    [6, 1, 0],
-    [30, 4, 5],
+    [1, 0, 0],
+    [2, 0, 1],
+    [2, 1, 0],
+    [10, 4, 5],
   ])(
     "scores %i points if there are %i other alp tree cards and %i alp dweller cards",
     (expectedPoints, treeCount, dwellerCount) => {
