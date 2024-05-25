@@ -1,8 +1,9 @@
-import { ReactNode, createContext, useCallback, useRef } from "react";
+import { ReactNode, createContext, useCallback, useRef, useState } from "react";
 import { useRegisterSW } from "virtual:pwa-register/react";
 
 interface AppUpdateContextType {
   isUpdateAvailable: boolean;
+  wasUpdateRejected: boolean;
   checkForUpdate: () => void;
   applyUpdate: () => void;
   rejectUpdate: () => void;
@@ -10,6 +11,7 @@ interface AppUpdateContextType {
 
 const AppUpdateContext = createContext<AppUpdateContextType>({
   isUpdateAvailable: false,
+  wasUpdateRejected: false,
   checkForUpdate: () => {},
   applyUpdate: () => {},
   rejectUpdate: () => {},
@@ -23,9 +25,10 @@ export const AppUpdateContextProvider: React.FC<
   AppUpdateContextProviderProps
 > = ({ children }) => {
   const swRegistrationRef = useRef<ServiceWorkerRegistration>();
+  const [wasUpdateRejected, setWasUpdateRejected] = useState<boolean>(false);
 
   const {
-    needRefresh: [needRefresh, setNeedRefresh],
+    needRefresh: [needRefresh],
     updateServiceWorker,
   } = useRegisterSW({
     onRegistered: (registration) => {
@@ -34,17 +37,21 @@ export const AppUpdateContextProvider: React.FC<
   });
 
   const checkForUpdate = useCallback(() => {
-    swRegistrationRef.current?.update();
+    setWasUpdateRejected(false);
+    swRegistrationRef.current
+      ?.update()
+      ?.catch((e) => console.warn("Failed to update service worker", e));
   }, []);
 
   const rejectUpdate = useCallback(() => {
-    setNeedRefresh(false);
-  }, [setNeedRefresh]);
+    setWasUpdateRejected(true);
+  }, []);
 
   return (
     <AppUpdateContext.Provider
       value={{
         isUpdateAvailable: needRefresh,
+        wasUpdateRejected,
         checkForUpdate,
         applyUpdate: updateServiceWorker,
         rejectUpdate,

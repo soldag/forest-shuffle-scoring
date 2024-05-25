@@ -20,7 +20,8 @@ const CreateGameView = () => {
   const { checkForUpdate } = useContext(AppUpdateContext);
 
   useEffect(() => {
-    checkForUpdate();
+    const handle = setTimeout(() => checkForUpdate(), 1000);
+    return () => clearTimeout(handle);
   }, [checkForUpdate]);
 
   const handleSubmit = (values: CreateGamePayload) => {

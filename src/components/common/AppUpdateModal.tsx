@@ -14,11 +14,14 @@ import {
 import AppUpdateContext from "@/components/contexts/AppUpdateContext";
 
 const AppUpdateModal = () => {
-  const { isUpdateAvailable, applyUpdate, rejectUpdate } =
+  const { isUpdateAvailable, wasUpdateRejected, applyUpdate, rejectUpdate } =
     useContext(AppUpdateContext);
 
   return (
-    <Modal open={isUpdateAvailable} onClose={rejectUpdate}>
+    <Modal
+      open={isUpdateAvailable && !wasUpdateRejected}
+      onClose={rejectUpdate}
+    >
       <ModalDialog size="sm" variant="outlined" role="alertdialog">
         <DialogTitle>
           <FormattedMessage
