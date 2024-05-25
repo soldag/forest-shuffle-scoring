@@ -16,10 +16,7 @@ export default defineConfig({
     react(),
     VitePWA({
       manifest: false,
-      includeAssets: ["**/**.{ico,png,svg}"],
-      workbox: {
-        globPatterns: ["**/*.{html,png,svg}"],
-      },
+      includeAssets: ["**/**.{ico,png,svg,webmanifest}"],
     }),
   ],
   define: {
