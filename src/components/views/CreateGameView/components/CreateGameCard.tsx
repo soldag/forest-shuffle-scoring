@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { FormattedMessage } from "react-intl";
+import { useLocalStorage } from "usehooks-ts";
 
 import AddIcon from "@mui/icons-material/Add";
 import {
@@ -8,6 +9,7 @@ import {
   CardActions,
   CardContent,
   Divider,
+  FormLabel,
   Typography,
 } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
@@ -15,13 +17,26 @@ import { SxProps } from "@mui/joy/styles/types";
 import AddPlayerForm, {
   AddPlayerFormFields,
 } from "@/components/common/AddPlayerForm";
+import ExpansionSelector from "@/components/common/ExpansionSelector";
+import { Expansion } from "@/game";
+
+interface CreateGameFormFields {
+  playerName: string;
+  caveCardCount: number;
+  expansions: Expansion[];
+}
 
 interface CreateGameCardProps {
   sx?: SxProps;
-  onSubmit: (values: AddPlayerFormFields) => void;
+  onSubmit: (values: CreateGameFormFields) => void;
 }
 
 const CreateGameCard: React.FC<CreateGameCardProps> = ({ sx, onSubmit }) => {
+  const [expansions, setExpansions] = useLocalStorage<Expansion[]>(
+    "expansions",
+    [],
+  );
+
   const {
     control,
     formState: { isValid, errors },
@@ -33,6 +48,12 @@ const CreateGameCard: React.FC<CreateGameCardProps> = ({ sx, onSubmit }) => {
       caveCardCount: 0,
     },
   });
+
+  const onSubmitWrapper = (values: AddPlayerFormFields) =>
+    onSubmit({
+      ...values,
+      expansions,
+    });
 
   return (
     <Card color="neutral" variant="outlined" sx={sx}>
@@ -56,12 +77,20 @@ const CreateGameCard: React.FC<CreateGameCardProps> = ({ sx, onSubmit }) => {
         <AddPlayerForm
           control={control}
           errors={errors}
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmitWrapper)}
         />
+
+        <FormLabel sx={{ mt: 2, mb: 0.5 }}>
+          <FormattedMessage
+            id="CreateGameView.CreateGameCard.expansions.label"
+            defaultMessage="Expansions"
+          />
+        </FormLabel>
+        <ExpansionSelector value={expansions} onChange={setExpansions} />
       </CardContent>
 
       <CardActions>
-        <Button disabled={!isValid} onClick={handleSubmit(onSubmit)}>
+        <Button disabled={!isValid} onClick={handleSubmit(onSubmitWrapper)}>
           <FormattedMessage
             id="CreateGameView.CreateGameCard.startScoring"
             defaultMessage="Start scoring"

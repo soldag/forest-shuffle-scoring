@@ -99,8 +99,8 @@ export const createPlayer = (
   forest: createForest(caveCardCount),
 });
 
-export const createGame = (): Game => ({
+export const createGame = (expansions?: Expansion[]): Game => ({
   id: generateId(),
-  deck: createDeck(),
+  deck: createDeck(expansions),
   players: [],
 });

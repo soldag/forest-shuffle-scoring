@@ -1,4 +1,4 @@
-import { DwellerCard, TreeCard } from "@/game";
+import { DwellerCard, Expansion, TreeCard } from "@/game";
 
 export enum GameActionType {
   CreateGame = "CREATE_GAME",
@@ -15,6 +15,7 @@ export enum GameActionType {
 }
 
 export interface CreateGamePayload {
+  expansions: Expansion[];
   playerName: string;
   caveCardCount: number;
 }
