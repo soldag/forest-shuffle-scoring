@@ -3,20 +3,23 @@ import { CssVarsProvider } from "@mui/joy/styles";
 
 import DocumentMetaProvider from "@/components/common/DocumentMetaProvider";
 import RootContainer from "@/components/containers/RootContainer";
+import { AppUpdateContextProvider } from "@/components/contexts/AppUpdateContext";
 import { GameContextProvider } from "@/components/contexts/GameContext";
 import { LocaleContextProvider } from "@/components/contexts/LocaleContext";
 import theme from "@/styles/theme";
 
 const App = () => (
-  <LocaleContextProvider>
-    <CssVarsProvider theme={theme}>
-      <CssBaseline />
-      <DocumentMetaProvider />
-      <GameContextProvider>
-        <RootContainer />
-      </GameContextProvider>
-    </CssVarsProvider>
-  </LocaleContextProvider>
+  <AppUpdateContextProvider>
+    <LocaleContextProvider>
+      <CssVarsProvider theme={theme}>
+        <CssBaseline />
+        <DocumentMetaProvider />
+        <GameContextProvider>
+          <RootContainer />
+        </GameContextProvider>
+      </CssVarsProvider>
+    </LocaleContextProvider>
+  </AppUpdateContextProvider>
 );
 
 export default App;

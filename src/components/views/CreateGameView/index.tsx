@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import { Link, useLocation } from "wouter";
 
@@ -8,6 +8,7 @@ import { Button, Stack } from "@mui/joy";
 import { CreateGamePayload, createGame } from "@/actions/game";
 import AppUpdateModal from "@/components/common/AppUpdateModal";
 import View from "@/components/common/View";
+import AppUpdateContext from "@/components/contexts/AppUpdateContext";
 import GameContext from "@/components/contexts/GameContext";
 
 import CreateGameCard from "./components/CreateGameCard";
@@ -16,6 +17,11 @@ import Header from "./components/Header";
 const CreateGameView = () => {
   const [, navigate] = useLocation();
   const { dispatch } = useContext(GameContext);
+  const { checkForUpdate } = useContext(AppUpdateContext);
+
+  useEffect(() => {
+    checkForUpdate();
+  }, [checkForUpdate]);
 
   const handleSubmit = (values: CreateGamePayload) => {
     dispatch(createGame(values));
