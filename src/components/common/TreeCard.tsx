@@ -27,6 +27,7 @@ const TreeCard: React.FC<ForestCardProps> = ({ card, size, sx, onClick }) => {
           <TreeSymbol
             attach="top"
             value={card.treeSymbol}
+            size={size}
             sx={{
               alignSelf: "end",
               mt: "calc(-1 * var(--Card-padding))",
