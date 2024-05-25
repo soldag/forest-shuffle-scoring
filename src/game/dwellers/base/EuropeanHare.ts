@@ -1,3 +1,5 @@
+import { MountainHare } from "@/game/dwellers/alpine";
+
 import { countCardNames } from "../../scoring/helpers";
 import {
   CardType,
@@ -67,7 +69,8 @@ const blueprint: DwellerCardBlueprint = {
       count: 2,
     },
   ],
-  score: ({ forest }) => countCardNames(forest, [name]) * pointsPerCard,
+  score: ({ forest }) =>
+    countCardNames(forest, [name, MountainHare.name]) * pointsPerCard,
 };
 
 export default blueprint;

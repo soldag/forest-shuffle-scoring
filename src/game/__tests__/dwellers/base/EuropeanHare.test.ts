@@ -4,23 +4,26 @@ import { EuropeanHare, MountainHare } from "@/game/dwellers";
 
 import {
   createAllDwellers,
-  createAnyDweller,
   createForestForDwellerTest,
   createGame,
 } from "../../helpers";
 
 describe("A European Hare card", () => {
-  it.each(
-    Array.from(Array(EuropeanHare.variants.length).keys())
-      .map((i) => i + 1)
-      .map((n) => [n, n]),
-  )(
-    "scores %i points if there are %i European Hare cards",
-    (expectedPoints, count) => {
-      const allDwellers = createAllDwellers(EuropeanHare);
+  it.each([
+    [1, 1, 0],
+    [2, 1, 1],
+    [5, 3, 2],
+  ])(
+    "scores %i points if there are %i European Hare and %i Mountain Hare cards",
+    (expectedPoints, europeanHareCount, mountainHareCount) => {
+      const allEuropeanHares = createAllDwellers(EuropeanHare);
+      const allMountainHares = createAllDwellers(MountainHare);
       const { dweller, tree, forest } = createForestForDwellerTest({
-        dwellerUnderTest: allDwellers[0],
-        otherDwellers: allDwellers.slice(1, count),
+        dwellerUnderTest: allEuropeanHares[0],
+        otherDwellers: [
+          ...allMountainHares.slice(1, europeanHareCount),
+          ...allEuropeanHares.slice(0, mountainHareCount),
+        ],
       });
       const game = createGame(forest);
 
@@ -34,21 +37,4 @@ describe("A European Hare card", () => {
       expect(points).toBe(expectedPoints);
     },
   );
-
-  it("doesn't score for Mountain Hare cards", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
-      dwellerUnderTest: createAnyDweller(EuropeanHare),
-      otherDwellers: [createAnyDweller(MountainHare)],
-    });
-    const game = createGame(forest);
-
-    const points = EuropeanHare.score({
-      game,
-      forest,
-      tree,
-      dweller,
-    });
-
-    expect(points).toBe(1);
-  });
 });
