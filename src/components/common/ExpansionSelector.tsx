@@ -46,8 +46,6 @@ const ExpansionSelector: React.FC<ExpansionSelectorProps> = ({
           startDecorator={
             <Switch
               sx={{ mr: 0.5 }}
-              variant="soft"
-              color={value.includes(optionValue) ? "primary" : "neutral"}
               checked={value.includes(optionValue)}
               onChange={(e) => handleChange(optionValue, e.target.checked)}
             />

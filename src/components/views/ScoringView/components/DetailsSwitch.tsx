@@ -6,7 +6,7 @@ const DetailsSwitch: React.FC<SwitchProps> = (props) => (
   <Typography
     component="label"
     level="body-sm"
-    endDecorator={<Switch {...props} sx={{ ...props.sx, ml: 1 }} />}
+    endDecorator={<Switch {...props} sx={{ ...props.sx, ml: 0.5 }} />}
   >
     <FormattedMessage
       id="ScoringView.DetailsSwitch.label"
