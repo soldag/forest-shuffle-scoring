@@ -9,6 +9,7 @@ import { Card, TreeSymbol } from "@/game";
 const transitionDuration = 300;
 
 interface CardDrawerProps<TCard extends Card> {
+  action: "add" | "exchange";
   open: boolean;
   onClose: () => void;
   cards: TCard[];
@@ -18,6 +19,7 @@ interface CardDrawerProps<TCard extends Card> {
 }
 
 const CardDrawer = <TCard extends Card>({
+  action,
   open,
   onClose,
   cards,
@@ -57,7 +59,18 @@ const CardDrawer = <TCard extends Card>({
     >
       <ModalClose />
       <DialogTitle>
-        <FormattedMessage id="CardDrawer.title" defaultMessage="Select card" />
+        {action === "add" && (
+          <FormattedMessage
+            id="CardDrawer.title.add"
+            defaultMessage="Add card"
+          />
+        )}
+        {action === "exchange" && (
+          <FormattedMessage
+            id="CardDrawer.title.exchange"
+            defaultMessage="Exchange card"
+          />
+        )}
       </DialogTitle>
       <DialogContent sx={{ m: 1 }}>
         <CardSelect

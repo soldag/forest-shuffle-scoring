@@ -188,6 +188,7 @@ const ForestView: React.FC = requireGame(({ game }) => {
       </Box>
 
       <CardDrawer
+        action={isAddingTree ? "add" : "exchange"}
         open={isAddingTree || !!selectedTree}
         onClose={handleCloseTreeDrawer}
         cards={treeOptions}
@@ -196,6 +197,7 @@ const ForestView: React.FC = requireGame(({ game }) => {
         onRemoveCard={handleRemoveTree}
       />
       <CardDrawer
+        action={isAddingDweller ? "add" : "exchange"}
         open={isAddingDweller || !!selectedDweller}
         onClose={handleCloseDwellerDrawer}
         cards={dwellerOptions}

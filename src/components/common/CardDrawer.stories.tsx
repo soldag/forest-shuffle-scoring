@@ -68,6 +68,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Dweller: Story = {
   args: {
+    action: "add",
     open: false,
     cards: [
       {
@@ -124,6 +125,7 @@ export const Dweller: Story = {
 
 export const Tree: Story = {
   args: {
+    action: "add",
     open: false,
     cards: [
       {
