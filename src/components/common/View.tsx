@@ -71,7 +71,7 @@ const View: React.FC<ViewProps> = ({
       sx={{
         flexGrow: 1,
         flexShrink: 1,
-        overflowY: "scroll",
+        overflowY: "auto",
         zIndex: 1,
       }}
       disableGutters={disableGutters}
