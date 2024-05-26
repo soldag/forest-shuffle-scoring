@@ -96,7 +96,7 @@ const CardSelect = <TCard extends Card>({
 
   return (
     <Stack direction="column" gap={2} justifyContent="space-between" sx={sx}>
-      <Stack direction="column" gap={1}>
+      <Stack direction="column" gap={1} sx={{ flex: "1 1" }}>
         <Typography level="title-sm">
           <FormattedMessage
             id="CardSelect.header.cardName"
@@ -122,6 +122,8 @@ const CardSelect = <TCard extends Card>({
               "--List-padding": 0,
               "--ListItem-paddingX": 0,
               "--ListItem-stickyBackground": theme.palette.background.surface,
+              "flex": "1 1 0",
+              "overflowY": "auto",
             })}
           >
             {Object.entries(cardNameOptionsByType).map(([type, cards]) => (
