@@ -55,6 +55,11 @@ const CardSelect = <TCard extends Card>({
     (c) => c.types.filter((t) => !EXPANSION_CARD_TYPES.includes(t))[0],
   ) as { [key in CardType]: TCard[] };
 
+  const sortedCardTypes = _.orderBy(
+    Object.keys(cardNameOptionsByType) as CardType[],
+    (t) => intl.formatMessage(CardTypeMessages[t].plural),
+  );
+
   const treeSymbolOptions = _.orderBy(
     _.uniqBy(
       cards.filter((c) => c.name === cardName && !!c.treeSymbol),
@@ -126,14 +131,14 @@ const CardSelect = <TCard extends Card>({
               "overflowY": "auto",
             })}
           >
-            {Object.entries(cardNameOptionsByType).map(([type, cards]) => (
+            {sortedCardTypes.map((type) => (
               <ListItem nested key={type}>
                 {Object.keys(cardNameOptionsByType).length > 1 && (
                   <ListSubheader sticky>
                     {intl.formatMessage(CardTypeMessages[type].plural)}
                   </ListSubheader>
                 )}
-                {cards.map((card) => (
+                {cardNameOptionsByType[type].map((card) => (
                   <ListItem key={card.name}>
                     <CardButton
                       fullWidth
