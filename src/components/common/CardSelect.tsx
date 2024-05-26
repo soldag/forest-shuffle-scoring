@@ -130,7 +130,7 @@ const CardSelect = <TCard extends Card>({
               <ListItem nested key={type}>
                 {Object.keys(cardNameOptionsByType).length > 1 && (
                   <ListSubheader sticky>
-                    {intl.formatMessage(CardTypeMessages[type])}
+                    {intl.formatMessage(CardTypeMessages[type].plural)}
                   </ListSubheader>
                 )}
                 {cards.map((card) => (
