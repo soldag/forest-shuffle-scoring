@@ -60,7 +60,7 @@ const CardDrawer = <TCard extends Card>({
       onClose={onClose}
       sx={{
         "--Drawer-horizontalSize": "400px",
-        "--Drawer-verticalSize": "min(491px, 60%)",
+        "--Drawer-verticalSize": "min(571px, 65%)",
         "--Drawer-transitionDuration": `${transitionDuration}ms`,
       }}
     >
