@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
-import { DialogContent, DialogTitle, Drawer, ModalClose } from "@mui/joy";
+import { DialogContent, DialogTitle, ModalClose } from "@mui/joy";
 
 import CardSelect from "@/components/common/CardSelect";
+import ResponsiveDrawer from "@/components/common/ResponsiveDrawer";
 import { Card, TreeSymbol } from "@/game";
 
 const transitionDuration = 300;
@@ -50,13 +51,16 @@ const CardDrawer = <TCard extends Card>({
   };
 
   return (
-    <Drawer
-      anchor="bottom"
+    <ResponsiveDrawer
+      anchorSmall="bottom"
+      anchorBig="right"
+      breakpoint="sm"
       size="sm"
       open={open}
       onClose={onClose}
       sx={{
-        "--Drawer-verticalSize": "min(491px, 60vh)",
+        "--Drawer-horizontalSize": "400px",
+        "--Drawer-verticalSize": "min(491px, 60%)",
         "--Drawer-transitionDuration": `${transitionDuration}ms`,
       }}
     >
@@ -88,7 +92,7 @@ const CardDrawer = <TCard extends Card>({
           onRemove={handleRemoveCard}
         />
       </DialogContent>
-    </Drawer>
+    </ResponsiveDrawer>
   );
 };
 
