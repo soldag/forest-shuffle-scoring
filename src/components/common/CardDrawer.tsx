@@ -55,7 +55,10 @@ const CardDrawer = <TCard extends Card>({
       size="sm"
       open={open}
       onClose={onClose}
-      sx={{ "--Drawer-transitionDuration": `${transitionDuration}ms` }}
+      sx={{
+        "--Drawer-verticalSize": "min(491px, 60vh)",
+        "--Drawer-transitionDuration": `${transitionDuration}ms`,
+      }}
     >
       <ModalClose />
       <DialogTitle>
