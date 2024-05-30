@@ -126,6 +126,7 @@ const CardSelect = <TCard extends Card>({
             sx={(theme) => ({
               "--List-padding": 0,
               "--ListItem-paddingX": 0,
+              "--ListItem-stickyTop": "-1px",
               "--ListItem-stickyBackground": theme.palette.background.surface,
               "flex": "1 1 0",
               "overflowY": "auto",
