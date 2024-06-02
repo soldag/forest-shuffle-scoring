@@ -115,5 +115,9 @@ export const scoreSet = (
   }
 
   const count = countCards(forest, filter, options);
-  return pointsByCount[count] ?? 0;
+  const cappedCount = Math.min(
+    count,
+    Math.max(0, ...Object.keys(pointsByCount).map((c) => parseInt(c, 10))),
+  );
+  return pointsByCount[cappedCount] ?? 0;
 };

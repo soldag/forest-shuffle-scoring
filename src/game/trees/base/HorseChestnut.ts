@@ -9,6 +9,7 @@ const pointsByCount = {
   4: 16,
   5: 25,
   6: 36,
+  7: 49,
 };
 
 const blueprint: TreeCardBlueprint = {

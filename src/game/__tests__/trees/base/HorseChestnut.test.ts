@@ -21,6 +21,8 @@ describe("A Horse Chestnut card", () => {
     [16, 4],
     [25, 5],
     [36, 6],
+    [49, 7],
+    [49, 8],
   ])("scores %i points for a set of %i", (expectedPoints, count) => {
     const trees = createTrees(HorseChestnut, count);
     const forest = createForestWith({ trees });
