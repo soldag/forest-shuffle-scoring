@@ -16,7 +16,7 @@ const pointsPerCard = 1;
 const blueprint: DwellerCardBlueprint = {
   name,
   expansion: Expansion.Alpine,
-  types: [CardType.Alps, CardType.Bird],
+  types: [CardType.Alps, CardType.PawedAnimal],
   modifiers: DEFAULT_MODIFIERS,
   cost: 0,
   count: 3,
