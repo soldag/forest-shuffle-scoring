@@ -26,7 +26,7 @@ const blueprint: DwellerCardBlueprint = {
     },
     {
       position: DwellerPosition.Top,
-      treeSymbol: TreeSymbol.SwissPine,
+      treeSymbol: TreeSymbol.DouglasFir,
       count: 1,
     },
   ],
