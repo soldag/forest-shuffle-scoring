@@ -18,7 +18,7 @@ import WinnersCard from "./components/WinnersCard";
 
 const ScoringView: React.FC = requireGame(({ game }) => {
   const [showDetails, setShowDetails] = useLocalStorage(
-    "showScoringDetails",
+    "show-scoring-details",
     false,
   );
 
