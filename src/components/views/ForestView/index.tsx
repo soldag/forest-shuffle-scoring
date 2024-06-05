@@ -1,7 +1,7 @@
 import React, { useContext, useMemo, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
-import { Box } from "@mui/joy";
+import { Box, Stack } from "@mui/joy";
 
 import {
   exchangeDweller,
@@ -14,6 +14,7 @@ import {
 import CardDrawer from "@/components/common/CardDrawer";
 import TreeStack from "@/components/common/TreeStack";
 import View from "@/components/common/View";
+import SwipeToAddTreeTooltip from "@/components/common/tutorial/SwipeToAddTreeTooltip";
 import GameContext from "@/components/contexts/GameContext";
 import {
   DwellerCard,
@@ -169,12 +170,14 @@ const ForestView: React.FC = requireGame(({ game }) => {
         <Box
           sx={{
             display: "flex",
+            flexDirection: "column",
             height: "100%",
             maxWidth: "100%",
             overflowX: "auto",
             scrollSnapType: { xs: "x mandatory", sm: "none" },
           }}
         >
+          <Box sx={{ flex: "1 1 0" }} />
           <TreeStack
             game={game!}
             trees={forest?.trees || []}
@@ -184,6 +187,15 @@ const ForestView: React.FC = requireGame(({ game }) => {
             onTreeClick={handleTreeClick}
             onDwellerClick={handleDwellerClick}
           />
+
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            sx={{ flex: "1 1 0", pb: 2, px: 2 }}
+          >
+            <SwipeToAddTreeTooltip />
+          </Stack>
         </Box>
       </Box>
 

@@ -1,4 +1,4 @@
-import React from "react";
+import { forwardRef } from "react";
 import { useIntl } from "react-intl";
 
 import { Stack, Typography } from "@mui/joy";
@@ -21,74 +21,72 @@ interface DwellerCardProps {
   onClick?: () => void;
 }
 
-const DwellerCard: React.FC<DwellerCardProps> = ({
-  card,
-  attached,
-  compact,
-  size,
-  sx,
-  onClick,
-}) => {
-  const intl = useIntl();
+const DwellerCard = forwardRef<HTMLDivElement, DwellerCardProps>(
+  ({ card, attached, compact, size, sx, onClick }, ref) => {
+    const intl = useIntl();
 
-  const hasHorizontalSplit = [
-    DwellerPosition.Top,
-    DwellerPosition.Bottom,
-  ].includes(card.position);
-  const isTopOrLeft = [DwellerPosition.Top, DwellerPosition.Left].includes(
-    card.position,
-  );
+    const hasHorizontalSplit = [
+      DwellerPosition.Top,
+      DwellerPosition.Bottom,
+    ].includes(card.position);
+    const isTopOrLeft = [DwellerPosition.Top, DwellerPosition.Left].includes(
+      card.position,
+    );
 
-  return (
-    <ForestCard
-      attached={attached}
-      card={card}
-      compact={compact}
-      onClick={onClick}
-      size={size}
-      sx={sx}
-    >
-      <Stack
-        direction={hasHorizontalSplit ? "column" : "row"}
-        justifyContent={isTopOrLeft ? "flex-start" : "flex-end"}
-        sx={{ height: "100%", width: "100%" }}
+    return (
+      <ForestCard
+        ref={ref}
+        attached={attached}
+        card={card}
+        compact={compact}
+        onClick={onClick}
+        size={size}
+        sx={sx}
       >
         <Stack
-          direction={hasHorizontalSplit ? "row" : "column"}
-          alignItems={hasHorizontalSplit ? "start" : "end"}
-          justifyContent="space-between"
-          sx={{
-            height: hasHorizontalSplit ? "fit-content" : "100%",
-            width: hasHorizontalSplit ? "100%" : "fit-content",
-          }}
+          direction={hasHorizontalSplit ? "column" : "row"}
+          justifyContent={isTopOrLeft ? "flex-start" : "flex-end"}
+          sx={{ height: "100%", width: "100%" }}
         >
-          <Typography
-            fontSize="inherit"
-            fontWeight="lg"
-            textColor="neutral.100"
+          <Stack
+            direction={hasHorizontalSplit ? "row" : "column"}
+            alignItems={hasHorizontalSplit ? "start" : "end"}
+            justifyContent="space-between"
             sx={{
-              writingMode: hasHorizontalSplit ? "horizontal-tb" : "vertical-lr",
+              height: hasHorizontalSplit ? "fit-content" : "100%",
+              width: hasHorizontalSplit ? "100%" : "fit-content",
             }}
           >
-            {getLocalizedCardName(intl, card.name)}
-          </Typography>
-          {card.treeSymbol && (
-            <TreeSymbol
-              attach={hasHorizontalSplit ? "top" : "right"}
-              value={card.treeSymbol}
-              size={size}
+            <Typography
+              fontSize="inherit"
+              fontWeight="lg"
+              textColor="neutral.100"
               sx={{
-                [hasHorizontalSplit ? "mt" : "mr"]:
-                  "calc(-1 * var(--Card-padding))",
-                [hasHorizontalSplit ? "height" : "width"]:
-                  "calc(var(--Card-padding) + var(--TreeSymbol-iconSize) + var(--TreeSymbol-padding))",
+                writingMode: hasHorizontalSplit
+                  ? "horizontal-tb"
+                  : "vertical-lr",
               }}
-            />
-          )}
+            >
+              {getLocalizedCardName(intl, card.name)}
+            </Typography>
+            {card.treeSymbol && (
+              <TreeSymbol
+                attach={hasHorizontalSplit ? "top" : "right"}
+                value={card.treeSymbol}
+                size={size}
+                sx={{
+                  [hasHorizontalSplit ? "mt" : "mr"]:
+                    "calc(-1 * var(--Card-padding))",
+                  [hasHorizontalSplit ? "height" : "width"]:
+                    "calc(var(--Card-padding) + var(--TreeSymbol-iconSize) + var(--TreeSymbol-padding))",
+                }}
+              />
+            )}
+          </Stack>
         </Stack>
-      </Stack>
-    </ForestCard>
-  );
-};
+      </ForestCard>
+    );
+  },
+);
 
 export default DwellerCard;

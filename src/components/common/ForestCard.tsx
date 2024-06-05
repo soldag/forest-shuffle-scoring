@@ -1,9 +1,10 @@
 import * as _ from "lodash-es";
-import React, { ReactNode } from "react";
+import { ReactNode, forwardRef, useContext } from "react";
 
 import { Card, CardContent } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
+import TutorialContext from "@/components/contexts/TutorialContext";
 import { DwellerCard, TreeCard } from "@/game/types";
 import { getBackgroundForCardTypes } from "@/styles/colors";
 import {
@@ -48,42 +49,47 @@ const getAttachedStyles = (attached?: ForestCardAttachPosition) => {
   };
 };
 
-const ForestCard: React.FC<ForestCardProps> = ({
-  attached,
-  card,
-  children,
-  compact,
-  onClick,
-  size = "md",
-  sx,
-}) => (
-  <Card
-    variant="plain"
-    onClick={onClick}
-    size={size}
-    sx={mergeSx(
-      getAttachedStyles(attached),
-      (theme) => ({
-        "--Card-padding": {
-          sm: "0.5rem",
-          md: "0.75rem",
-          lg: "1rem",
-        }[size],
-        "boxShadow": "card",
-        "background": getBackgroundForCardTypes(
-          card.types,
-          hasHorizontalSplit(card) ? "horizontal" : "vertical",
-        ),
-        "fontSize": theme.fontSize[size],
-        "height":
-          compact || hasHorizontalSplit(card) ? "auto" : CARD_HEIGHT[size],
-        "width": compact || hasVerticalSplit(card) ? "auto" : CARD_WIDTH[size],
-      }),
-      sx,
-    )}
-  >
-    <CardContent>{children}</CardContent>
-  </Card>
+const ForestCard = forwardRef<HTMLDivElement, ForestCardProps>(
+  ({ attached, card, children, compact, onClick, size = "md", sx }, ref) => {
+    const { onCardClick } = useContext(TutorialContext);
+
+    const handleClick = () => {
+      onCardClick();
+      onClick?.();
+    };
+
+    return (
+      <Card
+        ref={ref}
+        variant="plain"
+        onClick={handleClick}
+        size={size}
+        sx={mergeSx(
+          getAttachedStyles(attached),
+          (theme) => ({
+            "--Card-padding": {
+              sm: "0.5rem",
+              md: "0.75rem",
+              lg: "1rem",
+            }[size],
+            "boxShadow": "card",
+            "background": getBackgroundForCardTypes(
+              card.types,
+              hasHorizontalSplit(card) ? "horizontal" : "vertical",
+            ),
+            "fontSize": theme.fontSize[size],
+            "height":
+              compact || hasHorizontalSplit(card) ? "auto" : CARD_HEIGHT[size],
+            "width":
+              compact || hasVerticalSplit(card) ? "auto" : CARD_WIDTH[size],
+          }),
+          sx,
+        )}
+      >
+        <CardContent>{children}</CardContent>
+      </Card>
+    );
+  },
 );
 
 export default ForestCard;

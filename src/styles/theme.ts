@@ -8,6 +8,7 @@ declare module "@mui/joy/styles" {
     lgInverse: string;
     xlInverse: string;
     card: string;
+    tooltip: string;
   }
 }
 
@@ -101,6 +102,11 @@ const theme = extendTheme({
       0px 12px 16px -4px rgba(var(--joy-shadowChannel, 21 21 21) / var(--joy-shadowOpacity, 0.08)),
       0px -2px 8px -2px rgba(var(--joy-shadowChannel, 21 21 21) / var(--joy-shadowOpacity, 0.08)),
       0px -12px 16px -4px rgba(var(--joy-shadowChannel, 21 21 21) / var(--joy-shadowOpacity, 0.08))
+    `,
+    tooltip: `
+      var(--joy-shadowRing, 0 0 #000),
+      0px 1px 2px 0px rgba(var(--joy-shadowChannel, 21 21 21) / var(--joy-shadowOpacity, 0.08)),
+      0px 2px 4px 0px rgba(var(--joy-shadowChannel, 21 21 21) / var(--joy-shadowOpacity, 0.08))
     `,
   },
 });

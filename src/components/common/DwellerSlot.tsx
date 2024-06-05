@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Stack } from "@mui/joy";
 
 import AddCardButton from "@/components/common/AddCardButton";
 import DwellerCard from "@/components/common/DwellerCard";
+import AddDwellerTooltip from "@/components/common/tutorial/AddDwellerTooltip";
+import ExchangeCardTooltip from "@/components/common/tutorial/ExchangeCardTooltip";
+import TutorialContext from "@/components/contexts/TutorialContext";
 import {
   DwellerCard as DwellerCardType,
   DwellerPosition,
@@ -63,6 +66,19 @@ const getButtonStyle = (position: DwellerPosition) => {
   }
 };
 
+const getTooltipPlacement = (position: DwellerPosition) => {
+  switch (position) {
+    case DwellerPosition.Top:
+      return "top";
+    case DwellerPosition.Bottom:
+      return "bottom";
+    case DwellerPosition.Left:
+      return "bottom-start";
+    case DwellerPosition.Right:
+      return "bottom-end";
+  }
+};
+
 const DwellerSlot: React.FC<DwellerSlotProps> = ({
   game,
   tree,
@@ -71,6 +87,8 @@ const DwellerSlot: React.FC<DwellerSlotProps> = ({
   onAdd,
   onDwellerClick,
 }) => {
+  const { exchangeCardTooltipTarget } = useContext(TutorialContext);
+
   const dwellers = tree.dwellers[position];
   const canAddDweller =
     getDwellerCandidates(game, tree.id, position).length > 0;
@@ -78,22 +96,32 @@ const DwellerSlot: React.FC<DwellerSlotProps> = ({
   return (
     <Stack direction={getDirection(position)}>
       {canAddDweller && (
-        <AddCardButton
-          size={size}
-          onClick={onAdd}
-          sx={getButtonStyle(position)}
-        />
+        <AddDwellerTooltip
+          placement="bottom"
+          disabled={position !== DwellerPosition.Bottom}
+        >
+          <AddCardButton
+            size={size}
+            onClick={onAdd}
+            sx={getButtonStyle(position)}
+          />
+        </AddDwellerTooltip>
       )}
 
       {dwellers.toReversed().map((dweller) => (
-        <DwellerCard
-          compact
+        <ExchangeCardTooltip
           key={dweller.id}
-          card={dweller}
-          attached={getAttachPosition(position)}
-          size={size}
-          onClick={() => onDwellerClick?.(dweller)}
-        />
+          placement={getTooltipPlacement(dweller.position)}
+          disabled={exchangeCardTooltipTarget !== dweller.id}
+        >
+          <DwellerCard
+            compact
+            card={dweller}
+            attached={getAttachPosition(position)}
+            size={size}
+            onClick={() => onDwellerClick?.(dweller)}
+          />
+        </ExchangeCardTooltip>
       ))}
     </Stack>
   );

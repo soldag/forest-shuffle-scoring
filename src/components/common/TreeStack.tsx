@@ -5,6 +5,7 @@ import { Box, Stack } from "@mui/joy";
 
 import AddCardButton from "@/components/common/AddCardButton";
 import TreeSlot from "@/components/common/TreeSlot";
+import AddTreeTooltip from "@/components/common/tutorial/AddTreeTooltip";
 import {
   DwellerCard,
   DwellerPosition,
@@ -135,15 +136,17 @@ const TreeStack: React.FC<TreeStackProps> = ({
       ))}
 
       <SnapContainer key="add" ref={addButtonRef}>
-        <AddCardButton
-          size={size}
-          sx={{
-            flexShrink: 0,
-            height: CARD_HEIGHT[size],
-            width: CARD_WIDTH[size],
-          }}
-          onClick={onAddTree}
-        />
+        <AddTreeTooltip placement="bottom">
+          <AddCardButton
+            size={size}
+            sx={{
+              flexShrink: 0,
+              height: CARD_HEIGHT[size],
+              width: CARD_WIDTH[size],
+            }}
+            onClick={onAddTree}
+          />
+        </AddTreeTooltip>
       </SnapContainer>
     </Stack>
   );

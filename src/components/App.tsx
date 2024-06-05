@@ -6,6 +6,7 @@ import RootContainer from "@/components/containers/RootContainer";
 import { AppUpdateContextProvider } from "@/components/contexts/AppUpdateContext";
 import { GameContextProvider } from "@/components/contexts/GameContext";
 import { LocaleContextProvider } from "@/components/contexts/LocaleContext";
+import { TutorialContextProvider } from "@/components/contexts/TutorialContext";
 import theme from "@/styles/theme";
 
 const App = () => (
@@ -15,7 +16,9 @@ const App = () => (
         <CssBaseline />
         <DocumentMetaProvider />
         <GameContextProvider>
-          <RootContainer />
+          <TutorialContextProvider>
+            <RootContainer />
+          </TutorialContextProvider>
         </GameContextProvider>
       </CssVarsProvider>
     </LocaleContextProvider>
