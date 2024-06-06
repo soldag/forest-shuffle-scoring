@@ -32,9 +32,9 @@ interface TutorialContextProviderProps {
   children: ReactNode;
 }
 
-export const TutorialContextProvider: React.FC<
-  TutorialContextProviderProps
-> = ({ children }) => {
+export const TutorialContextProvider = ({
+  children,
+}: TutorialContextProviderProps) => {
   const { game } = useContext(GameContext);
 
   const [wasCompleted, setWasCompleted] = useLocalStorage(

@@ -7,7 +7,7 @@ interface ExternalLinkProps {
   children?: ReactNode;
 }
 
-const ExternalLink: React.FC<ExternalLinkProps> = ({ href, children }) => (
+const ExternalLink = ({ href, children }: ExternalLinkProps) => (
   <Link href={href} target="_blank" rel="noopener noreferrer">
     {children || href}
   </Link>

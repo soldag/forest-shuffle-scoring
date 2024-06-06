@@ -1,5 +1,5 @@
 import * as _ from "lodash-es";
-import React, { ReactNode, forwardRef, useEffect, useRef } from "react";
+import { ReactNode, forwardRef, useEffect, useRef } from "react";
 
 import { Box, Stack } from "@mui/joy";
 
@@ -52,7 +52,7 @@ interface TreeStackProps {
   onTreeClick?: (TreeStackProps: TreeCard) => void;
 }
 
-const TreeStack: React.FC<TreeStackProps> = ({
+const TreeStack = ({
   game,
   trees,
   size = "md",
@@ -60,7 +60,7 @@ const TreeStack: React.FC<TreeStackProps> = ({
   onAddTree,
   onDwellerClick,
   onTreeClick,
-}) => {
+}: TreeStackProps) => {
   const treeSlotRefs = useRef<{ [key: string]: HTMLElement | null }>({});
   const addButtonRef = useRef<HTMLElement>(null);
 

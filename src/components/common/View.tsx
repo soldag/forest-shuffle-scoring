@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 import { Box, Container, Sheet } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
@@ -11,11 +11,11 @@ interface ContentContainerProps {
   sx?: SxProps;
 }
 
-const ContentContainer: React.FC<ContentContainerProps> = ({
+const ContentContainer = ({
   children,
   disableGutters = false,
   sx,
-}) => (
+}: ContentContainerProps) => (
   <Box
     sx={mergeSx(sx, {
       display: "flex",
@@ -37,12 +37,12 @@ interface ViewProps {
   disableGutters?: boolean;
 }
 
-const View: React.FC<ViewProps> = ({
+const View = ({
   header,
   footer,
   children,
   disableGutters = false,
-}) => (
+}: ViewProps) => (
   <Sheet
     sx={{
       height: "100dvh",

@@ -11,13 +11,13 @@ interface ResponsiveDrawerProps extends Omit<DrawerProps, "anchor"> {
   breakpoint?: Breakpoint;
 }
 
-const ResponsiveDrawer: React.FC<ResponsiveDrawerProps> = ({
+const ResponsiveDrawer = ({
   anchorSmall = "bottom",
   anchorBig = "right",
   breakpoint = "sm",
   children,
   ...otherProps
-}) => {
+}: ResponsiveDrawerProps) => {
   const showSmallVariant = useBreakpoint((breakpoints) =>
     breakpoints.down(breakpoint),
   );

@@ -14,10 +14,7 @@ interface AddTreeTooltipProps
   disabled?: boolean;
 }
 
-const AddTreeTooltip: React.FC<AddTreeTooltipProps> = ({
-  disabled,
-  ...otherProps
-}) => {
+const AddTreeTooltip = ({ disabled, ...otherProps }: AddTreeTooltipProps) => {
   const { showAddTreeTooltip } = useContext(TutorialContext);
 
   return (

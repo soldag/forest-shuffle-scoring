@@ -1,4 +1,3 @@
-import React from "react";
 import { FormattedMessage } from "react-intl";
 import { Link } from "wouter";
 
@@ -6,7 +5,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Button, Stack } from "@mui/joy";
 
-const Footer: React.FC = () => (
+const Footer = () => (
   <Stack
     direction="row"
     alignItems="center"

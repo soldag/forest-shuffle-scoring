@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Box, Stack } from "@mui/joy";
 
 import DwellerSlot from "@/components/common/DwellerSlot";
@@ -22,14 +20,14 @@ interface TreeSlotProps {
   onTreeClick?: () => void;
 }
 
-const TreeSlot: React.FC<TreeSlotProps> = ({
+const TreeSlot = ({
   game,
   tree,
   size = "md",
   onAddDweller,
   onDwellerClick,
   onTreeClick,
-}) => {
+}: TreeSlotProps) => {
   return (
     <Box
       display="grid"

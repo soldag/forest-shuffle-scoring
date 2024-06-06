@@ -40,7 +40,7 @@ interface HeadlineProps {
   children: ReactNode;
 }
 
-const Headline: React.FC<HeadlineProps> = ({ children }) => (
+const Headline = ({ children }: HeadlineProps) => (
   <Typography
     level="title-md"
     sx={{
@@ -54,7 +54,7 @@ const Headline: React.FC<HeadlineProps> = ({ children }) => (
   </Typography>
 );
 
-const AboutView: React.FC = () => {
+const AboutView = () => {
   const intl = useIntl();
   const { locale } = useContext(LocaleContext);
 

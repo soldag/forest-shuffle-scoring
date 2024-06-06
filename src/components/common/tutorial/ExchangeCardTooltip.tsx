@@ -14,10 +14,10 @@ interface ExchangeCardTooltipProps
   disabled?: boolean;
 }
 
-const ExchangeCardTooltip: React.FC<ExchangeCardTooltipProps> = ({
+const ExchangeCardTooltip = ({
   disabled,
   ...otherProps
-}) => {
+}: ExchangeCardTooltipProps) => {
   const { showExchangeCardTooltip } = useContext(TutorialContext);
 
   return (

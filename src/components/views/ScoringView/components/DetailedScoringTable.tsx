@@ -1,5 +1,4 @@
 import * as _ from "lodash-es";
-import React from "react";
 import { IntlShape, defineMessages, useIntl } from "react-intl";
 
 import { Table, TableProps, Typography } from "@mui/joy";
@@ -72,11 +71,11 @@ interface ScoringTableProps extends TableProps {
   scoring: GameScoring;
 }
 
-const DetailsScoringTable: React.FC<ScoringTableProps> = ({
+const DetailsScoringTable = ({
   game,
   scoring,
   ...otherProps
-}) => {
+}: ScoringTableProps) => {
   const intl = useIntl();
 
   const playerCount = game.players.length;

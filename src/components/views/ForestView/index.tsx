@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { useMediaQuery } from "usehooks-ts";
 
 import { Box, Stack } from "@mui/joy";
@@ -41,7 +41,7 @@ const useResponsiveSize = () => {
   }
 };
 
-const ForestView: React.FC = requireGame(({ game }) => {
+const ForestView = requireGame(({ game }) => {
   const { playerId, dispatch } = useContext(GameContext);
 
   const [isAddingTree, setIsAddingTree] = useState(false);

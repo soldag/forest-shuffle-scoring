@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import CountUp from "react-countup";
 import { useBoolean } from "usehooks-ts";
 import { useLocation } from "wouter";
@@ -13,7 +13,7 @@ import PlayerSelect from "@/components/common/PlayerSelect";
 import GameContext from "@/components/contexts/GameContext";
 import { scorePlayer } from "@/game";
 
-const Header: React.FC = () => {
+const Header = () => {
   const [, navigate] = useLocation();
   const { game, playerId, dispatch } = useContext(GameContext);
 

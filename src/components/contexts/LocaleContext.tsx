@@ -25,9 +25,9 @@ interface LocaleContextProviderProps {
   children?: ReactNode;
 }
 
-export const LocaleContextProvider: React.FC<LocaleContextProviderProps> = ({
+export const LocaleContextProvider = ({
   children,
-}) => {
+}: LocaleContextProviderProps) => {
   const [locale, setLocale] = useLocalStorage("locale", defaultLocale);
 
   useEffect(() => {

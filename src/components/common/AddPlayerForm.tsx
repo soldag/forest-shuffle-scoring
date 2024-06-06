@@ -33,12 +33,12 @@ interface AddPlayerFormProps {
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
 }
 
-const AddPlayerForm: React.FC<AddPlayerFormProps> = ({
+const AddPlayerForm = ({
   control,
   errors,
   existingPlayerNames = [],
   onSubmit,
-}) => {
+}: AddPlayerFormProps) => {
   const intl = useIntl();
 
   return (

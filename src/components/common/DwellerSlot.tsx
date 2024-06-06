@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { Stack } from "@mui/joy";
 
@@ -79,14 +79,14 @@ const getTooltipPlacement = (position: DwellerPosition) => {
   }
 };
 
-const DwellerSlot: React.FC<DwellerSlotProps> = ({
+const DwellerSlot = ({
   game,
   tree,
   position,
   size = "md",
   onAdd,
   onDwellerClick,
-}) => {
+}: DwellerSlotProps) => {
   const { exchangeCardTooltipTarget } = useContext(TutorialContext);
 
   const dwellers = tree.dwellers[position];

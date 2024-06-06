@@ -1,5 +1,4 @@
 import * as _ from "lodash-es";
-import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import { Table, TableProps } from "@mui/joy";
@@ -11,11 +10,11 @@ interface ScoringTableProps extends TableProps {
   scoring: GameScoring;
 }
 
-const BasicScoringTable: React.FC<ScoringTableProps> = ({
+const BasicScoringTable = ({
   game,
   scoring,
   ...otherProps
-}) => {
+}: ScoringTableProps) => {
   const sortedScorings = _.orderBy(scoring.players, ["rank", "playerId"]);
 
   return (

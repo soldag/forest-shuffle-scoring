@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { FormattedMessage } from "react-intl";
 import { useBoolean } from "usehooks-ts";
 import { Link } from "wouter";
@@ -14,7 +14,7 @@ import { MAX_PLAYERS } from "@/utils/constants";
 
 import ForestSummary from "./ForestSummary";
 
-const Footer: React.FC = () => {
+const Footer = () => {
   const { game, playerId, dispatch } = useContext(GameContext);
 
   const {

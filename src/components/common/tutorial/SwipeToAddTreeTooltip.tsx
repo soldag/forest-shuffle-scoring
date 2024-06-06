@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { FormattedMessage } from "react-intl";
 
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
@@ -16,10 +16,10 @@ interface SwipeToAddTreeTooltipProps
   disabled?: boolean;
 }
 
-const SwipeToAddTreeTooltip: React.FC<SwipeToAddTreeTooltipProps> = ({
+const SwipeToAddTreeTooltip = ({
   disabled,
   ...otherProps
-}) => {
+}: SwipeToAddTreeTooltipProps) => {
   const { showSwipeToAddTreeTooltip } = useContext(TutorialContext);
   const isScreenXs = useBreakpoint((breakpoints) => breakpoints.only("xs"));
 

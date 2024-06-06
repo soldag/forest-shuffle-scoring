@@ -21,9 +21,9 @@ interface AppUpdateContextProviderProps {
   children?: ReactNode;
 }
 
-export const AppUpdateContextProvider: React.FC<
-  AppUpdateContextProviderProps
-> = ({ children }) => {
+export const AppUpdateContextProvider = ({
+  children,
+}: AppUpdateContextProviderProps) => {
   const swRegistrationRef = useRef<ServiceWorkerRegistration>();
   const [wasUpdateRejected, setWasUpdateRejected] = useState<boolean>(false);
 

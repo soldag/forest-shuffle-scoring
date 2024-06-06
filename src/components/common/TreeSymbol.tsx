@@ -1,5 +1,3 @@
-import React from "react";
-
 import CircleIcon from "@mui/icons-material/Circle";
 import { Box } from "@mui/joy";
 import { SxProps, Theme } from "@mui/joy/styles/types";
@@ -34,12 +32,7 @@ interface TreeSymbolProps {
   sx?: SxProps;
 }
 
-const TreeSymbol: React.FC<TreeSymbolProps> = ({
-  attach,
-  value,
-  size = "md",
-  sx,
-}) => {
+const TreeSymbol = ({ attach, value, size = "md", sx }: TreeSymbolProps) => {
   const isTopOrBottom = ["top", "bottom"].includes(attach);
   const isTopOrLeft = ["top", "left"].includes(attach);
 

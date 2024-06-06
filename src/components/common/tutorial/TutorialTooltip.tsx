@@ -1,4 +1,4 @@
-import React, { ComponentType, ReactElement, ReactNode } from "react";
+import { ComponentType, ReactElement, ReactNode } from "react";
 
 import { Card, Stack, Tooltip, TooltipProps } from "@mui/joy";
 import { SxProps } from "@mui/system";
@@ -14,13 +14,13 @@ export interface TutorialTooltipProps extends Pick<TooltipProps, "placement"> {
   children?: ReactElement;
 }
 
-const TutorialTooltip: React.FC<TutorialTooltipProps> = ({
+const TutorialTooltip = ({
   open,
   icon: Icon,
   text,
   placement,
   children,
-}) => {
+}: TutorialTooltipProps) => {
   const content = (
     <Stack direction="row" alignItems="center" gap={0.5}>
       {Icon && (

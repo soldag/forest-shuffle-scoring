@@ -1,4 +1,3 @@
-import React from "react";
 import { useIntl } from "react-intl";
 
 import { Button, ButtonProps } from "@mui/joy";
@@ -23,7 +22,7 @@ const getBackground = (card: Card, adjustBrightness: number = 0) => {
   return getBackgroundForCardTypes(card.types, "horizontal", adjustBrightness);
 };
 
-const CardButton: React.FC<CardButtonProps> = ({ card, ...otherProps }) => {
+const CardButton = ({ card, ...otherProps }: CardButtonProps) => {
   const intl = useIntl();
 
   return (

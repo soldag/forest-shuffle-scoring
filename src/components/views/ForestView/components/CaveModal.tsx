@@ -28,12 +28,7 @@ interface CaveModalProps {
   onClose: () => void;
 }
 
-const CaveModal: React.FC<CaveModalProps> = ({
-  open,
-  count,
-  onConfirm,
-  onClose,
-}) => {
+const CaveModal = ({ open, count, onConfirm, onClose }: CaveModalProps) => {
   const intl = useIntl();
 
   const {

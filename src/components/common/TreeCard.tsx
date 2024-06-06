@@ -1,4 +1,3 @@
-import React from "react";
 import { useIntl } from "react-intl";
 
 import ParkIcon from "@mui/icons-material/Park";
@@ -17,7 +16,7 @@ interface ForestCardProps {
   onClick?: () => void;
 }
 
-const TreeCard: React.FC<ForestCardProps> = ({ card, size, sx, onClick }) => {
+const TreeCard = ({ card, size, sx, onClick }: ForestCardProps) => {
   const intl = useIntl();
 
   return (

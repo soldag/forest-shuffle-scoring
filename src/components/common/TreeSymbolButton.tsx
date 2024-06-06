@@ -1,4 +1,3 @@
-import React from "react";
 import { useIntl } from "react-intl";
 
 import { Button, ButtonProps } from "@mui/joy";
@@ -15,10 +14,10 @@ interface TreeSymbolButtonProps extends ButtonProps {
   treeSymbol: TreeSymbol;
 }
 
-const TreeSymbolButton: React.FC<TreeSymbolButtonProps> = ({
+const TreeSymbolButton = ({
   treeSymbol,
   ...otherProps
-}) => {
+}: TreeSymbolButtonProps) => {
   const intl = useIntl();
 
   return (

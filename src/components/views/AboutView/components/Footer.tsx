@@ -1,11 +1,10 @@
-import React from "react";
 import { FormattedMessage } from "react-intl";
 import { Link } from "wouter";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Button } from "@mui/joy";
 
-const Footer: React.FC = () => (
+const Footer = () => (
   <Button
     fullWidth
     variant="soft"

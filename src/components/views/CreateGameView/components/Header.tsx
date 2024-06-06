@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 import { Stack } from "@mui/joy";
 
@@ -6,7 +6,7 @@ import HeaderTitle from "@/components/common/HeaderTitle";
 import LanguageSelect from "@/components/common/LocaleSelect";
 import LocaleContext from "@/components/contexts/LocaleContext";
 
-const Header: React.FC = () => {
+const Header = () => {
   const { locale, setLocale } = useContext(LocaleContext);
 
   return (

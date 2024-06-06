@@ -16,7 +16,7 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import WinnersCard from "./components/WinnersCard";
 
-const ScoringView: React.FC = requireGame(({ game }) => {
+const ScoringView = requireGame(({ game }) => {
   const [showDetails, setShowDetails] = useLocalStorage(
     "show-scoring-details",
     false,

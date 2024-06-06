@@ -1,4 +1,3 @@
-import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import {
@@ -17,11 +16,11 @@ interface ConfirmResetModalProps {
   onClose: () => void;
 }
 
-const ConfirmResetModal: React.FC<ConfirmResetModalProps> = ({
+const ConfirmResetModal = ({
   open,
   onConfirm,
   onClose,
-}) => (
+}: ConfirmResetModalProps) => (
   <Modal open={open} onClose={onClose}>
     <ModalDialog size="sm" variant="outlined" role="alertdialog">
       <DialogTitle>

@@ -1,4 +1,3 @@
-import React from "react";
 import { useIntl } from "react-intl";
 
 import { Stack, Typography } from "@mui/joy";
@@ -11,7 +10,7 @@ interface HeaderTitleProps {
   sx?: SxProps;
 }
 
-const HeaderTitle: React.FC<HeaderTitleProps> = ({ sx }) => {
+const HeaderTitle = ({ sx }: HeaderTitleProps) => {
   const intl = useIntl();
 
   return (

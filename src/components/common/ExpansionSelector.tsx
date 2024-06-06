@@ -13,11 +13,11 @@ interface ExpansionSelectorProps {
   sx?: SxProps;
 }
 
-const ExpansionSelector: React.FC<ExpansionSelectorProps> = ({
+const ExpansionSelector = ({
   value = [],
   onChange,
   sx,
-}) => {
+}: ExpansionSelectorProps) => {
   const intl = useIntl();
 
   const handleChange = (expansion: Expansion, isChecked: boolean) => {

@@ -14,10 +14,10 @@ interface AddDwellerTooltipProps
   disabled?: boolean;
 }
 
-const AddDwellerTooltip: React.FC<AddDwellerTooltipProps> = ({
+const AddDwellerTooltip = ({
   disabled,
   ...otherProps
-}) => {
+}: AddDwellerTooltipProps) => {
   const { showAddDwellerTooltip } = useContext(TutorialContext);
 
   return (

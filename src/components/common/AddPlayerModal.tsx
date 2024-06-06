@@ -24,12 +24,12 @@ interface AddPlayerModalProps {
   onClose: () => void;
 }
 
-const AddPlayerModal: React.FC<AddPlayerModalProps> = ({
+const AddPlayerModal = ({
   open = false,
   existingPlayerNames,
   onConfirm,
   onClose,
-}) => {
+}: AddPlayerModalProps) => {
   const {
     control,
     formState: { isValid, errors },

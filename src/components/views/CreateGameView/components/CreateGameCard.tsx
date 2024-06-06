@@ -31,7 +31,7 @@ interface CreateGameCardProps {
   onSubmit: (values: CreateGameFormFields) => void;
 }
 
-const CreateGameCard: React.FC<CreateGameCardProps> = ({ sx, onSubmit }) => {
+const CreateGameCard = ({ sx, onSubmit }: CreateGameCardProps) => {
   const [expansions, setExpansions] = useLocalStorage<Expansion[]>(
     "expansions",
     [],

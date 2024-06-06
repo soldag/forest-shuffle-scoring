@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "wouter";
 
 import ReplayIcon from "@mui/icons-material/Replay";
@@ -6,7 +5,7 @@ import { IconButton, Stack } from "@mui/joy";
 
 import HeaderTitle from "@/components/common/HeaderTitle";
 
-const Header: React.FC = () => (
+const Header = () => (
   <Stack direction="row" alignItems="center" columnGap={2}>
     <HeaderTitle sx={{ flexGrow: 1 }} />
 

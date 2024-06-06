@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import { FormattedMessage } from "react-intl";
 import { useBoolean } from "usehooks-ts";
 
@@ -16,11 +16,7 @@ interface CardCountProps {
   endDecorator?: ReactNode;
 }
 
-const CardCount: React.FC<CardCountProps> = ({
-  label,
-  value,
-  endDecorator,
-}) => {
+const CardCount = ({ label, value, endDecorator }: CardCountProps) => {
   const isScreenXs = useBreakpoint((breakpoints) => breakpoints.only("xs"));
 
   return (
@@ -46,7 +42,7 @@ interface ForestSummaryProps {
   onChange: (values: { caveCardCount: number }) => void;
 }
 
-const ForestSummary: React.FC<ForestSummaryProps> = ({ forest, onChange }) => {
+const ForestSummary = ({ forest, onChange }: ForestSummaryProps) => {
   const {
     value: isCaveModalOpen,
     setTrue: openCaveModal,

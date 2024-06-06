@@ -6,7 +6,7 @@ import CreateGameView from "@/components/views/CreateGameView";
 import ForestView from "@/components/views/ForestView";
 import ScoringView from "@/components/views/ScoringView";
 
-const RootContainer: React.FC = () => (
+const RootContainer = () => (
   <Router hook={useHashLocation}>
     <Route path="/new" component={CreateGameView} />
     <Route path="/forest" component={ForestView} />

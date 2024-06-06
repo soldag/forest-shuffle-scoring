@@ -52,11 +52,11 @@ interface BGStatsButtonProps extends ButtonProps {
   scoring: GameScoring;
 }
 
-const BGStatsButton: React.FC<BGStatsButtonProps> = ({
+const BGStatsButton = ({
   game,
   scoring,
   ...otherProps
-}) => {
+}: BGStatsButtonProps) => {
   const intl = useIntl();
 
   return (

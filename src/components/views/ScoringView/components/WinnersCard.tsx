@@ -1,4 +1,3 @@
-import React from "react";
 import { FormattedList, FormattedMessage } from "react-intl";
 
 import CelebrationIcon from "@mui/icons-material/Celebration";
@@ -13,7 +12,7 @@ interface WinnersCardProps {
   sx?: SxProps;
 }
 
-const WinnersCard: React.FC<WinnersCardProps> = ({ game, scoring, sx }) => {
+const WinnersCard = ({ game, scoring, sx }: WinnersCardProps) => {
   const winnerScorings = scoring.players.filter((s) => s.rank === 1);
   const score = winnerScorings[0]?.total;
   const playerNames = winnerScorings.map(

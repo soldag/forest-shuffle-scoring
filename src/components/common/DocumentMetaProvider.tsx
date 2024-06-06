@@ -8,7 +8,7 @@ import LocaleContext from "@/components/contexts/LocaleContext";
 import CommonMessages from "@/translations/messages/Common";
 import { resolvePublic } from "@/utils/assets";
 
-const DocumentMetaProvider: React.FC = () => {
+const DocumentMetaProvider = () => {
   const theme = useTheme();
 
   const intl = useIntl();

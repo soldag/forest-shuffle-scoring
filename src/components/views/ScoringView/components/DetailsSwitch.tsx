@@ -2,7 +2,7 @@ import { FormattedMessage } from "react-intl";
 
 import { Switch, SwitchProps, Typography } from "@mui/joy";
 
-const DetailsSwitch: React.FC<SwitchProps> = (props) => (
+const DetailsSwitch = (props: SwitchProps) => (
   <Typography
     component="label"
     level="body-sm"
