@@ -1,3 +1,5 @@
+import { ErrorBoundary } from "react-error-boundary";
+
 import { CssBaseline } from "@mui/joy";
 import { CssVarsProvider } from "@mui/joy/styles";
 
@@ -7,22 +9,25 @@ import { AppUpdateContextProvider } from "@/components/contexts/AppUpdateContext
 import { GameContextProvider } from "@/components/contexts/GameContext";
 import { LocaleContextProvider } from "@/components/contexts/LocaleContext";
 import { TutorialContextProvider } from "@/components/contexts/TutorialContext";
+import ErrorView from "@/components/views/ErrorView";
 import theme from "@/styles/theme";
 
 const App = () => (
-  <AppUpdateContextProvider>
+  <CssVarsProvider theme={theme}>
+    <CssBaseline />
     <LocaleContextProvider>
-      <CssVarsProvider theme={theme}>
-        <CssBaseline />
-        <DocumentMetaProvider />
-        <GameContextProvider>
-          <TutorialContextProvider>
-            <RootContainer />
-          </TutorialContextProvider>
-        </GameContextProvider>
-      </CssVarsProvider>
+      <ErrorBoundary fallback={<ErrorView />}>
+        <AppUpdateContextProvider>
+          <DocumentMetaProvider />
+          <GameContextProvider>
+            <TutorialContextProvider>
+              <RootContainer />
+            </TutorialContextProvider>
+          </GameContextProvider>
+        </AppUpdateContextProvider>
+      </ErrorBoundary>
     </LocaleContextProvider>
-  </AppUpdateContextProvider>
+  </CssVarsProvider>
 );
 
 export default App;
