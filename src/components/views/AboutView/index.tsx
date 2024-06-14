@@ -12,9 +12,9 @@ import { Locale } from "@/types";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 
-const gameUrls: { [key in Locale]: string } = {
-  de: "https://lookout-spiele.de/de/games/mischwald.html",
-  en: "https://lookout-spiele.de/en/games/forrestshuffle.html",
+const gameUrls = {
+  [Locale.De]: "https://lookout-spiele.de/de/games/mischwald.html",
+  [Locale.En]: "https://lookout-spiele.de/en/games/forrestshuffle.html",
 };
 const publisherUrl = "https://lookout-spiele.de";
 const githubUrl = "https://github.com/soldag/forest-shuffle-scoring";
