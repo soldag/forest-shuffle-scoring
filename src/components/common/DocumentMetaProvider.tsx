@@ -6,6 +6,7 @@ import { useTheme } from "@mui/joy";
 
 import LocaleContext from "@/components/contexts/LocaleContext";
 import CommonMessages from "@/translations/messages/Common";
+import { Locale } from "@/types";
 import { resolvePublic } from "@/utils/assets";
 
 const DocumentMetaProvider = () => {
@@ -15,16 +16,32 @@ const DocumentMetaProvider = () => {
   const { locale } = useContext(LocaleContext);
 
   return (
-    <Helmet>
+    <Helmet
+      htmlAttributes={{
+        lang: locale,
+      }}
+    >
       <title>{intl.formatMessage(CommonMessages.appName)}</title>
       <meta
         name="description"
         content={intl.formatMessage(CommonMessages.appDescription)}
       />
+      <meta
+        name="keywords"
+        content={intl.formatMessage(CommonMessages.appKeywords)}
+      />
       <link
         rel="manifest"
         href={resolvePublic(`manifests/${locale}.webmanifest`)}
       />
+      {Object.values(Locale).map((locale) => (
+        <link
+          key={locale}
+          rel="alternate"
+          href={`https://soldag.github.io/forest-shuffle-scoring/?lang=${locale}`}
+          hrefLang={locale}
+        />
+      ))}
       <link rel="icon" href={resolvePublic("icons/favicon.ico")} />
       <link
         rel="mask-icon"

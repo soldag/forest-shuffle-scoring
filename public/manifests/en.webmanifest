@@ -1,7 +1,7 @@
 {
   "name": "Forest Shuffle Scoring App",
   "short_name": "Forest Shuffle",
-  "description": "Scoring app for the card game Forest Shuffle",
+  "description": "The Forest Shuffle Scoring App simplifies scoring of the card game Forest Shuffle.",
   "theme_color": "#9ac81d",
   "background_color": "#ffffff",
   "display": "standalone",

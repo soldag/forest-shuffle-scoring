@@ -1,7 +1,7 @@
 {
   "name": "Mischwald Wertungsapp",
   "short_name": "Mischwald",
-  "description": "Wertungsapp für das Kartenspiel Mischwald",
+  "description": "Die Mischwald Wertungsapp vereinfacht die Wertung des Kartenspiels Mischwald.",
   "theme_color": "#9ac81d",
   "background_color": "#ffffff",
   "display": "standalone",

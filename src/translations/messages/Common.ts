@@ -7,7 +7,12 @@ export default defineMessages({
   },
   appDescription: {
     id: "Common.appDescription",
-    defaultMessage: "Scoring app for the card game Forest Shuffle",
+    defaultMessage:
+      "The Forest Shuffle Scoring App simplifies scoring of the card game Forest Shuffle.",
+  },
+  appKeywords: {
+    id: "Common.appKeywords",
+    defaultMessage: "Forest Shuffle, Scoring, App, Card game",
   },
   gameName: {
     id: "Common.gameName",
