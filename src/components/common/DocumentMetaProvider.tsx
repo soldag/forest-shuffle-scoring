@@ -42,17 +42,6 @@ const DocumentMetaProvider = () => {
           hrefLang={locale}
         />
       ))}
-      <link rel="icon" href={resolvePublic("icons/favicon.ico")} />
-      <link
-        rel="mask-icon"
-        href={resolvePublic("icons/maskable-icon-512x512.png")}
-        color="#ffffff"
-      />
-      <link
-        rel="apple-touch-icon"
-        href={resolvePublic("icons/apple-touch-icon-180x180.png")}
-        sizes="180x180"
-      />
       <meta name="theme-color" content={theme.palette.neutral[50]} />
     </Helmet>
   );
