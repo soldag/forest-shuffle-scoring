@@ -1,10 +1,12 @@
-import fs from "fs";
-import os from "os";
+import { promises as fs } from "fs";
 import path from "path";
+import * as prettier from "prettier";
 import { fileURLToPath } from "url";
 
 import { Locale } from "../src/types";
 import viteConfig from "../vite.config";
+
+type Translations = { [key: string]: string };
 
 const rootDir = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -13,12 +15,10 @@ const rootDir = path.resolve(
 const translationsDir = path.resolve(rootDir, "src/translations");
 const outputDir = path.resolve(rootDir, "public/manifests");
 
-const locales: Locale[] = ["en", "de"];
-
-const getLocalizedString = (locale: Locale, messageId: string) => {
+const getTranslations = async (locale: Locale) => {
   const filename = path.resolve(translationsDir, `${locale}.json`);
-  const translations = JSON.parse(fs.readFileSync(filename, "utf-8"));
-  return translations[messageId];
+  const data = await fs.readFile(filename, "utf-8");
+  return JSON.parse(data) as Translations;
 };
 
 const getIconPath = (filename: string) => {
@@ -26,11 +26,26 @@ const getIconPath = (filename: string) => {
   return `${base}/icons/${filename}`;
 };
 
-for (const locale of locales) {
+const writeFormattedFile = async (
+  filename: string,
+  data: string,
+  parser: string,
+) => {
+  const prettierOptions = {
+    parser,
+    ...(await prettier.resolveConfig(filename)),
+  };
+  const formattedData = await prettier.format(data, prettierOptions);
+  await fs.writeFile(filename, formattedData);
+};
+
+for (const locale of Object.values(Locale)) {
+  const translations = await getTranslations(locale);
+
   const manifest = {
-    name: getLocalizedString(locale, "Common.appName"),
-    short_name: getLocalizedString(locale, "Common.gameName"),
-    description: getLocalizedString(locale, "Common.appDescription"),
+    name: translations["Common.appName"],
+    short_name: translations["Common.gameName"],
+    description: translations["Common.appDescription"],
     theme_color: "#9ac81d",
     background_color: "#ffffff",
     display: "standalone",
@@ -73,5 +88,5 @@ for (const locale of locales) {
   };
 
   const filename = path.resolve(outputDir, `${locale}.webmanifest`);
-  fs.writeFileSync(filename, JSON.stringify(manifest, null, 2) + os.EOL);
+  await writeFormattedFile(filename, JSON.stringify(manifest), "json");
 }
