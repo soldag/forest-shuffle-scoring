@@ -1,10 +1,11 @@
 import { ComponentType, ReactElement, ReactNode } from "react";
 
 import { Card, Stack, Tooltip, TooltipProps } from "@mui/joy";
-import { SxProps } from "@mui/system";
+import { SxProps, Theme } from "@mui/joy/styles/types";
+import { SxProps as SystemSxProps } from "@mui/system";
 
 interface IconProps {
-  sx?: SxProps;
+  sx?: SystemSxProps;
 }
 
 export interface TutorialTooltipProps extends Pick<TooltipProps, "placement"> {
@@ -21,6 +22,15 @@ const TutorialTooltip = ({
   placement,
   children,
 }: TutorialTooltipProps) => {
+  const sx: SxProps = (theme: Theme) => ({
+    "zIndex": 100,
+    "maxWidth": `calc(100vw - ${theme.spacing(4)})`,
+    "transition": "opacity ease 500ms",
+    "&[data-popper-reference-hidden]": {
+      opacity: 0,
+    },
+  });
+
   const content = (
     <Stack direction="row" alignItems="center" gap={0.5}>
       {Icon && (
@@ -34,7 +44,6 @@ const TutorialTooltip = ({
     return (
       <Tooltip
         arrow
-        disablePortal
         size="md"
         variant="solid"
         color="primary"
@@ -50,13 +59,13 @@ const TutorialTooltip = ({
             options: { padding: 16 },
           },
         ]}
-        sx={(theme) => ({
-          "maxWidth": `calc(100vw - ${theme.spacing(4)})`,
-          "transition": "opacity ease 500ms",
-          "&[data-popper-reference-hidden]": {
-            opacity: 0,
-          },
-        })}
+        // For some reason, sx prop is passed down to
+        // children, which is avoided by using slots
+        slotProps={{
+          // @ts-expect-error: even if not declared, sx is supported here
+          root: { sx },
+          arrow: { sx },
+        }}
       >
         {children}
       </Tooltip>
