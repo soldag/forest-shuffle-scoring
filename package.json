@@ -1,7 +1,7 @@
 {
   "name": "forest-shuffle-scoring",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://soldag.github.io/forest-shuffle-scoring",
   "type": "module",
   "scripts": {
