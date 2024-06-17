@@ -77,6 +77,7 @@ const ForestCard = forwardRef<HTMLDivElement, ForestCardProps>(
               card.types,
               hasHorizontalSplit(card) ? "horizontal" : "vertical",
             ),
+            "cursor": "pointer",
             "fontSize": theme.fontSize[size],
             "height":
               compact || hasHorizontalSplit(card) ? "auto" : CARD_HEIGHT[size],
