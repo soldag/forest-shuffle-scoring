@@ -1,8 +1,9 @@
 name: NodeJS
 
 on:
-  - push
-  - release
+  push:
+    branches: "*"
+  release:
 
 env:
   NEXT_TELEMETRY_DISABLED: 1
