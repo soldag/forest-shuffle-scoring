@@ -4,6 +4,7 @@ on:
   push:
     branches: "*"
   release:
+    types: [released]
 
 env:
   NEXT_TELEMETRY_DISABLED: 1
