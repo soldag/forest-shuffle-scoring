@@ -156,7 +156,7 @@ const ForestView = requireGame(({ game }) => {
   };
 
   return (
-    <View disableGutters header={<Header />} footer={<Footer />}>
+    <View disableGutters fullWidth header={<Header />} footer={<Footer />}>
       <Box
         sx={{
           height: "100%",

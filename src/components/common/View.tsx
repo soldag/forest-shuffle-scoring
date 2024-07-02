@@ -8,12 +8,14 @@ import { mergeSx } from "@/utils/sx";
 interface ContentContainerProps {
   children: ReactNode;
   disableGutters?: boolean;
+  fullWidth?: boolean;
   sx?: SxProps;
 }
 
 const ContentContainer = ({
   children,
   disableGutters = false,
+  fullWidth = false,
   sx,
 }: ContentContainerProps) => (
   <Box
@@ -24,9 +26,13 @@ const ContentContainer = ({
       p: disableGutters ? 0 : 2,
     })}
   >
-    <Container disableGutters sx={{ flexGrow: 1 }}>
-      {children}
-    </Container>
+    {fullWidth ? (
+      children
+    ) : (
+      <Container disableGutters sx={{ flexGrow: 1 }}>
+        {children}
+      </Container>
+    )}
   </Box>
 );
 
@@ -35,6 +41,7 @@ interface ViewProps {
   footer?: ReactNode;
   children?: ReactNode;
   disableGutters?: boolean;
+  fullWidth?: boolean;
 }
 
 const View = ({
@@ -42,6 +49,7 @@ const View = ({
   footer,
   children,
   disableGutters = false,
+  fullWidth = false,
 }: ViewProps) => (
   <Sheet
     sx={{
@@ -75,6 +83,7 @@ const View = ({
         zIndex: 1,
       }}
       disableGutters={disableGutters}
+      fullWidth={fullWidth}
     >
       {children}
     </ContentContainer>
