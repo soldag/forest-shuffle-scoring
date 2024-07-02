@@ -29,6 +29,7 @@ const SnapContainer = forwardRef<HTMLElement, SnapContainerProps>(
       ref={ref}
       sx={{
         display: "flex",
+        flexShrink: 0,
         justifyContent: "center",
         p: 2,
         minWidth: { xs: "100vw", sm: 0 },
