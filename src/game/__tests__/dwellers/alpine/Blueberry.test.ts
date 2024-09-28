@@ -19,7 +19,7 @@ describe("A Blueberry card", () => {
   ])(
     "scores %i points for %i unique bird cards",
     (expectedPoints, birdCount) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Blueberry),
         otherDwellers: createFakeDwellers(birdCount, DwellerPosition.Bottom, {
           types: [CardType.Bird],
@@ -31,7 +31,7 @@ describe("A Blueberry card", () => {
       const points = Blueberry.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 
@@ -40,7 +40,7 @@ describe("A Blueberry card", () => {
   );
 
   it("ignores duplicate birds when scoring", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(Blueberry),
       otherDwellers: createFakeDwellers(10, DwellerPosition.Bottom, {
         types: [CardType.Bird],
@@ -52,7 +52,7 @@ describe("A Blueberry card", () => {
     const points = Blueberry.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

@@ -17,7 +17,7 @@ describe("A Capercaillie card", () => {
     [2, 2],
     [5, 5],
   ])("scores %i points for %i plant cards", (expectedPoints, plantCount) => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(Capercaillie),
       otherDwellers: createFakeDwellers(plantCount, DwellerPosition.Bottom, {
         types: [CardType.Plant],
@@ -28,7 +28,7 @@ describe("A Capercaillie card", () => {
     const points = Capercaillie.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

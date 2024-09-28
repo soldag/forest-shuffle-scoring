@@ -1,3 +1,5 @@
+import { filterTrees } from "@/game/helpers";
+
 import {
   CardType,
   DwellerCardBlueprint,
@@ -39,8 +41,8 @@ const blueprint: DwellerCardBlueprint = {
     },
   ],
   score: ({ forest }) => {
-    const fullyOccupiedTrees = forest.trees.filter((t) =>
-      Object.values(t.dwellers).every((d) => d.length > 0),
+    const fullyOccupiedTrees = filterTrees(forest.woodyPlants).filter((w) =>
+      Object.values(w.dwellers).every((d) => d.length > 0),
     );
 
     return fullyOccupiedTrees.length * pointsPerTree;

@@ -59,11 +59,11 @@ const ForestSummary = ({ forest, onChange }: ForestSummaryProps) => {
       <CardCount
         label={
           <FormattedMessage
-            id="ForestView.ForestSummary.labels.trees"
-            defaultMessage="Trees:"
+            id="ForestView.ForestSummary.labels.woodyPlants"
+            defaultMessage="Woody plants:"
           />
         }
-        value={forest.trees.length}
+        value={forest.woodyPlants.length}
       />
       <CardCount
         label={

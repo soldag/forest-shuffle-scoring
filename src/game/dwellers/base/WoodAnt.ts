@@ -29,8 +29,8 @@ const blueprint: DwellerCardBlueprint = {
     },
   ],
   score: ({ forest }) =>
-    forest.trees.flatMap((t) => t.dwellers[DwellerPosition.Bottom]).length *
-    pointsPerBottomCard,
+    forest.woodyPlants.flatMap((w) => w.dwellers[DwellerPosition.Bottom])
+      .length * pointsPerBottomCard,
 };
 
 export default blueprint;

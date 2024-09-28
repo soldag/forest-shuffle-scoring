@@ -4,8 +4,12 @@ import { BeechMarten } from "@/game/dwellers";
 import { createDweller } from "@/game/factory";
 import { DwellerPosition } from "@/game/types";
 
-import { createFakeDwellers, createFakeTree } from "../../fake";
-import { addDwellersToTree, createForestWith, createGame } from "../../helpers";
+import { createFakeDwellers, createFakeWoodyPlant } from "../../fake";
+import {
+  addDwellersToWoodyPlant,
+  createForestWith,
+  createGame,
+} from "../../helpers";
 
 describe("A Beech Marten card", () => {
   it.each([
@@ -21,20 +25,20 @@ describe("A Beech Marten card", () => {
         (v) => v.position === DwellerPosition.Right,
       )!;
       const dweller = createDweller(BeechMarten, variant);
-      const tree = addDwellersToTree(
-        createFakeTree(),
+      const woodyPlant = addDwellersToWoodyPlant(
+        createFakeWoodyPlant(),
         ...createFakeDwellers(top, DwellerPosition.Top),
         ...createFakeDwellers(bottom, DwellerPosition.Bottom),
         ...createFakeDwellers(left, DwellerPosition.Left),
         dweller,
       );
-      const forest = createForestWith({ trees: [tree] });
+      const forest = createForestWith({ woodyPlants: [woodyPlant] });
       const game = createGame(forest);
 
       const points = BeechMarten.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

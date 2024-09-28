@@ -10,8 +10,8 @@ import {
   CardType,
   DwellerCard,
   DwellerPosition,
-  TreeCard,
   TreeSymbol,
+  WoodyPlantCard,
 } from "@/game";
 import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
@@ -123,7 +123,7 @@ export const Dweller: Story = {
   },
 };
 
-export const Tree: Story = {
+export const WoodyPlant: Story = {
   args: {
     action: "add",
     open: false,
@@ -192,7 +192,7 @@ export const Tree: Story = {
           [DwellerPosition.Right]: [],
         },
       },
-    ] as TreeCard[],
+    ] as WoodyPlantCard[],
     onClose: fn(),
     onSelectCard: fn(),
     onRemoveCard: fn(),

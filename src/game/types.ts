@@ -55,7 +55,7 @@ export interface DwellerCard extends Card {
   modifiers: DwellerModifiers;
 }
 
-export interface TreeCard extends Card {
+export interface WoodyPlantCard extends Card {
   dwellers: {
     [DwellerPosition.Top]: DwellerCard[];
     [DwellerPosition.Bottom]: DwellerCard[];
@@ -66,11 +66,11 @@ export interface TreeCard extends Card {
 
 export interface Deck {
   dwellers: DwellerCard[];
-  trees: TreeCard[];
+  woodyPlants: WoodyPlantCard[];
 }
 
 export interface Forest {
-  trees: TreeCard[];
+  woodyPlants: WoodyPlantCard[];
   caveCardCount: number;
 }
 
@@ -94,16 +94,16 @@ export interface CardBlueprint {
   count: number;
 }
 
-export interface TreeScoringArgs {
+export interface WoodyPlantScoringArgs {
   game: Game;
   forest: Forest;
-  tree: TreeCard;
+  woodyPlant: WoodyPlantCard;
 }
 
-export interface TreeCardBlueprint extends CardBlueprint {
+export interface WoodyPlantCardBlueprint extends CardBlueprint {
   treeSymbol?: TreeSymbol;
   isPartOfDeck: boolean;
-  score: (args: TreeScoringArgs) => number;
+  score: (args: WoodyPlantScoringArgs) => number;
 }
 
 export interface DwellerVariant {
@@ -115,7 +115,7 @@ export interface DwellerVariant {
 export interface DwellerScoringArgs {
   game: Game;
   forest: Forest;
-  tree: TreeCard;
+  woodyPlant: WoodyPlantCard;
   dweller: DwellerCard;
 }
 

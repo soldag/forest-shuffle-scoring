@@ -160,7 +160,7 @@
   "ForestView.ForestSummary.CardCount.count": "{value, plural, =1 {#{nbsp}Karte} other {#{nbsp}Karten}}",
   "ForestView.ForestSummary.labels.cave": "Höhle:",
   "ForestView.ForestSummary.labels.dwellers": "Bewohner:",
-  "ForestView.ForestSummary.labels.trees": "Bäume:",
+  "ForestView.ForestSummary.labels.woodyPlants": "Gehölz:",
   "FormValidation.maxLength": "Dieses Feld darf maximal {value} Zeichen enthalten.",
   "FormValidation.minLength": "Dieses Feld muss mindestens {value} Zeichen enthalten.",
   "FormValidation.pattern": "Dieser Wert ist ungültig.",

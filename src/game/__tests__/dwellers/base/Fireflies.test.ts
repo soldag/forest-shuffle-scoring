@@ -18,7 +18,7 @@ describe("A Fireflies card", () => {
     "scores %i points if there are %i Fireflies cards",
     (expectedPoints, count) => {
       const allDwellers = createAllDwellers(Fireflies);
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: allDwellers[0],
         otherDwellers: allDwellers.slice(1, count),
       });
@@ -27,7 +27,7 @@ describe("A Fireflies card", () => {
       const points = Fireflies.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 
@@ -38,7 +38,7 @@ describe("A Fireflies card", () => {
   it("scores 0 points if there's another Fireflies card with a smaller id", () => {
     const [dwellerUnderTest, ...otherDwellers] =
       createAllDwellers(Fireflies).reverse();
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest,
       otherDwellers,
     });
@@ -47,7 +47,7 @@ describe("A Fireflies card", () => {
     const points = Fireflies.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

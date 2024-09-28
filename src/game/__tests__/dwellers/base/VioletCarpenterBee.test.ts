@@ -11,7 +11,7 @@ import {
 
 describe("A Violet Carpenter Bee card", () => {
   it("scores 0 points in an empty forest", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(VioletCarpenterBee),
     });
     const game = createGame(forest);
@@ -19,7 +19,7 @@ describe("A Violet Carpenter Bee card", () => {
     const points = VioletCarpenterBee.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -27,7 +27,7 @@ describe("A Violet Carpenter Bee card", () => {
   });
 
   it("scores 0 points in a complete forest", () => {
-    const { dweller, tree, forest } = createCompleteForestWithDweller({
+    const { dweller, woodyPlant, forest } = createCompleteForestWithDweller({
       dwellerUnderTest: createAnyDweller(VioletCarpenterBee),
     });
     const game = createGame(forest);
@@ -35,7 +35,7 @@ describe("A Violet Carpenter Bee card", () => {
     const points = VioletCarpenterBee.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

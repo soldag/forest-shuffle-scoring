@@ -16,7 +16,7 @@ describe("A Gnat card", () => {
     [1, 1],
     [5, 5],
   ])("scores %i points if there are %i bat cards", (expectedPoints, count) => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(Gnat),
       otherDwellers: createFakeDwellers(count, DwellerPosition.Left, {
         types: [CardType.Bat],
@@ -27,7 +27,7 @@ describe("A Gnat card", () => {
     const points = Gnat.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

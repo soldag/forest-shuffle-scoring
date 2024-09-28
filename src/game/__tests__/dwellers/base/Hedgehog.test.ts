@@ -18,7 +18,7 @@ describe("A Hedgehog card", () => {
   ])(
     "scores %i points if there are %i butterfly cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Hedgehog),
         otherDwellers: createFakeDwellers(count, DwellerPosition.Top, {
           types: [CardType.Butterfly],
@@ -29,7 +29,7 @@ describe("A Hedgehog card", () => {
       const points = Hedgehog.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

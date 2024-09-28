@@ -1,16 +1,16 @@
 import * as Dwellers from "@/game/dwellers";
-import { createDweller, createTree, generateId } from "@/game/factory";
-import * as Trees from "@/game/trees";
+import { createDweller, createWoodyPlant, generateId } from "@/game/factory";
+import * as WoodyPlants from "@/game/woody-plants";
 
 import {
   DwellerCard,
   DwellerCardBlueprint,
   Forest,
   Game,
-  TreeCard,
-  TreeCardBlueprint,
+  WoodyPlantCard,
+  WoodyPlantCardBlueprint,
 } from "../types";
-import { createFakeTree } from "./fake";
+import { createFakeWoodyPlant } from "./fake";
 
 export const generateCardIds = (count: number) =>
   Array(count)
@@ -48,91 +48,102 @@ export const createDwellerSets = (
   return { dwellerUnderTest, otherDwellers };
 };
 
-export const createTrees = (blueprint: TreeCardBlueprint, count: number) =>
+export const createWoodyPlants = (
+  blueprint: WoodyPlantCardBlueprint,
+  count: number,
+) =>
   Array(count)
     .fill(0)
-    .map(() => createTree(blueprint));
+    .map(() => createWoodyPlant(blueprint));
 
-export const addDwellersToTree = (tree: TreeCard, ...dwellers: DwellerCard[]) =>
-  dwellers.reduce((tree, dweller) => {
+export const addDwellersToWoodyPlant = (
+  woodyPlant: WoodyPlantCard,
+  ...dwellers: DwellerCard[]
+) =>
+  dwellers.reduce((woodyPlant, dweller) => {
     return {
-      ...tree,
+      ...woodyPlant,
       dwellers: {
-        ...tree.dwellers,
-        [dweller.position]: [...tree.dwellers[dweller.position], dweller],
+        ...woodyPlant.dwellers,
+        [dweller.position]: [...woodyPlant.dwellers[dweller.position], dweller],
       },
     };
-  }, tree);
+  }, woodyPlant);
 
 export const createForestWith = ({
-  trees = [],
+  woodyPlants = [],
   dwellers = [],
   caveCardCount = 0,
 }: {
-  trees?: TreeCard[];
+  woodyPlants?: WoodyPlantCard[];
   dwellers?: DwellerCard[];
   caveCardCount?: number;
 }) => {
   for (const dweller of dwellers) {
-    const tree = addDwellersToTree(
-      trees.find((t) => t.dwellers[dweller.position].length === 0) ??
-        createFakeTree(),
+    const woodyPlant = addDwellersToWoodyPlant(
+      woodyPlants.find((w) => w.dwellers[dweller.position].length === 0) ??
+        createFakeWoodyPlant(),
       dweller,
     );
-    trees = [...trees.filter((t) => t.id !== tree.id), tree];
+    woodyPlants = [
+      ...woodyPlants.filter((w) => w.id !== woodyPlant.id),
+      woodyPlant,
+    ];
   }
 
-  return { trees, caveCardCount };
+  return { woodyPlants, caveCardCount };
 };
 
-export const createForestForTreeTest = ({
-  treeUnderTest,
-  otherTrees = [],
+export const createForestForWoodyPlantTest = ({
+  woodyPlantUnderTest,
+  otherWoodyPlants = [],
   dwellers = [],
   caveCardCount = 0,
 }: {
-  treeUnderTest: TreeCard;
-  otherTrees?: TreeCard[];
+  woodyPlantUnderTest: WoodyPlantCard;
+  otherWoodyPlants?: WoodyPlantCard[];
   dwellers?: DwellerCard[];
   caveCardCount?: number;
 }) => {
   const forest = createForestWith({
-    trees: [treeUnderTest, ...otherTrees],
+    woodyPlants: [woodyPlantUnderTest, ...otherWoodyPlants],
     dwellers,
     caveCardCount,
   });
 
   return {
     forest,
-    tree: forest.trees.find((t) => t.id === treeUnderTest.id)!,
+    woodyPlant: forest.woodyPlants.find(
+      (w) => w.id === woodyPlantUnderTest.id,
+    )!,
   };
 };
 
 export const createForestForDwellerTest = ({
   dwellerUnderTest,
-  treeUnderTest,
+  woodyPlantUnderTest,
   otherDwellers = [],
-  otherTrees = [],
+  otherWoodyPlants = [],
   caveCardCount = 0,
 }: {
   dwellerUnderTest: DwellerCard;
-  treeUnderTest?: TreeCard;
+  woodyPlantUnderTest?: WoodyPlantCard;
   otherDwellers?: DwellerCard[];
-  otherTrees?: TreeCard[];
+  otherWoodyPlants?: WoodyPlantCard[];
   caveCardCount?: number;
 }) => {
-  if (!treeUnderTest) {
-    [treeUnderTest, ...otherTrees] = otherTrees;
+  if (!woodyPlantUnderTest) {
+    [woodyPlantUnderTest, ...otherWoodyPlants] = otherWoodyPlants;
   }
-  treeUnderTest = addDwellersToTree(
-    treeUnderTest ?? createFakeTree(),
+  woodyPlantUnderTest = addDwellersToWoodyPlant(
+    woodyPlantUnderTest ?? createFakeWoodyPlant(),
     dwellerUnderTest,
   );
 
   return {
-    ...createForestForTreeTest({
-      treeUnderTest,
-      otherTrees,
+    ...createForestForWoodyPlantTest({
+      woodyPlantUnderTest,
+      otherWoodyPlants,
       dwellers: otherDwellers,
       caveCardCount,
     }),
@@ -143,12 +154,12 @@ export const createForestForDwellerTest = ({
 export function createCompleteForestWithDweller({
   dwellerUnderTest,
   filterDwellers = () => true,
-  filterTrees = () => true,
+  filterWoodyPlants = () => true,
 }: {
   dwellerUnderTest: DwellerCard;
   filterDwellers?: (dweller: DwellerCard) => boolean;
-  filterTrees?: (tree: TreeCard) => boolean;
-}): { dweller: DwellerCard; tree: TreeCard; forest: Forest } {
+  filterWoodyPlants?: (woodyPlant: WoodyPlantCard) => boolean;
+}): { dweller: DwellerCard; woodyPlant: WoodyPlantCard; forest: Forest } {
   const dwellers = Object.values(Dwellers)
     .flatMap((b) => b.variants.map((v) => createDweller(b, v)))
     .filter(filterDwellers)
@@ -158,21 +169,21 @@ export function createCompleteForestWithDweller({
         d.treeSymbol !== dwellerUnderTest?.treeSymbol,
     );
 
-  const trees = Object.values(Trees)
-    .map((b) => createTree(b))
-    .filter(filterTrees);
+  const woodyPlants = Object.values(WoodyPlants)
+    .map((b) => createWoodyPlant(b))
+    .filter(filterWoodyPlants);
 
   return createForestForDwellerTest({
     dwellerUnderTest,
     otherDwellers: dwellers,
-    otherTrees: trees,
+    otherWoodyPlants: woodyPlants,
   });
 }
 
 export const createGame: (...forests: Forest[]) => Game = (...forests) => ({
   id: generateId(),
   deck: {
-    trees: [],
+    woodyPlants: [],
     dwellers: [],
   },
   players: forests.map((forest, i) => ({

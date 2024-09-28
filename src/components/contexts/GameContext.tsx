@@ -6,15 +6,15 @@ import {
   addPlayer,
   createGame,
   playDweller,
-  playTree,
+  playWoodyPlant,
   removeDweller,
   removePlayer,
-  removeTree,
+  removeWoodyPlant,
 } from "@/game";
 import { createPlayer } from "@/game/factory";
 import {
   exchangeDweller,
-  exchangeTree,
+  exchangeWoodyPlant,
   setCaveCardCount,
 } from "@/game/operations";
 
@@ -94,13 +94,13 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
         ),
       };
 
-    case GameActionType.PlayTree:
+    case GameActionType.PlayWoodyPlant:
       return {
         ...state,
-        game: playTree(
+        game: playWoodyPlant(
           state.game,
           action.payload.playerId,
-          action.payload.tree,
+          action.payload.woodyPlant,
         ),
       };
 
@@ -110,18 +110,18 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
         game: playDweller(
           state.game,
           action.payload.playerId,
-          action.payload.treeId,
+          action.payload.woodyPlantId,
           action.payload.dweller,
         ),
       };
 
-    case GameActionType.ExchangeTree:
+    case GameActionType.ExchangeWoodyPlant:
       return {
         ...state,
-        game: exchangeTree(
+        game: exchangeWoodyPlant(
           state.game,
-          action.payload.oldTreeId,
-          action.payload.newTree,
+          action.payload.oldWoodyPlantId,
+          action.payload.newWoodyPlant,
         ),
       };
 
@@ -135,10 +135,10 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
         ),
       };
 
-    case GameActionType.RemoveTree:
+    case GameActionType.RemoveWoodyPlant:
       return {
         ...state,
-        game: removeTree(state.game, action.payload.treeId),
+        game: removeWoodyPlant(state.game, action.payload.woodyPlantId),
       };
 
     case GameActionType.RemoveDweller:

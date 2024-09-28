@@ -1,4 +1,4 @@
-import { DwellerCard, DwellerPosition, TreeCard } from "@/game";
+import { DwellerCard, DwellerPosition, WoodyPlantCard } from "@/game";
 
 export const CARD_HEIGHT = {
   sm: "259px",
@@ -18,8 +18,8 @@ export const isPositionX = (position: DwellerPosition) =>
 export const isPositionY = (position: DwellerPosition) =>
   [DwellerPosition.Top, DwellerPosition.Bottom].includes(position);
 
-export const hasHorizontalSplit = (card: DwellerCard | TreeCard) =>
+export const hasHorizontalSplit = (card: DwellerCard | WoodyPlantCard) =>
   "position" in card && isPositionY(card.position);
 
-export const hasVerticalSplit = (card: DwellerCard | TreeCard) =>
+export const hasVerticalSplit = (card: DwellerCard | WoodyPlantCard) =>
   "position" in card && isPositionX(card.position);

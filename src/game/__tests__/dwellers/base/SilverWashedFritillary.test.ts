@@ -47,7 +47,7 @@ describe("A Silver-Washed Fritillary card", () => {
         ],
         lengths,
       );
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest,
         otherDwellers,
       });
@@ -56,7 +56,7 @@ describe("A Silver-Washed Fritillary card", () => {
       const points = SilverWashedFritillary.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 
@@ -66,7 +66,7 @@ describe("A Silver-Washed Fritillary card", () => {
 
   it("scores 0 points if there's another butterfly with a smaller id", () => {
     const ids = generateCardIds(2).toSorted();
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: {
         ...createAnyDweller(SilverWashedFritillary),
         id: ids[1],
@@ -83,7 +83,7 @@ describe("A Silver-Washed Fritillary card", () => {
     const points = SilverWashedFritillary.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

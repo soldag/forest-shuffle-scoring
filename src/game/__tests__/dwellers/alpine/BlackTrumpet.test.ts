@@ -11,7 +11,7 @@ import {
 
 describe("A Black Trumpet card", () => {
   it("scores no points in an empty forest", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(BlackTrumpet),
     });
     const game = createGame(forest);
@@ -19,7 +19,7 @@ describe("A Black Trumpet card", () => {
     const points = BlackTrumpet.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -27,7 +27,7 @@ describe("A Black Trumpet card", () => {
   });
 
   it("scores no points in a complete forest", () => {
-    const { dweller, tree, forest } = createCompleteForestWithDweller({
+    const { dweller, woodyPlant, forest } = createCompleteForestWithDweller({
       dwellerUnderTest: createAnyDweller(BlackTrumpet),
     });
     const game = createGame(forest);
@@ -35,7 +35,7 @@ describe("A Black Trumpet card", () => {
     const points = BlackTrumpet.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

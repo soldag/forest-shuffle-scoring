@@ -1,6 +1,10 @@
 import _ from "lodash";
 
-import { getDwellersOfForest, getDwellersOfTree } from "../helpers";
+import {
+  filterTrees,
+  getDwellersOfForest,
+  getDwellersOfWoodyPlant,
+} from "../helpers";
 import { Card, CardType, Forest, Game, TreeSymbol } from "../types";
 
 interface CardFilter {
@@ -34,12 +38,12 @@ export const countTrees = (
   filter: CardFilter = {},
   { ignoreModifiers }: CountOptions = {},
 ): number => {
-  const trees = applyFilter(forest.trees, filter);
+  const trees = applyFilter(filterTrees(forest.woodyPlants), filter);
 
   let count = trees.length;
   if (!ignoreModifiers) {
     count += trees
-      .flatMap(getDwellersOfTree)
+      .flatMap(getDwellersOfWoodyPlant)
       .map((d) => d.modifiers.treeCount)
       .reduce((a, b) => a + b, 0);
   }
@@ -75,10 +79,8 @@ export const countTreeSymbols = (
 ): number => countCards(forest, { treeSymbols }, { ignoreModifiers: true });
 
 export const countTreeSpecies = (forest: Forest) => {
-  const treeSymbols = new Set(
-    forest.trees.map((t) => t.treeSymbol).filter((t) => !!t),
-  );
-  return treeSymbols.size;
+  const treeNames = new Set(filterTrees(forest.woodyPlants).map((w) => w.name));
+  return treeNames.size;
 };
 
 export const scoreByCardMajority = (
@@ -105,7 +107,7 @@ export const scoreSet = (
 ): number => {
   const filter = { names: [card.name] };
   const cards = [
-    ...applyFilter(forest.trees, filter),
+    ...applyFilter(forest.woodyPlants, filter),
     ...applyFilter(getDwellersOfForest(forest), filter),
   ];
 

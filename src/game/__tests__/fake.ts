@@ -5,8 +5,8 @@ import {
   DwellerCard,
   DwellerModifiers,
   DwellerPosition,
-  TreeCard,
   TreeSymbol,
+  WoodyPlantCard,
 } from "@/game/types";
 
 interface FakeDwellerOptionalArgs {
@@ -18,14 +18,14 @@ interface FakeDwellerOptionalArgs {
   uniqueName?: boolean;
 }
 
-interface FakeTreeOptionalArgs {
+interface FakeWoodyPlantOptionalArgs {
   types?: CardType[];
   treeSymbol?: TreeSymbol;
   isPartOfDeck?: boolean;
   uniqueName?: boolean;
 }
 
-const getFakeName = (type: "dweller" | "tree", unique: boolean) => {
+const getFakeName = (type: "dweller" | "woodyPlant", unique: boolean) => {
   let name = `FAKE_${type.toUpperCase()}`;
   if (unique) {
     name += `_${generateId()}`;
@@ -66,16 +66,16 @@ export const createFakeDwellers: (
     .fill(0)
     .map(() => createFakeDweller(position, optionalArgs));
 
-export const createFakeTree: (
-  optionalArgs?: FakeTreeOptionalArgs,
-) => TreeCard = ({
+export const createFakeWoodyPlant: (
+  optionalArgs?: FakeWoodyPlantOptionalArgs,
+) => WoodyPlantCard = ({
   types = [CardType.Tree],
   treeSymbol,
   isPartOfDeck = true,
   uniqueName = true,
 } = {}) => ({
   id: generateId(),
-  name: getFakeName("tree", uniqueName),
+  name: getFakeName("woodyPlant", uniqueName),
   types,
   treeSymbol,
   isPartOfDeck,
@@ -87,10 +87,10 @@ export const createFakeTree: (
   },
 });
 
-export const createFakeTrees: (
+export const createFakeWoodyPlants: (
   count: number,
-  optionalArgs?: FakeTreeOptionalArgs,
-) => TreeCard[] = (count, args) =>
+  optionalArgs?: FakeWoodyPlantOptionalArgs,
+) => WoodyPlantCard[] = (count, args) =>
   Array(count)
     .fill(0)
-    .map(() => createFakeTree(args));
+    .map(() => createFakeWoodyPlant(args));

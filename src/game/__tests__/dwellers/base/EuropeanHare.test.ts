@@ -18,7 +18,7 @@ describe("A European Hare card", () => {
     (expectedPoints, europeanHareCount, mountainHareCount) => {
       const allEuropeanHares = createAllDwellers(EuropeanHare);
       const allMountainHares = createAllDwellers(MountainHare);
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: allEuropeanHares[0],
         otherDwellers: [
           ...allMountainHares.slice(1, europeanHareCount),
@@ -30,7 +30,7 @@ describe("A European Hare card", () => {
       const points = EuropeanHare.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

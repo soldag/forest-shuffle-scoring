@@ -19,7 +19,7 @@ describe("An Alpine Marmot card", () => {
   ])(
     "scores %i points for %i unique plant cards",
     (expectedPoints, plantCount) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(AlpineMarmot),
         otherDwellers: createFakeDwellers(plantCount, DwellerPosition.Bottom, {
           types: [CardType.Plant],
@@ -31,7 +31,7 @@ describe("An Alpine Marmot card", () => {
       const points = AlpineMarmot.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 
@@ -40,7 +40,7 @@ describe("An Alpine Marmot card", () => {
   );
 
   it("ignores duplicate plants when scoring", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(AlpineMarmot),
       otherDwellers: createFakeDwellers(10, DwellerPosition.Bottom, {
         types: [CardType.Plant],
@@ -52,7 +52,7 @@ describe("An Alpine Marmot card", () => {
     const points = AlpineMarmot.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

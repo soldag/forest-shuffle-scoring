@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
 
 import * as Dwellers from "../../../dwellers";
-import * as Trees from "../../../trees";
 import { CardType, DwellerPosition } from "../../../types";
+import * as WoodyPlants from "../../../woody-plants";
 
 const genericCardTypes = [CardType.Alps];
 
@@ -57,7 +57,7 @@ describe("The dweller blueprint", () => {
           Object.values(Dwellers).filter((b) => b.name === blueprint.name),
         ).toHaveLength(1);
         expect(
-          Object.values(Trees).filter((b) => b.name === blueprint.name),
+          Object.values(WoodyPlants).filter((b) => b.name === blueprint.name),
         ).toHaveLength(0);
       });
 

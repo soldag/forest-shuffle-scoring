@@ -2,10 +2,10 @@ import { describe, expect, it } from "@jest/globals";
 
 import { DwellerPosition, TreeSymbol } from "@/game";
 import { RoeDeer } from "@/game/dwellers";
-import { createDweller, createTree } from "@/game/factory";
-import { Sapling } from "@/game/trees";
+import { createDweller, createWoodyPlant } from "@/game/factory";
+import { Sapling } from "@/game/woody-plants";
 
-import { createFakeDwellers, createFakeTree } from "../../fake";
+import { createFakeDwellers, createFakeWoodyPlant } from "../../fake";
 import {
   createCompleteForestWithDweller,
   createForestForDwellerTest,
@@ -22,17 +22,17 @@ describe("A Roe Deer card", () => {
   ])(
     "with %s symbol scores 3 points if there's no other cards with that symbol",
     (treeSymbol) => {
-      const { dweller, tree, forest } = createCompleteForestWithDweller({
+      const { dweller, woodyPlant, forest } = createCompleteForestWithDweller({
         dwellerUnderTest: createDweller(
           RoeDeer,
           RoeDeer.variants.find((v) => v.treeSymbol === treeSymbol)!,
         ),
         filterDwellers: (d) => d.treeSymbol !== treeSymbol,
-        filterTrees: (t) => t.treeSymbol !== treeSymbol,
+        filterWoodyPlants: (w) => w.treeSymbol !== treeSymbol,
       });
       const game = createGame(forest);
 
-      const points = RoeDeer.score({ game, forest, tree, dweller });
+      const points = RoeDeer.score({ game, forest, woodyPlant, dweller });
 
       expect(points).toBe(3);
     },
@@ -45,7 +45,7 @@ describe("A Roe Deer card", () => {
     [TreeSymbol.Birch, 18],
     [TreeSymbol.HorseChestnut, 21],
   ])("with %s symbol scores %i points", (treeSymbol, expectedPoints) => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createDweller(
         RoeDeer,
         RoeDeer.variants.find((v) => v.treeSymbol === treeSymbol)!,
@@ -67,18 +67,18 @@ describe("A Roe Deer card", () => {
           treeSymbol: TreeSymbol.HorseChestnut,
         }),
       ],
-      otherTrees: [
-        createTree(Sapling),
-        createFakeTree({ treeSymbol: TreeSymbol.Linden }),
-        createFakeTree({ treeSymbol: TreeSymbol.SilverFir }),
-        createFakeTree({ treeSymbol: TreeSymbol.Beech }),
-        createFakeTree({ treeSymbol: TreeSymbol.Birch }),
-        createFakeTree({ treeSymbol: TreeSymbol.HorseChestnut }),
+      otherWoodyPlants: [
+        createWoodyPlant(Sapling),
+        createFakeWoodyPlant({ treeSymbol: TreeSymbol.Linden }),
+        createFakeWoodyPlant({ treeSymbol: TreeSymbol.SilverFir }),
+        createFakeWoodyPlant({ treeSymbol: TreeSymbol.Beech }),
+        createFakeWoodyPlant({ treeSymbol: TreeSymbol.Birch }),
+        createFakeWoodyPlant({ treeSymbol: TreeSymbol.HorseChestnut }),
       ],
     });
     const game = createGame(forest);
 
-    const points = RoeDeer.score({ game, forest, tree, dweller });
+    const points = RoeDeer.score({ game, forest, woodyPlant, dweller });
 
     expect(points).toBe(expectedPoints);
   });

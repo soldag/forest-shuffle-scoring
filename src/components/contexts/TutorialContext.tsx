@@ -61,13 +61,15 @@ export const TutorialContextProvider = ({
     setShowSwipeToAddTreeTooltip(false);
   }, [gameId, wasCompleted]);
 
-  const hasTree = game?.players.some((p) => p.forest.trees.length > 0);
+  const hasWoodyPlant = game?.players.some(
+    (p) => p.forest.woodyPlants.length > 0,
+  );
   useEffect(() => {
-    if (showAddTreeTooltip && hasTree && !wasCompleted) {
+    if (showAddTreeTooltip && hasWoodyPlant && !wasCompleted) {
       setShowAddTreeTooltip(false);
       setShowAddDwellerTooltip(true);
     }
-  }, [showAddTreeTooltip, hasTree, wasCompleted]);
+  }, [showAddTreeTooltip, hasWoodyPlant, wasCompleted]);
 
   const dweller = game?.players?.flatMap((p) =>
     getDwellersOfForest(p.forest),
@@ -87,7 +89,9 @@ export const TutorialContextProvider = ({
     }
   }, [showExchangeCardTooltip, wasCompleted]);
 
-  const hasSecondTree = game?.players.some((p) => p.forest.trees.length > 1);
+  const hasSecondTree = game?.players.some(
+    (p) => p.forest.woodyPlants.length > 1,
+  );
   useEffect(() => {
     if (showSwipeToAddTreeTooltip && hasSecondTree && !wasCompleted) {
       setShowSwipeToAddTreeTooltip(false);

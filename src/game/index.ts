@@ -1,16 +1,16 @@
 export { createGame, createPlayer } from "./factory";
 export {
-  getDwellersOfTree,
+  getDwellersOfWoodyPlant,
   getDwellersOfForest,
   getDwellerCandidates,
-  getTreeCandidates,
+  getWoodyPlantCandidates,
 } from "./helpers";
 export {
   addPlayer,
   removePlayer,
-  playTree,
+  playWoodyPlant,
   playDweller,
-  removeTree,
+  removeWoodyPlant,
   removeDweller,
 } from "./operations";
 export { scorePlayer, scoreGame } from "./scoring/game";

@@ -18,7 +18,7 @@ describe("A Stag Beetle card", () => {
   ])(
     "scores %i points if there are %i pawed animal cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(StagBeetle),
         otherDwellers: createFakeDwellers(count, DwellerPosition.Left, {
           types: [CardType.PawedAnimal],
@@ -29,7 +29,7 @@ describe("A Stag Beetle card", () => {
       const points = StagBeetle.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

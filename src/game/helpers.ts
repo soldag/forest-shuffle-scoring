@@ -6,47 +6,45 @@ import {
   DwellerPosition,
   Forest,
   Game,
-  TreeCard,
+  WoodyPlantCard,
 } from "./types";
 
-export const getDwellersOfTree = (tree: TreeCard): DwellerCard[] =>
-  Object.values(tree.dwellers).flatMap((d) => d);
+export const getDwellersOfWoodyPlant = (
+  woodyPlant: WoodyPlantCard,
+): DwellerCard[] => Object.values(woodyPlant.dwellers).flatMap((d) => d);
 
 export const getDwellersOfForest = (forest: Forest) =>
-  forest.trees.flatMap(getDwellersOfTree);
-
-export const filterDwellers = (cards: Card[]) =>
-  cards.filter((c) => !c.types.includes(CardType.Tree)) as DwellerCard[];
+  forest.woodyPlants.flatMap(getDwellersOfWoodyPlant);
 
 export const filterTrees = (cards: Card[]) =>
-  cards.filter((c) => c.types.includes(CardType.Tree)) as TreeCard[];
+  cards.filter((c) => c.types.includes(CardType.Tree)) as WoodyPlantCard[];
 
-export const getTreeCandidates = (game: Game) => [
-  ...game.deck.trees,
+export const getWoodyPlantCandidates = (game: Game) => [
+  ...game.deck.woodyPlants,
   createSapling(),
 ];
 
 export const getDwellerCandidates = (
   game: Game,
-  treeId: string,
+  woodyPlantId: string,
   position: DwellerPosition | null = null,
   ignoreDweller: DwellerCard | null = null,
 ): DwellerCard[] => {
   if (!position) {
     return Object.values(DwellerPosition)
-      .map((p) => getDwellerCandidates(game, treeId, p, ignoreDweller))
+      .map((p) => getDwellerCandidates(game, woodyPlantId, p, ignoreDweller))
       .flat();
   }
 
-  const tree = Object.values(game.players)
-    .flatMap((f) => f.forest.trees)
-    .find((t) => t.id === treeId);
-  if (!tree) {
-    throw new Error("A tree with this id hasn't been played, yet.");
+  const woodyPlant = Object.values(game.players)
+    .flatMap((f) => f.forest.woodyPlants)
+    .find((w) => w.id === woodyPlantId);
+  if (!woodyPlant) {
+    throw new Error("A woody plant with this id hasn't been played, yet.");
   }
 
   const candidates = game.deck.dwellers.filter((d) => d.position === position);
-  const presentDwellers = tree.dwellers[position].filter(
+  const presentDwellers = woodyPlant.dwellers[position].filter(
     (d) => d.id !== ignoreDweller?.id,
   );
   if (presentDwellers.length === 0) {

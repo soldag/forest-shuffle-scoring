@@ -17,7 +17,7 @@ describe("An Alpine Newt card", () => {
     [4, 2],
     [10, 5],
   ])("scores %i points for %i insect cards", (expectedPoints, plantCount) => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(AlpineNewt),
       otherDwellers: createFakeDwellers(plantCount, DwellerPosition.Bottom, {
         types: [CardType.Insect],
@@ -28,7 +28,7 @@ describe("An Alpine Newt card", () => {
     const points = AlpineNewt.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

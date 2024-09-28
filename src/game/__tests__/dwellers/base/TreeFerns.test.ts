@@ -18,7 +18,7 @@ describe("A Tree Ferns card", () => {
   ])(
     "scores %i points if there are %i amphibian cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(TreeFerns),
         otherDwellers: createFakeDwellers(count, DwellerPosition.Bottom, {
           types: [CardType.Amphibian],
@@ -29,7 +29,7 @@ describe("A Tree Ferns card", () => {
       const points = TreeFerns.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

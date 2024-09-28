@@ -2,9 +2,9 @@ import { describe, expect, it } from "@jest/globals";
 import * as _ from "lodash-es";
 
 import { WildStrawberries } from "@/game/dwellers";
-import { createTree } from "@/game/factory";
-import * as Trees from "@/game/trees";
-import { Sapling } from "@/game/trees";
+import { createWoodyPlant } from "@/game/factory";
+import { CardType } from "@/game/types";
+import * as WoodyPlants from "@/game/woody-plants";
 
 import {
   createAnyDweller,
@@ -13,20 +13,21 @@ import {
 } from "../../helpers";
 
 describe("A Wild Strawberries card", () => {
-  // The Sapling does not count as species
-  const treeSpecies = Object.values(Trees).filter((t) => t !== Sapling);
+  const treeBlueprints = Object.values(WoodyPlants).filter((w) =>
+    w.types.includes(CardType.Tree),
+  );
 
   it("scores 10 points if forest has all tree species", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(WildStrawberries),
-      otherTrees: treeSpecies.map(createTree),
+      otherWoodyPlants: treeBlueprints.map(createWoodyPlant),
     });
     const game = createGame(forest);
 
     const points = WildStrawberries.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -36,14 +37,19 @@ describe("A Wild Strawberries card", () => {
   it.each(_.range(1, 7).map((x) => [x]))(
     "scores no points if forest has %i trees",
     (treeCount) => {
-      const trees = treeSpecies.slice(0, treeCount).map(createTree);
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const trees = treeBlueprints.slice(0, treeCount).map(createWoodyPlant);
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(WildStrawberries),
-        otherTrees: trees,
+        otherWoodyPlants: trees,
       });
       const game = createGame(forest);
 
-      const points = WildStrawberries.score({ game, forest, tree, dweller });
+      const points = WildStrawberries.score({
+        game,
+        forest,
+        woodyPlant,
+        dweller,
+      });
 
       expect(points).toBe(0);
     },

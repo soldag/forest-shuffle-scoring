@@ -4,8 +4,12 @@ import { EuropeanFatDormouse } from "@/game/dwellers";
 import { createDweller } from "@/game/factory";
 import { CardType, DwellerPosition } from "@/game/types";
 
-import { createFakeDweller, createFakeTree } from "../../fake";
-import { addDwellersToTree, createForestWith, createGame } from "../../helpers";
+import { createFakeDweller, createFakeWoodyPlant } from "../../fake";
+import {
+  addDwellersToWoodyPlant,
+  createForestWith,
+  createGame,
+} from "../../helpers";
 
 describe("A European Fat Dormouse card", () => {
   it.each([
@@ -35,14 +39,17 @@ describe("A European Fat Dormouse card", () => {
         dwellers = [...dwellers, oppositeDweller];
       }
 
-      const tree = addDwellersToTree(createFakeTree(), ...dwellers);
-      const forest = createForestWith({ trees: [tree] });
+      const woodyPlant = addDwellersToWoodyPlant(
+        createFakeWoodyPlant(),
+        ...dwellers,
+      );
+      const forest = createForestWith({ woodyPlants: [woodyPlant] });
       const game = createGame(forest);
 
       const points = EuropeanFatDormouse.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

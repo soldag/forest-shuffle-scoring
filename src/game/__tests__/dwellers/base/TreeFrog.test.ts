@@ -15,7 +15,7 @@ describe("A Tree Frog card", () => {
     [5, 1],
     [15, 3],
   ])("scores %i points if there are %i Gnat cards", (expectedPoints, count) => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(TreeFrog),
       otherDwellers: createAllDwellers(Gnat).slice(0, count),
     });
@@ -24,7 +24,7 @@ describe("A Tree Frog card", () => {
     const points = TreeFrog.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

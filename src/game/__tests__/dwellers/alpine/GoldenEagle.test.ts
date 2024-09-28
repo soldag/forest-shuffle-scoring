@@ -19,7 +19,7 @@ describe("A Golden Eagle card", () => {
   ])(
     "scores %i points for %i amphibian and %i pawed-animal cards",
     (expectedPoints, amphibianCount, pawedCount) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(GoldenEagle),
         otherDwellers: [
           ...createFakeDwellers(amphibianCount, DwellerPosition.Bottom, {
@@ -35,7 +35,7 @@ describe("A Golden Eagle card", () => {
       const points = GoldenEagle.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

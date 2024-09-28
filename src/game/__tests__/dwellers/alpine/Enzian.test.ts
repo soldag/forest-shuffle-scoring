@@ -19,7 +19,7 @@ describe("An Enzian card", () => {
   ])(
     "scores %i points for %i butterfly cards",
     (expectedPoints, butterflyCount) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Enzian),
         otherDwellers: createFakeDwellers(butterflyCount, DwellerPosition.Top, {
           types: [CardType.Butterfly],
@@ -30,7 +30,7 @@ describe("An Enzian card", () => {
       const points = Enzian.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

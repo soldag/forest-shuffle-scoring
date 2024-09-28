@@ -2,10 +2,7 @@ import * as _ from "lodash-es";
 import { v4 as uuidv4 } from "uuid";
 
 import * as Dwellers from "./dwellers";
-import * as Trees from "./trees";
-import { Sapling } from "./trees";
 import {
-  CardType,
   Deck,
   DwellerCard,
   DwellerCardBlueprint,
@@ -15,9 +12,11 @@ import {
   Forest,
   Game,
   Player,
-  TreeCard,
-  TreeCardBlueprint,
+  WoodyPlantCard,
+  WoodyPlantCardBlueprint,
 } from "./types";
+import * as WoodyPlants from "./woody-plants";
+import { Sapling } from "./woody-plants";
 
 export const generateId = () => uuidv4();
 
@@ -25,9 +24,6 @@ export const createDweller = (
   blueprint: DwellerCardBlueprint,
   variant: DwellerVariant,
 ): DwellerCard => {
-  if (blueprint.types.some((t) => t === CardType.Tree)) {
-    throw new TypeError("The blueprint must not be a tree blueprint");
-  }
   if (!blueprint.variants.includes(variant)) {
     throw new TypeError("The variant is invalid");
   }
@@ -45,12 +41,10 @@ export const createDweller = (
   return dweller;
 };
 
-export const createTree = (blueprint: TreeCardBlueprint): TreeCard => {
-  if (blueprint.types.every((t) => t !== CardType.Tree)) {
-    throw new TypeError("The blueprint must be a tree blueprint");
-  }
-
-  const tree: TreeCard = {
+export const createWoodyPlant = (
+  blueprint: WoodyPlantCardBlueprint,
+): WoodyPlantCard => {
+  const woodyPlant: WoodyPlantCard = {
     id: generateId(),
     name: blueprint.name,
     types: blueprint.types,
@@ -64,13 +58,13 @@ export const createTree = (blueprint: TreeCardBlueprint): TreeCard => {
     },
   };
 
-  return tree;
+  return woodyPlant;
 };
 
-export const createSapling = (): TreeCard => createTree(Sapling);
+export const createSapling = (): WoodyPlantCard => createWoodyPlant(Sapling);
 
 export const createForest = (caveCardCount: number = 0): Forest => ({
-  trees: [],
+  woodyPlants: [],
   caveCardCount,
 });
 
@@ -82,11 +76,11 @@ export const createDeck = (expansions: Expansion[] = []): Deck => ({
         _.times(variant.count, () => createDweller(blueprint, variant)),
       ),
     ),
-  trees: Object.values(Trees)
+  woodyPlants: Object.values(WoodyPlants)
     .filter((blueprint) => isFinite(blueprint.count))
     .filter(({ expansion }) => !expansion || expansions.includes(expansion))
     .flatMap((blueprint) =>
-      _.times(blueprint.count, () => createTree(blueprint)),
+      _.times(blueprint.count, () => createWoodyPlant(blueprint)),
     ),
 });
 

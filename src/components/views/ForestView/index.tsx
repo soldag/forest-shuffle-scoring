@@ -5,23 +5,23 @@ import { Box, Stack } from "@mui/joy";
 
 import {
   exchangeDweller,
-  exchangeTree,
+  exchangeWoodyPlant,
   playDweller,
-  playTree,
+  playWoodyPlant,
   removeDweller,
-  removeTree,
+  removeWoodyPlant,
 } from "@/actions/game";
 import CardDrawer from "@/components/common/CardDrawer";
-import TreeStack from "@/components/common/TreeStack";
 import View from "@/components/common/View";
+import WoodyPlantStack from "@/components/common/WoodyPlantStack";
 import SwipeToAddTreeTooltip from "@/components/common/tutorial/SwipeToAddTreeTooltip";
 import GameContext from "@/components/contexts/GameContext";
 import {
   DwellerCard,
   DwellerPosition,
-  TreeCard,
+  WoodyPlantCard,
   getDwellerCandidates,
-  getTreeCandidates,
+  getWoodyPlantCandidates,
 } from "@/game";
 import { requireGame } from "@/utils/hoc";
 
@@ -44,82 +44,99 @@ const useResponsiveSize = () => {
 const ForestView = requireGame(({ game }) => {
   const { playerId, dispatch } = useContext(GameContext);
 
-  const [isAddingTree, setIsAddingTree] = useState(false);
-  const [selectedTree, setSelectedTree] = useState<TreeCard | null>(null);
+  const [isAddingWoodyPlant, setIsAddingWoodyPlant] = useState(false);
+  const [selectedWoodyPlant, setSelectedWoodyPlant] =
+    useState<WoodyPlantCard | null>(null);
 
   const [isAddingDweller, setIsAddingDweller] = useState(false);
-  const [dwellerTreeId, setDwellerTreeId] = useState<string | null>();
+  const [dwellerWoodyPlantId, setDwellerWoodyPlantId] = useState<
+    string | null
+  >();
   const [dwellerPosition, setDwellerPosition] =
     useState<DwellerPosition | null>();
   const [selectedDweller, setSelectedDweller] = useState<DwellerCard | null>();
 
   const forest = game.players.find((p) => p.id === playerId)?.forest;
-  const treeOptions = useMemo(
-    () => [...getTreeCandidates(game), ...(selectedTree ? [selectedTree] : [])],
-    [game, selectedTree],
+  const woodyPlantOptions = useMemo(
+    () => [
+      ...getWoodyPlantCandidates(game),
+      ...(selectedWoodyPlant ? [selectedWoodyPlant] : []),
+    ],
+    [game, selectedWoodyPlant],
   );
   const dwellerOptions = useMemo(
     () => [
       ...(selectedDweller ? [selectedDweller] : []),
-      ...(game && dwellerTreeId && dwellerPosition
+      ...(game && dwellerWoodyPlantId && dwellerPosition
         ? getDwellerCandidates(
             game,
-            dwellerTreeId,
+            dwellerWoodyPlantId,
             dwellerPosition,
             selectedDweller,
           )
         : []),
     ],
-    [game, dwellerTreeId, dwellerPosition, selectedDweller],
+    [game, dwellerWoodyPlantId, dwellerPosition, selectedDweller],
   );
 
-  const treeStackSize = useResponsiveSize();
+  const WoodyPlantStackSize = useResponsiveSize();
 
-  const handleAddTree = () => {
-    setIsAddingTree(true);
+  const handleAddWoodyPlant = () => {
+    setIsAddingWoodyPlant(true);
   };
 
-  const handleSelectTree = (tree: TreeCard) => {
+  const handleSelectWoodyPlant = (woodyPlant: WoodyPlantCard) => {
     if (!playerId) return;
-    if (isAddingTree) {
-      setIsAddingTree(false);
-      dispatch(playTree({ playerId, tree }));
-    } else if (selectedTree) {
-      setSelectedTree(null);
+    if (isAddingWoodyPlant) {
+      setIsAddingWoodyPlant(false);
+      dispatch(playWoodyPlant({ playerId, woodyPlant }));
+    } else if (selectedWoodyPlant) {
+      setSelectedWoodyPlant(null);
       dispatch(
-        exchangeTree({ playerId, oldTreeId: selectedTree.id, newTree: tree }),
+        exchangeWoodyPlant({
+          playerId,
+          oldWoodyPlantId: selectedWoodyPlant.id,
+          newWoodyPlant: woodyPlant,
+        }),
       );
     }
   };
 
-  const handleRemoveTree = () => {
-    if (selectedTree && playerId) {
-      setSelectedTree(null);
-      dispatch(removeTree({ playerId, treeId: selectedTree.id }));
+  const handleRemoveWoodyPlant = () => {
+    if (selectedWoodyPlant && playerId) {
+      setSelectedWoodyPlant(null);
+      dispatch(
+        removeWoodyPlant({ playerId, woodyPlantId: selectedWoodyPlant.id }),
+      );
     }
   };
 
-  const handleTreeClick = (tree: TreeCard) => {
-    setSelectedTree(tree);
+  const handleWoodyPlantClick = (woodyPlant: WoodyPlantCard) => {
+    setSelectedWoodyPlant(woodyPlant);
   };
 
-  const handleCloseTreeDrawer = () => {
-    setIsAddingTree(false);
-    setSelectedTree(null);
+  const handleCloseWoodyPlantDrawer = () => {
+    setIsAddingWoodyPlant(false);
+    setSelectedWoodyPlant(null);
   };
 
-  const handleAddDweller = (treeId: string, position: DwellerPosition) => {
+  const handleAddDweller = (
+    woodyPlantId: string,
+    position: DwellerPosition,
+  ) => {
     setIsAddingDweller(true);
-    setDwellerTreeId(treeId);
+    setDwellerWoodyPlantId(woodyPlantId);
     setDwellerPosition(position);
   };
 
   const handleSelectDweller = (dweller: DwellerCard) => {
     if (!playerId) return;
 
-    if (isAddingDweller && dwellerTreeId) {
+    if (isAddingDweller && dwellerWoodyPlantId) {
       setIsAddingDweller(false);
-      dispatch(playDweller({ playerId, treeId: dwellerTreeId, dweller }));
+      dispatch(
+        playDweller({ playerId, woodyPlantId: dwellerWoodyPlantId, dweller }),
+      );
     } else if (selectedDweller) {
       setSelectedDweller(null);
       dispatch(
@@ -131,7 +148,7 @@ const ForestView = requireGame(({ game }) => {
       );
     }
 
-    setDwellerTreeId(null);
+    setDwellerWoodyPlantId(null);
     setDwellerPosition(null);
   };
 
@@ -142,8 +159,11 @@ const ForestView = requireGame(({ game }) => {
     }
   };
 
-  const handleDwellerClick = (tree: TreeCard, dweller: DwellerCard) => {
-    setDwellerTreeId(tree.id);
+  const handleDwellerClick = (
+    woodyPlant: WoodyPlantCard,
+    dweller: DwellerCard,
+  ) => {
+    setDwellerWoodyPlantId(woodyPlant.id);
     setDwellerPosition(dweller.position);
     setSelectedDweller(dweller);
   };
@@ -151,7 +171,7 @@ const ForestView = requireGame(({ game }) => {
   const handleCloseDwellerDrawer = () => {
     setIsAddingDweller(false);
     setSelectedDweller(null);
-    setDwellerTreeId(null);
+    setDwellerWoodyPlantId(null);
     setDwellerPosition(null);
   };
 
@@ -178,13 +198,13 @@ const ForestView = requireGame(({ game }) => {
           }}
         >
           <Box sx={{ flex: "1 1 0" }} />
-          <TreeStack
+          <WoodyPlantStack
             game={game!}
-            trees={forest?.trees || []}
-            size={treeStackSize}
-            onAddTree={handleAddTree}
+            woodyPlants={forest?.woodyPlants || []}
+            size={WoodyPlantStackSize}
+            onAddWoodyPlant={handleAddWoodyPlant}
             onAddDweller={handleAddDweller}
-            onTreeClick={handleTreeClick}
+            onWoodyPlantClick={handleWoodyPlantClick}
             onDwellerClick={handleDwellerClick}
           />
 
@@ -200,13 +220,13 @@ const ForestView = requireGame(({ game }) => {
       </Box>
 
       <CardDrawer
-        action={isAddingTree ? "add" : "exchange"}
-        open={isAddingTree || !!selectedTree}
-        onClose={handleCloseTreeDrawer}
-        cards={treeOptions}
-        selectedCard={selectedTree}
-        onSelectCard={handleSelectTree}
-        onRemoveCard={handleRemoveTree}
+        action={isAddingWoodyPlant ? "add" : "exchange"}
+        open={isAddingWoodyPlant || !!selectedWoodyPlant}
+        onClose={handleCloseWoodyPlantDrawer}
+        cards={woodyPlantOptions}
+        selectedCard={selectedWoodyPlant}
+        onSelectCard={handleSelectWoodyPlant}
+        onRemoveCard={handleRemoveWoodyPlant}
       />
       <CardDrawer
         action={isAddingDweller ? "add" : "exchange"}

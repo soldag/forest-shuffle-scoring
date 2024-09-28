@@ -32,7 +32,7 @@ describe("A Bechstein Bat card", () => {
   ])(
     "scores %i points if there %i other bat species",
     (expectedPoints, _, otherBatBlueprints) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(BechsteinsBat),
         otherDwellers: otherBatBlueprints.map(createAnyDweller),
       });
@@ -41,7 +41,7 @@ describe("A Bechstein Bat card", () => {
       const points = BechsteinsBat.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 
@@ -50,7 +50,7 @@ describe("A Bechstein Bat card", () => {
   );
 
   it("ignores multiple instances of the same bat", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(BechsteinsBat),
       otherDwellers: createAllDwellers(BarbastelleBat),
     });
@@ -59,7 +59,7 @@ describe("A Bechstein Bat card", () => {
     const points = BarbastelleBat.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

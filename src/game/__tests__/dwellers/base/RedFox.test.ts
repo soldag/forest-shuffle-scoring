@@ -4,9 +4,9 @@ import { DwellerPosition } from "@/game";
 import { EuropeanHare, RedFox } from "@/game/dwellers";
 import { createDweller } from "@/game/factory";
 
-import { createFakeTree } from "../../fake";
+import { createFakeWoodyPlant } from "../../fake";
 import {
-  addDwellersToTree,
+  addDwellersToWoodyPlant,
   createAllDwellers,
   createAnyDweller,
   createForestForDwellerTest,
@@ -22,7 +22,7 @@ describe("A Red Fox card", () => {
   ])(
     "scores %i points if there are %i European Hare cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(RedFox),
         otherDwellers: createAllDwellers(EuropeanHare).slice(0, count),
       });
@@ -31,7 +31,7 @@ describe("A Red Fox card", () => {
       const points = RedFox.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 
@@ -47,14 +47,18 @@ describe("A Red Fox card", () => {
     const otherDwellers = createAllDwellers(EuropeanHare)
       .filter((v) => v.position === DwellerPosition.Right)
       .slice(0, 2);
-    const tree = addDwellersToTree(createFakeTree(), dweller, ...otherDwellers);
-    const forest = createForestWith({ trees: [tree] });
+    const woodyPlant = addDwellersToWoodyPlant(
+      createFakeWoodyPlant(),
+      dweller,
+      ...otherDwellers,
+    );
+    const forest = createForestWith({ woodyPlants: [woodyPlant] });
     const game = createGame(forest);
 
     const points = RedFox.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

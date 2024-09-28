@@ -2,9 +2,9 @@ import { describe, expect, it } from "@jest/globals";
 
 import { CommonToad } from "@/game/dwellers";
 
-import { createFakeTree } from "../../fake";
+import { createFakeWoodyPlant } from "../../fake";
 import {
-  addDwellersToTree,
+  addDwellersToWoodyPlant,
   createAllDwellers,
   createAnyDweller,
   createForestForDwellerTest,
@@ -14,7 +14,7 @@ import {
 
 describe("A Common Toad card", () => {
   it("scores no points if it's the only card in its slot", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(CommonToad),
     });
     const game = createGame(forest);
@@ -22,7 +22,7 @@ describe("A Common Toad card", () => {
     const points = CommonToad.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -31,14 +31,18 @@ describe("A Common Toad card", () => {
 
   it("scores 5 points if it shares its slot with another Common Toad card", () => {
     const [dweller, otherDweller] = createAllDwellers(CommonToad);
-    const tree = addDwellersToTree(createFakeTree(), dweller!, otherDweller!);
-    const forest = createForestWith({ trees: [tree] });
+    const woodyPlant = addDwellersToWoodyPlant(
+      createFakeWoodyPlant(),
+      dweller!,
+      otherDweller!,
+    );
+    const forest = createForestWith({ woodyPlants: [woodyPlant] });
     const game = createGame(forest);
 
     const points = CommonToad.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller: dweller!,
     });
 

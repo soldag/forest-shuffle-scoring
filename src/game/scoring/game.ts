@@ -1,7 +1,8 @@
 import * as _ from "lodash-es";
 
+import { filterTrees } from "@/game/helpers";
+
 import * as Dwellers from "../dwellers";
-import * as Trees from "../trees";
 import {
   DwellerPosition,
   DwellerScoringArgs,
@@ -9,9 +10,10 @@ import {
   Game,
   GameScoring,
   PlayerScoring,
-  TreeCard,
-  TreeScoringArgs,
+  WoodyPlantCard,
+  WoodyPlantScoringArgs,
 } from "../types";
+import * as WoodyPlants from "../woody-plants";
 import { scoreCave } from "./cave";
 
 const scoreDweller = (args: DwellerScoringArgs): number => {
@@ -21,18 +23,18 @@ const scoreDweller = (args: DwellerScoringArgs): number => {
   return blueprint?.score(args) ?? 0;
 };
 
-const scoreDwellersOfTree = (
+const scoreDwellersOfWoodyPlant = (
   game: Game,
   forest: Forest,
-  tree: TreeCard,
+  woodyPlant: WoodyPlantCard,
   position: DwellerPosition,
 ): number =>
-  tree.dwellers[position]
+  woodyPlant.dwellers[position]
     .map((dweller) =>
       scoreDweller({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       }),
     )
@@ -43,18 +45,22 @@ const scoreDwellers = (
   forest: Forest,
   position: DwellerPosition,
 ): number =>
-  forest.trees
-    .flatMap((tree) => scoreDwellersOfTree(game, forest, tree, position))
+  forest.woodyPlants
+    .flatMap((woodyPlant) =>
+      scoreDwellersOfWoodyPlant(game, forest, woodyPlant, position),
+    )
     .reduce((a, b) => a + b, 0);
 
-const scoreTree = (args: TreeScoringArgs): number => {
-  const blueprint = Object.values(Trees).find((b) => b.name === args.tree.name);
+const scoreTree = (args: WoodyPlantScoringArgs): number => {
+  const blueprint = Object.values(WoodyPlants).find(
+    (b) => b.name === args.woodyPlant.name,
+  );
   return blueprint?.score(args) ?? 0;
 };
 
 const scoreTrees = (game: Game, forest: Forest): number =>
-  forest.trees
-    .map((tree) => scoreTree({ game, forest, tree }))
+  filterTrees(forest.woodyPlants)
+    .map((woodyPlant) => scoreTree({ game, forest, woodyPlant }))
     .reduce((a, b) => a + b, 0);
 
 export const scorePlayer = (game: Game, playerId: string): PlayerScoring => {

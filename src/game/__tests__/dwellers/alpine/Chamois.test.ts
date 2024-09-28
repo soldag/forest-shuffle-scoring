@@ -2,10 +2,10 @@ import { describe, expect, it } from "@jest/globals";
 
 import { DwellerPosition, TreeSymbol } from "@/game";
 import { Chamois } from "@/game/dwellers";
-import { createDweller, createTree } from "@/game/factory";
-import { Sapling } from "@/game/trees";
+import { createDweller, createWoodyPlant } from "@/game/factory";
+import { Sapling } from "@/game/woody-plants";
 
-import { createFakeDwellers, createFakeTree } from "../../fake";
+import { createFakeDwellers, createFakeWoodyPlant } from "../../fake";
 import {
   createCompleteForestWithDweller,
   createForestForDwellerTest,
@@ -20,17 +20,17 @@ describe("A Chamois card", () => {
   ])(
     "with %s symbol scores 3 points if there's no other cards with that symbol",
     (treeSymbol) => {
-      const { dweller, tree, forest } = createCompleteForestWithDweller({
+      const { dweller, woodyPlant, forest } = createCompleteForestWithDweller({
         dwellerUnderTest: createDweller(
           Chamois,
           Chamois.variants.find((v) => v.treeSymbol === treeSymbol)!,
         ),
         filterDwellers: (d) => d.treeSymbol !== treeSymbol,
-        filterTrees: (t) => t.treeSymbol !== treeSymbol,
+        filterWoodyPlants: (w) => w.treeSymbol !== treeSymbol,
       });
       const game = createGame(forest);
 
-      const points = Chamois.score({ game, forest, tree, dweller });
+      const points = Chamois.score({ game, forest, woodyPlant, dweller });
 
       expect(points).toBe(3);
     },
@@ -41,7 +41,7 @@ describe("A Chamois card", () => {
     [TreeSymbol.DouglasFir, 12],
     [TreeSymbol.SwissPine, 15],
   ])("with %s symbol scores %i points", (treeSymbol, expectedPoints) => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createDweller(
         Chamois,
         Chamois.variants.find((v) => v.treeSymbol === treeSymbol)!,
@@ -57,16 +57,16 @@ describe("A Chamois card", () => {
           treeSymbol: TreeSymbol.SwissPine,
         }),
       ],
-      otherTrees: [
-        createTree(Sapling),
-        createFakeTree({ treeSymbol: TreeSymbol.AlpineLarch }),
-        createFakeTree({ treeSymbol: TreeSymbol.DouglasFir }),
-        createFakeTree({ treeSymbol: TreeSymbol.SwissPine }),
+      otherWoodyPlants: [
+        createWoodyPlant(Sapling),
+        createFakeWoodyPlant({ treeSymbol: TreeSymbol.AlpineLarch }),
+        createFakeWoodyPlant({ treeSymbol: TreeSymbol.DouglasFir }),
+        createFakeWoodyPlant({ treeSymbol: TreeSymbol.SwissPine }),
       ],
     });
     const game = createGame(forest);
 
-    const points = Chamois.score({ game, forest, tree, dweller });
+    const points = Chamois.score({ game, forest, woodyPlant, dweller });
 
     expect(points).toBe(expectedPoints);
   });

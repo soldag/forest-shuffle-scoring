@@ -38,11 +38,11 @@ const blueprint: DwellerCardBlueprint = {
       count: 1,
     },
   ],
-  score: ({ tree, dweller }) => {
+  score: ({ woodyPlant, dweller }) => {
     const oppositeDwellers =
       dweller.position === DwellerPosition.Left
-        ? tree?.dwellers[DwellerPosition.Right]
-        : tree?.dwellers[DwellerPosition.Left];
+        ? woodyPlant?.dwellers[DwellerPosition.Right]
+        : woodyPlant?.dwellers[DwellerPosition.Left];
 
     return oppositeDwellers?.some((c) => c.types.includes(CardType.Bat))
       ? pointsWithBat

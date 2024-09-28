@@ -18,7 +18,7 @@ describe("A Wood Ant card", () => {
   ])(
     "scores %i points if there are %i other cards in any bottom slot",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(WoodAnt),
         otherDwellers: [
           createFakeDweller(DwellerPosition.Top),
@@ -32,7 +32,7 @@ describe("A Wood Ant card", () => {
       const points = WoodAnt.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

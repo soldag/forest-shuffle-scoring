@@ -17,7 +17,7 @@ describe("A Wild Boar card", () => {
   ])(
     "scores %i points if there are %i Squeaker cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(WildBoar),
         otherDwellers: createAllDwellers(Squeaker).slice(0, count),
       });
@@ -26,7 +26,7 @@ describe("A Wild Boar card", () => {
       const points = WildBoar.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

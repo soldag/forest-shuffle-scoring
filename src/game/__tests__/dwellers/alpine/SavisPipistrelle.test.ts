@@ -32,7 +32,7 @@ describe("A  Savi's Pipistrelle Bat card", () => {
   ])(
     "scores %i points if there %i other bat species",
     (expectedPoints, _, otherBatBlueprints) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(SavisPipistrelle),
         otherDwellers: otherBatBlueprints.map(createAnyDweller),
       });
@@ -41,7 +41,7 @@ describe("A  Savi's Pipistrelle Bat card", () => {
       const points = SavisPipistrelle.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 
@@ -50,7 +50,7 @@ describe("A  Savi's Pipistrelle Bat card", () => {
   );
 
   it("ignores multiple instances of the same bat", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(SavisPipistrelle),
       otherDwellers: createAllDwellers(BarbastelleBat),
     });
@@ -59,7 +59,7 @@ describe("A  Savi's Pipistrelle Bat card", () => {
     const points = SavisPipistrelle.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

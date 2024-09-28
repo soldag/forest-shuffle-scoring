@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
 import { RedSquirrel } from "@/game/dwellers";
-import { createTree } from "@/game/factory";
+import { createWoodyPlant } from "@/game/factory";
 import {
   Beech,
   Birch,
@@ -12,7 +12,7 @@ import {
   Sapling,
   SilverFir,
   Sycamore,
-} from "@/game/trees";
+} from "@/game/woody-plants";
 
 import {
   createAnyDweller,
@@ -32,15 +32,20 @@ describe("A Red Squirrel card", () => {
     [0, SilverFir.name, SilverFir],
     [0, Sycamore.name, Sycamore],
   ])(
-    "scores %i points on top on a %s tree",
-    (expectedPoints, _, treeBlueprint) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+    "scores %i points on top on a %s card",
+    (expectedPoints, _, woodyPlantBlueprint) => {
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(RedSquirrel),
-        treeUnderTest: createTree(treeBlueprint),
+        woodyPlantUnderTest: createWoodyPlant(woodyPlantBlueprint),
       });
       const game = createGame(forest);
 
-      const points = RedSquirrel.score({ game, forest, tree, dweller });
+      const points = RedSquirrel.score({
+        game,
+        forest,
+        woodyPlant,
+        dweller,
+      });
 
       expect(points).toBe(expectedPoints);
     },

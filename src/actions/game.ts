@@ -1,4 +1,4 @@
-import { DwellerCard, Expansion, TreeCard } from "@/game";
+import { DwellerCard, Expansion, WoodyPlantCard } from "@/game";
 
 export enum GameActionType {
   CreateGame = "CREATE_GAME",
@@ -6,11 +6,11 @@ export enum GameActionType {
   SelectPlayer = "SELECT_PLAYER",
   RemovePlayer = "REMOVE_PLAYER",
   SetCave = "SET_CAVE",
-  PlayTree = "PLAY_TREE",
+  PlayWoodyPlant = "PLAY_WOODY_PLANT",
   PlayDweller = "PLAY_DWELLER",
-  ExchangeTree = "EXCHANGE_TREE",
+  ExchangeWoodyPlant = "EXCHANGE_WOODY_PLANT",
   ExchangeDweller = "EXCHANGE_DWELLER",
-  RemoveTree = "REMOVE_TREE",
+  RemoveWoodyPlant = "REMOVE_WOODY_PLANT",
   RemoveDweller = "REMOVE_DWELLER",
 }
 
@@ -92,24 +92,26 @@ export const setCave = (payload: SetCavePayload): SetCaveAction => ({
   payload,
 });
 
-export interface PlayTreePayload {
+export interface PlayWoodyPlantPayload {
   playerId: string;
-  tree: TreeCard;
+  woodyPlant: WoodyPlantCard;
 }
 
-export interface PlayTreeAction {
-  type: GameActionType.PlayTree;
-  payload: PlayTreePayload;
+export interface PlayWoodyPlantAction {
+  type: GameActionType.PlayWoodyPlant;
+  payload: PlayWoodyPlantPayload;
 }
 
-export const playTree = (payload: PlayTreePayload): PlayTreeAction => ({
-  type: GameActionType.PlayTree,
+export const playWoodyPlant = (
+  payload: PlayWoodyPlantPayload,
+): PlayWoodyPlantAction => ({
+  type: GameActionType.PlayWoodyPlant,
   payload,
 });
 
 export interface PlayDwellerPayload {
   playerId: string;
-  treeId: string;
+  woodyPlantId: string;
   dweller: DwellerCard;
 }
 
@@ -125,21 +127,21 @@ export const playDweller = (
   payload,
 });
 
-export interface ExchangeTreePayload {
+export interface ExchangeWoodyPlantPayload {
   playerId: string;
-  oldTreeId: string;
-  newTree: TreeCard;
+  oldWoodyPlantId: string;
+  newWoodyPlant: WoodyPlantCard;
 }
 
-export interface ExchangeTreeAction {
-  type: GameActionType.ExchangeTree;
-  payload: ExchangeTreePayload;
+export interface ExchangeWoodyPlantAction {
+  type: GameActionType.ExchangeWoodyPlant;
+  payload: ExchangeWoodyPlantPayload;
 }
 
-export const exchangeTree = (
-  payload: ExchangeTreePayload,
-): ExchangeTreeAction => ({
-  type: GameActionType.ExchangeTree,
+export const exchangeWoodyPlant = (
+  payload: ExchangeWoodyPlantPayload,
+): ExchangeWoodyPlantAction => ({
+  type: GameActionType.ExchangeWoodyPlant,
   payload,
 });
 
@@ -161,18 +163,20 @@ export const exchangeDweller = (
   payload,
 });
 
-export interface RemoveTreePayload {
+export interface RemoveWoodyPlantPayload {
   playerId: string;
-  treeId: string;
+  woodyPlantId: string;
 }
 
-export interface RemoveTreeAction {
-  type: GameActionType.RemoveTree;
-  payload: RemoveTreePayload;
+export interface RemoveWoodyPlantAction {
+  type: GameActionType.RemoveWoodyPlant;
+  payload: RemoveWoodyPlantPayload;
 }
 
-export const removeTree = (payload: RemoveTreePayload): RemoveTreeAction => ({
-  type: GameActionType.RemoveTree,
+export const removeWoodyPlant = (
+  payload: RemoveWoodyPlantPayload,
+): RemoveWoodyPlantAction => ({
+  type: GameActionType.RemoveWoodyPlant,
   payload,
 });
 
@@ -199,9 +203,9 @@ export type GameAction =
   | RemovePlayerAction
   | SelectPlayerAction
   | SetCaveAction
-  | PlayTreeAction
+  | PlayWoodyPlantAction
   | PlayDwellerAction
-  | ExchangeTreeAction
+  | ExchangeWoodyPlantAction
   | ExchangeDwellerAction
-  | RemoveTreeAction
+  | RemoveWoodyPlantAction
   | RemoveDwellerAction;

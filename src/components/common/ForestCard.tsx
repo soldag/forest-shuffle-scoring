@@ -5,7 +5,7 @@ import { Card, CardContent } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
 import TutorialContext from "@/components/contexts/TutorialContext";
-import { DwellerCard, TreeCard } from "@/game/types";
+import { DwellerCard, WoodyPlantCard } from "@/game/types";
 import { getBackgroundForCardTypes } from "@/styles/colors";
 import {
   CARD_HEIGHT,
@@ -21,7 +21,7 @@ export type ForestCardSize = "sm" | "md" | "lg";
 
 interface ForestCardProps {
   attached?: ForestCardAttachPosition;
-  card: TreeCard | DwellerCard;
+  card: WoodyPlantCard | DwellerCard;
   children: ReactNode;
   compact?: boolean;
   onClick?: () => void;

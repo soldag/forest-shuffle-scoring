@@ -2,32 +2,38 @@ import { describe, expect, it } from "@jest/globals";
 
 import { GreatSpottedWoodpecker } from "@/game/dwellers";
 import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
-import { Sapling } from "@/game/trees";
 import { DwellerPosition } from "@/game/types";
+import { Sapling } from "@/game/woody-plants";
 
-import { createFakeDweller, createFakeTree, createFakeTrees } from "../../fake";
 import {
-  addDwellersToTree,
+  createFakeDweller,
+  createFakeWoodyPlant,
+  createFakeWoodyPlants,
+} from "../../fake";
+import {
+  addDwellersToWoodyPlant,
   createAnyDweller,
   createForestForDwellerTest,
   createForestWith,
   createGame,
-  createTrees,
+  createWoodyPlants,
 } from "../../helpers";
 
 describe("A Great Spotted Woodpecker card", () => {
   it("scores 10 points if forest has the most trees", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(GreatSpottedWoodpecker),
-      otherTrees: createFakeTrees(2),
+      otherWoodyPlants: createFakeWoodyPlants(2),
     });
-    const otherForest = createForestWith({ trees: createFakeTrees(1) });
+    const otherForest = createForestWith({
+      woodyPlants: createFakeWoodyPlants(1),
+    });
     const game = createGame(forest, otherForest);
 
     const points = GreatSpottedWoodpecker.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -35,16 +41,18 @@ describe("A Great Spotted Woodpecker card", () => {
   });
 
   it("scores 10 points if forest is tied for the most trees", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(GreatSpottedWoodpecker),
     });
-    const otherForest = createForestWith({ trees: createFakeTrees(1) });
+    const otherForest = createForestWith({
+      woodyPlants: createFakeWoodyPlants(1),
+    });
     const game = createGame(forest, otherForest);
 
     const points = GreatSpottedWoodpecker.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -52,16 +60,18 @@ describe("A Great Spotted Woodpecker card", () => {
   });
 
   it("scores no points if forest doesn't have the most trees", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(GreatSpottedWoodpecker),
     });
-    const otherForest = createForestWith({ trees: createFakeTrees(2) });
+    const otherForest = createForestWith({
+      woodyPlants: createFakeWoodyPlants(2),
+    });
     const game = createGame(forest, otherForest);
 
     const points = GreatSpottedWoodpecker.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -69,16 +79,18 @@ describe("A Great Spotted Woodpecker card", () => {
   });
 
   it("takes into account Sapling cards when scoring", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(GreatSpottedWoodpecker),
     });
-    const otherForest = createForestWith({ trees: createTrees(Sapling, 2) });
+    const otherForest = createForestWith({
+      woodyPlants: createWoodyPlants(Sapling, 2),
+    });
     const game = createGame(forest, otherForest);
 
     const points = GreatSpottedWoodpecker.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -86,11 +98,11 @@ describe("A Great Spotted Woodpecker card", () => {
   });
 
   it("takes into account cards increasing the tree count when scoring", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(GreatSpottedWoodpecker),
     });
-    const otherTree = addDwellersToTree(
-      createFakeTree(),
+    const otherWoodyPlant = addDwellersToWoodyPlant(
+      createFakeWoodyPlant(),
       createFakeDweller(DwellerPosition.Left, {
         modifiers: {
           ...DEFAULT_MODIFIERS,
@@ -98,13 +110,13 @@ describe("A Great Spotted Woodpecker card", () => {
         },
       }),
     );
-    const otherForest = createForestWith({ trees: [otherTree] });
+    const otherForest = createForestWith({ woodyPlants: [otherWoodyPlant] });
     const game = createGame(forest, otherForest);
 
     const points = GreatSpottedWoodpecker.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

@@ -51,8 +51,8 @@ const blueprint: DwellerCardBlueprint = {
       count: 1,
     },
   ],
-  score: ({ tree }) => {
-    const bottomDwellers = tree.dwellers[DwellerPosition.Bottom];
+  score: ({ woodyPlant }) => {
+    const bottomDwellers = woodyPlant.dwellers[DwellerPosition.Bottom];
     return bottomDwellers.filter((c) => c.name === name).length > 1
       ? pointsIfPaired
       : 0;

@@ -11,7 +11,7 @@ import {
   DwellerCard as DwellerCardType,
   DwellerPosition,
   Game,
-  TreeCard as TreeCardType,
+  WoodyPlantCard as WoodyPlantCardType,
   getDwellerCandidates,
 } from "@/game";
 
@@ -19,7 +19,7 @@ export type DwellerSlotSize = "sm" | "md" | "lg";
 
 interface DwellerSlotProps {
   game: Game;
-  tree: TreeCardType;
+  woodyPlant: WoodyPlantCardType;
   position: DwellerPosition;
   size?: DwellerSlotSize;
   onAdd?: () => void;
@@ -81,7 +81,7 @@ const getTooltipPlacement = (position: DwellerPosition) => {
 
 const DwellerSlot = ({
   game,
-  tree,
+  woodyPlant,
   position,
   size = "md",
   onAdd,
@@ -89,9 +89,9 @@ const DwellerSlot = ({
 }: DwellerSlotProps) => {
   const { exchangeCardTooltipTarget } = useContext(TutorialContext);
 
-  const dwellers = tree.dwellers[position];
+  const dwellers = woodyPlant.dwellers[position];
   const canAddDweller =
-    getDwellerCandidates(game, tree.id, position).length > 0;
+    getDwellerCandidates(game, woodyPlant.id, position).length > 0;
 
   return (
     <Stack direction={getDirection(position)}>

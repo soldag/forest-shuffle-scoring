@@ -1,10 +1,10 @@
-import { Oak } from "../../trees";
 import {
   CardType,
   DwellerCardBlueprint,
   DwellerPosition,
   TreeSymbol,
 } from "../../types";
+import { Oak } from "../../woody-plants";
 import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "RED_SQUIRREL";
@@ -39,7 +39,7 @@ const blueprint: DwellerCardBlueprint = {
       count: 1,
     },
   ],
-  score: ({ tree }) => (tree.name == Oak.name ? points : 0),
+  score: ({ woodyPlant }) => (woodyPlant.name == Oak.name ? points : 0),
 };
 
 export default blueprint;

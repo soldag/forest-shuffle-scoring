@@ -15,7 +15,7 @@ describe("A Bearded Vulture card", () => {
     [2, 2],
     [5, 5],
   ])("scores %i points with %i cave cards", (expectedPoints, caveCardCount) => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(BeardedVulture),
       caveCardCount,
     });
@@ -24,7 +24,7 @@ describe("A Bearded Vulture card", () => {
     const points = BeardedVulture.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

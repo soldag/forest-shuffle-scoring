@@ -1,10 +1,10 @@
-import { Beech } from "../../trees";
 import {
   CardType,
   DwellerCardBlueprint,
   DwellerPosition,
   TreeSymbol,
 } from "../../types";
+import { Beech } from "../../woody-plants";
 import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "CHAFFINCH";
@@ -34,7 +34,8 @@ const blueprint: DwellerCardBlueprint = {
       count: 2,
     },
   ],
-  score: ({ tree }) => (tree.name === Beech.name ? pointsOnBeech : 0),
+  score: ({ woodyPlant }) =>
+    woodyPlant.name === Beech.name ? pointsOnBeech : 0,
 };
 
 export default blueprint;

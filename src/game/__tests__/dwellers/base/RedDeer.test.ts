@@ -3,18 +3,18 @@ import { describe, expect, it } from "@jest/globals";
 import { CardType, DwellerPosition } from "@/game";
 import { RedDeer } from "@/game/dwellers";
 import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
-import { Sapling } from "@/game/trees";
+import { Sapling } from "@/game/woody-plants";
 
 import {
   createFakeDweller,
   createFakeDwellers,
-  createFakeTrees,
+  createFakeWoodyPlants,
 } from "../../fake";
 import {
   createAnyDweller,
   createForestForDwellerTest,
   createGame,
-  createTrees,
+  createWoodyPlants,
 } from "../../helpers";
 
 describe("A Red Deer card", () => {
@@ -25,19 +25,19 @@ describe("A Red Deer card", () => {
   ])(
     "scores %i points for %i plant and %i tree cards",
     (expectedPoints, plantCount, treeCount) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(RedDeer),
         otherDwellers: createFakeDwellers(plantCount, DwellerPosition.Bottom, {
           types: [CardType.Plant],
         }),
-        otherTrees: createFakeTrees(treeCount),
+        otherWoodyPlants: createFakeWoodyPlants(treeCount),
       });
       const game = createGame(forest);
 
       const points = RedDeer.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 
@@ -46,16 +46,16 @@ describe("A Red Deer card", () => {
   );
 
   it("takes into account Sapling cards when scoring", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(RedDeer),
-      otherTrees: createTrees(Sapling, 2),
+      otherWoodyPlants: createWoodyPlants(Sapling, 2),
     });
     const game = createGame(forest);
 
     const points = RedDeer.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -63,7 +63,7 @@ describe("A Red Deer card", () => {
   });
 
   it("ignores cards increasing the tree count when scoring", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(RedDeer),
       otherDwellers: [
         createFakeDweller(DwellerPosition.Left, {
@@ -79,7 +79,7 @@ describe("A Red Deer card", () => {
     const points = RedDeer.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

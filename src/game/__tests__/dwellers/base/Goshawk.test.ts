@@ -18,7 +18,7 @@ describe("A Goshawk card", () => {
   ])(
     "scores %i points if there are %i other bird cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Goshawk),
         otherDwellers: createFakeDwellers(count, DwellerPosition.Top, {
           types: [CardType.Bird],
@@ -29,7 +29,7 @@ describe("A Goshawk card", () => {
       const points = Goshawk.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

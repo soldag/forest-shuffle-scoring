@@ -6,8 +6,8 @@ import {
   Forest,
   Game,
   Player,
-  TreeCard,
-  getDwellersOfTree,
+  WoodyPlantCard,
+  getDwellersOfWoodyPlant,
 } from "@/game";
 
 const requirePlayer = (game: Game, playerId: string): Player => {
@@ -19,17 +19,17 @@ const requirePlayer = (game: Game, playerId: string): Player => {
   return player;
 };
 
-const findTree = (
+const findWoodyPlant = (
   game: Game,
-  treeId: string,
+  woodyPlantId: string,
 ):
-  | { forest: Forest; tree: TreeCard; index: number }
+  | { forest: Forest; woodyPlant: WoodyPlantCard; index: number }
   | Record<string, never> => {
   for (const { forest } of game.players) {
-    const index = forest.trees.findIndex((t) => t.id === treeId);
+    const index = forest.woodyPlants.findIndex((w) => w.id === woodyPlantId);
     if (index >= 0) {
-      const tree = forest.trees[index];
-      return { forest, tree, index };
+      const woodyPlant = forest.woodyPlants[index];
+      return { forest, woodyPlant, index };
     }
   }
 
@@ -40,15 +40,20 @@ const findDweller = (
   game: Game,
   dwellerId: string,
 ):
-  | { forest: Forest; tree: TreeCard; dweller: DwellerCard; index: number }
+  | {
+      forest: Forest;
+      woodyPlant: WoodyPlantCard;
+      dweller: DwellerCard;
+      index: number;
+    }
   | Record<string, never> => {
   for (const { forest } of game.players) {
-    for (const tree of forest.trees) {
-      for (const dwellers of Object.values(tree.dwellers)) {
+    for (const woodyPlant of forest.woodyPlants) {
+      for (const dwellers of Object.values(woodyPlant.dwellers)) {
         const index = dwellers.findIndex((d) => d.id === dwellerId);
         if (index >= 0) {
           const dweller = dwellers[index];
-          return { forest, tree, dweller, index };
+          return { forest, woodyPlant, dweller, index };
         }
       }
     }
@@ -57,8 +62,8 @@ const findDweller = (
   return {};
 };
 
-const clearTree = (tree: TreeCard): TreeCard => ({
-  ...tree,
+const clearWoodyPlant = (woodyPlant: WoodyPlantCard): WoodyPlantCard => ({
+  ...woodyPlant,
   dwellers: {
     [DwellerPosition.Top]: [],
     [DwellerPosition.Bottom]: [],
@@ -79,7 +84,10 @@ export const addPlayer = (game: Game, player: Player) =>
 export const removePlayer = (game: Game, playerId: string) => {
   const player = requirePlayer(game, playerId);
   return produce(
-    player.forest.trees.reduce((game, tree) => removeTree(game, tree.id), game),
+    player.forest.woodyPlants.reduce(
+      (game, woodyPlant) => removeWoodyPlant(game, woodyPlant.id),
+      game,
+    ),
     (draft) => {
       draft.players = draft.players.filter((p) => p.id !== playerId);
     },
@@ -92,30 +100,40 @@ export const setCaveCardCount = (game: Game, playerId: string, count: number) =>
     player.forest.caveCardCount = count;
   });
 
-export const playTree = (game: Game, playerId: string, tree: TreeCard): Game =>
+export const playWoodyPlant = (
+  game: Game,
+  playerId: string,
+  woodyPlant: WoodyPlantCard,
+): Game =>
   produce(game, (draft) => {
     const player = requirePlayer(draft, playerId);
-    player.forest.trees.push(tree);
+    player.forest.woodyPlants.push(woodyPlant);
 
-    if (tree.isPartOfDeck) {
-      draft.deck.trees = draft.deck.trees.filter((t) => t.id !== tree.id);
+    if (woodyPlant.isPartOfDeck) {
+      draft.deck.woodyPlants = draft.deck.woodyPlants.filter(
+        (wp) => wp.id !== woodyPlant.id,
+      );
     }
   });
 
 export const playDweller = (
   game: Game,
   playerId: string,
-  treeId: string,
+  woodyPlantId: string,
   dweller: DwellerCard,
 ) =>
   produce(game, (draft) => {
     const player = requirePlayer(draft, playerId);
-    const tree = player.forest.trees.find((t) => t.id === treeId);
-    if (!tree) {
-      throw new Error(`Tree with ID ${treeId} was not found in forest`);
+    const woodyPlant = player.forest.woodyPlants.find(
+      (wp) => wp.id === woodyPlantId,
+    );
+    if (!woodyPlant) {
+      throw new Error(
+        `Woody plant with ID ${woodyPlantId} was not found in forest`,
+      );
     }
 
-    tree.dwellers[dweller.position].push(dweller);
+    woodyPlant.dwellers[dweller.position].push(dweller);
 
     if (dweller.isPartOfDeck) {
       draft.deck.dwellers = draft.deck.dwellers.filter(
@@ -124,27 +142,33 @@ export const playDweller = (
     }
   });
 
-export const exchangeTree = (
+export const exchangeWoodyPlant = (
   game: Game,
-  oldTreeId: string,
-  newTree: TreeCard,
+  oldWoodyPlantId: string,
+  newWoodyPlant: WoodyPlantCard,
 ) =>
   produce(game, (draft) => {
-    const { forest, tree: oldTree, index } = findTree(draft, oldTreeId);
-    if (!oldTree) {
-      throw new Error(`Tree with ID ${oldTreeId} was not found`);
+    const {
+      forest,
+      woodyPlant: oldWoodyPlant,
+      index,
+    } = findWoodyPlant(draft, oldWoodyPlantId);
+    if (!oldWoodyPlant) {
+      throw new Error(`Woody plant with ID ${oldWoodyPlantId} was not found`);
     }
 
-    forest.trees[index] = {
-      ...newTree,
-      dwellers: oldTree.dwellers,
+    forest.woodyPlants[index] = {
+      ...newWoodyPlant,
+      dwellers: oldWoodyPlant.dwellers,
     };
 
-    if (oldTree.isPartOfDeck) {
-      draft.deck.trees.push(clearTree(oldTree));
+    if (oldWoodyPlant.isPartOfDeck) {
+      draft.deck.woodyPlants.push(clearWoodyPlant(oldWoodyPlant));
     }
-    if (newTree.isPartOfDeck) {
-      draft.deck.trees = draft.deck.trees.filter((t) => t.id !== newTree.id);
+    if (newWoodyPlant.isPartOfDeck) {
+      draft.deck.woodyPlants = draft.deck.woodyPlants.filter(
+        (w) => w.id !== newWoodyPlant.id,
+      );
     }
   });
 
@@ -155,7 +179,7 @@ export const exchangeDweller = (
 ) =>
   produce(game, (draft) => {
     const {
-      tree,
+      woodyPlant,
       dweller: oldDweller,
       index,
     } = findDweller(draft, oldDwellerId);
@@ -163,7 +187,7 @@ export const exchangeDweller = (
       throw new Error(`Dweller with ID ${oldDwellerId} was not found`);
     }
 
-    tree.dwellers[oldDweller.position][index] = newDweller;
+    woodyPlant.dwellers[oldDweller.position][index] = newDweller;
 
     if (oldDweller.isPartOfDeck) {
       draft.deck.dwellers.push(oldDweller);
@@ -175,31 +199,34 @@ export const exchangeDweller = (
     }
   });
 
-export const removeTree = (game: Game, treeId: string) =>
+export const removeWoodyPlant = (game: Game, woodyPlantId: string) =>
   produce(game, (draft) => {
-    const { forest, tree } = findTree(draft, treeId);
-    if (!tree) {
-      throw new Error(`Tree with ID ${treeId} was not found`);
+    const { forest, woodyPlant } = findWoodyPlant(draft, woodyPlantId);
+    if (!woodyPlant) {
+      throw new Error(`Woody plant with ID ${woodyPlantId} was not found`);
     }
 
-    forest.trees = forest.trees.filter((t) => t.id !== treeId);
+    forest.woodyPlants = forest.woodyPlants.filter(
+      (w) => w.id !== woodyPlantId,
+    );
 
-    if (tree.isPartOfDeck) {
-      draft.deck.trees.push(clearTree(tree));
+    if (woodyPlant.isPartOfDeck) {
+      draft.deck.woodyPlants.push(clearWoodyPlant(woodyPlant));
     }
     draft.deck.dwellers.push(
-      ...getDwellersOfTree(tree).filter((d) => d.isPartOfDeck),
+      ...getDwellersOfWoodyPlant(woodyPlant).filter((d) => d.isPartOfDeck),
     );
   });
 
 export const removeDweller = (game: Game, dwellerId: string) =>
   produce(game, (draft) => {
-    const { tree, dweller } = findDweller(draft, dwellerId);
+    const { woodyPlant, dweller } = findDweller(draft, dwellerId);
     if (!dweller) {
       throw new Error(`Dweller with ID ${dwellerId} was not found`);
     }
 
-    tree.dwellers[dweller.position] = tree.dwellers[dweller.position].filter(
+    const { dwellers } = woodyPlant;
+    dwellers[dweller.position] = dwellers[dweller.position].filter(
       (d) => d.id !== dweller.id,
     );
 

@@ -11,7 +11,7 @@ import {
 
 describe("A Edelweiss card", () => {
   it("scores 3 points in an empty forest", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(Edelweiss),
     });
     const game = createGame(forest);
@@ -19,7 +19,7 @@ describe("A Edelweiss card", () => {
     const points = Edelweiss.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -27,7 +27,7 @@ describe("A Edelweiss card", () => {
   });
 
   it("scores 3 points in a complete forest", () => {
-    const { dweller, tree, forest } = createCompleteForestWithDweller({
+    const { dweller, woodyPlant, forest } = createCompleteForestWithDweller({
       dwellerUnderTest: createAnyDweller(Edelweiss),
     });
     const game = createGame(forest);
@@ -35,7 +35,7 @@ describe("A Edelweiss card", () => {
     const points = Edelweiss.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 

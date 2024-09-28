@@ -17,7 +17,7 @@ describe("A Lynx card", () => {
   ])(
     "scores %i points if there are %i Roe Deer cards",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Lynx),
         otherDwellers: createAllDwellers(RoeDeer).slice(0, count),
       });
@@ -26,7 +26,7 @@ describe("A Lynx card", () => {
       const points = Lynx.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 

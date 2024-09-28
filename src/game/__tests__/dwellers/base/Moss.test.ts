@@ -2,15 +2,15 @@ import { describe, expect, it } from "@jest/globals";
 
 import { Moss } from "@/game/dwellers";
 import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
-import { Sapling } from "@/game/trees";
 import { DwellerPosition } from "@/game/types";
+import { Sapling } from "@/game/woody-plants";
 
-import { createFakeDweller, createFakeTrees } from "../../fake";
+import { createFakeDweller, createFakeWoodyPlants } from "../../fake";
 import {
   createAnyDweller,
   createForestForDwellerTest,
   createGame,
-  createTrees,
+  createWoodyPlants,
 } from "../../helpers";
 
 describe("A Moss card", () => {
@@ -22,16 +22,16 @@ describe("A Moss card", () => {
   ])(
     "scores %i points if forest has at least %i trees",
     (expectedPoints, count) => {
-      const { dweller, tree, forest } = createForestForDwellerTest({
+      const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Moss),
-        otherTrees: createFakeTrees(count),
+        otherWoodyPlants: createFakeWoodyPlants(count),
       });
       const game = createGame(forest);
 
       const points = Moss.score({
         game,
         forest,
-        tree,
+        woodyPlant,
         dweller,
       });
 
@@ -40,16 +40,16 @@ describe("A Moss card", () => {
   );
 
   it("takes into account Sapling cards when scoring", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(Moss),
-      otherTrees: createTrees(Sapling, 10),
+      otherWoodyPlants: createWoodyPlants(Sapling, 10),
     });
     const game = createGame(forest);
 
     const points = Moss.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
@@ -57,7 +57,7 @@ describe("A Moss card", () => {
   });
 
   it("takes into account cards increasing the tree count when scoring", () => {
-    const { dweller, tree, forest } = createForestForDwellerTest({
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(Moss),
       otherDwellers: [
         createFakeDweller(DwellerPosition.Left, {
@@ -67,14 +67,14 @@ describe("A Moss card", () => {
           },
         }),
       ],
-      otherTrees: createFakeTrees(9),
+      otherWoodyPlants: createFakeWoodyPlants(9),
     });
     const game = createGame(forest);
 
     const points = Moss.score({
       game,
       forest,
-      tree,
+      woodyPlant,
       dweller,
     });
 
