@@ -1,4 +1,4 @@
-import { countTrees } from "../../scoring/helpers";
+import { countCards } from "../../scoring/helpers";
 import {
   CardType,
   DwellerCardBlueprint,
@@ -30,7 +30,8 @@ const blueprint: DwellerCardBlueprint = {
       count: 2,
     },
   ],
-  score: ({ forest }) => (countTrees(forest) >= minTreeCount ? points : 0),
+  score: ({ forest }) =>
+    countCards(forest, { types: [CardType.Tree] }) >= minTreeCount ? points : 0,
 };
 
 export default blueprint;

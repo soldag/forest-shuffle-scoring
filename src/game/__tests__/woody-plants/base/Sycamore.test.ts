@@ -2,19 +2,19 @@ import { describe, expect, it } from "@jest/globals";
 
 import { DwellerPosition } from "@/game";
 import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
-import { createWoodyPlant } from "@/game/factory";
 import { Sapling, Sycamore } from "@/game/woody-plants";
 
 import { createFakeDweller, createFakeWoodyPlants } from "../../fake";
 import {
   addDwellersToWoodyPlant,
+  createAnyWoodyPlant,
   createForestWith,
   createGame,
 } from "../../helpers";
 
 describe("A Sycamore card", () => {
   it("scores 1 point if there are no other trees", () => {
-    const woodyPlant = createWoodyPlant(Sycamore);
+    const woodyPlant = createAnyWoodyPlant(Sycamore);
     const forest = createForestWith({ woodyPlants: [woodyPlant] });
     const game = createGame(forest);
 
@@ -24,7 +24,7 @@ describe("A Sycamore card", () => {
   });
 
   it("scores 3 points if there are 3 trees", () => {
-    const woodyPlant = createWoodyPlant(Sycamore);
+    const woodyPlant = createAnyWoodyPlant(Sycamore);
     const otherWoodyPlants = createFakeWoodyPlants(2);
     const forest = createForestWith({
       woodyPlants: [woodyPlant, ...otherWoodyPlants],
@@ -37,8 +37,8 @@ describe("A Sycamore card", () => {
   });
 
   it("scores for Saplings", () => {
-    const woodyPlant = createWoodyPlant(Sycamore);
-    const otherWoodyPlant = createWoodyPlant(Sapling);
+    const woodyPlant = createAnyWoodyPlant(Sycamore);
+    const otherWoodyPlant = createAnyWoodyPlant(Sapling);
     const forest = createForestWith({
       woodyPlants: [woodyPlant, otherWoodyPlant],
     });
@@ -51,7 +51,7 @@ describe("A Sycamore card", () => {
 
   it("ignores cards increasing the tree count when scoring", () => {
     const woodyPlant = addDwellersToWoodyPlant(
-      createWoodyPlant(Sycamore),
+      createAnyWoodyPlant(Sycamore),
       createFakeDweller(DwellerPosition.Left, {
         modifiers: {
           ...DEFAULT_MODIFIERS,

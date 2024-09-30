@@ -43,6 +43,19 @@ describe.each([
             isExpectedInDeck ? blueprint.count : 0,
           );
         });
+
+        it.each(blueprint.variants)(
+          "of variant ($treeSymbol) in the correct quantity",
+          (variant) => {
+            const woodyPlantsOfVariant = woodyPlants.filter(
+              (wp) => wp.treeSymbol === variant.treeSymbol,
+            );
+
+            expect(woodyPlantsOfVariant.length).toBe(
+              isExpectedInDeck ? variant.count : 0,
+            );
+          },
+        );
       },
     );
 

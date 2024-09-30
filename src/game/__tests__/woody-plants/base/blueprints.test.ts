@@ -17,18 +17,41 @@ describe("The woody plant blueprint", () => {
         ).toHaveLength(1);
       });
 
-      it("has tree card type", () => {
-        expect(blueprint.types).toContain(CardType.Tree);
+      it("has at least one card type", () => {
+        expect(blueprint.types).not.toHaveLength(0);
       });
 
-      if (blueprint === Sapling) {
-        it("has no tree symbol", () => {
-          expect(blueprint.treeSymbol).toBeUndefined();
+      it("has woody plant card type", () => {
+        expect(blueprint.types.every((t) => t === CardType.Tree)).toBe(true);
+      });
+
+      it("has distinct variants", () => {
+        const distinctCount = new Set(
+          blueprint.variants.map((v) => v.treeSymbol),
+        ).size;
+        expect(distinctCount).toBe(blueprint.variants.length);
+      });
+
+      it("has count that matches variants", () => {
+        expect(blueprint.count).toBe(
+          blueprint.variants.map((v) => v.count).reduce((a, b) => a + b, 0),
+        );
+      });
+
+      if (blueprint.types.includes(CardType.Tree)) {
+        it("has exactly one variant", () => {
+          expect(blueprint.variants.length).toBe(1);
         });
-      } else {
-        it("has a matching tree symbol", () => {
-          expect(blueprint.treeSymbol).toBe(blueprint.name);
-        });
+
+        if (blueprint === Sapling) {
+          it("has no tree symbol", () => {
+            expect(blueprint.variants[0].treeSymbol).toBeUndefined();
+          });
+        } else {
+          it("has a matching tree symbol", () => {
+            expect(blueprint.variants[0].treeSymbol).toBe(blueprint.name);
+          });
+        }
       }
     });
   }

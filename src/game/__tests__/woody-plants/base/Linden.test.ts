@@ -1,13 +1,13 @@
 import { describe, expect, it } from "@jest/globals";
 
 import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
-import { createWoodyPlant } from "@/game/factory";
 import { DwellerPosition } from "@/game/types";
 import { Linden } from "@/game/woody-plants";
 
 import { createFakeDweller } from "../../fake";
 import {
   addDwellersToWoodyPlant,
+  createAnyWoodyPlant,
   createForestWith,
   createGame,
   createWoodyPlants,
@@ -52,7 +52,7 @@ describe("A Linden card", () => {
 
   it("takes into account cards increasing the tree count when scoring", () => {
     const otherWoodyPlant = addDwellersToWoodyPlant(
-      createWoodyPlant(Linden),
+      createAnyWoodyPlant(Linden),
       createFakeDweller(DwellerPosition.Left, {
         modifiers: {
           ...DEFAULT_MODIFIERS,

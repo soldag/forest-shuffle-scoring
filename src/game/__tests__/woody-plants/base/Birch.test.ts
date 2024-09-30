@@ -1,13 +1,16 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createWoodyPlant } from "@/game/factory";
 import { Birch } from "@/game/woody-plants";
 
-import { createForestWith, createGame } from "../../helpers";
+import {
+  createAnyWoodyPlant,
+  createForestWith,
+  createGame,
+} from "../../helpers";
 
 describe("A Birch card", () => {
   it("always scores 1 point", () => {
-    const woodyPlant = createWoodyPlant(Birch);
+    const woodyPlant = createAnyWoodyPlant(Birch);
     const forest = createForestWith({ woodyPlants: [woodyPlant] });
     const game = createGame(forest);
 

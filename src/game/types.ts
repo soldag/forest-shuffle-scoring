@@ -101,9 +101,14 @@ export interface WoodyPlantScoringArgs {
 }
 
 export interface WoodyPlantCardBlueprint extends CardBlueprint {
-  treeSymbol?: TreeSymbol;
+  variants: WoodyPlantVariant[];
   isPartOfDeck: boolean;
   score: (args: WoodyPlantScoringArgs) => number;
+}
+
+export interface WoodyPlantVariant {
+  treeSymbol?: TreeSymbol;
+  count: number;
 }
 
 export interface DwellerVariant {

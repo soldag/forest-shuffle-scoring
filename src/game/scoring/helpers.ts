@@ -33,16 +33,19 @@ const applyFilter = <Type extends Card>(
   return distinctNames ? _.uniqBy(result, (c) => c.name) : result;
 };
 
-export const countTrees = (
+export const countCards = (
   forest: Forest,
   filter: CardFilter = {},
   { ignoreModifiers }: CountOptions = {},
 ): number => {
-  const trees = applyFilter(filterTrees(forest.woodyPlants), filter);
+  const cards = applyFilter(
+    [...forest.woodyPlants, ...getDwellersOfForest(forest)],
+    filter,
+  );
 
-  let count = trees.length;
+  let count = cards.length;
   if (!ignoreModifiers) {
-    count += trees
+    count += filterTrees(cards)
       .flatMap(getDwellersOfWoodyPlant)
       .map((d) => d.modifiers.treeCount)
       .reduce((a, b) => a + b, 0);
@@ -50,18 +53,6 @@ export const countTrees = (
 
   return count;
 };
-
-export const countDwellers = (
-  forest: Forest,
-  filter: CardFilter = {},
-): number => applyFilter(getDwellersOfForest(forest), filter).length;
-
-export const countCards = (
-  forest: Forest,
-  filter: CardFilter = {},
-  options: CountOptions = {},
-): number =>
-  countTrees(forest, filter, options) + countDwellers(forest, filter);
 
 export const countCardNames = (forest: Forest, names: string[]): number =>
   countCards(forest, { names }, { ignoreModifiers: false });

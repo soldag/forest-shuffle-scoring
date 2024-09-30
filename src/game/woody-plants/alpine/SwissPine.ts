@@ -7,16 +7,22 @@ import {
 } from "../../types";
 
 const name = "SWISS_PINE";
+const count = 7;
 const pointsPerAlpsCard = 1;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
   expansion: Expansion.Alpine,
   types: [CardType.Alps, CardType.Tree],
-  treeSymbol: TreeSymbol.SwissPine,
   cost: 2,
-  count: 7,
+  count,
   isPartOfDeck: true,
+  variants: [
+    {
+      treeSymbol: TreeSymbol.SwissPine,
+      count,
+    },
+  ],
   score: ({ forest }) =>
     countCardTypes(forest, [CardType.Alps]) * pointsPerAlpsCard,
 };

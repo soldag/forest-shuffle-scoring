@@ -14,6 +14,7 @@ import {
   Player,
   WoodyPlantCard,
   WoodyPlantCardBlueprint,
+  WoodyPlantVariant,
 } from "./types";
 import * as WoodyPlants from "./woody-plants";
 import { Sapling } from "./woody-plants";
@@ -43,12 +44,17 @@ export const createDweller = (
 
 export const createWoodyPlant = (
   blueprint: WoodyPlantCardBlueprint,
+  variant: WoodyPlantVariant,
 ): WoodyPlantCard => {
+  if (!blueprint.variants.includes(variant)) {
+    throw new TypeError("The variant is invalid");
+  }
+
   const woodyPlant: WoodyPlantCard = {
     id: generateId(),
     name: blueprint.name,
     types: blueprint.types,
-    treeSymbol: blueprint.treeSymbol,
+    treeSymbol: variant.treeSymbol,
     isPartOfDeck: blueprint.isPartOfDeck,
     dwellers: {
       [DwellerPosition.Top]: [],
@@ -61,7 +67,8 @@ export const createWoodyPlant = (
   return woodyPlant;
 };
 
-export const createSapling = (): WoodyPlantCard => createWoodyPlant(Sapling);
+export const createSapling = (): WoodyPlantCard =>
+  createWoodyPlant(Sapling, Sapling.variants[0]);
 
 export const createForest = (caveCardCount: number = 0): Forest => ({
   woodyPlants: [],
@@ -80,7 +87,9 @@ export const createDeck = (expansions: Expansion[] = []): Deck => ({
     .filter((blueprint) => isFinite(blueprint.count))
     .filter(({ expansion }) => !expansion || expansions.includes(expansion))
     .flatMap((blueprint) =>
-      _.times(blueprint.count, () => createWoodyPlant(blueprint)),
+      blueprint.variants.flatMap((variant) =>
+        _.times(variant.count, () => createWoodyPlant(blueprint, variant)),
+      ),
     ),
 });
 

@@ -2,6 +2,7 @@ import { scoreSet } from "../../scoring/helpers";
 import { CardType, TreeSymbol, WoodyPlantCardBlueprint } from "../../types";
 
 const name = "HORSE_CHESTNUT";
+const count = 11;
 const pointsByCount = {
   1: 1,
   2: 4,
@@ -15,10 +16,15 @@ const pointsByCount = {
 const blueprint: WoodyPlantCardBlueprint = {
   name,
   types: [CardType.Tree],
-  treeSymbol: TreeSymbol.HorseChestnut,
   cost: 2,
-  count: 11,
+  count,
   isPartOfDeck: true,
+  variants: [
+    {
+      treeSymbol: TreeSymbol.HorseChestnut,
+      count,
+    },
+  ],
   score: ({ forest, woodyPlant }) =>
     scoreSet(forest, woodyPlant, pointsByCount),
 };

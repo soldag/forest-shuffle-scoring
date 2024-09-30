@@ -2,16 +2,22 @@ import { countCardNames } from "../../scoring/helpers";
 import { CardType, TreeSymbol, WoodyPlantCardBlueprint } from "../../types";
 
 const name = "BEECH";
+const count = 10;
 const minCount = 4;
 const pointsPerCard = 5;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
   types: [CardType.Tree],
-  treeSymbol: TreeSymbol.Beech,
   cost: 1,
-  count: 10,
+  count,
   isPartOfDeck: true,
+  variants: [
+    {
+      treeSymbol: TreeSymbol.Beech,
+      count,
+    },
+  ],
   score: ({ forest }) => {
     return countCardNames(forest, [name]) >= minCount ? pointsPerCard : 0;
   },

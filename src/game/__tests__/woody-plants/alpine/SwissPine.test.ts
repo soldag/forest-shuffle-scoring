@@ -1,11 +1,14 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createWoodyPlant } from "@/game/factory";
 import { CardType, DwellerPosition } from "@/game/types";
 import { SwissPine } from "@/game/woody-plants";
 
 import { createFakeDwellers, createFakeWoodyPlants } from "../../fake";
-import { createForestForWoodyPlantTest, createGame } from "../../helpers";
+import {
+  createAnyWoodyPlant,
+  createForestForWoodyPlantTest,
+  createGame,
+} from "../../helpers";
 
 describe("A Swiss Pine card", () => {
   it.each([
@@ -19,11 +22,12 @@ describe("A Swiss Pine card", () => {
       const otherWoodyPlants = createFakeWoodyPlants(woodyPlantCount, {
         types: [CardType.Alps],
       });
+      expect(otherWoodyPlants.length).toBe(woodyPlantCount);
       const dwellers = createFakeDwellers(dwellerCount, DwellerPosition.Left, {
         types: [CardType.Alps],
       });
       const { woodyPlant, forest } = createForestForWoodyPlantTest({
-        woodyPlantUnderTest: createWoodyPlant(SwissPine),
+        woodyPlantUnderTest: createAnyWoodyPlant(SwissPine),
         otherWoodyPlants,
         dwellers,
       });

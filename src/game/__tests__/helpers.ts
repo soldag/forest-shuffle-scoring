@@ -29,6 +29,9 @@ export const createAllDwellers = (blueprint: DwellerCardBlueprint) =>
 export const createAnyDweller = (blueprint: DwellerCardBlueprint) =>
   createDweller(blueprint, blueprint.variants[0]!);
 
+export const createAnyWoodyPlant = (blueprint: WoodyPlantCardBlueprint) =>
+  createWoodyPlant(blueprint, blueprint.variants[0]);
+
 export const createDwellerSets = (
   blueprintUnderTest: DwellerCardBlueprint,
   otherBlueprints: DwellerCardBlueprint[],
@@ -54,7 +57,7 @@ export const createWoodyPlants = (
 ) =>
   Array(count)
     .fill(0)
-    .map(() => createWoodyPlant(blueprint));
+    .map(() => createAnyWoodyPlant(blueprint));
 
 export const addDwellersToWoodyPlant = (
   woodyPlant: WoodyPlantCard,
@@ -170,7 +173,7 @@ export function createCompleteForestWithDweller({
     );
 
   const woodyPlants = Object.values(WoodyPlants)
-    .map((b) => createWoodyPlant(b))
+    .map((b) => createAnyWoodyPlant(b))
     .filter(filterWoodyPlants);
 
   return createForestForDwellerTest({

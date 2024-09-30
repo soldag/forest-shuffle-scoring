@@ -1,12 +1,12 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { createWoodyPlant } from "@/game/factory";
 import { DwellerPosition } from "@/game/types";
 import { SilverFir } from "@/game/woody-plants";
 
 import { createFakeDwellers } from "../../fake";
 import {
   addDwellersToWoodyPlant,
+  createAnyWoodyPlant,
   createForestWith,
   createGame,
 } from "../../helpers";
@@ -23,7 +23,7 @@ describe("A Silver Fir card", () => {
     "scores %i points with %i dwellers on top, %i on the bottom, %i on the left and %i on the right",
     (expectedPoints, top, bottom, left, right) => {
       const woodyPlant = addDwellersToWoodyPlant(
-        createWoodyPlant(SilverFir),
+        createAnyWoodyPlant(SilverFir),
         ...createFakeDwellers(top, DwellerPosition.Top),
         ...createFakeDwellers(bottom, DwellerPosition.Bottom),
         ...createFakeDwellers(left, DwellerPosition.Left),

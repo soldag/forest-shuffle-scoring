@@ -2,8 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 
 import { DwellerPosition, TreeSymbol } from "@/game";
 import { Chamois } from "@/game/dwellers";
-import { createDweller, createWoodyPlant } from "@/game/factory";
-import { Sapling } from "@/game/woody-plants";
+import { createDweller, createSapling } from "@/game/factory";
 
 import { createFakeDwellers, createFakeWoodyPlant } from "../../fake";
 import {
@@ -58,7 +57,7 @@ describe("A Chamois card", () => {
         }),
       ],
       otherWoodyPlants: [
-        createWoodyPlant(Sapling),
+        createSapling(),
         createFakeWoodyPlant({ treeSymbol: TreeSymbol.AlpineLarch }),
         createFakeWoodyPlant({ treeSymbol: TreeSymbol.DouglasFir }),
         createFakeWoodyPlant({ treeSymbol: TreeSymbol.SwissPine }),

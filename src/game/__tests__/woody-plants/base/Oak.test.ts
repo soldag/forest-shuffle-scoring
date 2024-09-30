@@ -1,12 +1,15 @@
 import { describe, expect, it } from "@jest/globals";
 import * as _ from "lodash-es";
 
-import { createWoodyPlant } from "@/game/factory";
 import { CardType } from "@/game/types";
 import * as WoodyPlants from "@/game/woody-plants";
 import { Oak } from "@/game/woody-plants";
 
-import { createForestWith, createGame } from "../../helpers";
+import {
+  createAnyWoodyPlant,
+  createForestWith,
+  createGame,
+} from "../../helpers";
 
 describe("A Oak card", () => {
   const treeBlueprints = Object.values(WoodyPlants).filter((t) =>
@@ -14,7 +17,7 @@ describe("A Oak card", () => {
   );
 
   it("scores 10 points if forest has all tree species", () => {
-    const woodyPlants = treeBlueprints.map(createWoodyPlant);
+    const woodyPlants = treeBlueprints.map(createAnyWoodyPlant);
     const oak = woodyPlants.find((w) => w.name === Oak.name)!;
     const forest = createForestWith({ woodyPlants });
     const game = createGame(forest);
@@ -29,8 +32,8 @@ describe("A Oak card", () => {
     (otherWoodyPlantCount) => {
       const otherWoodyPlants = treeBlueprints
         .slice(0, otherWoodyPlantCount)
-        .map(createWoodyPlant);
-      const oak = createWoodyPlant(Oak);
+        .map(createAnyWoodyPlant);
+      const oak = createAnyWoodyPlant(Oak);
       const forest = createForestWith({
         woodyPlants: [oak, ...otherWoodyPlants],
       });

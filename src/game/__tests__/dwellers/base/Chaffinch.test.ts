@@ -1,7 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
 import { Chaffinch } from "@/game/dwellers";
-import { createWoodyPlant } from "@/game/factory";
 import {
   Beech,
   Birch,
@@ -16,6 +15,7 @@ import {
 
 import {
   createAnyDweller,
+  createAnyWoodyPlant,
   createForestForDwellerTest,
   createGame,
 } from "../../helpers";
@@ -36,7 +36,7 @@ describe("A Chaffinch card", () => {
     (expectedPoints, _, woodyPlantBlueprint) => {
       const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(Chaffinch),
-        woodyPlantUnderTest: createWoodyPlant(woodyPlantBlueprint),
+        woodyPlantUnderTest: createAnyWoodyPlant(woodyPlantBlueprint),
       });
       const game = createGame(forest);
 

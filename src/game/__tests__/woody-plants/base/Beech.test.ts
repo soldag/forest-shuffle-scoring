@@ -2,12 +2,12 @@ import { describe, expect, it } from "@jest/globals";
 
 import { DwellerPosition, TreeSymbol } from "@/game";
 import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
-import { createWoodyPlant } from "@/game/factory";
 import { Beech } from "@/game/woody-plants";
 
 import { createFakeDweller, createFakeWoodyPlant } from "../../fake";
 import {
   addDwellersToWoodyPlant,
+  createAnyWoodyPlant,
   createForestWith,
   createGame,
   createWoodyPlants,
@@ -50,7 +50,7 @@ describe("A Beech card", () => {
     const woodyPlants = [
       ...createWoodyPlants(Beech, 3),
       addDwellersToWoodyPlant(
-        createWoodyPlant(Beech),
+        createAnyWoodyPlant(Beech),
         createFakeDweller(DwellerPosition.Left, {
           modifiers: {
             ...DEFAULT_MODIFIERS,

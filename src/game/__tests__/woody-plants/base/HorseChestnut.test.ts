@@ -2,12 +2,12 @@ import { describe, expect, it } from "@jest/globals";
 
 import { DwellerPosition } from "@/game";
 import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
-import { createWoodyPlant } from "@/game/factory";
 import { HorseChestnut } from "@/game/woody-plants";
 
 import { createFakeDweller } from "../../fake";
 import {
   addDwellersToWoodyPlant,
+  createAnyWoodyPlant,
   createForestWith,
   createGame,
   createWoodyPlants,
@@ -37,7 +37,7 @@ describe("A Horse Chestnut card", () => {
 
   it("takes into account cards increasing the tree count when scoring", () => {
     const woodyPlant = addDwellersToWoodyPlant(
-      createWoodyPlant(HorseChestnut),
+      createAnyWoodyPlant(HorseChestnut),
       createFakeDweller(DwellerPosition.Left, {
         modifiers: {
           ...DEFAULT_MODIFIERS,
