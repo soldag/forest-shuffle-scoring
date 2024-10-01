@@ -3,6 +3,7 @@ import {
   CardType,
   DwellerCardBlueprint,
   DwellerPosition,
+  GameBox,
   TreeSymbol,
 } from "../../types";
 import { DEFAULT_MODIFIERS } from "../modifiers";
@@ -12,6 +13,7 @@ const pointsPerDeer = 5;
 
 const blueprint: DwellerCardBlueprint = {
   name,
+  gameBox: GameBox.Base,
   types: [CardType.PawedAnimal],
   modifiers: DEFAULT_MODIFIERS,
   cost: 3,

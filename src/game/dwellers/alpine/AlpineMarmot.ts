@@ -4,7 +4,7 @@ import {
   CardType,
   DwellerCardBlueprint,
   DwellerPosition,
-  Expansion,
+  GameBox,
   TreeSymbol,
 } from "../../types";
 import { DEFAULT_MODIFIERS } from "../modifiers";
@@ -14,7 +14,7 @@ const pointsPerDistinctPlants = 3;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  expansion: Expansion.Alpine,
+  gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.PawedAnimal],
   modifiers: DEFAULT_MODIFIERS,
   cost: 1,

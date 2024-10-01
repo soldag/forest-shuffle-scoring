@@ -3,7 +3,7 @@ import {
   CardType,
   DwellerCardBlueprint,
   DwellerPosition,
-  Expansion,
+  GameBox,
   TreeSymbol,
 } from "../../types";
 import { DEFAULT_MODIFIERS } from "../modifiers";
@@ -12,7 +12,7 @@ const name = "SAVIS_PIPISTRELLE";
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  expansion: Expansion.Alpine,
+  gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Bat],
   modifiers: DEFAULT_MODIFIERS,
   cost: 1,

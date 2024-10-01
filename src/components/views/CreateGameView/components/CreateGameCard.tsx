@@ -17,13 +17,13 @@ import { SxProps } from "@mui/joy/styles/types";
 import AddPlayerForm, {
   AddPlayerFormFields,
 } from "@/components/common/AddPlayerForm";
-import ExpansionSelector from "@/components/common/ExpansionSelector";
-import { Expansion } from "@/game";
+import GameBoxSelector from "@/components/common/GameBoxSelector";
+import { GameBox } from "@/game";
 
 interface CreateGameFormFields {
   playerName: string;
   caveCardCount: number;
-  expansions: Expansion[];
+  gameBoxes: GameBox[];
 }
 
 interface CreateGameCardProps {
@@ -32,10 +32,9 @@ interface CreateGameCardProps {
 }
 
 const CreateGameCard = ({ sx, onSubmit }: CreateGameCardProps) => {
-  const [expansions, setExpansions] = useLocalStorage<Expansion[]>(
-    "expansions",
-    [],
-  );
+  const [gameBoxes, setGameBoxes] = useLocalStorage<GameBox[]>("gameBoxes", [
+    GameBox.Base,
+  ]);
 
   const {
     control,
@@ -50,10 +49,7 @@ const CreateGameCard = ({ sx, onSubmit }: CreateGameCardProps) => {
   });
 
   const onSubmitWrapper = (values: AddPlayerFormFields) =>
-    onSubmit({
-      ...values,
-      expansions,
-    });
+    onSubmit({ ...values, gameBoxes });
 
   return (
     <Card color="neutral" variant="outlined" sx={sx}>
@@ -86,7 +82,11 @@ const CreateGameCard = ({ sx, onSubmit }: CreateGameCardProps) => {
             defaultMessage="Expansions"
           />
         </FormLabel>
-        <ExpansionSelector value={expansions} onChange={setExpansions} />
+        <GameBoxSelector
+          value={gameBoxes}
+          ignore={[GameBox.Base]}
+          onChange={setGameBoxes}
+        />
       </CardContent>
 
       <CardActions>

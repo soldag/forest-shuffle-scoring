@@ -3,6 +3,7 @@ import {
   CardType,
   DwellerCardBlueprint,
   DwellerPosition,
+  GameBox,
   TreeSymbol,
 } from "../../types";
 import { DEFAULT_MODIFIERS } from "../modifiers";
@@ -12,6 +13,7 @@ const pointsPerPlant = 2;
 
 const blueprint: DwellerCardBlueprint = {
   name,
+  gameBox: GameBox.Base,
   types: [CardType.Plant],
   modifiers: DEFAULT_MODIFIERS,
   cost: 0,

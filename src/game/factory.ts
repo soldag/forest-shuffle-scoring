@@ -8,9 +8,9 @@ import {
   DwellerCardBlueprint,
   DwellerPosition,
   DwellerVariant,
-  Expansion,
   Forest,
   Game,
+  GameBox,
   Player,
   WoodyPlantCard,
   WoodyPlantCardBlueprint,
@@ -75,9 +75,9 @@ export const createForest = (caveCardCount: number = 0): Forest => ({
   caveCardCount,
 });
 
-export const createDeck = (expansions: Expansion[] = []): Deck => ({
+export const createDeck = (gameBoxes: GameBox[] = []): Deck => ({
   dwellers: Object.values(Dwellers)
-    .filter(({ expansion }) => !expansion || expansions.includes(expansion))
+    .filter(({ gameBox }) => gameBoxes.includes(gameBox))
     .flatMap((blueprint) =>
       blueprint.variants.flatMap((variant) =>
         _.times(variant.count, () => createDweller(blueprint, variant)),
@@ -85,7 +85,7 @@ export const createDeck = (expansions: Expansion[] = []): Deck => ({
     ),
   woodyPlants: Object.values(WoodyPlants)
     .filter((blueprint) => isFinite(blueprint.count))
-    .filter(({ expansion }) => !expansion || expansions.includes(expansion))
+    .filter(({ gameBox }) => gameBoxes.includes(gameBox))
     .flatMap((blueprint) =>
       blueprint.variants.flatMap((variant) =>
         _.times(variant.count, () => createWoodyPlant(blueprint, variant)),
@@ -102,8 +102,8 @@ export const createPlayer = (
   forest: createForest(caveCardCount),
 });
 
-export const createGame = (expansions?: Expansion[]): Game => ({
+export const createGame = (gameBoxes: GameBox[]): Game => ({
   id: generateId(),
-  deck: createDeck(expansions),
+  deck: createDeck(gameBoxes),
   players: [],
 });

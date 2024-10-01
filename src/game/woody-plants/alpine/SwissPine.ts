@@ -1,7 +1,7 @@
 import { countCardTypes } from "../../scoring/helpers";
 import {
   CardType,
-  Expansion,
+  GameBox,
   TreeSymbol,
   WoodyPlantCardBlueprint,
 } from "../../types";
@@ -12,7 +12,7 @@ const pointsPerAlpsCard = 1;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
-  expansion: Expansion.Alpine,
+  gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Tree],
   cost: 2,
   count,

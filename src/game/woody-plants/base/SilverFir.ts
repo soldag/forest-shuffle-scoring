@@ -1,5 +1,10 @@
 import { getDwellersOfWoodyPlant } from "../../helpers";
-import { CardType, TreeSymbol, WoodyPlantCardBlueprint } from "../../types";
+import {
+  CardType,
+  GameBox,
+  TreeSymbol,
+  WoodyPlantCardBlueprint,
+} from "../../types";
 
 const name = "SILVER_FIR";
 const count = 6;
@@ -7,6 +12,7 @@ const pointsPerDweller = 2;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
+  gameBox: GameBox.Base,
   types: [CardType.Tree],
   cost: 2,
   count,

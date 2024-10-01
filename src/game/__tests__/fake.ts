@@ -5,12 +5,14 @@ import {
   DwellerCard,
   DwellerModifiers,
   DwellerPosition,
+  GameBox,
   TreeSymbol,
   WoodyPlantCard,
 } from "@/game/types";
 
 interface FakeDwellerOptionalArgs {
   id?: string;
+  gameBox?: GameBox;
   types?: CardType[];
   treeSymbol?: TreeSymbol;
   modifiers?: DwellerModifiers;
@@ -19,6 +21,7 @@ interface FakeDwellerOptionalArgs {
 }
 
 interface FakeWoodyPlantOptionalArgs {
+  gameBox?: GameBox;
   types?: CardType[];
   treeSymbol?: TreeSymbol;
   isPartOfDeck?: boolean;
@@ -41,6 +44,7 @@ export const createFakeDweller: (
   position,
   {
     id,
+    gameBox = GameBox.Base,
     types = [CardType.Amphibian],
     treeSymbol,
     modifiers = DEFAULT_MODIFIERS,
@@ -50,6 +54,7 @@ export const createFakeDweller: (
 ) => ({
   id: id ?? generateId(),
   name: getFakeName("dweller", uniqueName),
+  gameBox,
   types,
   treeSymbol,
   position,
@@ -69,6 +74,7 @@ export const createFakeDwellers: (
 export const createFakeWoodyPlant: (
   optionalArgs?: FakeWoodyPlantOptionalArgs,
 ) => WoodyPlantCard = ({
+  gameBox = GameBox.Base,
   types = [CardType.Tree],
   treeSymbol,
   isPartOfDeck = true,
@@ -76,6 +82,7 @@ export const createFakeWoodyPlant: (
 } = {}) => ({
   id: generateId(),
   name: getFakeName("woodyPlant", uniqueName),
+  gameBox,
   types,
   treeSymbol,
   isPartOfDeck,

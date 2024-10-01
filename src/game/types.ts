@@ -1,5 +1,6 @@
-export enum Expansion {
+export enum GameBox {
   Alpine = "ALPINE",
+  Base = "BASE",
 }
 
 export enum CardType {
@@ -88,7 +89,7 @@ export interface Game {
 
 export interface CardBlueprint {
   name: string;
-  expansion?: Expansion;
+  gameBox: GameBox;
   types: CardType[];
   cost: number;
   count: number;

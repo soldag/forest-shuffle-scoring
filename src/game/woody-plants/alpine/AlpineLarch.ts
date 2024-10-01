@@ -1,6 +1,6 @@
 import {
   CardType,
-  Expansion,
+  GameBox,
   TreeSymbol,
   WoodyPlantCardBlueprint,
 } from "../../types";
@@ -11,7 +11,7 @@ const points = 3;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
-  expansion: Expansion.Alpine,
+  gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Tree],
   cost: 1,
   count,

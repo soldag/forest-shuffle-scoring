@@ -2,7 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
 import WoodyPlantSlot from "@/components/common/WoodyPlantSlot";
-import { CardType, DwellerPosition, TreeSymbol, createGame } from "@/game";
+import {
+  CardType,
+  DwellerPosition,
+  GameBox,
+  TreeSymbol,
+  createGame,
+} from "@/game";
 import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
 const meta = {
@@ -20,7 +26,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Empty: Story = {
   args: {
-    game: createGame(),
+    game: createGame([GameBox.Base]),
     woodyPlant: {
       id: "da4b1712-09fd-47ee-8595-c09ed5b657b3",
       name: "LINDEN",
@@ -40,7 +46,7 @@ export const Empty: Story = {
 
 export const FullyOccupied: Story = {
   args: {
-    game: createGame(),
+    game: createGame([GameBox.Base]),
     woodyPlant: {
       id: "da4b1712-09fd-47ee-8595-c09ed5b657b3",
       name: "LINDEN",

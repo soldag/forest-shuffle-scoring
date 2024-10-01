@@ -1,5 +1,10 @@
 import { scoreByCardMajority } from "../../scoring/helpers";
-import { CardType, TreeSymbol, WoodyPlantCardBlueprint } from "../../types";
+import {
+  CardType,
+  GameBox,
+  TreeSymbol,
+  WoodyPlantCardBlueprint,
+} from "../../types";
 
 const name = "LINDEN";
 const count = 9;
@@ -8,6 +13,7 @@ const pointsMajority = 3;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
+  gameBox: GameBox.Base,
   types: [CardType.Tree],
   cost: 1,
   count,

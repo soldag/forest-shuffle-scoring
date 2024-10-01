@@ -2,6 +2,7 @@ import {
   CardType,
   DwellerCardBlueprint,
   DwellerPosition,
+  GameBox,
   TreeSymbol,
 } from "../../types";
 import { DEFAULT_MODIFIERS } from "../modifiers";
@@ -11,6 +12,7 @@ const pointsIfPaired = 5;
 
 const blueprint: DwellerCardBlueprint = {
   name,
+  gameBox: GameBox.Base,
   types: [CardType.Amphibian],
   modifiers: {
     ...DEFAULT_MODIFIERS,

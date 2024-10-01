@@ -4,35 +4,39 @@ import { useIntl } from "react-intl";
 import { Stack, Switch, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
-import { Expansion } from "@/game";
-import ExpansionNames from "@/translations/messages/ExpansionNames";
+import { GameBox } from "@/game";
+import GameBoxMessages from "@/translations/messages/GameBoxes";
 
-interface ExpansionSelectorProps {
-  value?: Expansion[];
-  onChange?: (value: Expansion[]) => void;
+interface GameBoxSelectorProps {
+  value?: GameBox[];
+  onChange?: (value: GameBox[]) => void;
+  ignore?: GameBox[];
   sx?: SxProps;
 }
 
-const ExpansionSelector = ({
+const GameBoxSelector = ({
   value = [],
   onChange,
+  ignore,
   sx,
-}: ExpansionSelectorProps) => {
+}: GameBoxSelectorProps) => {
   const intl = useIntl();
 
-  const handleChange = (expansion: Expansion, isChecked: boolean) => {
+  const handleChange = (gameBox: GameBox, isChecked: boolean) => {
     const newValue = isChecked
-      ? [...value, expansion]
-      : value.filter((e) => e !== expansion);
+      ? [...value, gameBox]
+      : value.filter((e) => e !== gameBox);
 
     onChange?.([...new Set(newValue)]);
   };
 
   const options = _.orderBy(
-    Object.values(Expansion).map((expansion) => ({
-      value: expansion,
-      text: intl.formatMessage(ExpansionNames[expansion]),
-    })),
+    Object.values(GameBox)
+      .filter((gameBox) => !ignore?.includes(gameBox))
+      .map((gameBox) => ({
+        value: gameBox,
+        text: intl.formatMessage(GameBoxMessages[gameBox]),
+      })),
     (o) => o.text,
   );
 
@@ -58,4 +62,4 @@ const ExpansionSelector = ({
   );
 };
 
-export default ExpansionSelector;
+export default GameBoxSelector;

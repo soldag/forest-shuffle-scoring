@@ -2,6 +2,7 @@ import {
   CardType,
   DwellerCardBlueprint,
   DwellerPosition,
+  GameBox,
   TreeSymbol,
 } from "../../types";
 import { Oak } from "../../woody-plants";
@@ -12,6 +13,7 @@ const points = 5;
 
 const blueprint: DwellerCardBlueprint = {
   name,
+  gameBox: GameBox.Base,
   types: [CardType.PawedAnimal],
   modifiers: DEFAULT_MODIFIERS,
   cost: 0,

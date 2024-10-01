@@ -3,6 +3,7 @@ import {
   CardType,
   DwellerCardBlueprint,
   DwellerPosition,
+  GameBox,
   TreeSymbol,
 } from "../../types";
 import { DEFAULT_MODIFIERS } from "../modifiers";
@@ -13,6 +14,7 @@ const minTreeSpeciesCount = 8;
 
 const blueprint: DwellerCardBlueprint = {
   name,
+  gameBox: GameBox.Base,
   types: [CardType.Plant],
   modifiers: DEFAULT_MODIFIERS,
   cost: 0,

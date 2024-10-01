@@ -1,5 +1,10 @@
 import { countCardNames } from "../../scoring/helpers";
-import { CardType, TreeSymbol, WoodyPlantCardBlueprint } from "../../types";
+import {
+  CardType,
+  GameBox,
+  TreeSymbol,
+  WoodyPlantCardBlueprint,
+} from "../../types";
 
 const name = "BEECH";
 const count = 10;
@@ -8,6 +13,7 @@ const pointsPerCard = 5;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
+  gameBox: GameBox.Base,
   types: [CardType.Tree],
   cost: 1,
   count,

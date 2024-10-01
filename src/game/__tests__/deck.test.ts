@@ -2,16 +2,16 @@ import { describe, expect, it } from "@jest/globals";
 
 import * as Dwellers from "@/game/dwellers";
 import { createDeck } from "@/game/factory";
-import { Expansion } from "@/game/types";
+import { GameBox } from "@/game/types";
 import * as WoodyPlants from "@/game/woody-plants";
 
 describe.each([
-  [[], 66, 184],
-  [[Expansion.Alpine], 80, 228],
+  [[GameBox.Base], 66, 184],
+  [[GameBox.Base, GameBox.Alpine], 80, 228],
 ])(
-  "The card deck with expansions %s",
-  (expansions, expectedWoodyPlantCount, expectedDwellerCount) => {
-    const deck = createDeck(expansions);
+  "The card deck with boxes %s",
+  (gameBoxes, expectedWoodyPlantCount, expectedDwellerCount) => {
+    const deck = createDeck(gameBoxes);
 
     it("has the right amount of woody plant cards", () => {
       expect(deck.woodyPlants.length).toBe(expectedWoodyPlantCount);
@@ -35,8 +35,7 @@ describe.each([
           (wp) => wp.name === blueprint.name,
         );
         const isExpectedInDeck =
-          blueprint.isPartOfDeck &&
-          (!blueprint.expansion || expansions.includes(blueprint.expansion));
+          blueprint.isPartOfDeck && gameBoxes.includes(blueprint.gameBox);
 
         it("in the correct total quantity", () => {
           expect(woodyPlants.length).toBe(
@@ -62,8 +61,7 @@ describe.each([
     describe.each(Object.values(Dwellers))("has $name cards", (blueprint) => {
       const dwellers = deck.dwellers.filter((d) => d.name === blueprint.name);
       const isExpectedInDeck =
-        blueprint.isPartOfDeck &&
-        (!blueprint.expansion || expansions.includes(blueprint.expansion));
+        blueprint.isPartOfDeck && gameBoxes.includes(blueprint.gameBox);
 
       it("in the correct total quantity", () => {
         expect(dwellers.length).toBe(isExpectedInDeck ? blueprint.count : 0);
