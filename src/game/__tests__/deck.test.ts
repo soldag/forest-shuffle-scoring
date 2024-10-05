@@ -32,7 +32,8 @@ describe.each([
       "has $name cards",
       (blueprint) => {
         const woodyPlants = deck.woodyPlants.filter(
-          (wp) => wp.name === blueprint.name,
+          (wp) =>
+            wp.name === blueprint.name && wp.gameBox === blueprint.gameBox,
         );
         const isExpectedInDeck =
           blueprint.isPartOfDeck && gameBoxes.includes(blueprint.gameBox);
@@ -59,7 +60,9 @@ describe.each([
     );
 
     describe.each(Object.values(Dwellers))("has $name cards", (blueprint) => {
-      const dwellers = deck.dwellers.filter((d) => d.name === blueprint.name);
+      const dwellers = deck.dwellers.filter(
+        (d) => d.name === blueprint.name && d.gameBox === blueprint.gameBox,
+      );
       const isExpectedInDeck =
         blueprint.isPartOfDeck && gameBoxes.includes(blueprint.gameBox);
 

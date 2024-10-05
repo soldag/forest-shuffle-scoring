@@ -5,7 +5,7 @@ import { DialogContent, DialogTitle, ModalClose } from "@mui/joy";
 
 import CardSelect from "@/components/common/CardSelect";
 import ResponsiveDrawer from "@/components/common/ResponsiveDrawer";
-import { Card, TreeSymbol } from "@/game";
+import { Card, GameBox, TreeSymbol } from "@/game";
 
 const transitionDuration = 300;
 
@@ -31,12 +31,16 @@ const CardDrawer = <TCard extends Card>({
   const [cardName, setCardName] = useState<string | undefined>(
     selectedCard?.name,
   );
+  const [gameBox, setGameBox] = useState<GameBox | undefined>(
+    selectedCard?.gameBox,
+  );
   const [treeSymbol, setTreeSymbol] = useState<TreeSymbol | undefined>(
     selectedCard?.treeSymbol,
   );
 
   useEffect(() => {
     setCardName(selectedCard?.name);
+    setGameBox(selectedCard?.gameBox);
     setTreeSymbol(selectedCard?.treeSymbol);
   }, [open, selectedCard]);
 
@@ -85,6 +89,8 @@ const CardDrawer = <TCard extends Card>({
           cards={cards}
           cardName={cardName}
           onCardNameChange={setCardName}
+          gameBox={gameBox}
+          onGameBoxChange={setGameBox}
           treeSymbol={treeSymbol}
           onTreeSymbolChange={setTreeSymbol}
           onSelect={handleSelectCard}

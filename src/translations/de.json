@@ -105,6 +105,7 @@
   "CardNames.Wolf": "Wolf",
   "CardNames.WoodAnt": "Waldameise",
   "CardSelect.header.cardName": "Name",
+  "CardSelect.header.expansion": "Erweiterung",
   "CardSelect.header.treeSymbol": "Baumsymbol",
   "CardSelect.remove": "Karte entfernen",
   "CardTypes.Alps.plural": "Alpen",

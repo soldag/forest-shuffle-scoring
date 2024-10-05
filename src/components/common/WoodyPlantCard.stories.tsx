@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import WoodyPlantCard from "@/components/common/WoodyPlantCard";
-import { CardType, DwellerPosition, TreeSymbol } from "@/game";
+import { CardType, DwellerPosition, GameBox, TreeSymbol } from "@/game";
 
 const meta = {
   title: "Game Components/Cards/WoodyPlantCard",
@@ -21,6 +21,7 @@ export const Default: Story = {
     card: {
       id: "da4b1712-09fd-47ee-8595-c09ed5b657b3",
       name: "LINDEN",
+      gameBox: GameBox.Base,
       types: [CardType.Tree],
       treeSymbol: TreeSymbol.Linden,
       isPartOfDeck: true,

@@ -9,6 +9,7 @@ import {
   CardType,
   DwellerCard,
   DwellerPosition,
+  GameBox,
   TreeSymbol,
   WoodyPlantCard,
 } from "@/game";
@@ -60,6 +61,7 @@ export const Dweller: Story = {
       {
         id: "ba8ed761-0364-437f-858d-61c7f5147a16",
         name: "PURPLE_EMPEROR",
+        gameBox: GameBox.Base,
         types: [CardType.Butterfly, CardType.Insect],
         treeSymbol: TreeSymbol.Birch,
         isPartOfDeck: true,
@@ -69,6 +71,7 @@ export const Dweller: Story = {
       {
         id: "f5813a6d-9c07-47fe-bc74-1c22948212e9",
         name: "PURPLE_EMPEROR",
+        gameBox: GameBox.Base,
         types: [CardType.Butterfly, CardType.Insect],
         treeSymbol: TreeSymbol.HorseChestnut,
         isPartOfDeck: true,
@@ -78,6 +81,7 @@ export const Dweller: Story = {
       {
         id: "43f458f5-81ea-4019-a479-949d74094776",
         name: "BLACKBERRIES",
+        gameBox: GameBox.Base,
         types: [CardType.Plant],
         treeSymbol: TreeSymbol.SilverFir,
         isPartOfDeck: true,
@@ -87,6 +91,7 @@ export const Dweller: Story = {
       {
         id: "85640ef6-30a0-48f7-a7d0-4aba89bc37f1",
         name: "BARBASTELLE_BAT",
+        gameBox: GameBox.Base,
         types: [CardType.Bat],
         treeSymbol: TreeSymbol.HorseChestnut,
         isPartOfDeck: true,
@@ -96,6 +101,7 @@ export const Dweller: Story = {
       {
         id: "6cfebd3e-b770-4f7b-9f17-64aef35b1a6d",
         name: "LYNX",
+        gameBox: GameBox.Base,
         types: [CardType.PawedAnimal],
         treeSymbol: TreeSymbol.DouglasFir,
         isPartOfDeck: true,
@@ -104,6 +110,7 @@ export const Dweller: Story = {
       },
     ] as DwellerCard[],
     onCardNameChange: fn(),
+    onGameBoxChange: fn(),
     onTreeSymbolChange: fn(),
     onSelect: fn(),
     onRemove: fn(),
@@ -116,6 +123,7 @@ export const WoodyPlant: Story = {
       {
         id: "90672103-0733-4e39-ba92-88c0c231cb9f",
         name: "BEECH",
+        gameBox: GameBox.Base,
         types: [CardType.Tree],
         treeSymbol: TreeSymbol.Beech,
         isPartOfDeck: true,
@@ -129,6 +137,7 @@ export const WoodyPlant: Story = {
       {
         id: "273cdedb-febc-4f59-9f3c-62b9e43604ce",
         name: "HORSE_CHESTNUT",
+        gameBox: GameBox.Base,
         types: [CardType.Tree],
         treeSymbol: TreeSymbol.HorseChestnut,
         isPartOfDeck: true,
@@ -142,6 +151,7 @@ export const WoodyPlant: Story = {
       {
         id: "77f5b597-0ee6-4e7d-b19f-aeeadd0f8e33",
         name: "LINDEN",
+        gameBox: GameBox.Base,
         types: [CardType.Tree],
         treeSymbol: TreeSymbol.Linden,
         isPartOfDeck: true,
@@ -155,6 +165,7 @@ export const WoodyPlant: Story = {
       {
         id: "f12ead62-6d69-4c4d-a31a-24cc2abb75b1",
         name: "SAPLING",
+        gameBox: GameBox.Base,
         types: [CardType.Tree],
         isPartOfDeck: false,
         dwellers: {
@@ -167,6 +178,7 @@ export const WoodyPlant: Story = {
       {
         id: "562a054f-d4a8-4cfd-9371-c12b4ff46c87",
         name: "SYCAMORE",
+        gameBox: GameBox.Base,
         types: [CardType.Tree],
         treeSymbol: TreeSymbol.Sycamore,
         isPartOfDeck: true,
@@ -179,6 +191,7 @@ export const WoodyPlant: Story = {
       },
     ] as WoodyPlantCard[],
     onCardNameChange: fn(),
+    onGameBoxChange: fn(),
     onTreeSymbolChange: fn(),
     onSelect: fn(),
     onRemove: fn(),

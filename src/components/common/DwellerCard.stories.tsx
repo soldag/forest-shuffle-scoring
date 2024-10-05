@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import DwellerCard from "@/components/common/DwellerCard";
-import { CardType, DwellerPosition, TreeSymbol } from "@/game";
+import { CardType, DwellerPosition, GameBox, TreeSymbol } from "@/game";
 import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
 const meta = {
@@ -22,6 +22,7 @@ export const Top: Story = {
     card: {
       id: "ba8ed761-0364-437f-858d-61c7f5147a16",
       name: "PURPLE_EMPEROR",
+      gameBox: GameBox.Base,
       types: [CardType.Butterfly, CardType.Insect],
       treeSymbol: TreeSymbol.Birch,
       isPartOfDeck: true,
@@ -36,6 +37,7 @@ export const Bottom: Story = {
     card: {
       id: "43f458f5-81ea-4019-a479-949d74094776",
       name: "BLACKBERRIES",
+      gameBox: GameBox.Base,
       types: [CardType.Plant],
       treeSymbol: TreeSymbol.SilverFir,
       isPartOfDeck: true,
@@ -50,6 +52,7 @@ export const Left: Story = {
     card: {
       id: "85640ef6-30a0-48f7-a7d0-4aba89bc37f1",
       name: "BARBASTELLE_BAT",
+      gameBox: GameBox.Base,
       types: [CardType.Bat],
       treeSymbol: TreeSymbol.HorseChestnut,
       isPartOfDeck: true,
@@ -64,6 +67,7 @@ export const Right: Story = {
     card: {
       id: "6cfebd3e-b770-4f7b-9f17-64aef35b1a6d",
       name: "LYNX",
+      gameBox: GameBox.Base,
       types: [CardType.PawedAnimal],
       treeSymbol: TreeSymbol.DouglasFir,
       isPartOfDeck: true,

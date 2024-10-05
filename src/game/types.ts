@@ -41,6 +41,7 @@ export enum TreeSymbol {
 export interface Card {
   id: string;
   name: string;
+  gameBox: GameBox;
   types: CardType[];
   treeSymbol?: TreeSymbol;
   isPartOfDeck: boolean;

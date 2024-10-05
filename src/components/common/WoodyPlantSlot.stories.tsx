@@ -30,6 +30,7 @@ export const Empty: Story = {
     woodyPlant: {
       id: "da4b1712-09fd-47ee-8595-c09ed5b657b3",
       name: "LINDEN",
+      gameBox: GameBox.Base,
       types: [CardType.Tree],
       treeSymbol: TreeSymbol.Linden,
       isPartOfDeck: true,
@@ -50,6 +51,7 @@ export const FullyOccupied: Story = {
     woodyPlant: {
       id: "da4b1712-09fd-47ee-8595-c09ed5b657b3",
       name: "LINDEN",
+      gameBox: GameBox.Base,
       types: [CardType.Tree],
       treeSymbol: TreeSymbol.Linden,
       isPartOfDeck: true,
@@ -58,6 +60,7 @@ export const FullyOccupied: Story = {
           {
             id: "ba8ed761-0364-437f-858d-61c7f5147a16",
             name: "PURPLE_EMPEROR",
+            gameBox: GameBox.Base,
             types: [CardType.Butterfly, CardType.Insect],
             treeSymbol: TreeSymbol.Birch,
             isPartOfDeck: true,
@@ -69,6 +72,7 @@ export const FullyOccupied: Story = {
           {
             id: "43f458f5-81ea-4019-a479-949d74094776",
             name: "BLACKBERRIES",
+            gameBox: GameBox.Base,
             types: [CardType.Plant],
             treeSymbol: TreeSymbol.SilverFir,
             isPartOfDeck: true,
@@ -80,6 +84,7 @@ export const FullyOccupied: Story = {
           {
             id: "85640ef6-30a0-48f7-a7d0-4aba89bc37f1",
             name: "EUROPEAN_HARE",
+            gameBox: GameBox.Base,
             types: [CardType.PawedAnimal],
             treeSymbol: TreeSymbol.Beech,
             isPartOfDeck: true,
@@ -92,6 +97,7 @@ export const FullyOccupied: Story = {
           {
             id: "5d267fc1-d8c1-4ccc-9b30-acd63bacce6d",
             name: "EUROPEAN_HARE",
+            gameBox: GameBox.Base,
             types: [CardType.PawedAnimal],
             treeSymbol: TreeSymbol.Linden,
             isPartOfDeck: true,
@@ -106,6 +112,7 @@ export const FullyOccupied: Story = {
           {
             id: "6cfebd3e-b770-4f7b-9f17-64aef35b1a6d",
             name: "GNAT",
+            gameBox: GameBox.Base,
             types: [CardType.Insect],
             treeSymbol: TreeSymbol.Birch,
             isPartOfDeck: true,

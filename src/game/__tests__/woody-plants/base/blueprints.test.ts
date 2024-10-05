@@ -5,15 +5,20 @@ import { CardType } from "../../../types";
 import * as WoodyPlants from "../../../woody-plants";
 import { Sapling } from "../../../woody-plants";
 
-describe("The woody plant blueprint", () => {
-  for (const blueprint of Object.values(WoodyPlants)) {
+describe.each(Object.values(WoodyPlants))(
+  "The woody plant blueprint $name of game box $gameBox",
+  (blueprint) => {
     describe(blueprint.name, () => {
-      it("has a unique name", () => {
+      it("has a unique name within its game box", () => {
+        const blueprints = [
+          ...Object.values(Dwellers),
+          ...Object.values(WoodyPlants),
+        ];
+
         expect(
-          Object.values(Dwellers).filter((b) => b.name === blueprint.name),
-        ).toHaveLength(0);
-        expect(
-          Object.values(WoodyPlants).filter((b) => b.name === blueprint.name),
+          blueprints.filter(
+            (b) => b.name === blueprint.name && b.gameBox === blueprint.gameBox,
+          ),
         ).toHaveLength(1);
       });
 
@@ -54,5 +59,5 @@ describe("The woody plant blueprint", () => {
         }
       }
     });
-  }
-});
+  },
+);

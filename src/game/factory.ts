@@ -32,6 +32,7 @@ export const createDweller = (
   const dweller: DwellerCard = {
     id: generateId(),
     name: blueprint.name,
+    gameBox: blueprint.gameBox,
     types: blueprint.types,
     treeSymbol: variant.treeSymbol,
     isPartOfDeck: blueprint.isPartOfDeck,
@@ -53,6 +54,7 @@ export const createWoodyPlant = (
   const woodyPlant: WoodyPlantCard = {
     id: generateId(),
     name: blueprint.name,
+    gameBox: blueprint.gameBox,
     types: blueprint.types,
     treeSymbol: variant.treeSymbol,
     isPartOfDeck: blueprint.isPartOfDeck,

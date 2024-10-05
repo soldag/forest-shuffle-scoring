@@ -1,6 +1,6 @@
 import tinycolor from "tinycolor2";
 
-import { CardType, EXPANSION_CARD_TYPES, TreeSymbol } from "@/game";
+import { CardType, EXPANSION_CARD_TYPES, GameBox, TreeSymbol } from "@/game";
 
 const cardTypeColors = {
   [CardType.Alps]: "#9d92c0",
@@ -17,7 +17,12 @@ const cardTypeColors = {
   [CardType.Tree]: "#9ac81d",
 };
 
-const treeSymbolColors = {
+const gameBoxColors: { [key in GameBox]: string } = {
+  [GameBox.Alpine]: "#9d92c0",
+  [GameBox.Base]: "#636b74",
+};
+
+const treeSymbolColors: { [key in TreeSymbol]: string } = {
   [TreeSymbol.AlpineLarch]: "#927aaf",
   [TreeSymbol.Sycamore]: "#e30942",
   [TreeSymbol.Birch]: "#56b547",
@@ -52,6 +57,11 @@ export const getBackgroundForCardTypes = (
   const gradientColors = colors.join(", ");
   return `linear-gradient(to ${gradientSide}, ${gradientColors})`;
 };
+
+export const getColorOfGameBox = (
+  gameBox: GameBox,
+  adjustBrightness: number = 0,
+) => tinycolor(gameBoxColors[gameBox]).lighten(adjustBrightness).toString();
 
 export const getColorOfTreeSymbol = (
   symbol: TreeSymbol,
