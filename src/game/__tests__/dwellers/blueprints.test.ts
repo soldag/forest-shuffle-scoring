@@ -1,10 +1,10 @@
 import { describe, expect, it } from "@jest/globals";
 
-import * as Dwellers from "../../../dwellers";
-import { CardType, DwellerPosition } from "../../../types";
-import * as WoodyPlants from "../../../woody-plants";
+import * as Dwellers from "../../dwellers";
+import { CardType, DwellerPosition } from "../../types";
+import * as WoodyPlants from "../../woody-plants";
 
-const genericCardTypes = [CardType.Alps];
+const genericCardTypes = [CardType.Alps, CardType.WoodlandEdge];
 
 const allowedTypeCombinations = [
   new Set([CardType.Amphibian]),
@@ -46,7 +46,9 @@ const allowedPositionsByType: { [key in CardType]: Set<DwellerPosition> } = {
     DwellerPosition.Bottom,
   ]),
   [CardType.Plant]: new Set([DwellerPosition.Bottom]),
+  [CardType.Shrub]: new Set(),
   [CardType.Tree]: new Set(),
+  [CardType.WoodlandEdge]: new Set(Object.values(DwellerPosition)),
 };
 
 describe.each(Object.values(Dwellers))(
@@ -71,6 +73,7 @@ describe.each(Object.values(Dwellers))(
 
     it("has dweller card type", () => {
       expect(blueprint.types).not.toContain(CardType.Tree);
+      expect(blueprint.types).not.toContain(CardType.Shrub);
     });
 
     it("has allowed type combination", () => {

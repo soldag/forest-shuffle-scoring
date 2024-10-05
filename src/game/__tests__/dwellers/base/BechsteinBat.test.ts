@@ -4,6 +4,7 @@ import {
   BarbastelleBat,
   BechsteinsBat,
   BrownLongEaredBat,
+  CommonPipistrelle,
   GreaterHorseshoeBat,
   SavisPipistrelle,
 } from "@/game/dwellers";
@@ -19,6 +20,7 @@ describe("A Bechstein Bat card", () => {
   const otherBats = [
     BarbastelleBat,
     BrownLongEaredBat,
+    CommonPipistrelle,
     GreaterHorseshoeBat,
     SavisPipistrelle,
   ];
@@ -29,8 +31,9 @@ describe("A Bechstein Bat card", () => {
     [5, 2, otherBats.slice(0, 2)],
     [5, 3, otherBats.slice(0, 3)],
     [5, 3, otherBats.slice(0, 4)],
+    [5, 3, otherBats.slice(0, 5)],
   ])(
-    "scores %i points if there %i other bat species",
+    "scores %i points if there are %i other bat species",
     (expectedPoints, _, otherBatBlueprints) => {
       const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(BechsteinsBat),

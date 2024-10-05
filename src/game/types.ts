@@ -1,6 +1,7 @@
 export enum GameBox {
   Alpine = "ALPINE",
   Base = "BASE",
+  WoodlandEdge = "WOODLAND_EDGE",
 }
 
 export enum CardType {
@@ -16,6 +17,8 @@ export enum CardType {
   PawedAnimal = "PAWED_ANIMAL",
   Plant = "PLANT",
   Tree = "TREE",
+  Shrub = "SHRUB",
+  WoodlandEdge = "WOODLAND_EDGE",
 }
 
 export enum DwellerPosition {

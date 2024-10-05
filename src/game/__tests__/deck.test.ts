@@ -8,6 +8,8 @@ import * as WoodyPlants from "@/game/woody-plants";
 describe.each([
   [[GameBox.Base], 66, 184],
   [[GameBox.Base, GameBox.Alpine], 80, 228],
+  [[GameBox.Base, GameBox.WoodlandEdge], 78, 232],
+  [[GameBox.Base, GameBox.Alpine, GameBox.WoodlandEdge], 92, 276],
 ])(
   "The card deck with boxes %s",
   (gameBoxes, expectedWoodyPlantCount, expectedDwellerCount) => {

@@ -3,6 +3,7 @@ import { describe, expect, it } from "@jest/globals";
 import {
   CamberwellBeauty,
   LargeTortoiseshell,
+  MapButterfly,
   PeacockButterfly,
   PhoebusApollo,
   PurpleEmperor,
@@ -27,6 +28,7 @@ describe("A Silver-Washed Fritillary card", () => {
     [12, [4]],
     [20, [5]],
     [35, [6]],
+    [55, [7]],
     [3, [1, 2]],
     [9, [2, 3]],
     [18, [3, 4]],
@@ -42,6 +44,7 @@ describe("A Silver-Washed Fritillary card", () => {
           PhoebusApollo,
           CamberwellBeauty,
           LargeTortoiseshell,
+          MapButterfly,
           PeacockButterfly,
           PurpleEmperor,
         ],

@@ -47,6 +47,20 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     defaultMessage: "Sycamore",
   },
 
+  // Shrubs
+  BLACKTHORNE: {
+    id: "CardNames.Blackthorne",
+    defaultMessage: "Blackthorne",
+  },
+  COMMON_HAZEL: {
+    id: "CardNames.CommonHazel",
+    defaultMessage: "Common Hazel",
+  },
+  ELDERBERRY: {
+    id: "CardNames.Elderberry",
+    defaultMessage: "Elderberry",
+  },
+
   // Dwellers
   ALPINE_MARMOT: {
     id: "CardNames.AlpineMarmot",
@@ -60,6 +74,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.BarbastelleBat",
     defaultMessage: "Barbastelle Bat",
   },
+  BARN_OWL: {
+    id: "CardNames.BarnOwl",
+    defaultMessage: "Barn Owl",
+  },
   BEARDED_VULTURE: {
     id: "CardNames.BeardedVulture",
     defaultMessage: "Bearded Vulture",
@@ -67,6 +85,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   BECHSTEINS_BAT: {
     id: "CardNames.BechsteinsBat",
     defaultMessage: "Bechsteins Bat",
+  },
+  BEE_SWARM: {
+    id: "CardNames.BeeSwarm",
+    defaultMessage: "Bee Swarm",
   },
   BEECH_MARTEN: {
     id: "CardNames.BeechMarten",
@@ -116,6 +138,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Chanterelle",
     defaultMessage: "Chanterelle",
   },
+  COMMON_PIPISTRELLE: {
+    id: "CardNames.CommonPipistrelle",
+    defaultMessage: "Common Pipistrelle",
+  },
   COMMON_RAVEN: {
     id: "CardNames.CommonRaven",
     defaultMessage: "Common Raven",
@@ -123,6 +149,14 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   COMMON_TOAD: {
     id: "CardNames.CommonToad",
     defaultMessage: "Common Toad",
+  },
+  CRANE_FLY: {
+    id: "CardNames.CraneFly",
+    defaultMessage: "Crane Fly",
+  },
+  DIGITALIS: {
+    id: "CardNames.Digitalis",
+    defaultMessage: "Digitalis",
   },
   EDELWEISS: {
     id: "CardNames.Edelweiss",
@@ -136,9 +170,17 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.EurasianJay",
     defaultMessage: "Eurasian Jay",
   },
+  EURASIAN_MAGPIE: {
+    id: "CardNames.EurasianMagpie",
+    defaultMessage: "Eurasian Magpie",
+  },
   EUROPEAN_BADGER: {
     id: "CardNames.EuropeanBadger",
     defaultMessage: "European Badger",
+  },
+  EUROPEAN_BISON: {
+    id: "CardNames.EuropeanBison",
+    defaultMessage: "European Bison",
   },
   EUROPEAN_FAT_DORMOUSE: {
     id: "CardNames.EuropeanFatDormouse",
@@ -148,9 +190,21 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.EuropeanHare",
     defaultMessage: "European Hare",
   },
+  EUROPEAN_POLECAT: {
+    id: "CardNames.EuropeanPolecat",
+    defaultMessage: "European Polecat",
+  },
+  EUROPEAN_WILDCAT: {
+    id: "CardNames.EuropeanWildcat",
+    defaultMessage: "European Wildcat",
+  },
   FALLOW_DEER: {
     id: "CardNames.FallowDeer",
     defaultMessage: "Fallow Deer",
+  },
+  FEMALE_WILD_BOAR: {
+    id: "CardNames.FemaleWildBoar",
+    defaultMessage: "Wild Boar ♀",
   },
   FIRE_SALAMANDER: {
     id: "CardNames.FireSalamander",
@@ -176,6 +230,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Goshawk",
     defaultMessage: "Goshawk",
   },
+  GREAT_GREEN_BUSH_CRICKET: {
+    id: "CardNames.GreatGreenBushCricket",
+    defaultMessage: "Great Green Bush-Cricket",
+  },
   GREAT_SPOTTED_WOODPECKER: {
     id: "CardNames.GreatSpottedWoodpecker",
     defaultMessage: "Great Spotted Woodpecker",
@@ -196,6 +254,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Lynx",
     defaultMessage: "Lynx",
   },
+  MAP_BUTTERFLY: {
+    id: "CardNames.MapButterfly",
+    defaultMessage: "Map Butterfly",
+  },
   MOLE: {
     id: "CardNames.Mole",
     defaultMessage: "Mole",
@@ -207,6 +269,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   MOUNTAIN_HARE: {
     id: "CardNames.MountainHare",
     defaultMessage: "Mountain Hare",
+  },
+  NIGHTINGALE: {
+    id: "CardNames.Nightingale",
+    defaultMessage: "Nightingale",
   },
   PARASOL_MUSHROOM: {
     id: "CardNames.ParasolMushroom",
@@ -260,6 +326,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.SilverWashedFritillary",
     defaultMessage: "Silver-Washed-Fritillary",
   },
+  STINGING_NETTLE: {
+    id: "CardNames.StingingNettle",
+    defaultMessage: "Stinging Nettle",
+  },
   SQUEAKER: {
     id: "CardNames.Squeaker",
     defaultMessage: "Squeaker",
@@ -287,6 +357,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   VIOLET_CARPENTER_BEE: {
     id: "CardNames.VioletCarpenterBee",
     defaultMessage: "Violet Carpenter Bee",
+  },
+  WATER_VOLE: {
+    id: "CardNames.WaterVole",
+    defaultMessage: "Water Vole",
   },
   WILD_BOAR: {
     id: "CardNames.WildBoar",

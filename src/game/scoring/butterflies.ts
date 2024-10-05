@@ -7,6 +7,7 @@ const pointsByCount: { [count: number]: number } = {
   4: 12,
   5: 20,
   6: 35,
+  7: 55,
 };
 
 export const scoreButterflies = (

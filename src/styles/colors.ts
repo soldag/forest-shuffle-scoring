@@ -2,7 +2,7 @@ import tinycolor from "tinycolor2";
 
 import { CardType, EXPANSION_CARD_TYPES, GameBox, TreeSymbol } from "@/game";
 
-const cardTypeColors = {
+const cardTypeColors: { [key in CardType]: string } = {
   [CardType.Alps]: "#9d92c0",
   [CardType.Amphibian]: "#918c88",
   [CardType.Bat]: "#22191a",
@@ -14,12 +14,15 @@ const cardTypeColors = {
   [CardType.Mushroom]: "#782f04",
   [CardType.PawedAnimal]: "#b06139",
   [CardType.Plant]: "#3a7a50",
+  [CardType.Shrub]: "#7b9d53",
   [CardType.Tree]: "#9ac81d",
+  [CardType.WoodlandEdge]: "#325221",
 };
 
 const gameBoxColors: { [key in GameBox]: string } = {
   [GameBox.Alpine]: "#9d92c0",
   [GameBox.Base]: "#636b74",
+  [GameBox.WoodlandEdge]: "#325221",
 };
 
 const treeSymbolColors: { [key in TreeSymbol]: string } = {

@@ -115,6 +115,16 @@ const messages: { [key in CardType]: Record<Numerus, MessageDescriptor> } = {
       defaultMessage: "Plants",
     },
   }),
+  SHRUB: defineMessages<Numerus, MessageDescriptor>({
+    singular: {
+      id: "CardTypes.Shrub.singular",
+      defaultMessage: "Shrub",
+    },
+    plural: {
+      id: "CardTypes.Shrub.plural",
+      defaultMessage: "Shrubs",
+    },
+  }),
   TREE: defineMessages<Numerus, MessageDescriptor>({
     singular: {
       id: "CardTypes.Tree.singular",
@@ -123,6 +133,16 @@ const messages: { [key in CardType]: Record<Numerus, MessageDescriptor> } = {
     plural: {
       id: "CardTypes.Tree.plural",
       defaultMessage: "Trees",
+    },
+  }),
+  WOODLAND_EDGE: defineMessages<Numerus, MessageDescriptor>({
+    singular: {
+      id: "CardTypes.WoodlandEdge.singular",
+      defaultMessage: "Woodland edge",
+    },
+    plural: {
+      id: "CardTypes.WoodlandEdge.plural",
+      defaultMessage: "Woodland edge",
     },
   }),
 };

@@ -74,6 +74,18 @@ export const countTreeSpecies = (forest: Forest) => {
   return treeNames.size;
 };
 
+export const scoreByCount = (
+  count: number,
+  pointsByCount: { [count: number]: number },
+) => {
+  const cappedCount = Math.min(
+    count,
+    Math.max(0, ...Object.keys(pointsByCount).map((c) => parseInt(c, 10))),
+  );
+
+  return pointsByCount[cappedCount] ?? 0;
+};
+
 export const scoreByCardMajority = (
   game: Game,
   forest: Forest,
@@ -108,9 +120,5 @@ export const scoreSet = (
   }
 
   const count = countCards(forest, filter, options);
-  const cappedCount = Math.min(
-    count,
-    Math.max(0, ...Object.keys(pointsByCount).map((c) => parseInt(c, 10))),
-  );
-  return pointsByCount[cappedCount] ?? 0;
+  return scoreByCount(count, pointsByCount);
 };

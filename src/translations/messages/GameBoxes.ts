@@ -11,6 +11,10 @@ const messages = defineMessages<GameBox, MessageDescriptor>({
     id: "GameBoxes.Base",
     defaultMessage: "Base game",
   },
+  WOODLAND_EDGE: {
+    id: "GameBoxes.WoodlandEdge",
+    defaultMessage: "Woodland Edge expansion",
+  },
 });
 
 export default messages;

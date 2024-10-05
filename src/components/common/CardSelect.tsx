@@ -111,10 +111,7 @@ const CardSelect = <TCard extends Card>({
     (t) => intl.formatMessage(TreeSymbolMessages[t]),
     { cardName, gameBox },
   );
-  const canSelectTreeSymbol =
-    cardName &&
-    treeSymbolOptions.length > 0 &&
-    cards.every((c) => !c.types.includes(CardType.Tree));
+  const canSelectTreeSymbol = gameBox && treeSymbolOptions.length > 1;
 
   useEffect(() => {
     if (cardName && !cards.some((c) => c.name === cardName)) {
@@ -140,6 +137,7 @@ const CardSelect = <TCard extends Card>({
     if (newTreeSymbol) {
       candidates = candidates.filter((c) => c.treeSymbol === newTreeSymbol);
     }
+    const hasNoTreeSymbols = candidates.every((c) => !c.treeSymbol);
 
     if (newCardName !== cardName) {
       onCardNameChange(newCardName);
@@ -147,10 +145,15 @@ const CardSelect = <TCard extends Card>({
     if (newGameBox && newGameBox !== gameBox) {
       onGameBoxChange(newGameBox);
     }
-    if (newTreeSymbol && newTreeSymbol !== treeSymbol) {
+    if ((hasNoTreeSymbols || newTreeSymbol) && newTreeSymbol !== treeSymbol) {
       onTreeSymbolChange(treeSymbol);
     }
-    if (newCardName && newGameBox && newTreeSymbol && candidates.length > 0) {
+    if (
+      newCardName &&
+      newGameBox &&
+      (hasNoTreeSymbols || newTreeSymbol) &&
+      candidates.length > 0
+    ) {
       onSelect?.(candidates[0]);
     }
   };

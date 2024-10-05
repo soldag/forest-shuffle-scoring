@@ -154,6 +154,35 @@ export const createForestForDwellerTest = ({
   };
 };
 
+export function createCompleteForestWithWoodyPlant({
+  woodyPlantUnderTest,
+  filterDwellers = () => true,
+  filterWoodyPlants = () => true,
+}: {
+  woodyPlantUnderTest: WoodyPlantCard;
+  filterDwellers?: (dweller: DwellerCard) => boolean;
+  filterWoodyPlants?: (woodyPlant: WoodyPlantCard) => boolean;
+}): { woodyPlant: WoodyPlantCard; forest: Forest } {
+  const dwellers = Object.values(Dwellers)
+    .flatMap((b) => b.variants.map((v) => createDweller(b, v)))
+    .filter(filterDwellers);
+
+  const woodyPlants = Object.values(WoodyPlants)
+    .map((b) => createAnyWoodyPlant(b))
+    .filter(filterWoodyPlants)
+    .filter(
+      (wp) =>
+        wp.name !== woodyPlantUnderTest.name ||
+        wp.treeSymbol !== woodyPlantUnderTest.treeSymbol,
+    );
+
+  return createForestForWoodyPlantTest({
+    woodyPlantUnderTest,
+    dwellers,
+    otherWoodyPlants: woodyPlants,
+  });
+}
+
 export function createCompleteForestWithDweller({
   dwellerUnderTest,
   filterDwellers = () => true,
