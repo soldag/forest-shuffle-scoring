@@ -31,6 +31,11 @@ const meta = {
         setArgs({ cardName: value });
       };
 
+      const handleGameBoxChange = (value?: GameBox) => {
+        ctx.args.onGameBoxChange?.(value);
+        setArgs({ gameBox: value });
+      };
+
       const handleTreeSymbolChange = (value?: TreeSymbol) => {
         ctx.args.onTreeSymbolChange?.(value);
         setArgs({ treeSymbol: value });
@@ -42,6 +47,7 @@ const meta = {
             args={{
               ...ctx.args,
               onCardNameChange: handleCardNameChange,
+              onGameBoxChange: handleGameBoxChange,
               onTreeSymbolChange: handleTreeSymbolChange,
             }}
           />

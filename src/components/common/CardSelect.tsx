@@ -214,7 +214,7 @@ const CardSelect = <TCard extends Card>({
               "--ListItem-paddingX": 0,
               "--ListItem-stickyTop": "-1px",
               "--ListItem-stickyBackground": theme.palette.background.surface,
-              "flex": "1 1 0",
+              "flex": "1 1",
               "overflowY": "auto",
             })}
           >
