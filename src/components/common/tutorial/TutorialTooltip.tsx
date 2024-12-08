@@ -1,16 +1,14 @@
-import { ComponentType, ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 import { Card, Stack, Tooltip, TooltipProps } from "@mui/joy";
 import { SxProps, Theme } from "@mui/joy/styles/types";
-import { SxProps as SystemSxProps } from "@mui/system";
+import { SvgIcon } from "@mui/material";
 
-interface IconProps {
-  sx?: SystemSxProps;
-}
+type IconType = typeof SvgIcon;
 
 export interface TutorialTooltipProps extends Pick<TooltipProps, "placement"> {
   open: boolean;
-  icon?: ComponentType<IconProps>;
+  icon?: IconType;
   text: ReactNode;
   children?: ReactElement;
 }
