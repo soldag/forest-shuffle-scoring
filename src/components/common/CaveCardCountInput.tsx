@@ -36,5 +36,6 @@ const CaveCardCountInput = forwardRef<
     />
   );
 });
+CaveCardCountInput.displayName = "CaveCardCountInput";
 
 export default CaveCardCountInput;

@@ -42,9 +42,7 @@ export const TutorialContextProvider = ({
     false,
   );
 
-  const [showAddTreeTooltip, setShowAddTreeTooltip] = useState(
-    true && !wasCompleted,
-  );
+  const [showAddTreeTooltip, setShowAddTreeTooltip] = useState(!wasCompleted);
   const [showAddDwellerTooltip, setShowAddDwellerTooltip] = useState(false);
   const [showExchangeCardTooltip, setShowExchangeCardTooltip] = useState(false);
   const [exchangeCardTooltipTarget, setExchangeCardTooltipTarget] =
@@ -54,7 +52,7 @@ export const TutorialContextProvider = ({
 
   const gameId = game?.id;
   useEffect(() => {
-    setShowAddTreeTooltip(true && !wasCompleted);
+    setShowAddTreeTooltip(!wasCompleted);
     setShowAddDwellerTooltip(false);
     setShowExchangeCardTooltip(false);
     setExchangeCardTooltipTarget(undefined);

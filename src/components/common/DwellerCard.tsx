@@ -88,5 +88,6 @@ const DwellerCard = forwardRef<HTMLDivElement, DwellerCardProps>(
     );
   },
 );
+DwellerCard.displayName = "DwellerCard";
 
 export default DwellerCard;

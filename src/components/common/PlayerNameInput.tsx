@@ -24,5 +24,6 @@ const PlayerNameInput = forwardRef<HTMLInputElement, PlayerNameInputProps>(
     />
   ),
 );
+PlayerNameInput.displayName = "PlayerNameInput";
 
 export default PlayerNameInput;

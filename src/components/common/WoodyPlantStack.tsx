@@ -40,6 +40,7 @@ const SnapContainer = forwardRef<HTMLElement, SnapContainerProps>(
     </Box>
   ),
 );
+SnapContainer.displayName = "SnapContainer";
 
 export type WoodyPlantStackSize = "sm" | "md" | "lg";
 

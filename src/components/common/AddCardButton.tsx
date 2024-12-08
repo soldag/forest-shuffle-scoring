@@ -21,5 +21,6 @@ const AddCardButton = forwardRef<HTMLButtonElement, AddCardButtonProps>(
     </IconButton>
   ),
 );
+AddCardButton.displayName = "AddCardButton";
 
 export default AddCardButton;

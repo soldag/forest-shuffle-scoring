@@ -92,5 +92,6 @@ const ForestCard = forwardRef<HTMLDivElement, ForestCardProps>(
     );
   },
 );
+ForestCard.displayName = "ForestCard";
 
 export default ForestCard;
