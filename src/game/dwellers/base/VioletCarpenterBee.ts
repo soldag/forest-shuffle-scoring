@@ -5,7 +5,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "VIOLET_CARPENTER_BEE";
 const points = 0;
@@ -14,7 +13,10 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.Base,
   types: [CardType.Insect],
-  modifiers: { ...DEFAULT_MODIFIERS, treeCount: 1 },
+  modifiers: {
+    woodyPlantCount: ({ woodyPlant }) =>
+      woodyPlant.types.includes(CardType.Tree) ? 1 : 0,
+  },
   cost: 1,
   count: 4,
   isPartOfDeck: true,

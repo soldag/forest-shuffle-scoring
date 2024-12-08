@@ -2,7 +2,6 @@ import { describe, expect, it } from "@jest/globals";
 
 import { CardType, DwellerPosition } from "@/game";
 import { RedDeer } from "@/game/dwellers";
-import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 import { Sapling } from "@/game/woody-plants";
 
 import {
@@ -68,8 +67,7 @@ describe("A Red Deer card", () => {
       otherDwellers: [
         createFakeDweller(DwellerPosition.Left, {
           modifiers: {
-            ...DEFAULT_MODIFIERS,
-            treeCount: 1,
+            woodyPlantCount: () => 1,
           },
         }),
       ],

@@ -9,7 +9,6 @@ import {
   TreeSymbol,
   createGame,
 } from "@/game";
-import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
 const meta = {
   title: "Game Components/Forest/WoodyPlantStack",
@@ -45,7 +44,6 @@ export const Default: Story = {
               treeSymbol: TreeSymbol.Birch,
               isPartOfDeck: true,
               position: DwellerPosition.Top,
-              modifiers: DEFAULT_MODIFIERS,
             },
           ],
           [DwellerPosition.Bottom]: [
@@ -57,7 +55,6 @@ export const Default: Story = {
               treeSymbol: TreeSymbol.SilverFir,
               isPartOfDeck: true,
               position: DwellerPosition.Bottom,
-              modifiers: DEFAULT_MODIFIERS,
             },
           ],
           [DwellerPosition.Left]: [
@@ -70,8 +67,9 @@ export const Default: Story = {
               isPartOfDeck: true,
               position: DwellerPosition.Left,
               modifiers: {
-                ...DEFAULT_MODIFIERS,
-                sharesSlotWith: Infinity,
+                allowsSlotSharing: (context, dwellerToAdd) =>
+                  context.dweller.name === dwellerToAdd.name &&
+                  context.dweller.position === dwellerToAdd.position,
               },
             },
             {
@@ -83,8 +81,9 @@ export const Default: Story = {
               isPartOfDeck: true,
               position: DwellerPosition.Left,
               modifiers: {
-                ...DEFAULT_MODIFIERS,
-                sharesSlotWith: Infinity,
+                allowsSlotSharing: (context, dwellerToAdd) =>
+                  context.dweller.name === dwellerToAdd.name &&
+                  context.dweller.position === dwellerToAdd.position,
               },
             },
           ],
@@ -97,7 +96,6 @@ export const Default: Story = {
               treeSymbol: TreeSymbol.Birch,
               isPartOfDeck: true,
               position: DwellerPosition.Right,
-              modifiers: DEFAULT_MODIFIERS,
             },
           ],
         },

@@ -5,7 +5,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "EURASIAN_MAGPIE";
 const points = 3;
@@ -14,7 +13,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.WoodlandEdge,
   types: [CardType.Bird, CardType.WoodlandEdge],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 1,
   count: 3,
   isPartOfDeck: true,

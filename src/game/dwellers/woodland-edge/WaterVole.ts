@@ -5,7 +5,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "WATER_VOLE";
 const points = 0;
@@ -14,7 +13,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.WoodlandEdge,
   types: [CardType.PawedAnimal, CardType.WoodlandEdge],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 2,
   count: 2,
   isPartOfDeck: true,

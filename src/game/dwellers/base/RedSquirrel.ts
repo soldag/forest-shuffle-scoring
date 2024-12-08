@@ -6,7 +6,6 @@ import {
   TreeSymbol,
 } from "../../types";
 import { Oak } from "../../woody-plants";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "RED_SQUIRREL";
 const points = 5;
@@ -15,7 +14,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.Base,
   types: [CardType.PawedAnimal],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 0,
   count: 4,
   isPartOfDeck: true,

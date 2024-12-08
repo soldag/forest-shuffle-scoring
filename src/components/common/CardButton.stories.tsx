@@ -3,7 +3,6 @@ import { fn } from "@storybook/test";
 
 import CardButton from "@/components/common/CardButton";
 import { CardType, DwellerCard, DwellerPosition, TreeSymbol } from "@/game";
-import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
 const meta = {
   title: "Game Components/Card Selector/CardButton",
@@ -27,7 +26,6 @@ export const SingleColor: Story = {
       treeSymbol: TreeSymbol.SilverFir,
       isPartOfDeck: true,
       position: DwellerPosition.Bottom,
-      modifiers: DEFAULT_MODIFIERS,
     } as DwellerCard,
     onClick: fn(),
   },
@@ -42,7 +40,6 @@ export const Gradient: Story = {
       treeSymbol: TreeSymbol.Birch,
       isPartOfDeck: true,
       position: DwellerPosition.Top,
-      modifiers: DEFAULT_MODIFIERS,
     } as DwellerCard,
   },
 };

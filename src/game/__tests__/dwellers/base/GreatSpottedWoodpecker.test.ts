@@ -1,7 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
 import { GreatSpottedWoodpecker } from "@/game/dwellers";
-import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 import { DwellerPosition } from "@/game/types";
 import { Sapling } from "@/game/woody-plants";
 
@@ -105,8 +104,7 @@ describe("A Great Spotted Woodpecker card", () => {
       createFakeWoodyPlant(),
       createFakeDweller(DwellerPosition.Left, {
         modifiers: {
-          ...DEFAULT_MODIFIERS,
-          treeCount: 2,
+          woodyPlantCount: () => 2,
         },
       }),
     );

@@ -7,7 +7,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "GREAT_GREEN_BUSH_CRICKET";
 const pointsPerInsect = 1;
@@ -16,7 +15,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.WoodlandEdge,
   types: [CardType.Insect, CardType.WoodlandEdge],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 1,
   count: 3,
   isPartOfDeck: true,

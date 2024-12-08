@@ -6,7 +6,6 @@ import {
   TreeSymbol,
 } from "../../types";
 import { Beech } from "../../woody-plants";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "CHAFFINCH";
 const pointsOnBeech = 5;
@@ -15,7 +14,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.Base,
   types: [CardType.Bird],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 1,
   count: 4,
   isPartOfDeck: true,

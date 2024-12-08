@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import DwellerCard from "@/components/common/DwellerCard";
 import { CardType, DwellerPosition, GameBox, TreeSymbol } from "@/game";
-import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
 const meta = {
   title: "Game Components/Cards/DwellerCard",
@@ -27,7 +26,6 @@ export const Top: Story = {
       treeSymbol: TreeSymbol.Birch,
       isPartOfDeck: true,
       position: DwellerPosition.Top,
-      modifiers: DEFAULT_MODIFIERS,
     },
   },
 };
@@ -42,7 +40,6 @@ export const Bottom: Story = {
       treeSymbol: TreeSymbol.SilverFir,
       isPartOfDeck: true,
       position: DwellerPosition.Bottom,
-      modifiers: DEFAULT_MODIFIERS,
     },
   },
 };
@@ -57,7 +54,6 @@ export const Left: Story = {
       treeSymbol: TreeSymbol.HorseChestnut,
       isPartOfDeck: true,
       position: DwellerPosition.Left,
-      modifiers: DEFAULT_MODIFIERS,
     },
   },
 };
@@ -72,7 +68,6 @@ export const Right: Story = {
       treeSymbol: TreeSymbol.DouglasFir,
       isPartOfDeck: true,
       position: DwellerPosition.Right,
-      modifiers: DEFAULT_MODIFIERS,
     },
   },
 };

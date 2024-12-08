@@ -6,7 +6,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "GOSHAWK";
 const pointsPerBird = 3;
@@ -15,7 +14,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.Base,
   types: [CardType.Bird],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 2,
   count: 4,
 

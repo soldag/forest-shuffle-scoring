@@ -14,7 +14,6 @@ import {
   TreeSymbol,
   WoodyPlantCard,
 } from "@/game";
-import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 
 const meta = {
   title: "Game Components/Card Selector/CardDrawer",
@@ -80,7 +79,6 @@ export const Dweller: Story = {
         treeSymbol: TreeSymbol.Birch,
         isPartOfDeck: true,
         position: DwellerPosition.Top,
-        modifiers: DEFAULT_MODIFIERS,
       },
       {
         id: "f5813a6d-9c07-47fe-bc74-1c22948212e9",
@@ -90,7 +88,6 @@ export const Dweller: Story = {
         treeSymbol: TreeSymbol.HorseChestnut,
         isPartOfDeck: true,
         position: DwellerPosition.Top,
-        modifiers: DEFAULT_MODIFIERS,
       },
       {
         id: "43f458f5-81ea-4019-a479-949d74094776",
@@ -100,7 +97,6 @@ export const Dweller: Story = {
         treeSymbol: TreeSymbol.SilverFir,
         isPartOfDeck: true,
         position: DwellerPosition.Bottom,
-        modifiers: DEFAULT_MODIFIERS,
       },
       {
         id: "85640ef6-30a0-48f7-a7d0-4aba89bc37f1",
@@ -110,7 +106,6 @@ export const Dweller: Story = {
         treeSymbol: TreeSymbol.HorseChestnut,
         isPartOfDeck: true,
         position: DwellerPosition.Left,
-        modifiers: DEFAULT_MODIFIERS,
       },
       {
         id: "6cfebd3e-b770-4f7b-9f17-64aef35b1a6d",
@@ -120,7 +115,6 @@ export const Dweller: Story = {
         treeSymbol: TreeSymbol.DouglasFir,
         isPartOfDeck: true,
         position: DwellerPosition.Right,
-        modifiers: DEFAULT_MODIFIERS,
       },
     ] as DwellerCard[],
     onClose: fn(),

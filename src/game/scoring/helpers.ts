@@ -38,17 +38,17 @@ export const countCards = (
   filter: CardFilter = {},
   { ignoreModifiers }: CountOptions = {},
 ): number => {
-  const cards = applyFilter(
-    [...forest.woodyPlants, ...getDwellersOfForest(forest)],
-    filter,
-  );
+  const woodyPlants = applyFilter(forest.woodyPlants, filter);
+  const dwellers = applyFilter(getDwellersOfForest(forest), filter);
+  let count = woodyPlants.length + dwellers.length;
 
-  let count = cards.length;
   if (!ignoreModifiers) {
-    count += filterTrees(cards)
-      .flatMap(getDwellersOfWoodyPlant)
-      .map((d) => d.modifiers.treeCount)
-      .reduce((a, b) => a + b, 0);
+    for (const woodyPlant of woodyPlants) {
+      for (const dweller of getDwellersOfWoodyPlant(woodyPlant)) {
+        const context = { woodyPlant, dweller };
+        count += dweller.modifiers?.woodyPlantCount?.(context) ?? 0;
+      }
+    }
   }
 
   return count;

@@ -51,13 +51,11 @@ export const getDwellerCandidates = (
     return candidates;
   }
 
-  const dwellerNames = presentDwellers
-    .filter(
-      (d1) =>
-        d1.modifiers.sharesSlotWith >
-        presentDwellers.filter((d2) => d2.name === d1.name).length - 1,
-    )
-    .map((d) => d.name);
-
-  return candidates.filter((d) => dwellerNames.includes(d.name));
+  const woodyPlantDwellers = getDwellersOfWoodyPlant(woodyPlant);
+  return candidates.filter((candidate) =>
+    woodyPlantDwellers.some((dweller) => {
+      const context = { woodyPlant, dweller };
+      return dweller.modifiers?.allowsSlotSharing?.(context, candidate);
+    }),
+  );
 };

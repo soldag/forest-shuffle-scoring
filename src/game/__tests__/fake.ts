@@ -1,4 +1,3 @@
-import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 import { generateId } from "@/game/factory";
 import {
   CardType,
@@ -47,7 +46,7 @@ export const createFakeDweller: (
     gameBox = GameBox.Base,
     types = [CardType.Amphibian],
     treeSymbol,
-    modifiers = DEFAULT_MODIFIERS,
+    modifiers,
     isPartOfDeck = true,
     uniqueName = true,
   } = {},

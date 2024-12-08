@@ -1,6 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 import { DwellerPosition } from "@/game/types";
 import { Linden } from "@/game/woody-plants";
 
@@ -55,8 +54,7 @@ describe("A Linden card", () => {
       createAnyWoodyPlant(Linden),
       createFakeDweller(DwellerPosition.Left, {
         modifiers: {
-          ...DEFAULT_MODIFIERS,
-          treeCount: 2,
+          woodyPlantCount: () => 2,
         },
       }),
     );

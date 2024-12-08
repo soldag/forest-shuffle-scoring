@@ -5,7 +5,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "COMMON_TOAD";
 const pointsIfPaired = 5;
@@ -15,8 +14,10 @@ const blueprint: DwellerCardBlueprint = {
   gameBox: GameBox.Base,
   types: [CardType.Amphibian],
   modifiers: {
-    ...DEFAULT_MODIFIERS,
-    sharesSlotWith: 1,
+    allowsSlotSharing: (context, dwellerToAdd) =>
+      context.dweller.name === dwellerToAdd.name &&
+      context.dweller.position === dwellerToAdd.position &&
+      context.woodyPlant.dwellers[dwellerToAdd.position].length < 2,
   },
   cost: 0,
   count: 6,

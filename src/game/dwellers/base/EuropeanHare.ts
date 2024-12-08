@@ -8,7 +8,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "EUROPEAN_HARE";
 const pointsPerCard = 1;
@@ -18,8 +17,9 @@ const blueprint: DwellerCardBlueprint = {
   gameBox: GameBox.Base,
   types: [CardType.PawedAnimal],
   modifiers: {
-    ...DEFAULT_MODIFIERS,
-    sharesSlotWith: Infinity,
+    allowsSlotSharing: (context, dwellerToAdd) =>
+      context.dweller.name === dwellerToAdd.name &&
+      context.dweller.position === dwellerToAdd.position,
   },
   cost: 0,
   count: 11,

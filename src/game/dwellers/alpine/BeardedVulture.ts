@@ -5,7 +5,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "BEARDED_VULTURE";
 const pointsPerCaveCard = 1;
@@ -14,7 +13,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Bird],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 1,
   count: 3,
   isPartOfDeck: true,

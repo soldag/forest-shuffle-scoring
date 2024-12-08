@@ -6,7 +6,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "MAP_BUTTERFLY";
 
@@ -14,7 +13,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.WoodlandEdge,
   types: [CardType.Butterfly, CardType.Insect, CardType.WoodlandEdge],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 0,
   count: 4,
   isPartOfDeck: true,

@@ -1,7 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
 import { DwellerPosition } from "@/game";
-import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 import { HorseChestnut } from "@/game/woody-plants";
 
 import { createFakeDweller } from "../../fake";
@@ -40,8 +39,7 @@ describe("A Horse Chestnut card", () => {
       createAnyWoodyPlant(HorseChestnut),
       createFakeDweller(DwellerPosition.Left, {
         modifiers: {
-          ...DEFAULT_MODIFIERS,
-          treeCount: 1,
+          woodyPlantCount: () => 1,
         },
       }),
     );

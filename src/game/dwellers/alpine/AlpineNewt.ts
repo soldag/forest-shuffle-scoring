@@ -7,7 +7,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "ALPINE_NEWT";
 const pointsPerInsect = 2;
@@ -16,7 +15,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Amphibian],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 1,
   count: 3,
   isPartOfDeck: true,

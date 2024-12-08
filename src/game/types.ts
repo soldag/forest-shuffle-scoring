@@ -50,14 +50,22 @@ export interface Card {
   isPartOfDeck: boolean;
 }
 
+export interface DwellerModifierContext {
+  woodyPlant: WoodyPlantCard;
+  dweller: DwellerCard;
+}
+
 export interface DwellerModifiers {
-  sharesSlotWith: number;
-  treeCount: number;
+  allowsSlotSharing?: (
+    context: DwellerModifierContext,
+    candidate: DwellerCard,
+  ) => boolean;
+  woodyPlantCount?: (context: DwellerModifierContext) => number;
 }
 
 export interface DwellerCard extends Card {
   position: DwellerPosition;
-  modifiers: DwellerModifiers;
+  modifiers?: DwellerModifiers;
 }
 
 export interface WoodyPlantCard extends Card {
@@ -131,7 +139,7 @@ export interface DwellerScoringArgs {
 
 export interface DwellerCardBlueprint extends CardBlueprint {
   variants: DwellerVariant[];
-  modifiers: DwellerModifiers;
+  modifiers?: DwellerModifiers;
   isPartOfDeck: boolean;
   score: (args: DwellerScoringArgs) => number;
 }

@@ -6,7 +6,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "COMMON_PIPISTRELLE";
 
@@ -14,7 +13,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   types: [CardType.Bat, CardType.WoodlandEdge],
   gameBox: GameBox.WoodlandEdge,
-  modifiers: DEFAULT_MODIFIERS,
   cost: 1,
   count: 3,
   isPartOfDeck: true,

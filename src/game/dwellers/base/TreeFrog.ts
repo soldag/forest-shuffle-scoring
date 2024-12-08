@@ -6,7 +6,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 import Gnat from "./Gnat";
 
 const name = "TREE_FROG";
@@ -16,7 +15,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.Base,
   types: [CardType.Amphibian],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 0,
   count: 3,
   isPartOfDeck: true,

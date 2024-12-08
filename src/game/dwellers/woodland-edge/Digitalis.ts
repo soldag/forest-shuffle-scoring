@@ -7,7 +7,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "DIGITALIS";
 const pointsByDistinctPlantsCount = {
@@ -22,7 +21,6 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.WoodlandEdge,
   types: [CardType.Plant, CardType.WoodlandEdge],
-  modifiers: DEFAULT_MODIFIERS,
   cost: 0,
   count: 4,
   isPartOfDeck: true,

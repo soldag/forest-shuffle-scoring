@@ -1,7 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
 import { DwellerPosition } from "@/game";
-import { DEFAULT_MODIFIERS } from "@/game/dwellers/modifiers";
 import { Sapling, Sycamore } from "@/game/woody-plants";
 
 import { createFakeDweller, createFakeWoodyPlants } from "../../fake";
@@ -54,8 +53,7 @@ describe("A Sycamore card", () => {
       createAnyWoodyPlant(Sycamore),
       createFakeDweller(DwellerPosition.Left, {
         modifiers: {
-          ...DEFAULT_MODIFIERS,
-          treeCount: 1,
+          woodyPlantCount: () => 1,
         },
       }),
     );
