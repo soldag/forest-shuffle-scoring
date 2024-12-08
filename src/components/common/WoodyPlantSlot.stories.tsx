@@ -5,9 +5,10 @@ import WoodyPlantSlot from "@/components/common/WoodyPlantSlot";
 import {
   CardType,
   DwellerPosition,
+  Game,
   GameBox,
   TreeSymbol,
-  createGame,
+  WoodyPlantCard,
 } from "@/game";
 
 const meta = {
@@ -23,10 +24,31 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const createArgs = (woodyPlant: WoodyPlantCard) => {
+  const game: Game = {
+    id: "80ea3dc6-4c9d-454e-9259-86a7b1ae1258",
+    deck: {
+      woodyPlants: [],
+      dwellers: [],
+    },
+    players: [
+      {
+        id: "7781c299-6af5-4237-92c1-caa65576c820",
+        name: "Dummy Player",
+        forest: {
+          woodyPlants: [woodyPlant],
+          caveCardCount: 0,
+        },
+      },
+    ],
+  };
+
+  return { game, woodyPlant };
+};
+
 export const Empty: Story = {
   args: {
-    game: createGame([GameBox.Base]),
-    woodyPlant: {
+    ...createArgs({
       id: "da4b1712-09fd-47ee-8595-c09ed5b657b3",
       name: "LINDEN",
       gameBox: GameBox.Base,
@@ -39,15 +61,14 @@ export const Empty: Story = {
         [DwellerPosition.Left]: [],
         [DwellerPosition.Right]: [],
       },
-    },
+    }),
     onAddDweller: fn(),
   },
 };
 
 export const FullyOccupied: Story = {
   args: {
-    game: createGame([GameBox.Base]),
-    woodyPlant: {
+    ...createArgs({
       id: "da4b1712-09fd-47ee-8595-c09ed5b657b3",
       name: "LINDEN",
       gameBox: GameBox.Base,
@@ -119,7 +140,7 @@ export const FullyOccupied: Story = {
           },
         ],
       },
-    },
+    }),
     onAddDweller: fn(),
   },
 };
