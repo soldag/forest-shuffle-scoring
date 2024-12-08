@@ -7,7 +7,6 @@ import {
   GameBox,
   TreeSymbol,
 } from "../../types";
-import { DEFAULT_MODIFIERS } from "../modifiers";
 
 const name = "STINGING_NETTLE";
 const pointsByButterfly = 2;
@@ -16,7 +15,12 @@ const blueprint: DwellerCardBlueprint = {
   name,
   gameBox: GameBox.WoodlandEdge,
   types: [CardType.Plant, CardType.WoodlandEdge],
-  modifiers: DEFAULT_MODIFIERS,
+  modifiers: {
+    allowsSlotSharing: ({ woodyPlant }, candidate) =>
+      [...woodyPlant.dwellers[candidate.position], candidate].every((d) =>
+        d.types.includes(CardType.Butterfly),
+      ),
+  },
   cost: 0,
   count: 3,
   isPartOfDeck: true,
