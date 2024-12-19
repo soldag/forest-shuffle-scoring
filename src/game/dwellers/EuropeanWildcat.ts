@@ -14,7 +14,7 @@ const pointsPerWoodlandEdgeCard = 1;
 const blueprint: DwellerCardBlueprint = {
   name,
   types: [CardType.PawedAnimal, CardType.WoodlandEdge],
-  cost: 3,
+  cost: 1,
   isPartOfDeck: true,
   variants: [
     {
