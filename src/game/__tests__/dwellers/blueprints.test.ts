@@ -52,21 +52,8 @@ const allowedPositionsByType: { [key in CardType]: Set<DwellerPosition> } = {
 };
 
 describe.each(Object.values(Dwellers))(
-  "The dweller blueprint $name of game box $gameBox",
+  "The dweller blueprint $name",
   (blueprint) => {
-    it("has a unique name within its game box", () => {
-      const blueprints = [
-        ...Object.values(Dwellers),
-        ...Object.values(WoodyPlants),
-      ];
-
-      expect(
-        blueprints.filter(
-          (b) => b.name === blueprint.name && b.gameBox === blueprint.gameBox,
-        ),
-      ).toHaveLength(1);
-    });
-
     it("has at least one card type", () => {
       expect(blueprint.types).not.toHaveLength(0);
     });
@@ -84,7 +71,9 @@ describe.each(Object.values(Dwellers))(
 
     it("has distinct variants", () => {
       const distinctCount = new Set(
-        blueprint.variants.map((v) => v.position + v.treeSymbol),
+        blueprint.variants.map(
+          (v) => `${v.gameBox}|${v.position}|${v.treeSymbol}`,
+        ),
       ).size;
       expect(distinctCount).toBe(blueprint.variants.length);
     });

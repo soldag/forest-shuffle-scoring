@@ -8,26 +8,29 @@ import {
 } from "../../types";
 
 const name = "TREE_FERNS";
+const gameBox = GameBox.Base;
 const pointsPerAmphibian = 6;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Plant],
   cost: 1,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.HorseChestnut,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Linden,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.SilverFir,
       count: 1,

@@ -8,27 +8,30 @@ import {
 } from "../../types";
 
 const name = "GOSHAWK";
+const gameBox = GameBox.Base;
 const pointsPerBird = 3;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Bird],
   cost: 2,
 
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.DouglasFir,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.SilverFir,
       count: 2,
     },
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.Oak,
       count: 1,

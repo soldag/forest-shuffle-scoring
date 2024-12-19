@@ -32,7 +32,7 @@ export const createDweller = (
   const dweller: DwellerCard = {
     id: generateId(),
     name: blueprint.name,
-    gameBox: blueprint.gameBox,
+    gameBox: variant.gameBox,
     types: blueprint.types,
     treeSymbol: variant.treeSymbol,
     isPartOfDeck: blueprint.isPartOfDeck,
@@ -54,7 +54,7 @@ export const createWoodyPlant = (
   const woodyPlant: WoodyPlantCard = {
     id: generateId(),
     name: blueprint.name,
-    gameBox: blueprint.gameBox,
+    gameBox: variant.gameBox,
     types: blueprint.types,
     treeSymbol: variant.treeSymbol,
     isPartOfDeck: blueprint.isPartOfDeck,
@@ -78,24 +78,22 @@ export const createForest = (caveCardCount: number = 0): Forest => ({
 });
 
 export const createDeck = (gameBoxes: GameBox[] = []): Deck => ({
-  dwellers: Object.values(Dwellers)
-    .filter(({ gameBox }) => gameBoxes.includes(gameBox))
-    .flatMap((blueprint) =>
-      blueprint.variants
-        .filter(({ count }) => isFinite(count))
-        .flatMap((variant) =>
-          _.times(variant.count, () => createDweller(blueprint, variant)),
-        ),
-    ),
-  woodyPlants: Object.values(WoodyPlants)
-    .filter(({ gameBox }) => gameBoxes.includes(gameBox))
-    .flatMap((blueprint) =>
-      blueprint.variants
-        .filter(({ count }) => isFinite(count))
-        .flatMap((variant) =>
-          _.times(variant.count, () => createWoodyPlant(blueprint, variant)),
-        ),
-    ),
+  dwellers: Object.values(Dwellers).flatMap((blueprint) =>
+    blueprint.variants
+      .filter(({ count }) => isFinite(count))
+      .filter(({ gameBox }) => gameBoxes.includes(gameBox))
+      .flatMap((variant) =>
+        _.times(variant.count, () => createDweller(blueprint, variant)),
+      ),
+  ),
+  woodyPlants: Object.values(WoodyPlants).flatMap((blueprint) =>
+    blueprint.variants
+      .filter(({ count }) => isFinite(count))
+      .filter(({ gameBox }) => gameBoxes.includes(gameBox))
+      .flatMap((variant) =>
+        _.times(variant.count, () => createWoodyPlant(blueprint, variant)),
+      ),
+  ),
 });
 
 export const createPlayer = (

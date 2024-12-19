@@ -6,20 +6,19 @@ import * as WoodyPlants from "../../woody-plants";
 import { Sapling } from "../../woody-plants";
 
 describe.each(Object.values(WoodyPlants))(
-  "The woody plant blueprint $name of game box $gameBox",
+  "The woody plant blueprint $name",
   (blueprint) => {
     describe(blueprint.name, () => {
-      it("has a unique name within its game box", () => {
+      it("has a unique name", () => {
         const blueprints = [
           ...Object.values(Dwellers),
           ...Object.values(WoodyPlants),
         ];
+        const blueprintsWithSameName = blueprints.filter(
+          (b) => b.name === blueprint.name,
+        );
 
-        expect(
-          blueprints.filter(
-            (b) => b.name === blueprint.name && b.gameBox === blueprint.gameBox,
-          ),
-        ).toHaveLength(1);
+        expect(blueprintsWithSameName).toHaveLength(1);
       });
 
       it("has at least one card type", () => {

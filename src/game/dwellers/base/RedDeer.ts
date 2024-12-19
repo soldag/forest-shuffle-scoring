@@ -8,31 +8,35 @@ import {
 } from "../../types";
 
 const name = "RED_DEER";
+const gameBox = GameBox.Base;
 const pointsPerTreeOrPlant = 1;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.ClovenhoofedAnimal, CardType.Deer],
   cost: 2,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Linden,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.SilverFir,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.HorseChestnut,
       count: 2,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.Oak,
       count: 1,

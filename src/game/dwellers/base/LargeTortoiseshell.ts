@@ -8,25 +8,28 @@ import {
 } from "../../types";
 
 const name = "LARGE_TORTOISESHELL";
+const gameBox = GameBox.Base;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Butterfly, CardType.Insect],
   cost: 0,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.Beech,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.SilverFir,
       count: 2,
     },
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.Sycamore,
       count: 1,

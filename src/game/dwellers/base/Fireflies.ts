@@ -8,6 +8,7 @@ import {
 } from "../../types";
 
 const name = "FIREFLIES";
+const gameBox = GameBox.Base;
 const pointsByCount = {
   2: 10,
   3: 15,
@@ -16,27 +17,30 @@ const pointsByCount = {
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Insect],
   cost: 0,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Beech,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.DouglasFir,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Linden,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Sycamore,
       count: 1,

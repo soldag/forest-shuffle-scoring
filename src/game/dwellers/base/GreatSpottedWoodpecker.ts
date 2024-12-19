@@ -8,22 +8,24 @@ import {
 } from "../../types";
 
 const name = "GREAT_SPOTTED_WOODPECKER";
+const gameBox = GameBox.Base;
 const pointsMinority = 0;
 const pointsMajority = 10;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Bird],
   cost: 1,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.DouglasFir,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.Linden,
       count: 3,

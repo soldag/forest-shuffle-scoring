@@ -9,11 +9,11 @@ import {
 } from "../../types";
 
 const name = "STINGING_NETTLE";
+const gameBox = GameBox.WoodlandEdge;
 const pointsByButterfly = 2;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.WoodlandEdge,
   types: [CardType.Plant, CardType.WoodlandEdge],
   modifiers: {
     allowsSlotSharing: ({ woodyPlant }, candidate) =>
@@ -25,16 +25,19 @@ const blueprint: DwellerCardBlueprint = {
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Birch,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.HorseChestnut,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Sycamore,
       count: 1,

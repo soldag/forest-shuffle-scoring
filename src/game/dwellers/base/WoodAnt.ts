@@ -7,21 +7,23 @@ import {
 } from "../../types";
 
 const name = "WOOD_ANT";
+const gameBox = GameBox.Base;
 const pointsPerBottomCard = 2;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Insect],
   cost: 0,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Beech,
       count: 2,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Birch,
       count: 1,

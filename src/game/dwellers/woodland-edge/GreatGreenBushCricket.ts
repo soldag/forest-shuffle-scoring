@@ -9,26 +9,29 @@ import {
 } from "../../types";
 
 const name = "GREAT_GREEN_BUSH_CRICKET";
+const gameBox = GameBox.WoodlandEdge;
 const pointsPerInsect = 1;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.WoodlandEdge,
   types: [CardType.Insect, CardType.WoodlandEdge],
   cost: 1,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Beech,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.SilverFir,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Oak,
       count: 1,

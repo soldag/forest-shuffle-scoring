@@ -9,31 +9,35 @@ import {
 } from "../../types";
 
 const name = "ALPINE_MARMOT";
+const gameBox = GameBox.Alpine;
 const pointsPerDistinctPlants = 3;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.PawedAnimal],
   cost: 1,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.AlpineLarch,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Beech,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.Birch,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.SwissPine,
       count: 1,

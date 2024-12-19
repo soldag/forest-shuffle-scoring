@@ -5,11 +5,10 @@ const points = 0;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Tree],
   cost: 0,
   isPartOfDeck: false,
-  variants: [{ count: Infinity }],
+  variants: [{ gameBox: GameBox.Base, count: Infinity }],
   score: () => points,
 };
 

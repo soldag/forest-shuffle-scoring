@@ -8,26 +8,29 @@ import {
 } from "../../types";
 
 const name = "GOLDEN_EAGLE";
+const gameBox = GameBox.Alpine;
 const pointsPerAmphibianOrPawedAnimal = 1;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Bird],
   cost: 1,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.AlpineLarch,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.Beech,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.SilverFir,
       count: 1,

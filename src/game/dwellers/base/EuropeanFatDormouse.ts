@@ -7,31 +7,35 @@ import {
 } from "../../types";
 
 const name = "EUROPEAN_FAT_DORMOUSE";
+const gameBox = GameBox.Base;
 const pointsWithBat = 15;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.PawedAnimal],
   cost: 1,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Beech,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.SilverFir,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.DouglasFir,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.Oak,
       count: 1,

@@ -10,26 +10,29 @@ import {
 } from "../../types";
 
 const name = "MOUNTAIN_HARE";
+const gameBox = GameBox.Alpine;
 const pointsPerCard = 1;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.PawedAnimal],
   cost: 0,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.AlpineLarch,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.SilverFir,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.SwissPine,
       count: 1,

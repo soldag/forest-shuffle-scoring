@@ -9,21 +9,23 @@ import {
 import Gnat from "./Gnat";
 
 const name = "TREE_FROG";
+const gameBox = GameBox.Base;
 const pointsPerGnat = 5;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Amphibian],
   cost: 0,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Linden,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Oak,
       count: 2,

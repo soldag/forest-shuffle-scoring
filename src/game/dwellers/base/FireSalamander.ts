@@ -8,6 +8,7 @@ import {
 } from "../../types";
 
 const name = "FIRE_SALAMANDER";
+const gameBox = GameBox.Base;
 const pointsByCount = {
   1: 5,
   2: 15,
@@ -16,22 +17,24 @@ const pointsByCount = {
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Amphibian],
   cost: 1,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.HorseChestnut,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Linden,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.DouglasFir,
       count: 1,

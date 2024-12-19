@@ -7,21 +7,23 @@ import {
 } from "../../types";
 
 const name = "MOLE";
+const gameBox = GameBox.Base;
 const points = 0;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.PawedAnimal],
   cost: 2,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Oak,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Sycamore,
       count: 1,

@@ -12,12 +12,12 @@ const minTreeSpeciesCount = 8;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Tree],
   cost: 2,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox: GameBox.Base,
       treeSymbol: TreeSymbol.Oak,
       count: 7,
     },

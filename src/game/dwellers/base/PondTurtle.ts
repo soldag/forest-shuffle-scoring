@@ -7,21 +7,23 @@ import {
 } from "../../types";
 
 const name = "POND_TURTLE";
+const gameBox = GameBox.Base;
 const points = 5;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Amphibian],
   cost: 2,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Birch,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Sycamore,
       count: 1,

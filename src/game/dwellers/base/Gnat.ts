@@ -8,26 +8,29 @@ import {
 } from "../../types";
 
 const name = "GNAT";
+const gameBox = GameBox.Base;
 const pointsPerBat = 1;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Insect],
   cost: 0,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Birch,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.HorseChestnut,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.Oak,
       count: 1,

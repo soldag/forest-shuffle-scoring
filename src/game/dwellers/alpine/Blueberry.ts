@@ -9,21 +9,23 @@ import {
 } from "../../types";
 
 const name = "BLUEBERRY";
+const gameBox = GameBox.Alpine;
 const pointsPerDistinctBird = 2;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Plant],
   cost: 1,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Birch,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.SwissPine,
       count: 1,

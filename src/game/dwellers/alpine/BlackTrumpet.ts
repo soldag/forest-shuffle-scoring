@@ -7,21 +7,23 @@ import {
 } from "../../types";
 
 const name = "BLACK_TRUMPET";
+const gameBox = GameBox.Alpine;
 const points = 0;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Mushroom],
   cost: 2,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.AlpineLarch,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.SwissPine,
       count: 1,

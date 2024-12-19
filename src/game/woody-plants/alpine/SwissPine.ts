@@ -11,12 +11,12 @@ const pointsPerAlpsCard = 1;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
-  gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Tree],
   cost: 2,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox: GameBox.Alpine,
       treeSymbol: TreeSymbol.SwissPine,
       count: 7,
     },

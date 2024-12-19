@@ -8,20 +8,22 @@ import {
 } from "../../types";
 
 const name = "GREATER_HORSESHOE_BAT";
+const gameBox = GameBox.Base;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Bat],
   cost: 1,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Beech,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.Linden,
       count: 2,

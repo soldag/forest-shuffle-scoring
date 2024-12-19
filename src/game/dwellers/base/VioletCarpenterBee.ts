@@ -7,11 +7,11 @@ import {
 } from "../../types";
 
 const name = "VIOLET_CARPENTER_BEE";
+const gameBox = GameBox.Base;
 const points = 0;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Insect],
   modifiers: {
     woodyPlantCount: ({ woodyPlant }) =>
@@ -21,16 +21,19 @@ const blueprint: DwellerCardBlueprint = {
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.DouglasFir,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.SilverFir,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.DouglasFir,
       count: 2,

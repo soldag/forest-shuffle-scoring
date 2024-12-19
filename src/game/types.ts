@@ -101,7 +101,6 @@ export interface Game {
 
 export interface CardBlueprint {
   name: string;
-  gameBox: GameBox;
   types: CardType[];
   cost: number;
 }
@@ -119,11 +118,13 @@ export interface WoodyPlantCardBlueprint extends CardBlueprint {
 }
 
 export interface WoodyPlantVariant {
+  gameBox: GameBox;
   treeSymbol?: TreeSymbol;
   count: number;
 }
 
 export interface DwellerVariant {
+  gameBox: GameBox;
   position: DwellerPosition;
   treeSymbol: TreeSymbol;
   count: number;

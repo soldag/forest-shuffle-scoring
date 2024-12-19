@@ -8,25 +8,28 @@ import {
 } from "../../types";
 
 const name = "PURPLE_EMPEROR";
+const gameBox = GameBox.Base;
 
 const blueprint: DwellerCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Butterfly, CardType.Insect],
   cost: 0,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.Birch,
       count: 1,
     },
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.HorseChestnut,
       count: 2,
     },
     {
+      gameBox,
       position: DwellerPosition.Top,
       treeSymbol: TreeSymbol.Linden,
       count: 1,

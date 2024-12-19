@@ -10,12 +10,12 @@ const points = 1;
 
 const blueprint: WoodyPlantCardBlueprint = {
   name,
-  gameBox: GameBox.Base,
   types: [CardType.Tree],
   cost: 0,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox: GameBox.Base,
       treeSymbol: TreeSymbol.Birch,
       count: 10,
     },
