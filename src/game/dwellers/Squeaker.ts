@@ -60,6 +60,14 @@ const blueprint: DwellerCardBlueprint = {
       extraTypes: [CardType.WoodlandEdge],
       count: 1,
     },
+    // Meeps promo card (P013)
+    {
+      gameBox: GameBox.PromoCards,
+      position: DwellerPosition.Right,
+      treeSymbol: TreeSymbol.DouglasFir,
+      extraTypes: [CardType.WoodlandEdge],
+      count: 1,
+    },
   ],
   score: () => points,
 };

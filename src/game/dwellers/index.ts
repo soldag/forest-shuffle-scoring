@@ -47,6 +47,7 @@ export { default as Hedgehog } from "./Hedgehog";
 export { default as LargeTortoiseshell } from "./LargeTortoiseshell";
 export { default as Lynx } from "./Lynx";
 export { default as MapButterfly } from "./MapButterfly";
+export { default as Meeps } from "./Meeps";
 export { default as Mole } from "./Mole";
 export { default as Moss } from "./Moss";
 export { default as MountainHare } from "./MountainHare";

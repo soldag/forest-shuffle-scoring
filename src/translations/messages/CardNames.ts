@@ -258,6 +258,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.MapButterfly",
     defaultMessage: "Map Butterfly",
   },
+  MEEPS: {
+    id: "CardNames.Meeps",
+    defaultMessage: "Meeps",
+  },
   MOLE: {
     id: "CardNames.Mole",
     defaultMessage: "Mole",
