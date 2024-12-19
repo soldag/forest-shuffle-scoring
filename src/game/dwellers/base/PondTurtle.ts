@@ -14,7 +14,6 @@ const blueprint: DwellerCardBlueprint = {
   gameBox: GameBox.Base,
   types: [CardType.Amphibian],
   cost: 2,
-  count: 2,
   isPartOfDeck: true,
   variants: [
     {

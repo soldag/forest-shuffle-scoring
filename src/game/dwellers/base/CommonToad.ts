@@ -20,7 +20,6 @@ const blueprint: DwellerCardBlueprint = {
       context.woodyPlant.dwellers[dwellerToAdd.position].length < 2,
   },
   cost: 0,
-  count: 6,
   isPartOfDeck: true,
   variants: [
     {

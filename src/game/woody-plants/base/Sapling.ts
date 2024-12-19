@@ -1,7 +1,6 @@
 import { CardType, GameBox, WoodyPlantCardBlueprint } from "../../types";
 
 const name = "SAPLING";
-const count = Infinity;
 const points = 0;
 
 const blueprint: WoodyPlantCardBlueprint = {
@@ -9,9 +8,8 @@ const blueprint: WoodyPlantCardBlueprint = {
   gameBox: GameBox.Base,
   types: [CardType.Tree],
   cost: 0,
-  count,
   isPartOfDeck: false,
-  variants: [{ count }],
+  variants: [{ count: Infinity }],
   score: () => points,
 };
 

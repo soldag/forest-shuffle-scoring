@@ -14,7 +14,6 @@ const blueprint: DwellerCardBlueprint = {
   gameBox: GameBox.WoodlandEdge,
   types: [CardType.PawedAnimal, CardType.WoodlandEdge],
   cost: 2,
-  count: 2,
   isPartOfDeck: true,
   variants: [
     {

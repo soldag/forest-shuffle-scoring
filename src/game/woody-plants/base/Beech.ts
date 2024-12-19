@@ -7,7 +7,6 @@ import {
 } from "../../types";
 
 const name = "BEECH";
-const count = 10;
 const minCount = 4;
 const pointsPerCard = 5;
 
@@ -16,12 +15,11 @@ const blueprint: WoodyPlantCardBlueprint = {
   gameBox: GameBox.Base,
   types: [CardType.Tree],
   cost: 1,
-  count,
   isPartOfDeck: true,
   variants: [
     {
       treeSymbol: TreeSymbol.Beech,
-      count,
+      count: 10,
     },
   ],
   score: ({ forest }) => {

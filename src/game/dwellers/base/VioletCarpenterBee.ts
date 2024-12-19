@@ -18,7 +18,6 @@ const blueprint: DwellerCardBlueprint = {
       woodyPlant.types.includes(CardType.Tree) ? 1 : 0,
   },
   cost: 1,
-  count: 4,
   isPartOfDeck: true,
   variants: [
     {

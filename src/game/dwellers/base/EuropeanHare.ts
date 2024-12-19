@@ -22,7 +22,6 @@ const blueprint: DwellerCardBlueprint = {
       context.dweller.position === dwellerToAdd.position,
   },
   cost: 0,
-  count: 11,
   isPartOfDeck: true,
   variants: [
     {

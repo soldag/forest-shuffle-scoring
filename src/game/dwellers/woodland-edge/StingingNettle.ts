@@ -22,7 +22,6 @@ const blueprint: DwellerCardBlueprint = {
       ),
   },
   cost: 0,
-  count: 3,
   isPartOfDeck: true,
   variants: [
     {

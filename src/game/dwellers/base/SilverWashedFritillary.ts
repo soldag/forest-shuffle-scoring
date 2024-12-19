@@ -14,7 +14,6 @@ const blueprint: DwellerCardBlueprint = {
   gameBox: GameBox.Base,
   types: [CardType.Butterfly, CardType.Insect],
   cost: 0,
-  count: 4,
   isPartOfDeck: true,
   variants: [
     {

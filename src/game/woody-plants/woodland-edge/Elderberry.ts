@@ -13,7 +13,6 @@ const blueprint: WoodyPlantCardBlueprint = {
   gameBox: GameBox.WoodlandEdge,
   types: [CardType.Shrub, CardType.WoodlandEdge],
   cost: 2,
-  count: 4,
   isPartOfDeck: true,
   variants: [
     {

@@ -7,7 +7,6 @@ import {
 } from "../../types";
 
 const name = "SILVER_FIR";
-const count = 6;
 const pointsPerDweller = 2;
 
 const blueprint: WoodyPlantCardBlueprint = {
@@ -15,12 +14,11 @@ const blueprint: WoodyPlantCardBlueprint = {
   gameBox: GameBox.Base,
   types: [CardType.Tree],
   cost: 2,
-  count,
   isPartOfDeck: true,
   variants: [
     {
       treeSymbol: TreeSymbol.SilverFir,
-      count,
+      count: 6,
     },
   ],
   score: ({ woodyPlant }) =>

@@ -40,12 +40,6 @@ describe.each([
         const isExpectedInDeck =
           blueprint.isPartOfDeck && gameBoxes.includes(blueprint.gameBox);
 
-        it("in the correct total quantity", () => {
-          expect(woodyPlants.length).toBe(
-            isExpectedInDeck ? blueprint.count : 0,
-          );
-        });
-
         it.each(blueprint.variants)(
           "of variant ($treeSymbol) in the correct quantity",
           (variant) => {
@@ -67,10 +61,6 @@ describe.each([
       );
       const isExpectedInDeck =
         blueprint.isPartOfDeck && gameBoxes.includes(blueprint.gameBox);
-
-      it("in the correct total quantity", () => {
-        expect(dwellers.length).toBe(isExpectedInDeck ? blueprint.count : 0);
-      });
 
       it.each(blueprint.variants)(
         "of variant ($position, $treeSymbol) in the correct quantity",

@@ -6,7 +6,6 @@ import {
 } from "../../types";
 
 const name = "ALPINE_LARCH";
-const count = 7;
 const points = 3;
 
 const blueprint: WoodyPlantCardBlueprint = {
@@ -14,12 +13,11 @@ const blueprint: WoodyPlantCardBlueprint = {
   gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Tree],
   cost: 1,
-  count,
   isPartOfDeck: true,
   variants: [
     {
       treeSymbol: TreeSymbol.AlpineLarch,
-      count,
+      count: 7,
     },
   ],
   score: () => points,

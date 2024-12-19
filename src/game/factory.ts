@@ -81,17 +81,20 @@ export const createDeck = (gameBoxes: GameBox[] = []): Deck => ({
   dwellers: Object.values(Dwellers)
     .filter(({ gameBox }) => gameBoxes.includes(gameBox))
     .flatMap((blueprint) =>
-      blueprint.variants.flatMap((variant) =>
-        _.times(variant.count, () => createDweller(blueprint, variant)),
-      ),
+      blueprint.variants
+        .filter(({ count }) => isFinite(count))
+        .flatMap((variant) =>
+          _.times(variant.count, () => createDweller(blueprint, variant)),
+        ),
     ),
   woodyPlants: Object.values(WoodyPlants)
-    .filter((blueprint) => isFinite(blueprint.count))
     .filter(({ gameBox }) => gameBoxes.includes(gameBox))
     .flatMap((blueprint) =>
-      blueprint.variants.flatMap((variant) =>
-        _.times(variant.count, () => createWoodyPlant(blueprint, variant)),
-      ),
+      blueprint.variants
+        .filter(({ count }) => isFinite(count))
+        .flatMap((variant) =>
+          _.times(variant.count, () => createWoodyPlant(blueprint, variant)),
+        ),
     ),
 });
 

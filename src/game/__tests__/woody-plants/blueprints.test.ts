@@ -41,12 +41,6 @@ describe.each(Object.values(WoodyPlants))(
         expect(distinctCount).toBe(blueprint.variants.length);
       });
 
-      it("has count that matches variants", () => {
-        expect(blueprint.count).toBe(
-          blueprint.variants.map((v) => v.count).reduce((a, b) => a + b, 0),
-        );
-      });
-
       if (blueprint.types.includes(CardType.Tree)) {
         it("has exactly one variant", () => {
           expect(blueprint.variants.length).toBe(1);

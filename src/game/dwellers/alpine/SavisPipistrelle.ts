@@ -14,7 +14,6 @@ const blueprint: DwellerCardBlueprint = {
   gameBox: GameBox.Alpine,
   types: [CardType.Alps, CardType.Bat],
   cost: 1,
-  count: 3,
   isPartOfDeck: true,
   variants: [
     {

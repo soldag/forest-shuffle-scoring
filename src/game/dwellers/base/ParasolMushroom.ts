@@ -14,7 +14,6 @@ const blueprint: DwellerCardBlueprint = {
   gameBox: GameBox.Base,
   types: [CardType.Mushroom],
   cost: 2,
-  count: 2,
   isPartOfDeck: true,
   variants: [
     {

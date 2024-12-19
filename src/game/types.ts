@@ -104,7 +104,6 @@ export interface CardBlueprint {
   gameBox: GameBox;
   types: CardType[];
   cost: number;
-  count: number;
 }
 
 export interface WoodyPlantScoringArgs {

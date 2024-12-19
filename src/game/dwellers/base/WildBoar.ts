@@ -16,7 +16,6 @@ const blueprint: DwellerCardBlueprint = {
   gameBox: GameBox.Base,
   types: [CardType.ClovenhoofedAnimal],
   cost: 2,
-  count: 5,
   isPartOfDeck: true,
   variants: [
     {
