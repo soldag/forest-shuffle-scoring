@@ -120,6 +120,7 @@ export interface WoodyPlantCardBlueprint extends CardBlueprint {
 export interface WoodyPlantVariant {
   gameBox: GameBox;
   treeSymbol?: TreeSymbol;
+  extraTypes?: CardType[];
   count: number;
 }
 
@@ -127,6 +128,7 @@ export interface DwellerVariant {
   gameBox: GameBox;
   position: DwellerPosition;
   treeSymbol: TreeSymbol;
+  extraTypes?: CardType[];
   count: number;
 }
 

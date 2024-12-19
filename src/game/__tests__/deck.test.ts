@@ -1,8 +1,10 @@
 import { describe, expect, it } from "@jest/globals";
 
+import { EXPANSION_CARD_TYPES } from "@/game/constants";
 import * as Dwellers from "@/game/dwellers";
 import { createDeck } from "@/game/factory";
 import {
+  CardType,
   DwellerCard,
   DwellerVariant,
   GameBox,
@@ -10,6 +12,39 @@ import {
   WoodyPlantVariant,
 } from "@/game/types";
 import * as WoodyPlants from "@/game/woody-plants";
+
+const gameBoxCardTypes = {
+  [GameBox.Base]: null,
+  [GameBox.Alpine]: CardType.Alps,
+  [GameBox.WoodlandEdge]: CardType.WoodlandEdge,
+};
+
+describe("A full card deck", () => {
+  const deck = createDeck(Object.values(GameBox));
+  const cards = [...deck.dwellers, ...deck.woodyPlants];
+
+  it("has only cards with distinct ids", () => {
+    const distinctIds = new Set(cards.map((c) => c.id));
+    expect(distinctIds.size).toBe(cards.length);
+  });
+
+  describe.each(cards)("has $name card", (card) => {
+    if (card.gameBox === GameBox.Base) {
+      it("without any expansion card type", () => {
+        EXPANSION_CARD_TYPES.forEach((cardType) =>
+          expect(card.types).not.toContain(cardType),
+        );
+      });
+    }
+
+    const expectedCardType = gameBoxCardTypes[card.gameBox];
+    if (expectedCardType) {
+      it("with correct expansion card type", () => {
+        expect(card.types).toContain(expectedCardType);
+      });
+    }
+  });
+});
 
 describe.each([
   [[GameBox.Base], 66, 184],
@@ -27,13 +62,6 @@ describe.each([
 
     it("has the right amount of dweller cards", () => {
       expect(deck.dwellers.length).toBe(expectedDwellerCount);
-    });
-
-    it("has only cards with distinct ids", () => {
-      const cards = [...deck.woodyPlants, ...deck.dwellers];
-      const distinctIds = new Set(cards.map((c) => c.id));
-
-      expect(distinctIds.size).toBe(cards.length);
     });
 
     describe.each(Object.values(WoodyPlants))(
@@ -82,6 +110,14 @@ describe.each([
         dweller.gameBox === variant.gameBox &&
         dweller.position === variant.position &&
         dweller.treeSymbol === variant.treeSymbol;
+
+      it("that match defined variants", () => {
+        expect(
+          dwellers.every((d) =>
+            blueprint.variants.some((v) => isVariant(d, v)),
+          ),
+        ).toBe(true);
+      });
 
       it.each(blueprint.variants)(
         "of variant ($gameBox, $position, $treeSymbol) in the correct quantity",

@@ -1,3 +1,14 @@
-export * from "./alpine";
-export * from "./base";
-export * from "./woodland-edge";
+export { default as AlpineLarch } from "./AlpineLarch";
+export { default as Beech } from "./Beech";
+export { default as Birch } from "./Birch";
+export { default as Blackthorne } from "./Blackthorne";
+export { default as CommonHazel } from "./CommonHazel";
+export { default as DouglasFir } from "./DouglasFir";
+export { default as Elderberry } from "./Elderberry";
+export { default as HorseChestnut } from "./HorseChestnut";
+export { default as Linden } from "./Linden";
+export { default as Oak } from "./Oak";
+export { default as Sapling } from "./Sapling";
+export { default as SilverFir } from "./SilverFir";
+export { default as SwissPine } from "./SwissPine";
+export { default as Sycamore } from "./Sycamore";

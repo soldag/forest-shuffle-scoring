@@ -54,6 +54,18 @@ const allowedPositionsByType: { [key in CardType]: Set<DwellerPosition> } = {
 describe.each(Object.values(Dwellers))(
   "The dweller blueprint $name",
   (blueprint) => {
+    it("has a unique name", () => {
+      const blueprints = [
+        ...Object.values(Dwellers),
+        ...Object.values(WoodyPlants),
+      ];
+      const blueprintsWithSameName = blueprints.filter(
+        (b) => b.name === blueprint.name,
+      );
+
+      expect(blueprintsWithSameName).toHaveLength(1);
+    });
+
     it("has at least one card type", () => {
       expect(blueprint.types).not.toHaveLength(0);
     });

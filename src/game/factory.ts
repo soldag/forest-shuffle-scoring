@@ -33,7 +33,7 @@ export const createDweller = (
     id: generateId(),
     name: blueprint.name,
     gameBox: variant.gameBox,
-    types: blueprint.types,
+    types: blueprint.types.concat(variant.extraTypes ?? []),
     treeSymbol: variant.treeSymbol,
     isPartOfDeck: blueprint.isPartOfDeck,
     position: variant.position,
@@ -55,7 +55,7 @@ export const createWoodyPlant = (
     id: generateId(),
     name: blueprint.name,
     gameBox: variant.gameBox,
-    types: blueprint.types,
+    types: blueprint.types.concat(variant.extraTypes ?? []),
     treeSymbol: variant.treeSymbol,
     isPartOfDeck: blueprint.isPartOfDeck,
     dwellers: {
