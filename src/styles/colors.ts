@@ -22,6 +22,7 @@ const cardTypeColors: { [key in CardType]: string } = {
 const gameBoxColors: { [key in GameBox]: string } = {
   [GameBox.Alpine]: "#9d92c0",
   [GameBox.Base]: "#636b74",
+  [GameBox.PromoCards]: "#d4af37",
   [GameBox.WoodlandEdge]: "#325221",
 };
 

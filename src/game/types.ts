@@ -1,6 +1,7 @@
 export enum GameBox {
   Alpine = "ALPINE",
   Base = "BASE",
+  PromoCards = "PROMO_CARDS",
   WoodlandEdge = "WOODLAND_EDGE",
 }
 

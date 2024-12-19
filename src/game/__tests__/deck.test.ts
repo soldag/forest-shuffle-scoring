@@ -15,6 +15,7 @@ import * as WoodyPlants from "@/game/woody-plants";
 
 const gameBoxCardTypes = {
   [GameBox.Base]: null,
+  [GameBox.PromoCards]: null,
   [GameBox.Alpine]: CardType.Alps,
   [GameBox.WoodlandEdge]: CardType.WoodlandEdge,
 };

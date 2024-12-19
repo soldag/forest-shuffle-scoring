@@ -4,7 +4,7 @@ import { useIntl } from "react-intl";
 import { Stack, Switch, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
-import { GameBox } from "@/game";
+import { EXPANSION_GAME_BOXES, GameBox } from "@/game";
 import GameBoxMessages from "@/translations/messages/GameBoxes";
 
 interface GameBoxSelectorProps {
@@ -37,7 +37,7 @@ const GameBoxSelector = ({
         value: gameBox,
         text: intl.formatMessage(GameBoxMessages[gameBox]),
       })),
-    (o) => o.text,
+    (o) => [!EXPANSION_GAME_BOXES.includes(o.value), o.text],
   );
 
   return (

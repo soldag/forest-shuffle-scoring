@@ -189,6 +189,7 @@
   "FormValidation.required": "This field is required.",
   "GameBoxes.Alpine": "Alpine expansion",
   "GameBoxes.Base": "Base game",
+  "GameBoxes.PromoCards": "Promo cards",
   "GameBoxes.WoodlandEdge": "Woodland Edge expansion",
   "ScoringView.BGStatsButton.label": "Post to BG Stats",
   "ScoringView.BasicScoringTable.headers.player": "Player",
