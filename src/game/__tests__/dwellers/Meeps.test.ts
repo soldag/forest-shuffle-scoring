@@ -10,7 +10,7 @@ import {
   createGame,
 } from "../helpers";
 
-describe("A European Wildcat card", () => {
+describe("A Meeps card", () => {
   it.each([
     [1, 0],
     [2, 1],
