@@ -3,7 +3,7 @@ import { describe, expect, it } from "@jest/globals";
 import * as Dwellers from "../../dwellers";
 import { CardType } from "../../types";
 import * as WoodyPlants from "../../woody-plants";
-import { Sapling } from "../../woody-plants";
+import { OhChristmasTree, Sapling } from "../../woody-plants";
 
 describe.each(Object.values(WoodyPlants))(
   "The woody plant blueprint $name",
@@ -49,7 +49,7 @@ describe.each(Object.values(WoodyPlants))(
           it("has no tree symbol", () => {
             expect(blueprint.variants[0].treeSymbol).toBeUndefined();
           });
-        } else {
+        } else if (blueprint !== OhChristmasTree) {
           it("has a matching tree symbol", () => {
             expect(blueprint.variants[0].treeSymbol).toBe(blueprint.name);
           });

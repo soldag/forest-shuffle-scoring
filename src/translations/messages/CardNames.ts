@@ -30,6 +30,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Oak",
     defaultMessage: "Oak",
   },
+  OH_CHRISTMAS_TREE: {
+    id: "CardNames.OhChristmasTree",
+    defaultMessage: "Oh Christmas Tree",
+  },
   SAPLING: {
     id: "CardNames.Sapling",
     defaultMessage: "Sapling",

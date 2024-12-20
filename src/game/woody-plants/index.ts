@@ -8,6 +8,7 @@ export { default as Elderberry } from "./Elderberry";
 export { default as HorseChestnut } from "./HorseChestnut";
 export { default as Linden } from "./Linden";
 export { default as Oak } from "./Oak";
+export { default as OhChristmasTree } from "./OhChristmasTree";
 export { default as Sapling } from "./Sapling";
 export { default as SilverFir } from "./SilverFir";
 export { default as SwissPine } from "./SwissPine";
