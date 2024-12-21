@@ -98,7 +98,7 @@ const messages: { [key in CardType]: Record<Numerus, MessageDescriptor> } = {
   PAWED_ANIMAL: defineMessages<Numerus, MessageDescriptor>({
     singular: {
       id: "CardTypes.PawedAnimal.singular",
-      defaultMessage: "Pawed animals",
+      defaultMessage: "Pawed animal",
     },
     plural: {
       id: "CardTypes.PawedAnimal.plural",
