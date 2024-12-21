@@ -2,6 +2,7 @@ export { default as AlpineLarch } from "./AlpineLarch";
 export { default as Beech } from "./Beech";
 export { default as Birch } from "./Birch";
 export { default as Blackthorne } from "./Blackthorne";
+export { default as Cerro } from "./Cerro";
 export { default as CommonHazel } from "./CommonHazel";
 export { default as DouglasFir } from "./DouglasFir";
 export { default as Elderberry } from "./Elderberry";
