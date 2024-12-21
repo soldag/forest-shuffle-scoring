@@ -16,6 +16,7 @@ export enum CardType {
   Insect = "INSECT",
   Mushroom = "MUSHROOM",
   PawedAnimal = "PAWED_ANIMAL",
+  Person = "PERSON",
   Plant = "PLANT",
   Tree = "TREE",
   Shrub = "SHRUB",

@@ -105,6 +105,16 @@ const messages: { [key in CardType]: Record<Numerus, MessageDescriptor> } = {
       defaultMessage: "Pawed animals",
     },
   }),
+  PERSON: defineMessages<Numerus, MessageDescriptor>({
+    singular: {
+      id: "CardTypes.Person.singular",
+      defaultMessage: "Person",
+    },
+    plural: {
+      id: "CardTypes.Person.plural",
+      defaultMessage: "Persons",
+    },
+  }),
   PLANT: defineMessages<Numerus, MessageDescriptor>({
     singular: {
       id: "CardTypes.Plant.singular",

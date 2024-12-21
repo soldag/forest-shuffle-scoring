@@ -13,6 +13,7 @@ const cardTypeColors: { [key in CardType]: string } = {
   [CardType.Insect]: "#499882",
   [CardType.Mushroom]: "#782f04",
   [CardType.PawedAnimal]: "#b06139",
+  [CardType.Person]: "#f59607",
   [CardType.Plant]: "#3a7a50",
   [CardType.Shrub]: "#7b9d53",
   [CardType.Tree]: "#9ac81d",

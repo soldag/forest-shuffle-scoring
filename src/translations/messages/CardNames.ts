@@ -322,6 +322,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.RedSquirrel",
     defaultMessage: "Red Squirrel",
   },
+  ROBBER: {
+    id: "CardNames.Robber",
+    defaultMessage: "Robber",
+  },
   ROE_DEER: {
     id: "CardNames.RoeDeer",
     defaultMessage: "Roe Deer",
@@ -361,6 +365,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   TREE_FROG: {
     id: "CardNames.TreeFrog",
     defaultMessage: "Tree Frog",
+  },
+  SHEEP: {
+    id: "CardNames.Sheep",
+    defaultMessage: "Sheep",
   },
   VIOLET_CARPENTER_BEE: {
     id: "CardNames.VioletCarpenterBee",
