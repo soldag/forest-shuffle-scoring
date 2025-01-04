@@ -51,8 +51,8 @@ describe.each([
   [[GameBox.Base], 66, 184],
   [[GameBox.Base, GameBox.Alpine], 80, 228],
   [[GameBox.Base, GameBox.WoodlandEdge], 78, 232],
-  [[GameBox.Base, GameBox.PromoCards], 68, 192],
-  [Object.values(GameBox), 94, 284],
+  [[GameBox.Base, GameBox.PromoCards], 68, 194],
+  [Object.values(GameBox), 94, 286],
 ])(
   "The card deck with boxes %s",
   (gameBoxes, expectedWoodyPlantCount, expectedDwellerCount) => {

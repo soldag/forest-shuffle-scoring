@@ -13,7 +13,7 @@ import {
 } from "../helpers";
 
 describe("A European Bison card", () => {
-  it("scores 2 points if there's are other cards with Beech or Oak symbol", () => {
+  it("scores 2 points if there are no other cards with Beech or Oak symbol", () => {
     const affectedTreeSymbols = [TreeSymbol.Beech, TreeSymbol.Oak];
     const cardFilter = (c: WoodyPlantCard | DwellerCard) =>
       !c.treeSymbol || !affectedTreeSymbols.includes(c.treeSymbol);
