@@ -114,6 +114,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Blueberry",
     defaultMessage: "Blueberry",
   },
+  BOSTULP: {
+    id: "CardNames.Bostulp",
+    defaultMessage: "Bostulp",
+  },
   BROWN_BEAR: {
     id: "CardNames.BrownBear",
     defaultMessage: "Brown Bear",
@@ -265,6 +269,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   MAP_BUTTERFLY: {
     id: "CardNames.MapButterfly",
     defaultMessage: "Map Butterfly",
+  },
+  MARETAK: {
+    id: "CardNames.Maretak",
+    defaultMessage: "Maretak",
   },
   MEEPS: {
     id: "CardNames.Meeps",
