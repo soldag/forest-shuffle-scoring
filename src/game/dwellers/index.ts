@@ -38,6 +38,7 @@ export { default as FemaleWildBoar } from "./FemaleWildBoar";
 export { default as Fireflies } from "./Fireflies";
 export { default as FireSalamander } from "./FireSalamander";
 export { default as FlyAgaric } from "./FlyAgaric";
+export { default as Geneta } from "./Geneta";
 export { default as Gnat } from "./Gnat";
 export { default as GoldenEagle } from "./GoldenEagle";
 export { default as Goshawk } from "./Goshawk";
