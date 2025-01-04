@@ -16,6 +16,11 @@ const LOCALES = _.orderBy(
       flag: "🇺🇸",
       label: "English",
     },
+    {
+      code: "nl",
+      flag: "🇳🇱",
+      label: "Nederlands",
+    },
   ],
   (l) => l.label,
 );
