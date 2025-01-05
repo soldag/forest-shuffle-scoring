@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "format": "prettier --write '**/*.{js,jsx,cjs,ts,tsx,css,md,json}'",
     "format:check": "prettier --check '**/*.{js,jsx,cjs,ts,tsx,css,md,json}'",
-    "i18n:extract": "formatjs extract 'src/**/*.{js,jsx,ts,tsx}' --ignore 'src/types/**' --out-file messages.json && formatjs compile messages.json --out-file src/translations/en.json && echo '' >> src/translations/en.json && rm messages.json",
+    "i18n:extract": "formatjs extract 'src/**/*.{js,jsx,ts,tsx}' --ignore 'src/types/**' --out-file messages.json && formatjs compile messages.json --out-file src/translations/en.json && rm messages.json",
     "i18n:check": "tsx scripts/checkTranslations.ts",
     "manifests:generate": "tsx scripts/generateManifests.ts",
     "test": "jest",
