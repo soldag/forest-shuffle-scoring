@@ -262,6 +262,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Hedgehog",
     defaultMessage: "Hedgehog",
   },
+  KUCKUCK: {
+    id: "CardNames.Kuckuck",
+    defaultMessage: "Kuckuck",
+  },
   LARGE_TORTOISESHELL: {
     id: "CardNames.LargeTortoiseshell",
     defaultMessage: "Large Tortoiseshell",

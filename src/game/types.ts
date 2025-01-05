@@ -62,6 +62,7 @@ export interface DwellerModifiers {
     context: DwellerModifierContext,
     candidate: DwellerCard,
   ) => boolean;
+  requiresSlotSharing?: (context: DwellerModifierContext) => boolean;
   woodyPlantCount?: (context: DwellerModifierContext) => number;
 }
 

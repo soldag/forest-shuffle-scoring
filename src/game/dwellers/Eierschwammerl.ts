@@ -6,29 +6,16 @@ import {
   TreeSymbol,
 } from "../types";
 
-const name = "CHANTERELLE";
-const gameBox = GameBox.Base;
+const name = "EIERSCHWAMMERL";
 const points = 0;
 
+// Promo card P010
 const blueprint: DwellerCardBlueprint = {
   name,
   types: [CardType.Mushroom],
   cost: 2,
   isPartOfDeck: true,
   variants: [
-    {
-      gameBox,
-      position: DwellerPosition.Bottom,
-      treeSymbol: TreeSymbol.Birch,
-      count: 1,
-    },
-    {
-      gameBox,
-      position: DwellerPosition.Bottom,
-      treeSymbol: TreeSymbol.SilverFir,
-      count: 1,
-    },
-    // Promo card P010
     {
       gameBox: GameBox.PromoCards,
       position: DwellerPosition.Bottom,

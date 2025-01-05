@@ -48,14 +48,19 @@ export const getDwellerCandidates = (
     (d) => d.id !== ignoreDweller?.id,
   );
   if (presentDwellers.length === 0) {
-    return candidates;
+    return candidates.filter(
+      (candidate) => !candidate.modifiers?.requiresSlotSharing,
+    );
   }
 
   const woodyPlantDwellers = getDwellersOfWoodyPlant(woodyPlant);
   return candidates.filter((candidate) =>
     woodyPlantDwellers.some((dweller) => {
       const context = { woodyPlant, dweller };
-      return dweller.modifiers?.allowsSlotSharing?.(context, candidate);
+      return (
+        dweller.modifiers?.allowsSlotSharing?.(context, candidate) ||
+        candidate.modifiers?.requiresSlotSharing?.(context)
+      );
     }),
   );
 };

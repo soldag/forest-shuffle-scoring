@@ -47,6 +47,7 @@ export { default as GreaterHorseshoeBat } from "./GreaterHorseshoeBat";
 export { default as GreatGreenBushCricket } from "./GreatGreenBushCricket";
 export { default as GreatSpottedWoodpecker } from "./GreatSpottedWoodpecker";
 export { default as Hedgehog } from "./Hedgehog";
+export { default as Kuckuck } from "./Kuckuck";
 export { default as LargeTortoiseshell } from "./LargeTortoiseshell";
 export { default as Lynx } from "./Lynx";
 export { default as MapButterfly } from "./MapButterfly";
