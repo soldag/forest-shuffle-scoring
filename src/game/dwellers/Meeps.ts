@@ -8,6 +8,7 @@ import EuropeanWildcat from "./EuropeanWildcat";
 
 const name = "MEEPS";
 
+// Promo card P013
 const blueprint: DwellerCardBlueprint = {
   ...EuropeanWildcat,
   name,

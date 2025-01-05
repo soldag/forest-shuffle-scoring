@@ -60,7 +60,7 @@ const blueprint: DwellerCardBlueprint = {
       extraTypes: [CardType.WoodlandEdge],
       count: 1,
     },
-    // Meeps promo card (P013)
+    // Promo card P013
     {
       gameBox: GameBox.PromoCards,
       position: DwellerPosition.Right,
