@@ -8,7 +8,6 @@ import {
 } from "../types";
 
 const name = "EUROPEAN_BISON";
-const gameBox = GameBox.WoodlandEdge;
 const pointsPerBeechOrOak = 2;
 
 const blueprint: DwellerCardBlueprint = {
@@ -18,20 +17,27 @@ const blueprint: DwellerCardBlueprint = {
   isPartOfDeck: true,
   variants: [
     {
-      gameBox,
+      gameBox: GameBox.WoodlandEdge,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Beech,
       count: 1,
     },
     {
-      gameBox,
+      gameBox: GameBox.WoodlandEdge,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Oak,
       count: 1,
     },
     {
-      gameBox,
+      gameBox: GameBox.WoodlandEdge,
       position: DwellerPosition.Right,
+      treeSymbol: TreeSymbol.Beech,
+      count: 1,
+    },
+    // Promo card P007
+    {
+      gameBox: GameBox.PromoCards,
+      position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Beech,
       count: 1,
     },

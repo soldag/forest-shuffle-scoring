@@ -9,6 +9,7 @@ export { default as BeeSwarm } from "./BeeSwarm";
 export { default as Blackberries } from "./Blackberries";
 export { default as BlackTrumpet } from "./BlackTrumpet";
 export { default as Blueberry } from "./Blueberry";
+export { default as BocianBialy } from "./BocianBialy";
 export { default as Bostulp } from "./Bostulp";
 export { default as BrownBear } from "./BrownBear";
 export { default as BrownLongEaredBat } from "./BrownLongEaredBat";

@@ -114,6 +114,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Blueberry",
     defaultMessage: "Blueberry",
   },
+  BOCIAN_BIALY: {
+    id: "CardNames.BocianBialy",
+    defaultMessage: "Bocian biały",
+  },
   BOSTULP: {
     id: "CardNames.Bostulp",
     defaultMessage: "Bostulp",
