@@ -16,6 +16,7 @@ export { default as BrownLongEaredBat } from "./BrownLongEaredBat";
 export { default as Bullfinch } from "./Bullfinch";
 export { default as CamberwellBeauty } from "./CamberwellBeauty";
 export { default as Capercaillie } from "./Capercaillie";
+export { default as Cardinal } from "./Cardinal";
 export { default as Chaffinch } from "./Chaffinch";
 export { default as Chamois } from "./Chamois";
 export { default as Chanterelle } from "./Chanterelle";
