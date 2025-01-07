@@ -85,6 +85,7 @@ export { default as TreeFrog } from "./TreeFrog";
 export { default as Troll } from "./Troll";
 export { default as VioletCarpenterBee } from "./VioletCarpenterBee";
 export { default as WaterVole } from "./WaterVole";
+export { default as Whinchat } from "./Whinchat";
 export { default as WildBoar } from "./WildBoar";
 export { default as WildStrawberries } from "./WildStrawberries";
 export { default as Wolf } from "./Wolf";

@@ -39,6 +39,13 @@ const blueprint: DwellerCardBlueprint = {
       treeSymbol: TreeSymbol.DouglasFir,
       count: 1,
     },
+    // Promo card P002
+    {
+      gameBox: GameBox.PromoCards,
+      position: DwellerPosition.Bottom,
+      treeSymbol: TreeSymbol.Beech,
+      count: 1,
+    },
   ],
   score: ({ forest, dweller }) => scoreSet(forest, dweller, pointsByCount),
 };
