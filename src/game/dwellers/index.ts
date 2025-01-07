@@ -70,6 +70,7 @@ export { default as RedDeer } from "./RedDeer";
 export { default as RedFox } from "./RedFox";
 export { default as RedSquirrel } from "./RedSquirrel";
 export { default as Robber } from "./Robber";
+export { default as Robin } from "./Robin";
 export { default as RoeDeer } from "./RoeDeer";
 export { default as SavisPipistrelle } from "./SavisPipistrelle";
 export { default as Sheep } from "./Sheep";

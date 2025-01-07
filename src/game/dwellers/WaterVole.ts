@@ -7,7 +7,6 @@ import {
 } from "../types";
 
 const name = "WATER_VOLE";
-const gameBox = GameBox.WoodlandEdge;
 const points = 0;
 
 const blueprint: DwellerCardBlueprint = {
@@ -17,15 +16,22 @@ const blueprint: DwellerCardBlueprint = {
   isPartOfDeck: true,
   variants: [
     {
-      gameBox,
+      gameBox: GameBox.WoodlandEdge,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Beech,
       count: 1,
     },
     {
-      gameBox,
+      gameBox: GameBox.WoodlandEdge,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Sycamore,
+      count: 1,
+    },
+    // Promo card P006
+    {
+      gameBox: GameBox.PromoCards,
+      position: DwellerPosition.Bottom,
+      treeSymbol: TreeSymbol.Linden,
       count: 1,
     },
   ],
