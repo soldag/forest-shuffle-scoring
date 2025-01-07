@@ -78,6 +78,13 @@ const blueprint: DwellerCardBlueprint = {
       treeSymbol: TreeSymbol.Sycamore,
       count: 2,
     },
+    // Promo card P003
+    {
+      gameBox: GameBox.PromoCards,
+      position: DwellerPosition.Right,
+      treeSymbol: TreeSymbol.DouglasFir,
+      count: 1,
+    },
   ],
   score: ({ forest }) =>
     countCardNames(forest, [name, MountainHare.name]) * pointsPerCard,

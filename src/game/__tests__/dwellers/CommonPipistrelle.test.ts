@@ -5,6 +5,7 @@ import {
   BechsteinsBat,
   BrownLongEaredBat,
   CommonPipistrelle,
+  DuererFledermaus,
   GreaterHorseshoeBat,
   SavisPipistrelle,
 } from "@/game/dwellers";
@@ -21,6 +22,7 @@ describe("A Barbastelle Bat card", () => {
     BarbastelleBat,
     BechsteinsBat,
     BrownLongEaredBat,
+    DuererFledermaus,
     GreaterHorseshoeBat,
     SavisPipistrelle,
   ];

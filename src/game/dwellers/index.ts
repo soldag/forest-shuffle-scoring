@@ -25,6 +25,7 @@ export { default as CommonRaven } from "./CommonRaven";
 export { default as CommonToad } from "./CommonToad";
 export { default as CraneFly } from "./CraneFly";
 export { default as Digitalis } from "./Digitalis";
+export { default as DuererFledermaus } from "./DuererFledermaus";
 export { default as Edelweiss } from "./Edelweiss";
 export { default as Elk } from "./Elk";
 export { default as Enzian } from "./Enzian";
