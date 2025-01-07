@@ -33,6 +33,7 @@ const treeSymbolColors: { [key in TreeSymbol]: string } = {
   [TreeSymbol.Birch]: "#56b547",
   [TreeSymbol.Beech]: "#55814c",
   [TreeSymbol.DouglasFir]: "#8ea5c1",
+  [TreeSymbol.GoldenPalm]: "#e2cd4c",
   [TreeSymbol.Oak]: "#c27e29",
   [TreeSymbol.HorseChestnut]: "#f79d4d",
   [TreeSymbol.Linden]: "#f3c909",

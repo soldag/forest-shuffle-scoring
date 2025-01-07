@@ -310,6 +310,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Nightingale",
     defaultMessage: "Nightingale",
   },
+  PALMIER: {
+    id: "CardNames.Palmier",
+    defaultMessage: "Palmier",
+  },
   PARASOL_MUSHROOM: {
     id: "CardNames.ParasolMushroom",
     defaultMessage: "Parasol Mushroom",

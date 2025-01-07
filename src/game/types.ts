@@ -35,6 +35,7 @@ export enum TreeSymbol {
   Beech = "BEECH",
   Birch = "BIRCH",
   DouglasFir = "DOUGLAS_FIR",
+  GoldenPalm = "GOLDEN_PALM",
   HorseChestnut = "HORSE_CHESTNUT",
   Linden = "LINDEN",
   Oak = "OAK",
