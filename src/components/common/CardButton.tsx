@@ -1,8 +1,9 @@
 import { useIntl } from "react-intl";
 
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import { Button, ButtonProps } from "@mui/joy";
 
-import { Card, CardType } from "@/game";
+import { Card, CardType, GameBox } from "@/game";
 import {
   ACTIVE_BRIGHTNESS,
   HOVER_BRIGHTNESS,
@@ -24,10 +25,17 @@ const getBackground = (card: Card, adjustBrightness: number = 0) => {
 
 const CardButton = ({ card, ...otherProps }: CardButtonProps) => {
   const intl = useIntl();
+  const isPromoCard = card.gameBox === GameBox.PromoCards;
 
   return (
     <Button
       {...otherProps}
+      endDecorator={isPromoCard && <AutoAwesomeIcon />}
+      slotProps={{
+        endDecorator: {
+          sx: { position: "absolute", right: "0.75rem" },
+        },
+      }}
       sx={{
         "background": getBackground(card),
         ":hover": {
