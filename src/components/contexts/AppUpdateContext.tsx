@@ -24,7 +24,9 @@ interface AppUpdateContextProviderProps {
 export const AppUpdateContextProvider = ({
   children,
 }: AppUpdateContextProviderProps) => {
-  const swRegistrationRef = useRef<ServiceWorkerRegistration>();
+  const swRegistrationRef = useRef<ServiceWorkerRegistration | undefined>(
+    undefined,
+  );
   const [wasUpdateRejected, setWasUpdateRejected] = useState<boolean>(false);
 
   const {

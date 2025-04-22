@@ -133,7 +133,9 @@ const WoodyPlantStack = ({
       {woodyPlants.map((woodyPlant) => (
         <SnapContainer
           key={woodyPlant.id}
-          ref={(ref) => (woodyPlantSlotRefs.current[woodyPlant.id] = ref)}
+          ref={(ref) => {
+            woodyPlantSlotRefs.current[woodyPlant.id] = ref;
+          }}
         >
           <WoodyPlantSlot
             game={game}
