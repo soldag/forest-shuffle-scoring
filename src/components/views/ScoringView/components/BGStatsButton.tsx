@@ -1,8 +1,10 @@
+import { useCallback, useContext } from "react";
 import { FormattedMessage, IntlShape, useIntl } from "react-intl";
 
 import { Button, ButtonProps } from "@mui/joy";
 
 import bgStatsIcon from "@/assets/images/bgStatsIcon.png";
+import AnalyticsContext from "@/components/contexts/AnalyticsContext";
 import { Game, GameScoring } from "@/game";
 import CommonMessages from "@/translations/messages/Common";
 
@@ -58,10 +60,16 @@ const BGStatsButton = ({
   ...otherProps
 }: BGStatsButtonProps) => {
   const intl = useIntl();
+  const { trackEvent } = useContext(AnalyticsContext);
+
+  const handleClick = useCallback(() => {
+    trackEvent("bgstats-export");
+  }, [trackEvent]);
 
   return (
     <a
       href={getUrl(intl, game, scoring)}
+      onClick={handleClick}
       target="_blank"
       rel="noopener noreferrer"
     >

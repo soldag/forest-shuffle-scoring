@@ -17,6 +17,21 @@ export default defineConfig({
     VitePWA({
       manifest: false,
       includeAssets: ["**/**.{ico,png,svg,webmanifest}"],
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/gc\.zgo\.at\/count\.js$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "goatcounter-cache",
+              expiration: {
+                maxEntries: 1,
+                maxAgeSeconds: 7 * 24 * 60 * 60 * 24,
+              },
+            },
+          },
+        ],
+      },
     }),
   ],
   define: {

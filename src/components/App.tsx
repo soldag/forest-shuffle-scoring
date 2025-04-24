@@ -5,6 +5,7 @@ import { CssVarsProvider } from "@mui/joy/styles";
 
 import DocumentMetaProvider from "@/components/common/DocumentMetaProvider";
 import RootContainer from "@/components/containers/RootContainer";
+import { AnalyticsContextProvider } from "@/components/contexts/AnalyticsContext";
 import { AppUpdateContextProvider } from "@/components/contexts/AppUpdateContext";
 import { GameContextProvider } from "@/components/contexts/GameContext";
 import { LocaleContextProvider } from "@/components/contexts/LocaleContext";
@@ -17,14 +18,16 @@ const App = () => (
     <CssBaseline />
     <LocaleContextProvider>
       <ErrorBoundary fallback={<ErrorView />}>
-        <AppUpdateContextProvider>
-          <DocumentMetaProvider />
-          <GameContextProvider>
-            <TutorialContextProvider>
-              <RootContainer />
-            </TutorialContextProvider>
-          </GameContextProvider>
-        </AppUpdateContextProvider>
+        <AnalyticsContextProvider>
+          <AppUpdateContextProvider>
+            <DocumentMetaProvider />
+            <GameContextProvider>
+              <TutorialContextProvider>
+                <RootContainer />
+              </TutorialContextProvider>
+            </GameContextProvider>
+          </AppUpdateContextProvider>
+        </AnalyticsContextProvider>
       </ErrorBoundary>
     </LocaleContextProvider>
   </CssVarsProvider>
