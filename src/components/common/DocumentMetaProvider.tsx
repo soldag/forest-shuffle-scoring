@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { Helmet } from "react-helmet";
+import { useContext, useEffect } from "react";
 import { useIntl } from "react-intl";
 
 import { useTheme } from "@mui/joy";
@@ -15,12 +14,12 @@ const DocumentMetaProvider = () => {
   const intl = useIntl();
   const { locale } = useContext(LocaleContext);
 
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   return (
-    <Helmet
-      htmlAttributes={{
-        lang: locale,
-      }}
-    >
+    <>
       <title>{intl.formatMessage(CommonMessages.appName)}</title>
       <meta
         name="description"
@@ -43,7 +42,7 @@ const DocumentMetaProvider = () => {
         />
       ))}
       <meta name="theme-color" content={theme.palette.neutral[50]} />
-    </Helmet>
+    </>
   );
 };
 
