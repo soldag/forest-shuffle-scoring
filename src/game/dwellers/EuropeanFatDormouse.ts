@@ -42,6 +42,10 @@ const blueprint: DwellerCardBlueprint = {
     },
   ],
   score: ({ woodyPlant, dweller }) => {
+    if (!woodyPlant.types.includes(CardType.Tree)) {
+      return 0;
+    }
+
     const oppositeDwellers =
       dweller.position === DwellerPosition.Left
         ? woodyPlant?.dwellers[DwellerPosition.Right]

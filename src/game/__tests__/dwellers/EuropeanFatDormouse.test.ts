@@ -7,6 +7,7 @@ import { CardType, DwellerPosition } from "@/game/types";
 import { createFakeDweller, createFakeWoodyPlant } from "../fake";
 import {
   addDwellersToWoodyPlant,
+  createAnyDweller,
   createForestWith,
   createGame,
 } from "../helpers";
@@ -56,4 +57,33 @@ describe("A European Fat Dormouse card", () => {
       expect(points).toBe(expectedPoints);
     },
   );
+
+  it("scores 0 points if paired with a bat on a shrub", () => {
+    const dweller = createAnyDweller(EuropeanFatDormouse);
+
+    const oppositePosition =
+      dweller.position === DwellerPosition.Left
+        ? DwellerPosition.Right
+        : DwellerPosition.Left;
+    const oppositeDweller = createFakeDweller(oppositePosition, {
+      types: [CardType.Bat],
+    });
+
+    const woodyPlant = addDwellersToWoodyPlant(
+      createFakeWoodyPlant({ types: [CardType.Shrub] }),
+      dweller,
+      oppositeDweller,
+    );
+    const forest = createForestWith({ woodyPlants: [woodyPlant] });
+    const game = createGame(forest);
+
+    const points = EuropeanFatDormouse.score({
+      game,
+      forest,
+      woodyPlant,
+      dweller,
+    });
+
+    expect(points).toBe(0);
+  });
 });
