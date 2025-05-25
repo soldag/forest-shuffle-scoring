@@ -2,8 +2,12 @@ import { describe, expect, it } from "@jest/globals";
 
 import { WoodAnt } from "@/game/dwellers";
 
-import { DwellerPosition } from "../..";
-import { createFakeDweller, createFakeDwellers } from "../fake";
+import { CardType, DwellerPosition } from "../..";
+import {
+  createFakeDweller,
+  createFakeDwellers,
+  createFakeWoodyPlant,
+} from "../fake";
 import {
   createAnyDweller,
   createForestForDwellerTest,
@@ -39,4 +43,21 @@ describe("A Wood Ant card", () => {
       expect(points).toBe(expectedPoints);
     },
   );
+
+  it("ignores cards on shrubs", () => {
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
+      dwellerUnderTest: createAnyDweller(WoodAnt),
+      woodyPlantUnderTest: createFakeWoodyPlant({ types: [CardType.Shrub] }),
+    });
+    const game = createGame(forest);
+
+    const points = WoodAnt.score({
+      game,
+      forest,
+      woodyPlant,
+      dweller,
+    });
+
+    expect(points).toBe(0);
+  });
 });

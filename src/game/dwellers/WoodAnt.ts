@@ -1,3 +1,5 @@
+import { filterTrees } from "@/game/helpers";
+
 import {
   CardType,
   DwellerCardBlueprint,
@@ -30,8 +32,9 @@ const blueprint: DwellerCardBlueprint = {
     },
   ],
   score: ({ forest }) =>
-    forest.woodyPlants.flatMap((w) => w.dwellers[DwellerPosition.Bottom])
-      .length * pointsPerBottomCard,
+    filterTrees(forest.woodyPlants).flatMap(
+      (w) => w.dwellers[DwellerPosition.Bottom],
+    ).length * pointsPerBottomCard,
 };
 
 export default blueprint;
