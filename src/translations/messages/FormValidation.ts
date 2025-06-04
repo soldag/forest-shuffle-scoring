@@ -5,9 +5,17 @@ export default defineMessages<string, MessageDescriptor | undefined>({
     id: "FormValidation.required",
     defaultMessage: "This field is required.",
   },
+  min: {
+    id: "FormValidation.min",
+    defaultMessage: "This value must be at least {value}.",
+  },
   minLength: {
     id: "FormValidation.minLength",
     defaultMessage: "This field must contain at least {value} characters.",
+  },
+  max: {
+    id: "FormValidation.max",
+    defaultMessage: "This value must be no more than {value}.",
   },
   maxLength: {
     id: "FormValidation.maxLength",
