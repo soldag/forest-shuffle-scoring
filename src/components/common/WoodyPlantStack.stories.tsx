@@ -27,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 const createArgs = (woodyPlants: WoodyPlantCard[]) => {
   const game: Game = {
     id: "80ea3dc6-4c9d-454e-9259-86a7b1ae1258",
+    gameBoxes: [],
     deck: {
       woodyPlants: [],
       dwellers: [],

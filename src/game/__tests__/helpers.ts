@@ -214,6 +214,7 @@ export function createCompleteForestWithDweller({
 
 export const createGame: (...forests: Forest[]) => Game = (...forests) => ({
   id: generateId(),
+  gameBoxes: [],
   deck: {
     woodyPlants: [],
     dwellers: [],

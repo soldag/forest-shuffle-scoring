@@ -109,6 +109,7 @@ export const createPlayer = (
 
 export const createGame = (gameBoxes: GameBox[]): Game => ({
   id: generateId(),
+  gameBoxes,
   deck: createDeck(gameBoxes),
   players: [],
 });

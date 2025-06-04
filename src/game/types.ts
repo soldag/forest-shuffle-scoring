@@ -100,6 +100,7 @@ export interface Player {
 
 export interface Game {
   id: string;
+  gameBoxes: GameBox[];
   deck: Deck;
   players: Player[];
 }
