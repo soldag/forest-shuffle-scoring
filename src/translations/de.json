@@ -211,6 +211,7 @@
   "FormValidation.required": "Dieses Feld ist erforderlich.",
   "GameBoxes.Alpine": "Alpin-Erweiterung",
   "GameBoxes.Base": "Grundspiel",
+  "GameBoxes.Exploration": "Entdeckungen-Erweiterung",
   "GameBoxes.PromoCards": "Promo-Karten",
   "GameBoxes.WoodlandEdge": "Waldrand-Erweiterung",
   "ScoringView.BGStatsButton.label": "Partie an BG Stats schicken",

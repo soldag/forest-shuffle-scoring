@@ -18,6 +18,7 @@ const gameBoxCardTypes = {
   [GameBox.Base]: null,
   [GameBox.PromoCards]: null,
   [GameBox.Alpine]: CardType.Alps,
+  [GameBox.Exploration]: null,
   [GameBox.WoodlandEdge]: CardType.WoodlandEdge,
 };
 

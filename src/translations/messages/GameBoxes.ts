@@ -11,6 +11,10 @@ const messages = defineMessages<GameBox, MessageDescriptor>({
     id: "GameBoxes.Base",
     defaultMessage: "Base game",
   },
+  EXPLORATION: {
+    id: "GameBoxes.Exploration",
+    defaultMessage: "Exploration expansion",
+  },
   PROMO_CARDS: {
     id: "GameBoxes.PromoCards",
     defaultMessage: "Promo cards",

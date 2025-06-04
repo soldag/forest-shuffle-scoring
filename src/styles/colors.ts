@@ -25,6 +25,7 @@ const gameBoxColors: { [key in GameBox]: string } = {
   [GameBox.Base]: "#636b74",
   [GameBox.PromoCards]: "#d4af37",
   [GameBox.WoodlandEdge]: "#325221",
+  [GameBox.Exploration]: "#94092f",
 };
 
 const treeSymbolColors: { [key in TreeSymbol]: string } = {
