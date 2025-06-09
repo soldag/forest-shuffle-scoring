@@ -1,28 +1,30 @@
 import { extendBlueprint } from "../blueprints";
 import {
+  CardType,
   DwellerCardBlueprint,
   DwellerPosition,
   GameBox,
   TreeSymbol,
 } from "../types";
-import Chanterelle from "./Chanterelle";
+import Fireflies from "./Fireflies";
 
-const name = "EIERSCHWAMMERL";
+const name = "SAYS_FIREFLY";
 
-// Promo card P010
-const blueprint: DwellerCardBlueprint = extendBlueprint(Chanterelle, {
+// Promo card P008
+const blueprint: DwellerCardBlueprint = extendBlueprint(Fireflies, {
   name,
+  types: [CardType.Insect, CardType.WoodlandEdge],
   variants: [
     {
       gameBox: GameBox.Exploration,
       position: DwellerPosition.Bottom,
-      treeSymbol: TreeSymbol.DouglasFir,
+      treeSymbol: TreeSymbol.Linden,
       count: 1,
     },
     {
       gameBox: GameBox.PromoCards,
       position: DwellerPosition.Bottom,
-      treeSymbol: TreeSymbol.DouglasFir,
+      treeSymbol: TreeSymbol.Linden,
       count: 1,
     },
   ],

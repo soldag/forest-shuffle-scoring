@@ -6,20 +6,26 @@ import {
   TreeSymbol,
 } from "../types";
 
-const name = "BOSTULP";
-const points = 3;
+const name = "GENET";
+const points = 5;
 
-// Promo card P012
+// Promo card P009
 const blueprint: DwellerCardBlueprint = {
   name,
-  types: [CardType.Plant, CardType.WoodlandEdge],
-  cost: 0,
+  types: [CardType.PawedAnimal],
+  cost: 1,
   isPartOfDeck: true,
   variants: [
     {
+      gameBox: GameBox.Exploration,
+      position: DwellerPosition.Left,
+      treeSymbol: TreeSymbol.Oak,
+      count: 1,
+    },
+    {
       gameBox: GameBox.PromoCards,
-      position: DwellerPosition.Bottom,
-      treeSymbol: TreeSymbol.Sycamore,
+      position: DwellerPosition.Left,
+      treeSymbol: TreeSymbol.Oak,
       count: 1,
     },
   ],

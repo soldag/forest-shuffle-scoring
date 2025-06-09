@@ -8,7 +8,6 @@ import {
 } from "../types";
 
 const name = "GNAT";
-const gameBox = GameBox.Base;
 const pointsPerBat = 1;
 
 const blueprint: DwellerCardBlueprint = {
@@ -18,20 +17,27 @@ const blueprint: DwellerCardBlueprint = {
   isPartOfDeck: true,
   variants: [
     {
-      gameBox,
+      gameBox: GameBox.Base,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Birch,
       count: 1,
     },
     {
-      gameBox,
+      gameBox: GameBox.Base,
       position: DwellerPosition.Right,
       treeSymbol: TreeSymbol.HorseChestnut,
       count: 1,
     },
     {
-      gameBox,
+      gameBox: GameBox.Base,
       position: DwellerPosition.Right,
+      treeSymbol: TreeSymbol.Oak,
+      count: 1,
+    },
+    // Promo card P005
+    {
+      gameBox: GameBox.Exploration,
+      position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Oak,
       count: 1,
     },

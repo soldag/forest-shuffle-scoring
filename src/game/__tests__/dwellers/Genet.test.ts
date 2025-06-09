@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { Kuckuck } from "@/game/dwellers";
+import { Genet } from "@/game/dwellers";
 
 import {
   createAnyDweller,
@@ -9,36 +9,36 @@ import {
   createGame,
 } from "../helpers";
 
-describe("A Kuckuck card", () => {
-  it("scores 7 points in an empty forest", () => {
+describe("A Genet card", () => {
+  it("scores 5 points in an empty forest", () => {
     const { dweller, woodyPlant, forest } = createForestForDwellerTest({
-      dwellerUnderTest: createAnyDweller(Kuckuck),
+      dwellerUnderTest: createAnyDweller(Genet),
     });
     const game = createGame(forest);
 
-    const points = Kuckuck.score({
+    const points = Genet.score({
       game,
       forest,
       woodyPlant,
       dweller,
     });
 
-    expect(points).toBe(7);
+    expect(points).toBe(5);
   });
 
-  it("scores 7 points in a complete forest", () => {
+  it("scores 5 points in a complete forest", () => {
     const { dweller, woodyPlant, forest } = createCompleteForestWithDweller({
-      dwellerUnderTest: createAnyDweller(Kuckuck),
+      dwellerUnderTest: createAnyDweller(Genet),
     });
     const game = createGame(forest);
 
-    const points = Kuckuck.score({
+    const points = Genet.score({
       game,
       forest,
       woodyPlant,
       dweller,
     });
 
-    expect(points).toBe(7);
+    expect(points).toBe(5);
   });
 });

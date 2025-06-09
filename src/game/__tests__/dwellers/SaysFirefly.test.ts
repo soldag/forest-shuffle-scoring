@@ -9,7 +9,7 @@ import {
   createGame,
 } from "../helpers";
 
-describe("A Fireflies card", () => {
+describe("A Say's Firefly card", () => {
   it.each([
     [0, 1, 0],
     [10, 2, 0],
@@ -24,7 +24,7 @@ describe("A Fireflies card", () => {
       const allSaysFireflies = createAllDwellers(SaysFirefly);
       const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: {
-          ...allFireflies[0],
+          ...allSaysFireflies[0],
           id: "00000000-0000-0000-0000-000000000000",
         },
         otherDwellers: [
@@ -34,7 +34,7 @@ describe("A Fireflies card", () => {
       });
       const game = createGame(forest);
 
-      const points = Fireflies.score({
+      const points = SaysFirefly.score({
         game,
         forest,
         woodyPlant,
@@ -53,14 +53,14 @@ describe("A Fireflies card", () => {
     (_, otherBlueprint) => {
       const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: {
-          ...createAnyDweller(Fireflies),
+          ...createAnyDweller(SaysFirefly),
           id: "ffffffff-fff-ffff-ffff-ffffffffffff",
         },
         otherDwellers: [createAnyDweller(otherBlueprint)],
       });
       const game = createGame(forest);
 
-      const points = Fireflies.score({
+      const points = SaysFirefly.score({
         game,
         forest,
         woodyPlant,

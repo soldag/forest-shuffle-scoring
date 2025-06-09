@@ -8,7 +8,6 @@ import {
 } from "../types";
 
 const name = "FIRE_SALAMANDER";
-const gameBox = GameBox.Base;
 const pointsByCount = {
   1: 5,
   2: 15,
@@ -22,24 +21,30 @@ const blueprint: DwellerCardBlueprint = {
   isPartOfDeck: true,
   variants: [
     {
-      gameBox,
+      gameBox: GameBox.Base,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.HorseChestnut,
       count: 1,
     },
     {
-      gameBox,
+      gameBox: GameBox.Base,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Linden,
       count: 1,
     },
     {
-      gameBox,
+      gameBox: GameBox.Base,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.DouglasFir,
       count: 1,
     },
     // Promo card P002
+    {
+      gameBox: GameBox.Exploration,
+      position: DwellerPosition.Bottom,
+      treeSymbol: TreeSymbol.Beech,
+      count: 1,
+    },
     {
       gameBox: GameBox.PromoCards,
       position: DwellerPosition.Bottom,

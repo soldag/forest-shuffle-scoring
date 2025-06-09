@@ -21,6 +21,7 @@ export enum CardType {
   Plant = "PLANT",
   Tree = "TREE",
   Shrub = "SHRUB",
+  Swamp = "SWAMP",
   WoodlandEdge = "WOODLAND_EDGE",
 }
 
@@ -33,9 +34,11 @@ export enum DwellerPosition {
 
 export enum TreeSymbol {
   AlpineLarch = "ALPINE_LARCH",
+  Bamboo = "BAMBOO",
   Beech = "BEECH",
   Birch = "BIRCH",
   DouglasFir = "DOUGLAS_FIR",
+  EuropeanAlder = "EUROPEAN_ALDER",
   GoldenPalm = "GOLDEN_PALM",
   HorseChestnut = "HORSE_CHESTNUT",
   Linden = "LINDEN",

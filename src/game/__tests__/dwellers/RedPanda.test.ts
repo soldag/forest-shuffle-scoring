@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@jest/globals";
 
-import { Bostulp } from "@/game/dwellers";
+import { RedPanda } from "@/game/dwellers";
 
 import {
   createAnyDweller,
@@ -9,36 +9,36 @@ import {
   createGame,
 } from "../helpers";
 
-describe("A Bostulp card", () => {
-  it("scores 3 points in an empty forest", () => {
+describe("A Red Panda card", () => {
+  it("scores 2 points in an empty forest", () => {
     const { dweller, woodyPlant, forest } = createForestForDwellerTest({
-      dwellerUnderTest: createAnyDweller(Bostulp),
+      dwellerUnderTest: createAnyDweller(RedPanda),
     });
     const game = createGame(forest);
 
-    const points = Bostulp.score({
+    const points = RedPanda.score({
       game,
       forest,
       woodyPlant,
       dweller,
     });
 
-    expect(points).toBe(3);
+    expect(points).toBe(2);
   });
 
-  it("scores 3 points in a complete forest", () => {
+  it("scores 2 points in a complete forest", () => {
     const { dweller, woodyPlant, forest } = createCompleteForestWithDweller({
-      dwellerUnderTest: createAnyDweller(Bostulp),
+      dwellerUnderTest: createAnyDweller(RedPanda),
     });
     const game = createGame(forest);
 
-    const points = Bostulp.score({
+    const points = RedPanda.score({
       game,
       forest,
       woodyPlant,
       dweller,
     });
 
-    expect(points).toBe(3);
+    expect(points).toBe(2);
   });
 });

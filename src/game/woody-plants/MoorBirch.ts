@@ -9,6 +9,11 @@ const blueprint: WoodyPlantCardBlueprint = extendBlueprint(Birch, {
   name,
   variants: [
     {
+      gameBox: GameBox.Exploration,
+      treeSymbol: TreeSymbol.Birch,
+      count: 1,
+    },
+    {
       gameBox: GameBox.PromoCards,
       treeSymbol: TreeSymbol.Birch,
       count: 1,

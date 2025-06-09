@@ -7,16 +7,16 @@ import {
   Beech,
   Birch,
   Blackthorne,
-  Cerro,
   DouglasFir,
   Elderberry,
   EuropeanLarch,
   HorseChestnut,
   Linden,
   MoorBirch,
+  OChristmasTree,
   Oak,
-  OhChristmasTree,
   StonePine,
+  TurkeyOak,
 } from "@/game/woody-plants";
 
 import {
@@ -83,8 +83,8 @@ describe("A Oak card", () => {
 
   it.each([
     [MoorBirch.name, MoorBirch.countsAs, MoorBirch],
-    [OhChristmasTree.name, OhChristmasTree.countsAs, OhChristmasTree],
-    [Cerro.name, Cerro.countsAs, Cerro],
+    [OChristmasTree.name, OChristmasTree.countsAs, OChristmasTree],
+    [TurkeyOak.name, TurkeyOak.countsAs, TurkeyOak],
   ])("treats %s as %s when scoring", (_1, _2, blueprint) => {
     const { forest, woodyPlant } = createForestForWoodyPlantTest({
       woodyPlantUnderTest: createAnyWoodyPlant(Oak),

@@ -1,29 +1,26 @@
+import { extendBlueprint } from "../blueprints";
 import {
-  CardType,
   DwellerCardBlueprint,
   DwellerPosition,
   GameBox,
   TreeSymbol,
 } from "../types";
+import RedFox from "./RedFox";
 
-const name = "GENETA";
-const points = 5;
+const name = "ARCTIC_FOX";
+const gameBox = GameBox.Exploration;
 
-// Promo card P009
-const blueprint: DwellerCardBlueprint = {
+// Promo card P016
+const blueprint: DwellerCardBlueprint = extendBlueprint(RedFox, {
   name,
-  types: [CardType.PawedAnimal],
-  cost: 1,
-  isPartOfDeck: true,
   variants: [
     {
-      gameBox: GameBox.PromoCards,
+      gameBox,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Oak,
       count: 1,
     },
   ],
-  score: () => points,
-};
+});
 
 export default blueprint;

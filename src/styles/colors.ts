@@ -1,6 +1,12 @@
 import tinycolor from "tinycolor2";
 
-import { CardType, EXPANSION_CARD_TYPES, GameBox, TreeSymbol } from "@/game";
+import {
+  CardType,
+  EXPANSION_CARD_TYPES,
+  GameBox,
+  IRRELEVANT_CARD_TYPES,
+  TreeSymbol,
+} from "@/game";
 
 const cardTypeColors: { [key in CardType]: string } = {
   [CardType.Alps]: "#9d92c0",
@@ -16,6 +22,7 @@ const cardTypeColors: { [key in CardType]: string } = {
   [CardType.Person]: "#f59607",
   [CardType.Plant]: "#3a7a50",
   [CardType.Shrub]: "#7b9d53",
+  [CardType.Swamp]: "#94b2c9",
   [CardType.Tree]: "#9ac81d",
   [CardType.WoodlandEdge]: "#325221",
 };
@@ -30,16 +37,18 @@ const gameBoxColors: { [key in GameBox]: string } = {
 
 const treeSymbolColors: { [key in TreeSymbol]: string } = {
   [TreeSymbol.AlpineLarch]: "#927aaf",
-  [TreeSymbol.Sycamore]: "#e30942",
-  [TreeSymbol.Birch]: "#56b547",
+  [TreeSymbol.Bamboo]: "#8fb24f",
   [TreeSymbol.Beech]: "#55814c",
+  [TreeSymbol.Birch]: "#56b547",
   [TreeSymbol.DouglasFir]: "#8ea5c1",
+  [TreeSymbol.EuropeanAlder]: "#629ede",
   [TreeSymbol.GoldenPalm]: "#e2cd4c",
-  [TreeSymbol.Oak]: "#c27e29",
   [TreeSymbol.HorseChestnut]: "#f79d4d",
   [TreeSymbol.Linden]: "#f3c909",
+  [TreeSymbol.Oak]: "#c27e29",
   [TreeSymbol.SilverFir]: "#568f9c",
   [TreeSymbol.SwissPine]: "#dea0c1",
+  [TreeSymbol.Sycamore]: "#e30942",
 };
 
 export const HOVER_BRIGHTNESS = -5;
@@ -52,6 +61,7 @@ export const getBackgroundForCardTypes = (
 ) => {
   const colors = cardTypes
     .filter((t) => !EXPANSION_CARD_TYPES.includes(t))
+    .filter((t) => !IRRELEVANT_CARD_TYPES.includes(t))
     .map((t) =>
       tinycolor(cardTypeColors[t]).lighten(adjustBrightness).toString(),
     );

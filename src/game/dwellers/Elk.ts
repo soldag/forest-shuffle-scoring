@@ -20,6 +20,12 @@ const blueprint: DwellerCardBlueprint = {
   isPartOfDeck: true,
   variants: [
     {
+      gameBox: GameBox.Exploration,
+      position: DwellerPosition.Left,
+      treeSymbol: TreeSymbol.Birch,
+      count: 1,
+    },
+    {
       gameBox: GameBox.PromoCards,
       position: DwellerPosition.Left,
       treeSymbol: TreeSymbol.Birch,

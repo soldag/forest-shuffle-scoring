@@ -8,14 +8,14 @@ import {
   Beech,
   Birch,
   Blackthorne,
-  Cerro,
   DouglasFir,
   Elderberry,
   EuropeanLarch,
   HorseChestnut,
   Linden,
   MoorBirch,
-  OhChristmasTree,
+  OChristmasTree,
+  TurkeyOak,
 } from "@/game/woody-plants";
 
 import {
@@ -98,8 +98,8 @@ describe("A Wild Strawberries card", () => {
 
   it.each([
     [MoorBirch.name, MoorBirch.countsAs, MoorBirch],
-    [OhChristmasTree.name, OhChristmasTree.countsAs, OhChristmasTree],
-    [Cerro.name, Cerro.countsAs, Cerro],
+    [OChristmasTree.name, OChristmasTree.countsAs, OChristmasTree],
+    [TurkeyOak.name, TurkeyOak.countsAs, TurkeyOak],
   ])("treats %s as %s when scoring", (_1, _2, blueprint) => {
     const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(WildStrawberries),

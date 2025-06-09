@@ -34,16 +34,10 @@ describe.each(Object.values(WoodyPlants))(
 
       it("has distinct variants", () => {
         const distinctCount = new Set(
-          blueprint.variants.map((v) => v.treeSymbol),
+          blueprint.variants.map((v) => `${v.gameBox}|${v.treeSymbol}`),
         ).size;
         expect(distinctCount).toBe(blueprint.variants.length);
       });
-
-      if (blueprint.types.includes(CardType.Tree)) {
-        it("has exactly one variant", () => {
-          expect(blueprint.variants.length).toBe(1);
-        });
-      }
     });
   },
 );

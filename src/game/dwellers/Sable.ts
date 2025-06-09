@@ -8,10 +8,11 @@ import {
   TreeSymbol,
 } from "../types";
 
-const name = "TROLL";
-const pointsPerTree = 1;
+const name = "SABLE";
+const gameBox = GameBox.Exploration;
+const pointsPerPawedAnimal = 3;
 
-// Promo card P011
+// Promo card P016
 const blueprint: DwellerCardBlueprint = {
   name,
   types: [CardType.PawedAnimal],
@@ -19,20 +20,14 @@ const blueprint: DwellerCardBlueprint = {
   isPartOfDeck: true,
   variants: [
     {
-      gameBox: GameBox.Exploration,
+      gameBox,
       position: DwellerPosition.Right,
-      treeSymbol: TreeSymbol.DouglasFir,
-      count: 1,
-    },
-    {
-      gameBox: GameBox.PromoCards,
-      position: DwellerPosition.Right,
-      treeSymbol: TreeSymbol.DouglasFir,
+      treeSymbol: TreeSymbol.SilverFir,
       count: 1,
     },
   ],
   score: ({ forest }) =>
-    countCardTypes(forest, [CardType.Tree]) * pointsPerTree,
+    countCardTypes(forest, [CardType.PawedAnimal]) * pointsPerPawedAnimal,
 };
 
 export default blueprint;

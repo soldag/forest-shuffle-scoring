@@ -7,7 +7,7 @@ import {
   TreeSymbol,
 } from "../types";
 
-const name = "BOCIAN_BIALY";
+const name = "WHITE_STORK";
 const pointsPerAmphibianOrInsect = 1;
 
 // Promo card P007
@@ -17,6 +17,12 @@ const blueprint: DwellerCardBlueprint = {
   cost: 2,
   isPartOfDeck: true,
   variants: [
+    {
+      gameBox: GameBox.Exploration,
+      position: DwellerPosition.Right,
+      treeSymbol: TreeSymbol.Oak,
+      count: 1,
+    },
     {
       gameBox: GameBox.PromoCards,
       position: DwellerPosition.Right,

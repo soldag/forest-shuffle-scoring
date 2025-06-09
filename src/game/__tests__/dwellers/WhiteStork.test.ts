@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
 import { CardType, DwellerPosition } from "@/game";
-import { BocianBialy } from "@/game/dwellers";
+import { WhiteStork } from "@/game/dwellers";
 
 import { createFakeDwellers } from "../fake";
 import {
@@ -10,7 +10,7 @@ import {
   createGame,
 } from "../helpers";
 
-describe("An Bocian Bialy card", () => {
+describe("A White Stork card", () => {
   it.each([
     [0, 0, 0],
     [1, 1, 0],
@@ -20,7 +20,7 @@ describe("An Bocian Bialy card", () => {
     "scores %i points if there are %i amphibian and %i insect cards",
     (expectedPoints, amphibianCount, insectCount) => {
       const { dweller, woodyPlant, forest } = createForestForDwellerTest({
-        dwellerUnderTest: createAnyDweller(BocianBialy),
+        dwellerUnderTest: createAnyDweller(WhiteStork),
         otherDwellers: [
           ...createFakeDwellers(amphibianCount, DwellerPosition.Top, {
             types: [CardType.Amphibian],
@@ -32,7 +32,7 @@ describe("An Bocian Bialy card", () => {
       });
       const game = createGame(forest);
 
-      const points = BocianBialy.score({
+      const points = WhiteStork.score({
         game,
         forest,
         woodyPlant,

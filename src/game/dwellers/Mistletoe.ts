@@ -1,3 +1,4 @@
+import { countCardTypes } from "../scoring/helpers";
 import {
   CardType,
   DwellerCardBlueprint,
@@ -6,30 +7,32 @@ import {
   TreeSymbol,
 } from "../types";
 
-const name = "CARDINAL";
-const points = 5;
+const name = "MISTLETOE";
+const pointsPerPlant = 1;
 
-// Promo card P008
+// Promo card P012
 const blueprint: DwellerCardBlueprint = {
   name,
-  types: [CardType.Bird, CardType.WoodlandEdge],
-  cost: 1,
+  types: [CardType.Plant],
+  cost: 0,
   isPartOfDeck: true,
   variants: [
     {
       gameBox: GameBox.Exploration,
       position: DwellerPosition.Top,
-      treeSymbol: TreeSymbol.Sycamore,
+      treeSymbol: TreeSymbol.Linden,
       count: 1,
     },
     {
       gameBox: GameBox.PromoCards,
       position: DwellerPosition.Top,
-      treeSymbol: TreeSymbol.Sycamore,
+      treeSymbol: TreeSymbol.Linden,
+      extraTypes: [CardType.WoodlandEdge],
       count: 1,
     },
   ],
-  score: () => points,
+  score: ({ forest }) =>
+    countCardTypes(forest, [CardType.Plant]) * pointsPerPlant,
 };
 
 export default blueprint;

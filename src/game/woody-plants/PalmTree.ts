@@ -6,7 +6,7 @@ import {
   WoodyPlantCardBlueprint,
 } from "../types";
 
-const name = "PALMIER";
+const name = "PALM_TREE";
 const pointsPerBird = 1;
 
 // Promo card P004
@@ -16,6 +16,11 @@ const blueprint: WoodyPlantCardBlueprint = {
   cost: 1,
   isPartOfDeck: true,
   variants: [
+    {
+      gameBox: GameBox.Exploration,
+      treeSymbol: TreeSymbol.GoldenPalm,
+      count: 1,
+    },
     {
       gameBox: GameBox.PromoCards,
       treeSymbol: TreeSymbol.GoldenPalm,

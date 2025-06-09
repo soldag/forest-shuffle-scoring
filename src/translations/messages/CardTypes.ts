@@ -135,6 +135,16 @@ const messages: { [key in CardType]: Record<Numerus, MessageDescriptor> } = {
       defaultMessage: "Shrubs",
     },
   }),
+  SWAMP: {
+    singular: {
+      id: "CardTypes.Swamp.singular",
+      defaultMessage: "Swamp",
+    },
+    plural: {
+      id: "CardTypes.Swamp.singular",
+      defaultMessage: "Swamps",
+    },
+  },
   TREE: defineMessages<Numerus, MessageDescriptor>({
     singular: {
       id: "CardTypes.Tree.singular",

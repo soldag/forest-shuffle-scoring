@@ -29,6 +29,12 @@ const blueprint: DwellerCardBlueprint = {
     },
     // Promo card P006
     {
+      gameBox: GameBox.Exploration,
+      position: DwellerPosition.Bottom,
+      treeSymbol: TreeSymbol.Linden,
+      count: 1,
+    },
+    {
       gameBox: GameBox.PromoCards,
       position: DwellerPosition.Bottom,
       treeSymbol: TreeSymbol.Linden,

@@ -6,7 +6,7 @@ import {
   TreeSymbol,
 } from "../types";
 
-const name = "KUCKUCK";
+const name = "CUCKOO";
 const points = 7;
 
 // Promo card P010
@@ -19,6 +19,12 @@ const blueprint: DwellerCardBlueprint = {
   cost: 1,
   isPartOfDeck: true,
   variants: [
+    {
+      gameBox: GameBox.Exploration,
+      position: DwellerPosition.Top,
+      treeSymbol: TreeSymbol.Birch,
+      count: 1,
+    },
     {
       gameBox: GameBox.PromoCards,
       position: DwellerPosition.Top,

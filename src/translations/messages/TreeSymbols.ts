@@ -7,6 +7,10 @@ const messages = defineMessages<TreeSymbol, MessageDescriptor>({
     id: "TreeSymbols.AlpineLarch",
     defaultMessage: "Alpine Larch",
   },
+  BAMBOO: {
+    id: "TreeSymbols.Bamboo",
+    defaultMessage: "Bamboo",
+  },
   BEECH: {
     id: "TreeSymbols.Beech",
     defaultMessage: "Beech",
@@ -18,6 +22,10 @@ const messages = defineMessages<TreeSymbol, MessageDescriptor>({
   DOUGLAS_FIR: {
     id: "TreeSymbols.DouglasFir",
     defaultMessage: "Douglas Fir",
+  },
+  EUROPEAN_ALDER: {
+    id: "TreeSymbols.EuropeanAlder",
+    defaultMessage: "European Alder",
   },
   GOLDEN_PALM: {
     id: "TreeSymbols.GoldenPalm",

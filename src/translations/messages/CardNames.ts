@@ -10,10 +10,6 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Birch",
     defaultMessage: "Birch",
   },
-  CERRO: {
-    id: "CardNames.Cerro",
-    defaultMessage: "Cerro",
-  },
   DOUGLAS_FIR: {
     id: "CardNames.DouglasFir",
     defaultMessage: "Douglas Fir",
@@ -34,13 +30,13 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.MoorBirch",
     defaultMessage: "Moor Birch",
   },
+  O_CHRISTMAS_TREE: {
+    id: "CardNames.OChristmasTree",
+    defaultMessage: "O Christmas Tree",
+  },
   OAK: {
     id: "CardNames.Oak",
     defaultMessage: "Oak",
-  },
-  OH_CHRISTMAS_TREE: {
-    id: "CardNames.OhChristmasTree",
-    defaultMessage: "Oh Christmas Tree",
   },
   SAPLING: {
     id: "CardNames.Sapling",
@@ -57,6 +53,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   SYCAMORE: {
     id: "CardNames.Sycamore",
     defaultMessage: "Sycamore",
+  },
+  TURKEY_OAK: {
+    id: "CardNames.TurkeyOak",
+    defaultMessage: "Turkey Oak",
   },
 
   // Shrubs
@@ -81,6 +81,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   ALPINE_NEWT: {
     id: "CardNames.AlpineNewt",
     defaultMessage: "Alpine Newt",
+  },
+  ARCTIC_FOX: {
+    id: "CardNames.ArcticFox",
+    defaultMessage: "Arctic Fox",
   },
   BARBASTELLE_BAT: {
     id: "CardNames.BarbastelleBat",
@@ -118,13 +122,9 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Blueberry",
     defaultMessage: "Blueberry",
   },
-  BOCIAN_BIALY: {
-    id: "CardNames.BocianBialy",
-    defaultMessage: "Bocian biały",
-  },
-  BOSTULP: {
-    id: "CardNames.Bostulp",
-    defaultMessage: "Bostulp",
+  BRIMSTONE: {
+    id: "CardNames.Brimstone",
+    defaultMessage: "Brimstone",
   },
   BROWN_BEAR: {
     id: "CardNames.BrownBear",
@@ -177,6 +177,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   CRANE_FLY: {
     id: "CardNames.CraneFly",
     defaultMessage: "Crane Fly",
+  },
+  CUCKOO: {
+    id: "CardNames.Cuckoo",
+    defaultMessage: "Cuckoo",
   },
   DIGITALIS: {
     id: "CardNames.Digitalis",
@@ -250,6 +254,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.FlyAgaric",
     defaultMessage: "Fly Agaric",
   },
+  GENET: {
+    id: "CardNames.Genet",
+    defaultMessage: "Genet",
+  },
   GENTIAN: {
     id: "CardNames.Gentian",
     defaultMessage: "Gentian",
@@ -282,10 +290,6 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Hedgehog",
     defaultMessage: "Hedgehog",
   },
-  KUCKUCK: {
-    id: "CardNames.Kuckuck",
-    defaultMessage: "Kuckuck",
-  },
   LARGE_TORTOISESHELL: {
     id: "CardNames.LargeTortoiseshell",
     defaultMessage: "Large Tortoiseshell",
@@ -298,13 +302,17 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.MapButterfly",
     defaultMessage: "Map Butterfly",
   },
-  MARETAK: {
-    id: "CardNames.Maretak",
-    defaultMessage: "Maretak",
+  MARSH_CINQUEFOIL: {
+    id: "CardNames.MarshCinquefoil",
+    defaultMessage: "Marsh Cinquefoil",
   },
   MEEPS: {
     id: "CardNames.Meeps",
     defaultMessage: "Meeps",
+  },
+  MISTLETOE: {
+    id: "CardNames.Mistletoe",
+    defaultMessage: "Mistletoe",
   },
   MOLE: {
     id: "CardNames.Mole",
@@ -322,9 +330,9 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.Nightingale",
     defaultMessage: "Nightingale",
   },
-  PALMIER: {
-    id: "CardNames.Palmier",
-    defaultMessage: "Palmier",
+  PALM_TREE: {
+    id: "CardNames.PalmTree",
+    defaultMessage: "Palm Tree",
   },
   PARASOL_MUSHROOM: {
     id: "CardNames.ParasolMushroom",
@@ -362,6 +370,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.RedFox",
     defaultMessage: "Red Fox",
   },
+  RED_PANDA: {
+    id: "CardNames.RedPanda",
+    defaultMessage: "Red Panda",
+  },
   RED_SQUIRREL: {
     id: "CardNames.RedSquirrel",
     defaultMessage: "Red Squirrel",
@@ -378,9 +390,17 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.RoeDeer",
     defaultMessage: "Roe Deer",
   },
+  SABLE: {
+    id: "CardNames.Sable",
+    defaultMessage: "CardNames.Sable",
+  },
   SAVIS_PIPISTRELLE: {
     id: "CardNames.SavisPipistrelle",
     defaultMessage: "Savi's Pipistrelle",
+  },
+  SAYS_FIREFLY: {
+    id: "CardNames.SaysFirefly",
+    defaultMessage: "Say's Firefly",
   },
   SILVER_WASHED_FRITILLARY: {
     id: "CardNames.SilverWashedFritillary",
@@ -401,10 +421,6 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   STEINBOCK: {
     id: "CardNames.Steinbock",
     defaultMessage: "Steinbock",
-  },
-  WHINCHAT: {
-    id: "CardNames.Whinchat",
-    defaultMessage: "Whinchat",
   },
   TAWNY_OWL: {
     id: "CardNames.TawnyOwl",
@@ -441,6 +457,18 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   WILD_STRAWBERRIES: {
     id: "CardNames.WildStrawberries",
     defaultMessage: "Wild Strawberries",
+  },
+  WILD_TULIP: {
+    id: "CardNames.WildTulip",
+    defaultMessage: "Wild Tulip",
+  },
+  WHITE_STORK: {
+    id: "CardNames.WhiteStork",
+    defaultMessage: "White Stork",
+  },
+  WHINCHAT: {
+    id: "CardNames.Whinchat",
+    defaultMessage: "Whinchat",
   },
   WOLF: {
     id: "CardNames.Wolf",

@@ -23,7 +23,12 @@ const applyFilter = <Type extends Card>(
   { names, types, treeSymbols, distinctNames }: CardFilter,
 ): Type[] => {
   const result = cards
-    .filter((c) => !names || names.includes(c.name))
+    .filter(
+      (c) =>
+        !names ||
+        names.includes(c.name) ||
+        (c.countsAs && names.includes(c.countsAs)),
+    )
     .filter((c) => !types || types.some((t) => c.types.includes(t)))
     .filter(
       (c) =>
@@ -80,12 +85,12 @@ export const scoreByCount = (
   count: number,
   pointsByCount: { [count: number]: number },
 ) => {
-  const cappedCount = Math.min(
-    count,
-    Math.max(0, ...Object.keys(pointsByCount).map((c) => parseInt(c, 10))),
-  );
+  const thresholds = Object.keys(pointsByCount)
+    .map(Number)
+    .toSorted((a, b) => b - a); // sort descending
 
-  return pointsByCount[cappedCount] ?? 0;
+  const threshold = thresholds.find((t) => count >= t);
+  return threshold !== undefined ? pointsByCount[threshold] : 0;
 };
 
 export const scoreByCardMajority = (
@@ -110,7 +115,9 @@ export const scoreSet = (
   pointsByCount: { [count: number]: number },
   options: CountOptions = {},
 ): number => {
-  const filter = { names: [card.name] };
+  const filter = {
+    names: card.countsAs ? [card.name, card.countsAs] : [card.name],
+  };
   const cards = [
     ...applyFilter(forest.woodyPlants, filter),
     ...applyFilter(getDwellersOfForest(forest), filter),

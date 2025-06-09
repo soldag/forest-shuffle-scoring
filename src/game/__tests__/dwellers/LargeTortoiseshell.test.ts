@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
 import {
+  Brimstone,
   CamberwellBeauty,
   LargeTortoiseshell,
   MapButterfly,
@@ -29,6 +30,7 @@ describe("A Large Tortoiseshell card", () => {
     [20, [5]],
     [35, [6]],
     [55, [7]],
+    [80, [8]],
     [3, [1, 2]],
     [9, [2, 3]],
     [18, [3, 4]],
@@ -41,10 +43,11 @@ describe("A Large Tortoiseshell card", () => {
       const { dwellerUnderTest, otherDwellers } = createDwellerSets(
         LargeTortoiseshell,
         [
-          PhoebusApollo,
+          Brimstone,
           CamberwellBeauty,
           MapButterfly,
           PeacockButterfly,
+          PhoebusApollo,
           PurpleEmperor,
           SilverWashedFritillary,
         ],

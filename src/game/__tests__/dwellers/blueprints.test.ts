@@ -18,6 +18,7 @@ const allowedTypeCombinations = [
   new Set([CardType.Plant]),
   new Set([CardType.Deer, CardType.ClovenhoofedAnimal]),
   new Set([CardType.Butterfly, CardType.Insect]),
+  new Set([CardType.Plant, CardType.Swamp]),
 ];
 
 const allowedPositionsByType: { [key in CardType]: Set<DwellerPosition> } = {
@@ -49,6 +50,7 @@ const allowedPositionsByType: { [key in CardType]: Set<DwellerPosition> } = {
   [CardType.Person]: new Set([DwellerPosition.Left, DwellerPosition.Right]),
   [CardType.Plant]: new Set([DwellerPosition.Bottom]),
   [CardType.Shrub]: new Set(),
+  [CardType.Swamp]: new Set([DwellerPosition.Bottom]),
   [CardType.Tree]: new Set(),
   [CardType.WoodlandEdge]: new Set(Object.values(DwellerPosition)),
 };

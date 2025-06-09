@@ -8,13 +8,17 @@ import {
 } from "../types";
 import Oak from "./Oak";
 
-const name = "CERRO";
+const name = "TURKEY_OAK";
 const pointsPerClovenhoofedAnimal = 1;
 
-// Promo card P014
 const blueprint: WoodyPlantCardBlueprint = extendBlueprint(Oak, {
   name,
   variants: [
+    {
+      gameBox: GameBox.Exploration,
+      treeSymbol: TreeSymbol.Oak,
+      count: 1,
+    },
     {
       gameBox: GameBox.PromoCards,
       treeSymbol: TreeSymbol.Oak,

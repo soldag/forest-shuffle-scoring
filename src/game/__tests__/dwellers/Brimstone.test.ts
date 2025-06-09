@@ -21,7 +21,7 @@ import {
   generateCardIds,
 } from "../helpers";
 
-describe("A Silver-Washed Fritillary card", () => {
+describe("A Brimstone card", () => {
   it.each([
     [0, [1]],
     [3, [2]],
@@ -41,15 +41,15 @@ describe("A Silver-Washed Fritillary card", () => {
     "scores %i points for a set of butterflies with lengths %p",
     (expectedPoints, lengths) => {
       const { dwellerUnderTest, otherDwellers } = createDwellerSets(
-        SilverWashedFritillary,
+        Brimstone,
         [
-          Brimstone,
           CamberwellBeauty,
           LargeTortoiseshell,
           MapButterfly,
           PeacockButterfly,
           PhoebusApollo,
           PurpleEmperor,
+          SilverWashedFritillary,
         ],
         lengths,
       );
@@ -59,7 +59,7 @@ describe("A Silver-Washed Fritillary card", () => {
       });
       const game = createGame(forest);
 
-      const points = SilverWashedFritillary.score({
+      const points = Brimstone.score({
         game,
         forest,
         woodyPlant,
@@ -74,7 +74,7 @@ describe("A Silver-Washed Fritillary card", () => {
     const ids = generateCardIds(2).toSorted();
     const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: {
-        ...createAnyDweller(SilverWashedFritillary),
+        ...createAnyDweller(Brimstone),
         id: ids[1],
       },
       otherDwellers: [
@@ -86,7 +86,7 @@ describe("A Silver-Washed Fritillary card", () => {
     });
     const game = createGame(forest);
 
-    const points = SilverWashedFritillary.score({
+    const points = Brimstone.score({
       game,
       forest,
       woodyPlant,
