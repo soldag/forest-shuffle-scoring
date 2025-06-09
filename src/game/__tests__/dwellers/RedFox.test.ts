@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
 import { DwellerPosition } from "@/game";
-import { EuropeanHare, RedFox } from "@/game/dwellers";
+import { EuropeanHare, MountainHare, RedFox } from "@/game/dwellers";
 import { createDweller } from "@/game/factory";
 
 import { createFakeWoodyPlant } from "../fake";
@@ -16,15 +16,19 @@ import {
 
 describe("A Red Fox card", () => {
   it.each([
-    [0, 0],
-    [2, 1],
-    [18, 9],
+    [0, 0, 0],
+    [2, 1, 0],
+    [2, 0, 1],
+    [18, 6, 3],
   ])(
-    "scores %i points if there are %i European Hare cards",
-    (expectedPoints, count) => {
+    "scores %i points if there are %i European Hare cards and %i Mountain Hare cards",
+    (expectedPoints, europeanHareCount, mountainHareCount) => {
       const { dweller, woodyPlant, forest } = createForestForDwellerTest({
         dwellerUnderTest: createAnyDweller(RedFox),
-        otherDwellers: createAllDwellers(EuropeanHare).slice(0, count),
+        otherDwellers: [
+          ...createAllDwellers(EuropeanHare).slice(0, europeanHareCount),
+          ...createAllDwellers(MountainHare).slice(0, mountainHareCount),
+        ],
       });
       const game = createGame(forest);
 

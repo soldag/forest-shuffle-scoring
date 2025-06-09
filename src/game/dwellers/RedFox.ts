@@ -7,10 +7,11 @@ import {
   TreeSymbol,
 } from "../types";
 import EuropeanHare from "./EuropeanHare";
+import MountainHare from "./MountainHare";
 
 const name = "RED_FOX";
 const gameBox = GameBox.Base;
-const pointsPerEuropeanHare = 2;
+const pointsPerHare = 2;
 
 const blueprint: DwellerCardBlueprint = {
   name,
@@ -44,7 +45,8 @@ const blueprint: DwellerCardBlueprint = {
     },
   ],
   score: ({ forest }) =>
-    countCardNames(forest, [EuropeanHare.name]) * pointsPerEuropeanHare,
+    countCardNames(forest, [EuropeanHare.name, MountainHare.name]) *
+    pointsPerHare,
 };
 
 export default blueprint;
