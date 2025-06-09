@@ -28,13 +28,6 @@ const blueprint: DwellerCardBlueprint = {
       treeSymbol: TreeSymbol.SilverFir,
       count: 1,
     },
-    // Promo card P010
-    {
-      gameBox: GameBox.PromoCards,
-      position: DwellerPosition.Bottom,
-      treeSymbol: TreeSymbol.DouglasFir,
-      count: 1,
-    },
   ],
   score: () => points,
 };

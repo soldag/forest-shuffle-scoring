@@ -27,6 +27,7 @@ export { default as CraneFly } from "./CraneFly";
 export { default as Digitalis } from "./Digitalis";
 export { default as DuererFledermaus } from "./DuererFledermaus";
 export { default as Edelweiss } from "./Edelweiss";
+export { default as Eierschwammerl } from "./Eierschwammerl";
 export { default as Elk } from "./Elk";
 export { default as EurasianJay } from "./EurasianJay";
 export { default as EurasianMagpie } from "./EurasianMagpie";

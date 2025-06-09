@@ -6,6 +6,7 @@ import { createDeck } from "@/game/factory";
 import {
   CardType,
   DwellerCard,
+  DwellerPosition,
   DwellerVariant,
   GameBox,
   WoodyPlantCard,
@@ -65,6 +66,23 @@ describe.each([
     it("has the right amount of dweller cards", () => {
       expect(deck.dwellers.length).toBe(expectedDwellerCount);
     });
+
+    it.each([
+      [DwellerPosition.Top, DwellerPosition.Bottom],
+      [DwellerPosition.Left, DwellerPosition.Right],
+    ])(
+      "has the same number of %s and %s dweller cards",
+      (position1, position2) => {
+        const count1 = deck.dwellers.filter(
+          (d) => d.position === position1,
+        ).length;
+        const count2 = deck.dwellers.filter(
+          (d) => d.position === position2,
+        ).length;
+
+        expect(count1).toBe(count2);
+      },
+    );
 
     describe.each(Object.values(WoodyPlants))(
       "has $name cards",
