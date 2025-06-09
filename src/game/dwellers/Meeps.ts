@@ -1,3 +1,4 @@
+import { extendBlueprint } from "../blueprints";
 import {
   DwellerCardBlueprint,
   DwellerPosition,
@@ -9,8 +10,7 @@ import EuropeanWildcat from "./EuropeanWildcat";
 const name = "MEEPS";
 
 // Promo card P013
-const blueprint: DwellerCardBlueprint = {
-  ...EuropeanWildcat,
+const blueprint: DwellerCardBlueprint = extendBlueprint(EuropeanWildcat, {
   name,
   variants: [
     {
@@ -20,6 +20,6 @@ const blueprint: DwellerCardBlueprint = {
       count: 1,
     },
   ],
-};
+});
 
 export default blueprint;

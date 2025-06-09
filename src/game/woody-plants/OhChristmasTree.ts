@@ -1,10 +1,10 @@
+import { extendBlueprint } from "../blueprints";
 import { GameBox, TreeSymbol, WoodyPlantCardBlueprint } from "../types";
 import SilverFir from "./SilverFir";
 
 const name = "OH_CHRISTMAS_TREE";
 
-const blueprint: WoodyPlantCardBlueprint = {
-  ...SilverFir,
+const blueprint: WoodyPlantCardBlueprint = extendBlueprint(SilverFir, {
   name,
   variants: [
     {
@@ -13,6 +13,6 @@ const blueprint: WoodyPlantCardBlueprint = {
       count: 1,
     },
   ],
-};
+});
 
 export default blueprint;

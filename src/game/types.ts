@@ -47,6 +47,7 @@ export enum TreeSymbol {
 export interface Card {
   id: string;
   name: string;
+  countsAs?: string;
   gameBox: GameBox;
   types: CardType[];
   treeSymbol?: TreeSymbol;
@@ -105,6 +106,7 @@ export interface Game {
 
 export interface CardBlueprint {
   name: string;
+  countsAs?: string;
   types: CardType[];
   cost: number;
 }

@@ -70,8 +70,10 @@ export const countTreeSymbols = (
 ): number => countCards(forest, { treeSymbols }, { ignoreModifiers: true });
 
 export const countTreeSpecies = (forest: Forest) => {
-  const treeNames = new Set(filterTrees(forest.woodyPlants).map((w) => w.name));
-  return treeNames.size;
+  const treeSpecies = new Set(
+    filterTrees(forest.woodyPlants).map((w) => w.countsAs ?? w.name),
+  );
+  return treeSpecies.size;
 };
 
 export const scoreByCount = (

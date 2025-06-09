@@ -32,6 +32,7 @@ export const createDweller = (
   const dweller: DwellerCard = {
     id: generateId(),
     name: blueprint.name,
+    countsAs: blueprint.countsAs,
     gameBox: variant.gameBox,
     types: blueprint.types.concat(variant.extraTypes ?? []),
     treeSymbol: variant.treeSymbol,
@@ -54,6 +55,7 @@ export const createWoodyPlant = (
   const woodyPlant: WoodyPlantCard = {
     id: generateId(),
     name: blueprint.name,
+    countsAs: blueprint.countsAs,
     gameBox: variant.gameBox,
     types: blueprint.types.concat(variant.extraTypes ?? []),
     treeSymbol: variant.treeSymbol,

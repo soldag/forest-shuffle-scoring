@@ -1,21 +1,19 @@
-import { countCardTypes } from "@/game/scoring/helpers";
-
+import { extendBlueprint } from "../blueprints";
+import { countCardTypes } from "../scoring/helpers";
 import {
   CardType,
   GameBox,
   TreeSymbol,
   WoodyPlantCardBlueprint,
 } from "../types";
+import Oak from "./Oak";
 
 const name = "CERRO";
 const pointsPerClovenhoofedAnimal = 1;
 
 // Promo card P014
-const blueprint: WoodyPlantCardBlueprint = {
+const blueprint: WoodyPlantCardBlueprint = extendBlueprint(Oak, {
   name,
-  types: [CardType.Tree],
-  cost: 1,
-  isPartOfDeck: true,
   variants: [
     {
       gameBox: GameBox.PromoCards,
@@ -26,6 +24,6 @@ const blueprint: WoodyPlantCardBlueprint = {
   score: ({ forest }) =>
     countCardTypes(forest, [CardType.ClovenhoofedAnimal]) *
     pointsPerClovenhoofedAnimal,
-};
+});
 
 export default blueprint;

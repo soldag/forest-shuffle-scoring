@@ -4,6 +4,19 @@ import * as _ from "lodash-es";
 import { WildStrawberries } from "@/game/dwellers";
 import { CardType } from "@/game/types";
 import * as WoodyPlants from "@/game/woody-plants";
+import {
+  Beech,
+  Birch,
+  Blackthorne,
+  Cerro,
+  DouglasFir,
+  Elderberry,
+  EuropeanLarch,
+  HorseChestnut,
+  Linden,
+  MoorBirch,
+  OhChristmasTree,
+} from "@/game/woody-plants";
 
 import {
   createAnyDweller,
@@ -54,4 +67,64 @@ describe("A Wild Strawberries card", () => {
       expect(points).toBe(0);
     },
   );
+
+  it("ignores shrubs when scoring", () => {
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
+      dwellerUnderTest: createAnyDweller(WildStrawberries),
+      otherWoodyPlants: [
+        // Shrubs
+        createAnyWoodyPlant(Elderberry),
+        createAnyWoodyPlant(Blackthorne),
+        // Trees
+        createAnyWoodyPlant(Beech),
+        createAnyWoodyPlant(Birch),
+        createAnyWoodyPlant(DouglasFir),
+        createAnyWoodyPlant(EuropeanLarch),
+        createAnyWoodyPlant(HorseChestnut),
+        createAnyWoodyPlant(Linden),
+      ],
+    });
+    const game = createGame(forest);
+
+    const points = WildStrawberries.score({
+      game,
+      forest,
+      woodyPlant,
+      dweller,
+    });
+
+    expect(points).toBe(0);
+  });
+
+  it.each([
+    [MoorBirch.name, MoorBirch.countsAs, MoorBirch],
+    [OhChristmasTree.name, OhChristmasTree.countsAs, OhChristmasTree],
+    [Cerro.name, Cerro.countsAs, Cerro],
+  ])("treats %s as %s when scoring", (_1, _2, blueprint) => {
+    const { dweller, woodyPlant, forest } = createForestForDwellerTest({
+      dwellerUnderTest: createAnyDweller(WildStrawberries),
+      otherWoodyPlants: [
+        createAnyWoodyPlant(blueprint),
+        createAnyWoodyPlant(
+          treeBlueprints.find((b) => b.name === blueprint.countsAs)!,
+        ),
+        createAnyWoodyPlant(WoodyPlants.Beech),
+        createAnyWoodyPlant(WoodyPlants.EuropeanLarch),
+        createAnyWoodyPlant(WoodyPlants.HorseChestnut),
+        createAnyWoodyPlant(WoodyPlants.Linden),
+        createAnyWoodyPlant(WoodyPlants.StonePine),
+        createAnyWoodyPlant(WoodyPlants.Sycamore),
+      ],
+    });
+    const game = createGame(forest);
+
+    const points = WildStrawberries.score({
+      game,
+      forest,
+      woodyPlant,
+      dweller,
+    });
+
+    expect(points).toBe(0);
+  });
 });
