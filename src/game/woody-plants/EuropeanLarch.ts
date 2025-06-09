@@ -5,7 +5,7 @@ import {
   WoodyPlantCardBlueprint,
 } from "../types";
 
-const name = "ALPINE_LARCH";
+const name = "EUROPEAN_LARCH";
 const points = 3;
 
 const blueprint: WoodyPlantCardBlueprint = {

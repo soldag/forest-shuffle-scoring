@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@jest/globals";
 
 import { CardType, DwellerPosition } from "@/game/types";
-import { SwissPine } from "@/game/woody-plants";
+import { StonePine } from "@/game/woody-plants";
 
 import { createFakeDwellers, createFakeWoodyPlants } from "../fake";
 import {
@@ -10,7 +10,7 @@ import {
   createGame,
 } from "../helpers";
 
-describe("A Swiss Pine card", () => {
+describe("A Stone Pine card", () => {
   it.each([
     [1, 0, 0],
     [2, 0, 1],
@@ -27,13 +27,13 @@ describe("A Swiss Pine card", () => {
         types: [CardType.Alps],
       });
       const { woodyPlant, forest } = createForestForWoodyPlantTest({
-        woodyPlantUnderTest: createAnyWoodyPlant(SwissPine),
+        woodyPlantUnderTest: createAnyWoodyPlant(StonePine),
         otherWoodyPlants,
         dwellers,
       });
       const game = createGame(forest);
 
-      const points = SwissPine.score({
+      const points = StonePine.score({
         game,
         forest,
         woodyPlant,

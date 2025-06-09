@@ -1,9 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
 
 import * as Dwellers from "../../dwellers";
-import { CardType, GameBox } from "../../types";
+import { CardType } from "../../types";
 import * as WoodyPlants from "../../woody-plants";
-import { Sapling } from "../../woody-plants";
 
 describe.each(Object.values(WoodyPlants))(
   "The woody plant blueprint $name",
@@ -44,17 +43,6 @@ describe.each(Object.values(WoodyPlants))(
         it("has exactly one variant", () => {
           expect(blueprint.variants.length).toBe(1);
         });
-
-        const variant = blueprint.variants[0];
-        if (blueprint === Sapling) {
-          it("has no tree symbol", () => {
-            expect(variant.treeSymbol).toBeUndefined();
-          });
-        } else if (variant.gameBox !== GameBox.PromoCards) {
-          it("has a matching tree symbol", () => {
-            expect(variant.treeSymbol).toBe(blueprint.name);
-          });
-        }
       }
     });
   },

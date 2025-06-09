@@ -2,10 +2,6 @@ import { IntlShape, MessageDescriptor, defineMessages } from "react-intl";
 
 const messages = defineMessages<string, MessageDescriptor | undefined>({
   // Trees
-  ALPINE_LARCH: {
-    id: "CardNames.AlpineLarch",
-    defaultMessage: "Alpine Larch",
-  },
   BEECH: {
     id: "CardNames.Beech",
     defaultMessage: "Beech",
@@ -21,6 +17,10 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
   DOUGLAS_FIR: {
     id: "CardNames.DouglasFir",
     defaultMessage: "Douglas Fir",
+  },
+  EUROPEAN_LARCH: {
+    id: "CardNames.EuropeanLarch",
+    defaultMessage: "European Larch",
   },
   HORSE_CHESTNUT: {
     id: "CardNames.HorseChestnut",
@@ -50,9 +50,9 @@ const messages = defineMessages<string, MessageDescriptor | undefined>({
     id: "CardNames.SilverFir",
     defaultMessage: "Silver Fir",
   },
-  SWISS_PINE: {
-    id: "CardNames.SwissPine",
-    defaultMessage: "Swiss Pine",
+  STONE_PINE: {
+    id: "CardNames.StonePine",
+    defaultMessage: "Stone Pine",
   },
   SYCAMORE: {
     id: "CardNames.Sycamore",
