@@ -84,6 +84,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
 
+      "import/no-cycle": "error",
       "import/no-relative-packages": "error",
       "import/no-unresolved": [
         "error",
