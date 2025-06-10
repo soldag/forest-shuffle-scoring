@@ -1,4 +1,4 @@
-import { DwellerCard, GameBox, WoodyPlantCard } from "@/game";
+import { Cave, DwellerCard, GameBox, WoodyPlantCard } from "@/game";
 
 export enum GameActionType {
   CreateGame = "CREATE_GAME",
@@ -17,6 +17,7 @@ export enum GameActionType {
 export interface CreateGamePayload {
   gameBoxes: GameBox[];
   playerName: string;
+  caveName: string;
   caveCardCount: number;
 }
 
@@ -32,7 +33,7 @@ export const createGame = (payload: CreateGamePayload): CreateGameAction => ({
 
 export interface AddPlayerPayload {
   playerName: string;
-  caveCardCount: number;
+  cave: Cave;
 }
 
 export interface AddPlayerAction {
@@ -79,7 +80,7 @@ export const selectPlayer = (
 
 export interface SetCavePayload {
   playerId: string;
-  count: number;
+  cave: Cave;
 }
 
 export interface SetCaveAction {

@@ -35,7 +35,7 @@ const blueprint: DwellerCardBlueprint = {
       count: 1,
     },
   ],
-  score: ({ forest }) => forest.caveCardCount * pointsPerCaveCard,
+  score: ({ forest }) => forest.cave.cardCount * pointsPerCaveCard,
 };
 
 export default blueprint;

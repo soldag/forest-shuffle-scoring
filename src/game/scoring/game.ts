@@ -2,6 +2,7 @@ import * as _ from "lodash-es";
 
 import { filterTrees } from "@/game/helpers";
 
+import * as Caves from "../caves";
 import * as Dwellers from "../dwellers";
 import {
   DwellerPosition,
@@ -14,7 +15,6 @@ import {
   WoodyPlantScoringArgs,
 } from "../types";
 import * as WoodyPlants from "../woody-plants";
-import { scoreCave } from "./cave";
 
 const scoreDweller = (args: DwellerScoringArgs): number => {
   const blueprint = Object.values(Dwellers).find(
@@ -62,6 +62,13 @@ const scoreTrees = (game: Game, forest: Forest): number =>
   filterTrees(forest.woodyPlants)
     .map((woodyPlant) => scoreTree({ game, forest, woodyPlant }))
     .reduce((a, b) => a + b, 0);
+
+const scoreCave = (forest: Forest): number => {
+  const blueprint = Object.values(Caves).find(
+    (b) => b.name === forest.cave.name,
+  );
+  return blueprint?.score(forest) ?? 0;
+};
 
 export const scorePlayer = (game: Game, playerId: string): PlayerScoring => {
   const forest = game.players.find((p) => p.id === playerId)?.forest;

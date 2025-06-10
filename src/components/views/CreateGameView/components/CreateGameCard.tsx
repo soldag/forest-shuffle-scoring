@@ -1,4 +1,6 @@
-import { useForm } from "react-hook-form";
+import * as _ from "lodash-es";
+import { useMemo } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { FormattedMessage } from "react-intl";
 import { useLocalStorage } from "usehooks-ts";
 
@@ -19,16 +21,18 @@ import AddPlayerForm, {
 } from "@/components/common/AddPlayerForm";
 import GameBoxSelector from "@/components/common/GameBoxSelector";
 import { GameBox } from "@/game";
+import * as Caves from "@/game/caves";
 
-interface CreateGameFormFields {
-  playerName: string;
-  caveCardCount: number;
+interface CreateGameCardValues {
   gameBoxes: GameBox[];
+  playerName: string;
+  caveName: string;
+  caveCardCount: number;
 }
 
 interface CreateGameCardProps {
   sx?: SxProps;
-  onSubmit: (values: CreateGameFormFields) => void;
+  onSubmit: (values: CreateGameCardValues) => void;
 }
 
 const CreateGameCard = ({ sx, onSubmit }: CreateGameCardProps) => {
@@ -36,17 +40,28 @@ const CreateGameCard = ({ sx, onSubmit }: CreateGameCardProps) => {
     GameBox.Base,
   ]);
 
-  const {
-    control,
-    formState: { isValid, errors },
-    handleSubmit,
-  } = useForm<AddPlayerFormFields>({
+  const form = useForm<AddPlayerFormFields>({
     mode: "onChange",
     defaultValues: {
       playerName: "",
+      caveName: "REGULAR_CAVE",
       caveCardCount: 0,
     },
   });
+  const {
+    formState: { isValid },
+    handleSubmit,
+  } = form;
+
+  const caveNameOptions = useMemo(
+    () =>
+      _.uniq(
+        Object.values(Caves)
+          .filter((c) => gameBoxes.includes(c.gameBox))
+          .map((c) => c.name),
+      ),
+    [gameBoxes],
+  );
 
   const onSubmitWrapper = (values: AddPlayerFormFields) =>
     onSubmit({ ...values, gameBoxes });
@@ -70,11 +85,12 @@ const CreateGameCard = ({ sx, onSubmit }: CreateGameCardProps) => {
       </Typography>
 
       <CardContent>
-        <AddPlayerForm
-          control={control}
-          errors={errors}
-          onSubmit={handleSubmit(onSubmitWrapper)}
-        />
+        <FormProvider {...form}>
+          <AddPlayerForm
+            caveNameOptions={caveNameOptions}
+            onSubmit={handleSubmit(onSubmitWrapper)}
+          />
+        </FormProvider>
 
         <FormLabel sx={{ mt: 2, mb: 0.5 }}>
           <FormattedMessage

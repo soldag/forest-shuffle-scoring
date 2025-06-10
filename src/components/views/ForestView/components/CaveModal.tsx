@@ -1,6 +1,7 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { FormattedMessage, useIntl } from "react-intl";
+import * as _ from "lodash-es";
+import { useEffect, useMemo } from "react";
+import { FormProvider, useForm } from "react-hook-form";
+import { FormattedMessage } from "react-intl";
 
 import {
   Button,
@@ -13,106 +14,107 @@ import {
   Typography,
 } from "@mui/joy";
 
-import CaveCardCountInput from "@/components/common/CaveCardCountInput";
-import FormController from "@/components/common/FormController";
-import { buildRules } from "@/utils/forms";
-
-export interface CaveModalFields {
-  count: number;
-}
+import CaveFormControls, {
+  CaveFormControlsFields,
+} from "@/components/common/CaveFormControls";
+import { Cave, Game } from "@/game";
+import { getForest } from "@/game/helpers";
+import invariant from "@/utils/invariant";
 
 interface CaveModalProps {
   open: boolean;
-  count: number;
-  onConfirm: (values: CaveModalFields) => void;
+  game: Game;
+  playerId: string;
+  onConfirm: (cave: Cave) => void;
   onClose: () => void;
 }
 
-const CaveModal = ({ open, count, onConfirm, onClose }: CaveModalProps) => {
-  const intl = useIntl();
+const getFormValues = (cave?: Cave) => ({
+  caveName: cave?.name ?? "REGULAR_CAVE",
+  caveCardCount: cave?.cardCount ?? 0,
+});
 
-  const {
-    control,
-    formState: { isValid, errors },
-    setValue,
-    handleSubmit,
-  } = useForm({
+const CaveModal = ({
+  open,
+  game,
+  playerId,
+  onConfirm,
+  onClose,
+}: CaveModalProps) => {
+  const cave = getForest(game, playerId)?.cave;
+  const form = useForm<CaveFormControlsFields>({
     mode: "onChange",
-    defaultValues: {
-      count,
-    },
+    defaultValues: getFormValues(cave),
   });
+  const {
+    formState: { isValid },
+    handleSubmit,
+    reset,
+  } = form;
+
+  const nameOptions = useMemo(() => {
+    const caveCards = cave ? [...game.deck.caves, cave] : game.deck.caves;
+    return _.uniq(caveCards.map((c) => c.name));
+  }, [game.deck.caves, cave]);
 
   useEffect(() => {
     if (!open) {
-      setValue("count", count);
+      reset(getFormValues(cave));
     }
-  }, [open, setValue, count]);
+  }, [open, reset, cave]);
 
-  const handleConfirm = (values: CaveModalFields) => {
-    onConfirm?.(values);
+  const handleConfirm = (values: CaveFormControlsFields) => {
+    const newCave =
+      values.caveName === cave?.name
+        ? cave
+        : game.deck.caves.find((c) => c.name === values.caveName);
+    invariant(newCave);
+
+    onConfirm?.({ ...newCave, cardCount: values.caveCardCount });
     onClose?.();
   };
 
   return (
     <Modal open={open} onClose={onClose}>
       <form onSubmit={handleSubmit(handleConfirm)}>
-        <ModalDialog size="lg" variant="outlined" role="alertdialog">
-          <DialogTitle>
-            <FormattedMessage
-              id="ForestView.CaveModal.title"
-              defaultMessage="Cave cards"
-            />
-          </DialogTitle>
-
-          <Divider />
-
-          <DialogContent>
-            <Typography level="body-sm" sx={{ mb: 2 }}>
+        <FormProvider {...form}>
+          <ModalDialog size="lg" variant="outlined" role="alertdialog">
+            <DialogTitle>
               <FormattedMessage
-                id="ForestView.CaveModal.instructions"
-                defaultMessage="Please enter the number of cards that are in the current player's cave."
+                id="ForestView.CaveModal.title"
+                defaultMessage="Cave"
               />
-            </Typography>
-            <FormattedMessage
-              id="ForestView.CaveModal.count.label"
-              defaultMessage="Number of cave cards"
-            >
-              {([label]) => (
-                <FormController
-                  name="count"
-                  control={control}
-                  rules={buildRules(intl, { required: true, min: 0 })}
-                  label={label}
-                  render={({ field }) => (
-                    <CaveCardCountInput
-                      {...field}
-                      autoFocus
-                      variant="soft"
-                      placeholder={label as string}
-                      error={!!errors.count}
-                    />
-                  )}
+            </DialogTitle>
+
+            <Divider />
+
+            <DialogContent>
+              <Typography level="body-sm" sx={{ mb: 2 }}>
+                <FormattedMessage
+                  id="ForestView.CaveModal.instructions"
+                  defaultMessage="Please enter the number of cards that are in the current player's cave."
                 />
-              )}
-            </FormattedMessage>
-          </DialogContent>
+              </Typography>
 
-          <DialogActions>
-            <Button type="submit" color="primary" disabled={!isValid}>
-              <FormattedMessage
-                id="ForestView.CaveModal.confirm"
-                defaultMessage="Confirm"
-              />
-            </Button>
-            <Button color="neutral" variant="soft" onClick={onClose}>
-              <FormattedMessage
-                id="ForestView.CaveModal.cancel"
-                defaultMessage="Cancel"
-              />
-            </Button>
-          </DialogActions>
-        </ModalDialog>
+              <CaveFormControls nameOptions={nameOptions} />
+            </DialogContent>
+
+            <DialogActions>
+              <Button type="submit" color="primary" disabled={!isValid}>
+                <FormattedMessage
+                  id="ForestView.CaveModal.confirm"
+                  defaultMessage="Confirm"
+                />
+              </Button>
+              <Button color="neutral" variant="soft" onClick={onClose}>
+                <FormattedMessage
+                  id="ForestView.CaveModal.cancel"
+                  defaultMessage="Cancel"
+                />
+              </Button>
+            </DialogActions>
+          </ModalDialog>
+        </FormProvider>
       </form>
     </Modal>
   );

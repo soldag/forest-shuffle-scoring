@@ -1,8 +1,15 @@
+import { RegularCave } from "@/game/caves";
 import * as Dwellers from "@/game/dwellers";
-import { createDweller, createWoodyPlant, generateId } from "@/game/factory";
+import {
+  createCave,
+  createDweller,
+  createWoodyPlant,
+  generateId,
+} from "@/game/factory";
 import * as WoodyPlants from "@/game/woody-plants";
 
 import {
+  Cave,
   DwellerCard,
   DwellerCardBlueprint,
   Forest,
@@ -76,11 +83,11 @@ export const addDwellersToWoodyPlant = (
 export const createForestWith = ({
   woodyPlants = [],
   dwellers = [],
-  caveCardCount = 0,
+  cave,
 }: {
   woodyPlants?: WoodyPlantCard[];
   dwellers?: DwellerCard[];
-  caveCardCount?: number;
+  cave?: Cave;
 }) => {
   for (const dweller of dwellers) {
     const woodyPlant = addDwellersToWoodyPlant(
@@ -94,24 +101,24 @@ export const createForestWith = ({
     ];
   }
 
-  return { woodyPlants, caveCardCount };
+  return { woodyPlants, cave: cave ?? createCave(RegularCave) };
 };
 
 export const createForestForWoodyPlantTest = ({
   woodyPlantUnderTest,
   otherWoodyPlants = [],
   dwellers = [],
-  caveCardCount = 0,
+  cave,
 }: {
   woodyPlantUnderTest: WoodyPlantCard;
   otherWoodyPlants?: WoodyPlantCard[];
   dwellers?: DwellerCard[];
-  caveCardCount?: number;
+  cave?: Cave;
 }) => {
   const forest = createForestWith({
     woodyPlants: [woodyPlantUnderTest, ...otherWoodyPlants],
     dwellers,
-    caveCardCount,
+    cave,
   });
 
   return {
@@ -127,13 +134,13 @@ export const createForestForDwellerTest = ({
   woodyPlantUnderTest,
   otherDwellers = [],
   otherWoodyPlants = [],
-  caveCardCount = 0,
+  cave,
 }: {
   dwellerUnderTest: DwellerCard;
   woodyPlantUnderTest?: WoodyPlantCard;
   otherDwellers?: DwellerCard[];
   otherWoodyPlants?: WoodyPlantCard[];
-  caveCardCount?: number;
+  cave?: Cave;
 }) => {
   if (!woodyPlantUnderTest) {
     [woodyPlantUnderTest, ...otherWoodyPlants] = otherWoodyPlants;
@@ -148,7 +155,7 @@ export const createForestForDwellerTest = ({
       woodyPlantUnderTest,
       otherWoodyPlants,
       dwellers: otherDwellers,
-      caveCardCount,
+      cave,
     }),
     dweller: dwellerUnderTest,
   };
@@ -216,6 +223,7 @@ export const createGame: (...forests: Forest[]) => Game = (...forests) => ({
   id: generateId(),
   gameBoxes: [],
   deck: {
+    caves: [],
     woodyPlants: [],
     dwellers: [],
   },

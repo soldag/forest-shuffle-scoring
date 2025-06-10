@@ -10,6 +10,7 @@ import { Box, Button, Divider, Stack } from "@mui/joy";
 import { addPlayer, setCave } from "@/actions/game";
 import AddPlayerModal from "@/components/common/AddPlayerModal";
 import GameContext from "@/components/contexts/GameContext";
+import { Cave } from "@/game";
 import { MAX_PLAYERS } from "@/utils/constants";
 
 import ForestSummary from "./ForestSummary";
@@ -23,19 +24,21 @@ const Footer = () => {
     setFalse: closeAddPlayerModal,
   } = useBoolean(false);
 
-  const playerNames = game?.players?.map((p) => p.name) ?? [];
   const hasMaxPlayers = game?.players?.length === MAX_PLAYERS;
-  const forest = game?.players?.find((p) => p.id === playerId)?.forest;
 
-  const handleForestChange = ({ caveCardCount }: { caveCardCount: number }) => {
+  const handleCaveChange = (cave: Cave) => {
     if (!playerId) return;
-    dispatch(setCave({ playerId, count: caveCardCount }));
+    dispatch(setCave({ playerId, cave }));
   };
 
   return (
     <Box>
-      {forest && (
-        <ForestSummary forest={forest} onChange={handleForestChange} />
+      {game && playerId && (
+        <ForestSummary
+          game={game}
+          playerId={playerId}
+          onCaveChange={handleCaveChange}
+        />
       )}
 
       <Divider
@@ -79,12 +82,14 @@ const Footer = () => {
         </Button>
       </Stack>
 
-      <AddPlayerModal
-        open={isAddPlayerModalOpen}
-        existingPlayerNames={playerNames}
-        onConfirm={(values) => dispatch(addPlayer(values))}
-        onClose={closeAddPlayerModal}
-      />
+      {game && (
+        <AddPlayerModal
+          open={isAddPlayerModalOpen}
+          game={game}
+          onConfirm={(values) => dispatch(addPlayer(values))}
+          onClose={closeAddPlayerModal}
+        />
+      )}
     </Box>
   );
 };

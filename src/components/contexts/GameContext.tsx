@@ -15,8 +15,9 @@ import { createPlayer } from "@/game/factory";
 import {
   exchangeDweller,
   exchangeWoodyPlant,
-  setCaveCardCount,
+  setCave,
 } from "@/game/operations";
+import invariant from "@/utils/invariant";
 
 interface State {
   game: Game | null;
@@ -44,10 +45,18 @@ interface GameContextProviderProps {
 const reducer: Reducer<State, GameAction> = (state, action) => {
   if (action.type === GameActionType.CreateGame) {
     const game = createGame(action.payload.gameBoxes);
-    const player = createPlayer(
-      action.payload.playerName,
-      action.payload.caveCardCount,
+
+    const cave = game.deck.caves.find(
+      (c) => c.name === action.payload.caveName,
     );
+    invariant(cave);
+    const caveWithCardCount = {
+      ...cave,
+      cardCount: action.payload.caveCardCount,
+    };
+
+    const player = createPlayer(action.payload.playerName, caveWithCardCount);
+
     return {
       ...state,
       game: addPlayer(game, player),
@@ -63,7 +72,7 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
     case GameActionType.AddPlayer: {
       const player = createPlayer(
         action.payload.playerName,
-        action.payload.caveCardCount,
+        action.payload.cave,
       );
       return {
         ...state,
@@ -87,11 +96,7 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
     case GameActionType.SetCave:
       return {
         ...state,
-        game: setCaveCardCount(
-          state.game,
-          action.payload.playerId,
-          action.payload.count,
-        ),
+        game: setCave(state.game, action.payload.playerId, action.payload.cave),
       };
 
     case GameActionType.PlayWoodyPlant:

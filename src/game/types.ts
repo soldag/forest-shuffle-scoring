@@ -45,6 +45,13 @@ export enum TreeSymbol {
   Sycamore = "SYCAMORE",
 }
 
+export interface Cave {
+  id: string;
+  name: string;
+  gameBox: GameBox;
+  cardCount: number;
+}
+
 export interface Card {
   id: string;
   name: string;
@@ -84,13 +91,14 @@ export interface WoodyPlantCard extends Card {
 }
 
 export interface Deck {
+  caves: Cave[];
   dwellers: DwellerCard[];
   woodyPlants: WoodyPlantCard[];
 }
 
 export interface Forest {
   woodyPlants: WoodyPlantCard[];
-  caveCardCount: number;
+  cave: Cave;
 }
 
 export interface Player {
@@ -104,6 +112,13 @@ export interface Game {
   gameBoxes: GameBox[];
   deck: Deck;
   players: Player[];
+}
+
+export interface CaveBlueprint {
+  name: string;
+  gameBox: GameBox;
+  count: number;
+  score: (forest: Forest) => number;
 }
 
 export interface CardBlueprint {

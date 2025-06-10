@@ -9,6 +9,9 @@ import {
   WoodyPlantCard,
 } from "./types";
 
+export const getForest = (game: Game, playerId: string): Forest | undefined =>
+  game.players.find((p) => p.id === playerId)?.forest;
+
 export const getDwellersOfWoodyPlant = (
   woodyPlant: WoodyPlantCard,
 ): DwellerCard[] => Object.values(woodyPlant.dwellers).flatMap((d) => d);

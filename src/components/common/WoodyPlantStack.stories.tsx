@@ -29,6 +29,7 @@ const createArgs = (woodyPlants: WoodyPlantCard[]) => {
     id: "80ea3dc6-4c9d-454e-9259-86a7b1ae1258",
     gameBoxes: [],
     deck: {
+      caves: [],
       woodyPlants: [],
       dwellers: [],
     },
@@ -38,7 +39,12 @@ const createArgs = (woodyPlants: WoodyPlantCard[]) => {
         name: "Dummy Player",
         forest: {
           woodyPlants,
-          caveCardCount: 0,
+          cave: {
+            id: "c5436f7d-90d2-45b4-9bdc-6f5fd1c82627",
+            gameBox: GameBox.Base,
+            name: "REGULAR_CAVE",
+            cardCount: 0,
+          },
         },
       },
     ],

@@ -5,7 +5,8 @@ import { useBoolean } from "usehooks-ts";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link, Stack, Typography } from "@mui/joy";
 
-import { Forest, getDwellersOfForest } from "@/game";
+import { Cave, Game, getDwellersOfForest } from "@/game";
+import { getForest } from "@/game/helpers";
 import { useBreakpoint } from "@/utils/hooks";
 
 import CaveModal from "./CaveModal";
@@ -38,16 +39,26 @@ const CardCount = ({ label, value, endDecorator }: CardCountProps) => {
 };
 
 interface ForestSummaryProps {
-  forest: Forest;
-  onChange: (values: { caveCardCount: number }) => void;
+  game: Game;
+  playerId: string;
+  onCaveChange: (cave: Cave) => void;
 }
 
-const ForestSummary = ({ forest, onChange }: ForestSummaryProps) => {
+const ForestSummary = ({
+  game,
+  playerId,
+  onCaveChange,
+}: ForestSummaryProps) => {
   const {
     value: isCaveModalOpen,
     setTrue: openCaveModal,
     setFalse: closeCaveModal,
   } = useBoolean(false);
+
+  const forest = getForest(game, playerId);
+  if (!forest) {
+    return null;
+  }
 
   return (
     <Stack
@@ -81,7 +92,7 @@ const ForestSummary = ({ forest, onChange }: ForestSummaryProps) => {
             defaultMessage="Cave:"
           />
         }
-        value={forest.caveCardCount}
+        value={forest.cave.cardCount}
         endDecorator={
           <Link color="neutral" onClick={openCaveModal}>
             <EditIcon />
@@ -91,9 +102,10 @@ const ForestSummary = ({ forest, onChange }: ForestSummaryProps) => {
 
       <CaveModal
         open={isCaveModalOpen}
-        count={forest.caveCardCount}
+        game={game}
+        playerId={playerId}
         onClose={closeCaveModal}
-        onConfirm={({ count }) => onChange({ caveCardCount: count })}
+        onConfirm={onCaveChange}
       />
     </Stack>
   );

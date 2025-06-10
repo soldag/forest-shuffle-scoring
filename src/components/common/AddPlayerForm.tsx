@@ -1,11 +1,15 @@
-import { Control, FieldErrors } from "react-hook-form";
+import { useMemo } from "react";
+import { useFormContext } from "react-hook-form";
 import { FormattedMessage, defineMessages, useIntl } from "react-intl";
 
 import { Stack } from "@mui/joy";
 
-import CaveCardCountInput from "@/components/common/CaveCardCountInput";
+import CaveFormControls, {
+  CaveFormControlsFields,
+} from "@/components/common/CaveFormControls";
 import FormController from "@/components/common/FormController";
 import PlayerNameInput from "@/components/common/PlayerNameInput";
+import { Player } from "@/game";
 import { MAX_PLAYER_NAME_LENGTH } from "@/utils/constants";
 import { buildRules } from "@/utils/forms";
 
@@ -21,25 +25,32 @@ const cleanPlayerName = (value: string) => value.toLowerCase().trim();
 const validateUniqueName = (name: string, existingNames: string[]) =>
   existingNames.every((x) => cleanPlayerName(x) !== cleanPlayerName(name));
 
-export interface AddPlayerFormFields {
+export interface AddPlayerFormFields extends CaveFormControlsFields {
   playerName: string;
-  caveCardCount: number;
 }
 
 interface AddPlayerFormProps {
-  control: Control<AddPlayerFormFields>;
-  errors: FieldErrors<AddPlayerFormFields>;
-  existingPlayerNames?: string[];
+  caveNameOptions: string[];
+  existingPlayers?: Player[];
   onSubmit: (e?: React.BaseSyntheticEvent) => void;
 }
 
 const AddPlayerForm = ({
-  control,
-  errors,
-  existingPlayerNames = [],
+  caveNameOptions = [],
+  existingPlayers = [],
   onSubmit,
 }: AddPlayerFormProps) => {
   const intl = useIntl();
+
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext<AddPlayerFormFields>();
+
+  const existingPlayerNames = useMemo(
+    () => existingPlayers?.map((p) => p.name) ?? [],
+    [existingPlayers],
+  );
 
   return (
     <form onSubmit={onSubmit}>
@@ -76,27 +87,7 @@ const AddPlayerForm = ({
           )}
         </FormattedMessage>
 
-        <FormattedMessage
-          id="AddPlayerForm.caveCardCount.label"
-          defaultMessage="Number of cave cards"
-        >
-          {([label]) => (
-            <FormController
-              name="caveCardCount"
-              control={control}
-              rules={buildRules(intl, { required: true, min: 0 })}
-              label={label}
-              render={({ field }) => (
-                <CaveCardCountInput
-                  {...field}
-                  variant="soft"
-                  placeholder={label as string}
-                  error={!!errors.caveCardCount}
-                />
-              )}
-            />
-          )}
-        </FormattedMessage>
+        <CaveFormControls nameOptions={caveNameOptions} />
       </Stack>
 
       {/* This is needed to allow submitting the form by pressing enter */}

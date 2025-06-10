@@ -1,6 +1,8 @@
 import { describe, expect, it } from "@jest/globals";
 
+import { RegularCave } from "@/game/caves";
 import { BeardedVulture } from "@/game/dwellers";
+import { createCave } from "@/game/factory";
 
 import {
   createAnyDweller,
@@ -17,7 +19,7 @@ describe("A Bearded Vulture card", () => {
   ])("scores %i points with %i cave cards", (expectedPoints, caveCardCount) => {
     const { dweller, woodyPlant, forest } = createForestForDwellerTest({
       dwellerUnderTest: createAnyDweller(BeardedVulture),
-      caveCardCount,
+      cave: createCave(RegularCave, caveCardCount),
     });
     const game = createGame(forest);
 

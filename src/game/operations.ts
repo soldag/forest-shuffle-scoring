@@ -1,6 +1,7 @@
 import { produce } from "immer";
 
 import {
+  Cave,
   DwellerCard,
   DwellerPosition,
   Forest,
@@ -62,6 +63,11 @@ const findDweller = (
   return {};
 };
 
+const clearCave = (cave: Cave): Cave => ({
+  ...cave,
+  cardCount: 0,
+});
+
 const clearWoodyPlant = (woodyPlant: WoodyPlantCard): WoodyPlantCard => ({
   ...woodyPlant,
   dwellers: {
@@ -79,6 +85,10 @@ export const addPlayer = (game: Game, player: Player) =>
     }
 
     draft.players.push(player);
+
+    draft.deck.caves = draft.deck.caves.filter(
+      (c) => c.id !== player.forest.cave.id,
+    );
   });
 
 export const removePlayer = (game: Game, playerId: string) => {
@@ -90,14 +100,19 @@ export const removePlayer = (game: Game, playerId: string) => {
     ),
     (draft) => {
       draft.players = draft.players.filter((p) => p.id !== playerId);
+
+      draft.deck.caves.push(clearCave(player.forest.cave));
     },
   );
 };
 
-export const setCaveCardCount = (game: Game, playerId: string, count: number) =>
+export const setCave = (game: Game, playerId: string, cave: Cave) =>
   produce(game, (draft) => {
     const player = requirePlayer(draft, playerId);
-    player.forest.caveCardCount = count;
+
+    draft.deck.caves.push(clearCave(player.forest.cave));
+    player.forest.cave = cave;
+    draft.deck.caves = draft.deck.caves.filter((c) => c.id !== cave.id);
   });
 
 export const playWoodyPlant = (

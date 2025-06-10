@@ -1,8 +1,11 @@
 import * as _ from "lodash-es";
 import { v4 as uuidv4 } from "uuid";
 
+import * as Caves from "./caves";
 import * as Dwellers from "./dwellers";
 import {
+  Cave,
+  CaveBlueprint,
   Deck,
   DwellerCard,
   DwellerCardBlueprint,
@@ -20,6 +23,16 @@ import * as WoodyPlants from "./woody-plants";
 import { Sapling } from "./woody-plants";
 
 export const generateId = () => uuidv4();
+
+export const createCave = (
+  blueprint: CaveBlueprint,
+  cardCount: number = 0,
+): Cave => ({
+  id: generateId(),
+  name: blueprint.name,
+  gameBox: blueprint.gameBox,
+  cardCount,
+});
 
 export const createDweller = (
   blueprint: DwellerCardBlueprint,
@@ -74,12 +87,18 @@ export const createWoodyPlant = (
 export const createSapling = (): WoodyPlantCard =>
   createWoodyPlant(Sapling, Sapling.variants[0]);
 
-export const createForest = (caveCardCount: number = 0): Forest => ({
+export const createForest = (cave: Cave): Forest => ({
   woodyPlants: [],
-  caveCardCount,
+  cave,
 });
 
 export const createDeck = (gameBoxes: GameBox[] = []): Deck => ({
+  caves: Object.values(Caves)
+    .filter(({ count }) => isFinite(count))
+    .filter(({ gameBox }) => gameBoxes.includes(gameBox))
+    .flatMap((blueprint) =>
+      _.times(blueprint.count, () => createCave(blueprint)),
+    ),
   dwellers: Object.values(Dwellers).flatMap((blueprint) =>
     blueprint.variants
       .filter(({ count }) => isFinite(count))
@@ -98,13 +117,10 @@ export const createDeck = (gameBoxes: GameBox[] = []): Deck => ({
   ),
 });
 
-export const createPlayer = (
-  name: string,
-  caveCardCount: number = 0,
-): Player => ({
+export const createPlayer = (name: string, cave: Cave): Player => ({
   id: generateId(),
   name,
-  forest: createForest(caveCardCount),
+  forest: createForest(cave),
 });
 
 export const createGame = (gameBoxes: GameBox[]): Game => ({

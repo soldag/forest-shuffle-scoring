@@ -1,5 +1,6 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import * as _ from "lodash-es";
+import { useEffect, useMemo } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { FormattedMessage } from "react-intl";
 
 import {
@@ -16,35 +17,58 @@ import {
 import AddPlayerForm, {
   AddPlayerFormFields,
 } from "@/components/common/AddPlayerForm";
+import { Cave, Game } from "@/game";
+
+interface AddPlayerModalFields {
+  playerName: string;
+  cave: Cave;
+}
 
 interface AddPlayerModalProps {
   open: boolean;
-  existingPlayerNames: string[];
-  onConfirm: (values: AddPlayerFormFields) => void;
+  game: Game;
+  onConfirm: (values: AddPlayerModalFields) => void;
   onClose: () => void;
 }
 
 const AddPlayerModal = ({
   open = false,
-  existingPlayerNames,
+  game,
   onConfirm,
   onClose,
 }: AddPlayerModalProps) => {
-  const {
-    control,
-    formState: { isValid, errors },
-    reset,
-    handleSubmit,
-  } = useForm({
+  const form = useForm<AddPlayerFormFields>({
     mode: "onChange",
     defaultValues: {
       playerName: "",
+      caveName: "REGULAR_CAVE",
       caveCardCount: 0,
     },
   });
+  const {
+    formState: { isValid },
+    reset,
+    handleSubmit,
+  } = form;
+
+  const caveNameOptions = useMemo(
+    () => _.uniq(game.deck.caves.map((c) => c.name)),
+    [game.deck.caves],
+  );
 
   const handleConfirm = (values: AddPlayerFormFields) => {
-    onConfirm?.(values);
+    const cave = game.deck.caves.find((c) => c.name === values.caveName);
+    if (!cave) {
+      return;
+    }
+
+    onConfirm?.({
+      playerName: values.playerName,
+      cave: {
+        ...cave,
+        cardCount: values.caveCardCount,
+      },
+    });
     onClose?.();
   };
 
@@ -74,12 +98,13 @@ const AddPlayerModal = ({
             />
           </Typography>
 
-          <AddPlayerForm
-            control={control}
-            errors={errors}
-            existingPlayerNames={existingPlayerNames}
-            onSubmit={handleSubmit(handleConfirm)}
-          />
+          <FormProvider {...form}>
+            <AddPlayerForm
+              caveNameOptions={caveNameOptions}
+              existingPlayers={game.players}
+              onSubmit={handleSubmit(handleConfirm)}
+            />
+          </FormProvider>
         </DialogContent>
 
         <DialogActions>
