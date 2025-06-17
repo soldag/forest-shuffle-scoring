@@ -14,7 +14,13 @@ const blueprint: DwellerCardBlueprint = {
   name,
   types: [CardType.Bird],
   modifiers: {
-    requiresSlotSharing: ({ dweller }) => dweller.types.includes(CardType.Bird),
+    canPlay: ({ woodyPlant, dweller }) =>
+      woodyPlant.dwellers[dweller.position].length > 0,
+    enablesSlotSharing: () => ({
+      position: DwellerPosition.Top,
+      type: CardType.Bird,
+      maxCards: 2,
+    }),
   },
   cost: 1,
   isPartOfDeck: true,

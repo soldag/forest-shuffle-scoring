@@ -70,12 +70,16 @@ export interface DwellerModifierContext {
   dweller: DwellerCard;
 }
 
+export interface SlotSharingConfig {
+  position: DwellerPosition;
+  name?: string;
+  type?: CardType;
+  maxCards?: number;
+}
+
 export interface DwellerModifiers {
-  allowsSlotSharing?: (
-    context: DwellerModifierContext,
-    candidate: DwellerCard,
-  ) => boolean;
-  requiresSlotSharing?: (context: DwellerModifierContext) => boolean;
+  canPlay?: (context: DwellerModifierContext) => boolean;
+  enablesSlotSharing?: (context: DwellerModifierContext) => SlotSharingConfig;
   woodyPlantCount?: (context: DwellerModifierContext) => number;
 }
 

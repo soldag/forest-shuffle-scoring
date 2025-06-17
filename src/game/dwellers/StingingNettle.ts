@@ -16,10 +16,10 @@ const blueprint: DwellerCardBlueprint = {
   name,
   types: [CardType.Plant, CardType.WoodlandEdge],
   modifiers: {
-    allowsSlotSharing: ({ woodyPlant }, candidate) =>
-      [...woodyPlant.dwellers[candidate.position], candidate].every((d) =>
-        d.types.includes(CardType.Butterfly),
-      ),
+    enablesSlotSharing: () => ({
+      position: DwellerPosition.Top,
+      type: CardType.Butterfly,
+    }),
   },
   cost: 0,
   isPartOfDeck: true,

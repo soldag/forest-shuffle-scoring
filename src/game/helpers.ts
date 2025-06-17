@@ -6,6 +6,7 @@ import {
   DwellerPosition,
   Forest,
   Game,
+  SlotSharingConfig,
   WoodyPlantCard,
 } from "./types";
 
@@ -46,24 +47,41 @@ export const getDwellerCandidates = (
     throw new Error("A woody plant with this id hasn't been played, yet.");
   }
 
-  const candidates = game.deck.dwellers.filter((d) => d.position === position);
-  const presentDwellers = woodyPlant.dwellers[position].filter(
+  const candidates = game.deck.dwellers
+    .filter((d) => d.position === position)
+    .filter((d) => d.modifiers?.canPlay?.({ woodyPlant, dweller: d }) ?? true);
+
+  const dwellersInSlot = woodyPlant.dwellers[position].filter(
     (d) => d.id !== ignoreDweller?.id,
   );
-  if (presentDwellers.length === 0) {
-    return candidates.filter(
-      (candidate) => !candidate.modifiers?.requiresSlotSharing,
-    );
+  if (dwellersInSlot.length === 0) {
+    return candidates;
   }
 
   const woodyPlantDwellers = getDwellersOfWoodyPlant(woodyPlant);
-  return candidates.filter((candidate) =>
-    woodyPlantDwellers.some((dweller) => {
-      const context = { woodyPlant, dweller };
-      return (
-        dweller.modifiers?.allowsSlotSharing?.(context, candidate) ||
-        candidate.modifiers?.requiresSlotSharing?.(context)
-      );
-    }),
+  return candidates.filter((candidate) => {
+    // Pretend the candidate was added to the woody plant and check
+    // if this is allowed by any of the woody plant's dwellers
+    const newDwellersInSlot = [candidate, ...dwellersInSlot];
+    const newWoodyPlantDwellers = [candidate, ...woodyPlantDwellers];
+
+    return newWoodyPlantDwellers
+      .map((d) => d.modifiers?.enablesSlotSharing?.({ woodyPlant, dweller: d }))
+      .filter((c): c is SlotSharingConfig => !!c)
+      .some((c) => canShareSlot(c, candidate, newDwellersInSlot));
+  });
+};
+
+const canShareSlot = (
+  config: SlotSharingConfig,
+  candidate: DwellerCard,
+  dwellers: DwellerCard[],
+): boolean => {
+  const { position, name, type, maxCards } = config;
+  return (
+    position === candidate.position &&
+    (!name || dwellers.every((d) => d.name === name || d.countsAs === name)) &&
+    (!type || dwellers.every((d) => d.types.includes(type))) &&
+    (maxCards == null || dwellers.length <= maxCards)
   );
 };

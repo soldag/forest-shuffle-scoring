@@ -96,9 +96,10 @@ export const Default: Story = {
               isPartOfDeck: true,
               position: DwellerPosition.Left,
               modifiers: {
-                allowsSlotSharing: (context, dwellerToAdd) =>
-                  context.dweller.name === dwellerToAdd.name &&
-                  context.dweller.position === dwellerToAdd.position,
+                enablesSlotSharing: ({ dweller }) => ({
+                  position: dweller.position,
+                  name: dweller.name,
+                }),
               },
             },
             {
@@ -110,9 +111,10 @@ export const Default: Story = {
               isPartOfDeck: true,
               position: DwellerPosition.Left,
               modifiers: {
-                allowsSlotSharing: (context, dwellerToAdd) =>
-                  context.dweller.name === dwellerToAdd.name &&
-                  context.dweller.position === dwellerToAdd.position,
+                enablesSlotSharing: ({ dweller }) => ({
+                  position: dweller.position,
+                  name: dweller.name,
+                }),
               },
             },
           ],

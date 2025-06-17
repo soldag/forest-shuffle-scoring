@@ -17,9 +17,10 @@ const blueprint: DwellerCardBlueprint = {
   name,
   types: [CardType.PawedAnimal],
   modifiers: {
-    allowsSlotSharing: (context, dwellerToAdd) =>
-      context.dweller.name === dwellerToAdd.name &&
-      context.dweller.position === dwellerToAdd.position,
+    enablesSlotSharing: ({ dweller }) => ({
+      position: dweller.position,
+      name,
+    }),
   },
   cost: 0,
   isPartOfDeck: true,

@@ -115,9 +115,10 @@ export const FullyOccupied: Story = {
             isPartOfDeck: true,
             position: DwellerPosition.Left,
             modifiers: {
-              allowsSlotSharing: (context, dwellerToAdd) =>
-                context.dweller.name === dwellerToAdd.name &&
-                context.dweller.position === dwellerToAdd.position,
+              enablesSlotSharing: ({ dweller }) => ({
+                position: dweller.position,
+                name: dweller.name,
+              }),
             },
           },
           {
@@ -129,9 +130,10 @@ export const FullyOccupied: Story = {
             isPartOfDeck: true,
             position: DwellerPosition.Left,
             modifiers: {
-              allowsSlotSharing: (context, dwellerToAdd) =>
-                context.dweller.name === dwellerToAdd.name &&
-                context.dweller.position === dwellerToAdd.position,
+              enablesSlotSharing: ({ dweller }) => ({
+                position: dweller.position,
+                name: dweller.name,
+              }),
             },
           },
         ],

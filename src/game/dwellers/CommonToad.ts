@@ -14,10 +14,11 @@ const blueprint: DwellerCardBlueprint = {
   name,
   types: [CardType.Amphibian],
   modifiers: {
-    allowsSlotSharing: (context, dwellerToAdd) =>
-      context.dweller.name === dwellerToAdd.name &&
-      context.dweller.position === dwellerToAdd.position &&
-      context.woodyPlant.dwellers[dwellerToAdd.position].length < 2,
+    enablesSlotSharing: () => ({
+      position: DwellerPosition.Bottom,
+      name,
+      maxCards: 2,
+    }),
   },
   cost: 0,
   isPartOfDeck: true,
