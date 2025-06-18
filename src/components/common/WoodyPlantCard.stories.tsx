@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import WoodyPlantCard from "@/components/common/WoodyPlantCard";
 import { CardType, DwellerPosition, GameBox, TreeSymbol } from "@/game";

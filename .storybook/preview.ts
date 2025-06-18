@@ -1,6 +1,6 @@
 import { ThemeProvider } from "@emotion/react";
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
-import type { Preview, ReactRenderer } from "@storybook/react";
+import type { Preview, ReactRenderer } from "@storybook/react-vite";
 
 import { CssBaseline } from "@mui/joy";
 
@@ -8,13 +8,6 @@ import theme from "../src/styles/theme";
 import translations from "../src/translations";
 
 const preview: Preview = {
-  globals: {
-    locale: "en",
-    locales: {
-      en: { title: "English" },
-      de: { title: "German" },
-    },
-  },
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -44,6 +37,14 @@ const preview: Preview = {
       GlobalStyles: CssBaseline,
     }),
   ],
+  initialGlobals: {
+    locale: "en",
+    locales: {
+      en: { title: "English" },
+      de: { title: "German" },
+      nl: { title: "Dutch" },
+    },
+  },
 };
 
 export default preview;

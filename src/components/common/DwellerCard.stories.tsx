@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import DwellerCard from "@/components/common/DwellerCard";
 import { CardType, DwellerPosition, GameBox, TreeSymbol } from "@/game";
