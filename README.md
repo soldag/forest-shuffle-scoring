@@ -7,8 +7,8 @@ The app is available at https://soldag.github.io/forest-shuffle-scoring.
 ## Features
 
 - Easy scoring of Forest Shuffle plays
-- Support for the [Alpine](https://lookout-spiele.de/en/games/forestshufflealpine.html) and [Woodland Edge](https://lookout-spiele.de/en/games/forestshuffleedge.html) expansions.
-- Multilingual (so far English and German)
+- Support for all available expansions ([Alpine](https://lookout-spiele.de/en/games/forestshufflealpine.html), [Woodland Edge](https://lookout-spiele.de/en/games/forestshuffleedge.html) & [Exploration](https://www.lookout-spiele.de/en/games/exploration.html)) and promo cards
+- Multilingual (so far English, German & Dutch)
 - Offline functionality
 - Export of plays to [BGStats](https://www.bgstatsapp.com)
 
