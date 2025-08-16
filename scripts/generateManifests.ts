@@ -1,4 +1,6 @@
+import "colors";
 import { promises as fs } from "fs";
+import { isEqual } from "lodash-es";
 import path from "path";
 import * as prettier from "prettier";
 import { fileURLToPath } from "url";
@@ -26,6 +28,9 @@ const getIconPath = (filename: string) => {
   return `${base}/icons/${filename}`;
 };
 
+const getManifestPath = (locale: Locale) =>
+  path.resolve(outputDir, `${locale}.webmanifest`);
+
 const writeFormattedFile = async (
   filename: string,
   data: string,
@@ -39,10 +44,10 @@ const writeFormattedFile = async (
   await fs.writeFile(filename, formattedData);
 };
 
-for (const locale of Object.values(Locale)) {
+const generateManifests = async (locale: Locale) => {
   const translations = await getTranslations(locale);
 
-  const manifest = {
+  return {
     name: translations["Common.appName"],
     short_name: translations["Common.gameName"],
     description: translations["Common.appDescription"],
@@ -86,7 +91,60 @@ for (const locale of Object.values(Locale)) {
     ],
     start_url: viteConfig.base,
   };
+};
 
-  const filename = path.resolve(outputDir, `${locale}.webmanifest`);
+const printError = (filename: string, message: string) => {
+  const relativeFilePath = path.relative(rootDir, filename);
+  console.error(relativeFilePath.underline);
+  console.log(message.red);
+  console.log();
+};
+
+const checkManifest = async (locale: Locale): Promise<boolean> => {
+  const filename = getManifestPath(locale);
+
+  let existingFileContent;
+  try {
+    existingFileContent = await fs.readFile(filename, "utf-8");
+  } catch (e) {
+    printError(
+      filename,
+      e.code === "ENOENT" ? `File does not exist` : `File could not be read`,
+    );
+    return false;
+  }
+
+  let existingManifest;
+  try {
+    existingManifest = JSON.parse(existingFileContent);
+  } catch {
+    printError(filename, "File does not contain valid JSON");
+    return false;
+  }
+
+  const expectedManifest = await generateManifests(locale);
+  if (!isEqual(existingManifest, expectedManifest)) {
+    printError(filename, "File is outdated");
+    return false;
+  }
+
+  return true;
+};
+
+const writeManifest = async (locale: Locale) => {
+  const filename = getManifestPath(locale);
+  const manifest = await generateManifests(locale);
   await writeFormattedFile(filename, JSON.stringify(manifest), "json");
+};
+
+if (process.argv.includes("--check")) {
+  const results = await Promise.all(Object.values(Locale).map(checkManifest));
+  if (results.includes(false)) {
+    console.log(
+      `Some web manifest files are outdated or missing. Please run ${"npm run manifests:generate".yellow} to regenerate them.`,
+    );
+    process.exit(1);
+  }
+} else {
+  await Promise.all(Object.values(Locale).map(writeManifest));
 }

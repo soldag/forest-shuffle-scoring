@@ -14,6 +14,7 @@
     "i18n:extract": "formatjs extract 'src/**/*.{js,jsx,ts,tsx}' --ignore 'src/types/**' --out-file messages.json && formatjs compile messages.json --out-file src/translations/en.json && rm messages.json",
     "i18n:check": "tsx scripts/checkTranslations.ts",
     "manifests:generate": "tsx scripts/generateManifests.ts",
+    "manifests:check": "tsx scripts/generateManifests.ts --check",
     "test": "jest --coverage --coverageReporters=html",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build"
