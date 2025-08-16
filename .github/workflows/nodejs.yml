@@ -3,6 +3,8 @@ name: NodeJS
 on:
   push:
     branches: ["*"]
+  pull_request:
+    branches: ["*"]
   release:
     types: [released]
 
