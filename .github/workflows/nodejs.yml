@@ -2,12 +2,9 @@ name: NodeJS
 
 on:
   push:
-    branches: "*"
+    branches: ["*"]
   release:
     types: [released]
-
-env:
-  NEXT_TELEMETRY_DISABLED: 1
 
 jobs:
   build:
