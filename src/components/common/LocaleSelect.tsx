@@ -4,30 +4,34 @@ import { Option, Select, SelectProps, Typography } from "@mui/joy";
 
 import { Locale } from "@/types";
 
-const LOCALES = _.orderBy(
-  [
-    {
-      code: "de",
-      flag: "🇩🇪",
-      label: "Deutsch",
-    },
-    {
-      code: "en",
-      flag: "🇺🇸",
-      label: "English",
-    },
-    {
-      code: "nl",
-      flag: "🇳🇱",
-      label: "Nederlands",
-    },
-  ],
+interface LocaleOptions {
+  flag: string;
+  label: string;
+}
+
+const OPTIONS: Record<Locale, LocaleOptions> = {
+  [Locale.De]: {
+    flag: "🇩🇪",
+    label: "Deutsch",
+  },
+  [Locale.En]: {
+    flag: "🇺🇸",
+    label: "English",
+  },
+  [Locale.Nl]: {
+    flag: "🇳🇱",
+    label: "Nederlands",
+  },
+};
+
+const SORTED_OPTIONS = _.orderBy(
+  Object.entries(OPTIONS).map(([code, options]) => ({ code, ...options })),
   (l) => l.label,
 );
 
 const LocaleSelect = (props: SelectProps<Locale, false>) => (
   <Select {...props}>
-    {LOCALES.map(({ code, flag, label }) => (
+    {SORTED_OPTIONS.map(({ code, flag, label }) => (
       <Option key={code} value={code} label={flag}>
         <Typography startDecorator={flag}>{label}</Typography>
       </Option>
