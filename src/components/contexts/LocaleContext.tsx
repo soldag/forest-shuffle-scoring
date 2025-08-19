@@ -7,19 +7,30 @@ import { Locale } from "@/types";
 import { useSearchParam } from "@/utils/hooks";
 
 const fallbackLocale = Locale.En;
-const browserLocale = navigator?.language?.split(/[-_]/)[0]?.toLowerCase();
-const defaultLocale = Object.keys(translations).includes(browserLocale)
-  ? (browserLocale as Locale)
-  : fallbackLocale;
+const supportedLocales = Object.values(Locale);
 
-const castToLocale = (value: string | null) =>
-  Object.values(Locale).includes(value as Locale) ? (value as Locale) : null;
+const getSimpleLanguage = (language: string): string => language.split("-")[0];
+
+const coerceToLocale = (value: string | null): Locale | undefined =>
+  supportedLocales.find((l) => l === value?.toLocaleLowerCase());
+
+const detectLocale = (): Locale => {
+  const language = navigator.language.toLowerCase();
+  const simpleLanguage = getSimpleLanguage(language);
+
+  return (
+    coerceToLocale(language) ??
+    supportedLocales.find((l) => getSimpleLanguage(l) === simpleLanguage) ??
+    fallbackLocale
+  );
+};
 
 interface LocaleContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
 }
 
+const defaultLocale = detectLocale();
 const LocaleContext = createContext<LocaleContextType>({
   locale: defaultLocale,
   setLocale: () => {},
@@ -38,7 +49,10 @@ export const LocaleContextProvider = ({
     defaultLocale,
   );
 
-  const locale = castToLocale(searchLocale) || storedLocale || defaultLocale;
+  const locale =
+    coerceToLocale(searchLocale) ||
+    coerceToLocale(storedLocale) ||
+    defaultLocale;
 
   const setLocale = useCallback(
     (value: Locale) => {
@@ -49,7 +63,7 @@ export const LocaleContextProvider = ({
   );
 
   useEffect(() => {
-    if (!Object.values(Locale).includes(storedLocale)) {
+    if (!supportedLocales.includes(storedLocale)) {
       setStoredLocale(defaultLocale);
     }
   }, [storedLocale, setStoredLocale]);
