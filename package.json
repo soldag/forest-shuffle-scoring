@@ -14,6 +14,7 @@
     "i18n:extract": "formatjs extract 'src/**/*.{js,jsx,ts,tsx}' --ignore 'src/types/**' --out-file messages.json && formatjs compile messages.json --out-file src/translations/en.json && rm messages.json",
     "i18n:check": "tsx scripts/checkTranslations.ts",
     "manifests:generate": "tsx scripts/generateManifests.ts",
+    "manifests:check": "tsx scripts/generateManifests.ts --check",
     "test": "jest --coverage --coverageReporters=html",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build"
@@ -50,13 +51,13 @@
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^16.0.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.0",
-    "@types/glob": "^8.1.0",
+    "@types/glob": "^9.0.0",
     "@types/node": "^24",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@types/tinycolor2": "^1.4.6",
     "@types/uuid": "^10.0.0",
-    "@vitejs/plugin-react-swc": "^3.6.0",
+    "@vitejs/plugin-react-swc": "^4.0.1",
     "colors": "^1.4.0",
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^10.1.2",
@@ -80,7 +81,7 @@
     "type-fest": "^4.18.2",
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.17.0",
-    "vite": "^6.0.3",
+    "vite": "^7.1.3",
     "vite-plugin-pwa": "^1.0.0",
     "workbox-window": "^7.1.0"
   }
