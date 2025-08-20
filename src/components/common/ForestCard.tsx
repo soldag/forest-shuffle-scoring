@@ -81,8 +81,10 @@ const ForestCard = forwardRef<HTMLDivElement, ForestCardProps>(
             "fontSize": theme.fontSize[size],
             "height":
               compact || hasHorizontalSplit(card) ? "auto" : CARD_HEIGHT[size],
+            "maxHeight": CARD_HEIGHT[size],
             "width":
               compact || hasVerticalSplit(card) ? "auto" : CARD_WIDTH[size],
+            "maxWidth": CARD_WIDTH[size],
           }),
           sx,
         )}
