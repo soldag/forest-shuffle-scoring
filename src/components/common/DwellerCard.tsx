@@ -62,6 +62,8 @@ const DwellerCard = forwardRef<HTMLDivElement, DwellerCardProps>(
               fontWeight="lg"
               textColor="neutral.100"
               sx={{
+                overflow: "hidden",
+                textOverflow: "ellipsis",
                 writingMode: hasHorizontalSplit
                   ? "horizontal-tb"
                   : "vertical-lr",
@@ -75,6 +77,7 @@ const DwellerCard = forwardRef<HTMLDivElement, DwellerCardProps>(
                 value={card.treeSymbol}
                 size={size}
                 sx={{
+                  ml: 1,
                   [hasHorizontalSplit ? "mt" : "mr"]:
                     "calc(-1 * var(--Card-padding))",
                   [hasHorizontalSplit ? "height" : "width"]:
