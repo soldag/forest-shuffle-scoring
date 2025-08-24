@@ -83,7 +83,7 @@ const CardDrawer = <TCard extends Card>({
           />
         )}
       </DialogTitle>
-      <DialogContent sx={{ m: 1 }}>
+      <DialogContent sx={{ m: 1.5 }}>
         <CardSelect
           sx={{ height: "100%" }}
           cards={cards}
