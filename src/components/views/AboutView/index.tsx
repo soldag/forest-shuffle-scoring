@@ -16,6 +16,8 @@ const gameUrls = {
   [Locale.De]: "https://lookout-spiele.de/de/games/mischwald.html",
   [Locale.En]: "https://lookout-spiele.de/en/games/forrestshuffle.html",
   [Locale.Nl]: "https://lookout-spiele.de/en/games/forrestshuffle.html",
+  [Locale.PtBr]:
+    "https://loja.galapagosjogos.com.br/forest-shuffle/produto/FSF001",
 };
 const publisherUrl = "https://lookout-spiele.de";
 const githubUrl = "https://github.com/soldag/forest-shuffle-scoring";

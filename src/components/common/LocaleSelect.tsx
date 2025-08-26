@@ -22,6 +22,10 @@ const OPTIONS: Record<Locale, LocaleOptions> = {
     flag: "🇳🇱",
     label: "Nederlands",
   },
+  [Locale.PtBr]: {
+    flag: "🇧🇷",
+    label: "Português - Brasil",
+  },
 };
 
 const SORTED_OPTIONS = _.orderBy(

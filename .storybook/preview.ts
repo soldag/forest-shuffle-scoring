@@ -43,6 +43,7 @@ const preview: Preview = {
       en: { title: "English" },
       de: { title: "German" },
       nl: { title: "Dutch" },
+      ptBr: { title: "Portuguese - Brazil" },
     },
   },
 };
