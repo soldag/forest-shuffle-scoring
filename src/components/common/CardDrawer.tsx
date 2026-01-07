@@ -78,6 +78,7 @@ const CardDrawer = <TCard extends Card>({
           onSelect={onSelectCard}
           canRemove={!!selectedCard}
           onRemove={onRemoveCard}
+          open={open}
         />
       </DialogContent>
     </ResponsiveDrawer>
