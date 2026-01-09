@@ -25,15 +25,16 @@ const ResponsiveQrCode = ({ data, sx }: ResponsiveQrCodeProps) => {
       height: 1024,
       image: appIconUrl,
       dotsOptions: {
-        color: theme.palette.neutral.plainColor,
+        // Forcing the light theme, because the dark theme's color is too light for the QR code to be scanned consistently.
+        color: theme.colorSchemes.light.palette.neutral.plainColor,
         type: "extra-rounded",
       },
       cornersSquareOptions: {
-        color: theme.palette.primary.plainColor,
+        color: theme.colorSchemes.light.palette.primary.plainColor,
         type: "extra-rounded",
       },
       cornersDotOptions: {
-        color: theme.palette.neutral.plainColor,
+        color: theme.colorSchemes.light.palette.neutral.plainColor,
         type: "extra-rounded",
       },
       imageOptions: {
