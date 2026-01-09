@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import CountUp from "react-countup";
-import { useBoolean } from "usehooks-ts";
+import { useBoolean, useLocalStorage } from "usehooks-ts";
 import { useLocation } from "wouter";
 
 import PersonIcon from "@mui/icons-material/Person";
@@ -17,6 +17,7 @@ import { scorePlayer } from "@/game";
 const Header = () => {
   const [, navigate] = useLocation();
   const { game, playerId, dispatch } = useContext(GameContext);
+  const [, , deleteGame] = useLocalStorage("game", {});
 
   const {
     value: isResetModalOpen,
@@ -33,6 +34,7 @@ const Header = () => {
     }
   };
   const handleReset = () => {
+    deleteGame();
     navigate("/new");
   };
 

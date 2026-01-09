@@ -5,12 +5,13 @@ import { useLocation } from "wouter";
 
 import { Stack } from "@mui/joy";
 
-import { createGame } from "@/actions/game";
+import { createGame, loadGame } from "@/actions/game";
 import AppUpdateModal from "@/components/common/AppUpdateModal";
 import View from "@/components/common/View";
 import AppUpdateContext from "@/components/contexts/AppUpdateContext";
 import GameContext from "@/components/contexts/GameContext";
 import { GameBox } from "@/game";
+import { importGame } from "@/game/sharing";
 import { ScoringMode } from "@/types";
 
 import CreateGameForm from "./components/CreateGameForm";
@@ -22,7 +23,9 @@ import { CreateGameFormFields } from "./types";
 const CreateGameView = () => {
   const [, navigate] = useLocation();
   const { dispatch } = useContext(GameContext);
-  const { checkForUpdate } = useContext(AppUpdateContext);
+  const { wasUpdateRejected, checkForUpdate } =
+    useContext(AppUpdateContext);
+  const [gameState] = useLocalStorage("game", undefined);
 
   const [defaultGameBoxes, persistGameBoxes] = useLocalStorage<GameBox[]>(
     "gameBoxes",
@@ -45,6 +48,26 @@ const CreateGameView = () => {
     const handle = setTimeout(() => checkForUpdate(), 1000);
     return () => clearTimeout(handle);
   }, [checkForUpdate]);
+
+  useEffect(() => {
+    if (!wasUpdateRejected && gameState) {
+      const gameImportResult = importGame();
+
+      if (gameImportResult.success) {
+        const { scoringMode, game } = gameImportResult;
+        persistGameBoxes(game.gameBoxes);
+        dispatch(
+          loadGame({
+            scoringMode,
+            game,
+          }),
+        );
+        navigate("/forest");
+      } else {
+        console.warn("Failed to load game", gameImportResult);
+      }
+    }
+  }, [wasUpdateRejected]);
 
   const handleCreate = (values: CreateGameFormFields) => {
     persistGameBoxes(values.gameBoxes);

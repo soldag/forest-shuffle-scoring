@@ -1,11 +1,14 @@
 import { produce } from "immer";
 
-import { createPlayer, createWoodyPlant } from "@/game/factory";
+import { createDeck, createPlayer, createWoodyPlant } from "@/game/factory";
 import { decode } from "@/game/sharing/encoding";
-import { PlayerExportDtoSchema } from "@/game/sharing/schemas";
+import { GameDtoSchema, PlayerExportDtoSchema } from "@/game/sharing/schemas";
 import {
   CaveDto,
   DwellerCardDto,
+  GameDto,
+  PlayerDto,
+  PlayerExportDto,
   WoodyPlantCardDto,
 } from "@/game/sharing/types";
 import {
@@ -17,6 +20,7 @@ import {
   WoodyPlantCard,
 } from "@/game/types";
 import * as WoodyPlants from "@/game/woody-plants";
+import { ScoringMode } from "@/types";
 
 export enum ImportErrorType {
   InvalidData = "INVALID_DATA",
@@ -25,6 +29,80 @@ export enum ImportErrorType {
   GameBoxesMismatch = "GAME_BOXES_MISMATCH",
   UnavailableCards = "UNAVAILABLE_CARDS",
 }
+
+export interface SuccessGameImportResult {
+  success: true;
+  scoringMode: ScoringMode;
+  game: Game;
+}
+
+export interface ErrorGameImportResult {
+  success: false;
+  error: ImportErrorType;
+  unavailableCards?: {
+    cave: CaveDto | null;
+    dwellers: DwellerCardDto[];
+    woodyPlants: WoodyPlantCardDto[];
+  };
+}
+
+export type GameImportResult = SuccessGameImportResult | ErrorGameImportResult;
+
+export const importGame = (): GameImportResult => {
+  let decodedData = JSON.parse(localStorage.getItem("game") ?? "");
+
+  let exportDto: GameDto;
+  try {
+    exportDto = GameDtoSchema.parse(decodedData);
+  } catch (e) {
+    console.error("Failed to parse game state", e);
+    return createGameErrorResult(ImportErrorType.InvalidData);
+  }
+
+  if (exportDto.appVersion !== import.meta.env.PACKAGE_VERSION) {
+    return createGameErrorResult(ImportErrorType.AppVersionMismatch);
+  }
+
+  const game: Game = {
+    id: exportDto.id,
+    gameBoxes: exportDto.gameBoxes,
+    deck: createDeck(exportDto.gameBoxes),
+    players: [],
+  };
+
+  for (const player of exportDto.players) {
+    const playerImportResult = importPlayerData(game, player);
+
+    if (playerImportResult.success) {
+      game.players.push(playerImportResult.player);
+    } else {
+      return createGameErrorResult(
+        playerImportResult.error,
+        playerImportResult.unavailableCards,
+      );
+    }
+  }
+
+  return createGameSuccessResult(exportDto.scoringMode, game);
+};
+
+const createGameErrorResult = (
+  error: ImportErrorType,
+  unavailableCards?: ErrorGameImportResult["unavailableCards"],
+): ErrorGameImportResult => ({
+  success: false,
+  error,
+  unavailableCards,
+});
+
+const createGameSuccessResult = (
+  scoringMode: ScoringMode,
+  game: Game,
+): SuccessGameImportResult => ({
+  success: true,
+  scoringMode,
+  game,
+});
 
 export interface SuccessPlayerImportResult {
   success: true;
@@ -57,7 +135,7 @@ export const importPlayer = (
     return createErrorResult(ImportErrorType.InvalidData);
   }
 
-  let exportDto;
+  let exportDto: PlayerExportDto;
   try {
     exportDto = PlayerExportDtoSchema.parse(decodedData);
   } catch (e) {
@@ -68,10 +146,7 @@ export const importPlayer = (
   const {
     appVersion,
     gameBoxes,
-    player: {
-      name,
-      forest: { cave: caveDto, woodyPlants: woodyPlantDtos },
-    },
+    player: { name, forest },
   } = exportDto;
 
   if (appVersion !== import.meta.env.PACKAGE_VERSION) {
@@ -82,21 +157,37 @@ export const importPlayer = (
     return createErrorResult(ImportErrorType.GameBoxesMismatch);
   }
 
+  return importPlayerData(game, {
+    name,
+    forest,
+  });
+};
+
+const importPlayerData = (
+  game: Game,
+  exportDto: PlayerDto,
+): PlayerImportResult => {
+  const {
+    name,
+    forest: { cave: caveDto, woodyPlants: woodyPlantDtos },
+  } = exportDto;
+
   const cave = findCaveOfDto(game.deck, caveDto);
 
   const woodyPlants: WoodyPlantCard[] = [];
+  const dwellers: DwellerCard[] = [];
   const unavailableDwellers: DwellerCardDto[] = [];
   const unavailableWoodyPlants: WoodyPlantCardDto[] = [];
 
   for (const woodyPlantDto of woodyPlantDtos) {
-    let woodyPlant = findWoodyPlantOfDto(game.deck, woodyPlantDto);
+    let woodyPlant = findWoodyPlantOfDto(game.deck, woodyPlantDto, woodyPlants);
     if (!woodyPlant) {
       unavailableWoodyPlants.push(woodyPlantDto);
       continue;
     }
 
     for (const dwellerDto of woodyPlantDto.dwellers) {
-      const dweller = findDwellerOfDto(game.deck, dwellerDto);
+      const dweller = findDwellerOfDto(game.deck, dwellerDto, dwellers);
       if (!dweller) {
         unavailableDwellers.push(dwellerDto);
         continue;
@@ -105,9 +196,17 @@ export const importPlayer = (
       woodyPlant = produce(woodyPlant, (draft) => {
         draft.dwellers[dweller.position].push(dweller);
       });
+
+      dwellers.push(dweller);
+      game.deck.dwellers = game.deck.dwellers.filter(
+        (d) => d.id !== dweller.id,
+      );
     }
 
     woodyPlants.push(woodyPlant);
+    game.deck.woodyPlants = game.deck.woodyPlants.filter(
+      (w) => w.id !== woodyPlant.id,
+    );
   }
 
   if (
@@ -155,12 +254,14 @@ const findUniqueName = (game: Game, name: string): string => {
 const findWoodyPlantOfDto = (
   deck: Deck,
   dto: WoodyPlantCardDto,
+  alreadyFoundCards: WoodyPlantCard[],
 ): WoodyPlantCard | undefined => {
   const woodyPlant = deck.woodyPlants.find(
     (woodyPlant) =>
       woodyPlant.name === dto.name &&
       woodyPlant.gameBox === dto.gameBox &&
-      woodyPlant.treeSymbol === dto.treeSymbol,
+      woodyPlant.treeSymbol === dto.treeSymbol &&
+      !alreadyFoundCards.some((found) => found.id === woodyPlant.id),
   );
   if (woodyPlant) {
     return woodyPlant;
@@ -178,13 +279,15 @@ const findWoodyPlantOfDto = (
 const findDwellerOfDto = (
   deck: Deck,
   dto: DwellerCardDto,
+  alreadyFoundCards: DwellerCard[],
 ): DwellerCard | undefined =>
   deck.dwellers.find(
     (d) =>
       d.name === dto.name &&
       d.gameBox === dto.gameBox &&
       d.treeSymbol === dto.treeSymbol &&
-      d.position === dto.position,
+      d.position === dto.position &&
+      !alreadyFoundCards.some((found) => found.id === d.id),
   );
 
 const findCaveOfDto = (deck: Deck, dto: CaveDto): Cave | undefined =>

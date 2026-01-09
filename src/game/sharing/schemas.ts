@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { DwellerPosition, GameBox, TreeSymbol } from "@/game/types";
+import { ScoringMode } from "@/types";
 
 export const DwellerCardDtoSchema = z.object({
   name: z.string(),
@@ -36,3 +37,11 @@ export const PlayerExportDtoSchema = z.object({
   gameBoxes: z.array(z.enum(GameBox)),
   player: PlayerDtoSchema,
 });
+
+export const GameDtoSchema = z.object({
+  appVersion: z.string(),
+  id: z.string(),
+  gameBoxes: z.array(z.enum(GameBox)),
+  scoringMode: z.enum(ScoringMode),
+  players: z.array(PlayerDtoSchema),
+})

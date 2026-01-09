@@ -20,7 +20,7 @@ import {
 export const encodePlayer = (game: Game, player: Player): string =>
   encode(createPlayerExportDto(game, player));
 
-const createPlayerExportDto = (
+export const createPlayerExportDto = (
   game: Game,
   player: Player,
 ): PlayerExportDto => ({

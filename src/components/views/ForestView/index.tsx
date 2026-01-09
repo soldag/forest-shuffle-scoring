@@ -1,5 +1,6 @@
-import { useContext, useMemo, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
+import { omit } from "lodash-es";
+import { useContext, useEffect, useMemo, useState } from "react";
+import { useLocalStorage, useMediaQuery } from "usehooks-ts";
 
 import { Box, Stack } from "@mui/joy";
 
@@ -19,10 +20,13 @@ import GameContext from "@/components/contexts/GameContext";
 import {
   DwellerCard,
   DwellerPosition,
+  Game,
   WoodyPlantCard,
   getDwellerCandidates,
   getWoodyPlantCandidates,
 } from "@/game";
+import { GameDto, createPlayerExportDto } from "@/game/sharing";
+import { ScoringMode } from "@/types";
 import { requireGame } from "@/utils/hoc";
 
 import Footer from "./components/Footer";
@@ -41,8 +45,22 @@ const useResponsiveSize = () => {
   }
 };
 
+const gameDto: (game: Game, scoringMode: ScoringMode | null) => GameDto = (game, scoringMode) => {
+  return omit(
+    {
+      ...game,
+      appVersion: import.meta.env.PACKAGE_VERSION,
+      scoringMode: scoringMode ?? ScoringMode.Host,
+      players: game.players.map(
+        (player) => createPlayerExportDto(game, player).player,
+      ),
+    },
+    "deck",
+  );
+};
+
 const ForestView = requireGame(({ game }) => {
-  const { playerId, dispatch } = useContext(GameContext);
+  const { scoringMode, playerId, dispatch } = useContext(GameContext);
 
   const [isAddingWoodyPlant, setIsAddingWoodyPlant] = useState(false);
   const [selectedWoodyPlant, setSelectedWoodyPlant] =
@@ -56,7 +74,8 @@ const ForestView = requireGame(({ game }) => {
     useState<DwellerPosition | null>();
   const [selectedDweller, setSelectedDweller] = useState<DwellerCard | null>();
 
-  const forest = game.players.find((p) => p.id === playerId)?.forest;
+  const player = game.players.find((p) => p.id === playerId);
+  const forest = player?.forest;
   const woodyPlantOptions = useMemo(
     () => [
       ...getWoodyPlantCandidates(game),
@@ -78,6 +97,12 @@ const ForestView = requireGame(({ game }) => {
     ],
     [game, dwellerWoodyPlantId, dwellerPosition, selectedDweller],
   );
+
+  const [, persistGame] = useLocalStorage<GameDto>("game", gameDto(game, scoringMode));
+
+  useEffect(() => {
+    persistGame(gameDto(game, scoringMode));
+  }, [game]);
 
   const WoodyPlantStackSize = useResponsiveSize();
 

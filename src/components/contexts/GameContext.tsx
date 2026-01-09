@@ -66,6 +66,13 @@ const reducer: Reducer<State, GameAction> = (state, action) => {
       game: addPlayer(game, player),
       playerId: player.id,
     };
+  } else if (action.type === GameActionType.LoadGame) {
+    return {
+      ...state,
+      scoringMode: action.payload.scoringMode,
+      game: action.payload.game,
+      playerId: action.payload.game.players[0].id,
+    }
   }
 
   if (!state.game) {

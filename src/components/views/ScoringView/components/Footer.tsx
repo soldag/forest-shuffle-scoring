@@ -4,9 +4,12 @@ import { Link } from "wouter";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ReplayIcon from "@mui/icons-material/Replay";
 import { Button, Stack } from "@mui/joy";
+import { useLocalStorage } from "usehooks-ts";
 
-const Footer = () => (
-  <Stack
+const Footer = () => {
+  const [, , deleteGame] = useLocalStorage("game", {});
+
+  return <Stack
     direction="row"
     alignItems="center"
     justifyContent="space-around"
@@ -28,6 +31,7 @@ const Footer = () => (
       startDecorator={<ReplayIcon />}
       component={Link}
       to="/new"
+      onClick={(() => deleteGame())}
     >
       <FormattedMessage
         id="ScoringView.Footer.newGame"
@@ -35,6 +39,6 @@ const Footer = () => (
       />
     </Button>
   </Stack>
-);
+};
 
 export default Footer;

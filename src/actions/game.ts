@@ -1,8 +1,9 @@
-import { Cave, DwellerCard, GameBox, Player, WoodyPlantCard } from "@/game";
+import { Cave, DwellerCard, Game, GameBox, Player, WoodyPlantCard } from "@/game";
 import { ScoringMode } from "@/types";
 
 export enum GameActionType {
   CreateGame = "CREATE_GAME",
+  LoadGame = "LOAD_GAME",
   AddPlayer = "ADD_PLAYER",
   SelectPlayer = "SELECT_PLAYER",
   RemovePlayer = "REMOVE_PLAYER",
@@ -30,6 +31,21 @@ export interface CreateGameAction {
 
 export const createGame = (payload: CreateGamePayload): CreateGameAction => ({
   type: GameActionType.CreateGame,
+  payload,
+});
+
+export interface LoadGamePayload {
+  scoringMode: ScoringMode;
+  game: Game;
+}
+
+export interface LoadGameAction {
+  type: GameActionType.LoadGame;
+  payload: LoadGamePayload;
+}
+
+export const loadGame = (payload: LoadGamePayload): LoadGameAction => ({
+  type: GameActionType.LoadGame,
   payload,
 });
 
@@ -201,6 +217,7 @@ export const removeDweller = (
 
 export type GameAction =
   | CreateGameAction
+  | LoadGameAction
   | AddPlayerAction
   | RemovePlayerAction
   | SelectPlayerAction

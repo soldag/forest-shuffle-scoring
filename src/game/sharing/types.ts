@@ -4,6 +4,7 @@ import {
   CaveDtoSchema,
   DwellerCardDtoSchema,
   ForestDtoSchema,
+  GameDtoSchema,
   PlayerDtoSchema,
   PlayerExportDtoSchema,
   WoodyPlantCardDtoSchema,
@@ -15,3 +16,4 @@ export type CaveDto = z.infer<typeof CaveDtoSchema>;
 export type ForestDto = z.infer<typeof ForestDtoSchema>;
 export type PlayerDto = z.infer<typeof PlayerDtoSchema>;
 export type PlayerExportDto = z.infer<typeof PlayerExportDtoSchema>;
+export type GameDto = z.infer<typeof GameDtoSchema>;
