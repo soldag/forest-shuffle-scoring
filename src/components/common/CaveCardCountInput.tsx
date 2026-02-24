@@ -3,11 +3,10 @@ import { forwardRef, useCallback } from "react";
 import StyleIcon from "@mui/icons-material/Style";
 import { Input, InputProps } from "@mui/joy";
 
-interface CaveCardCountInputProps
-  extends Omit<
-    InputProps,
-    "startDecorator" | "slotProps" | "type" | "onChange" | "value"
-  > {
+interface CaveCardCountInputProps extends Omit<
+  InputProps,
+  "startDecorator" | "slotProps" | "type" | "onChange" | "value"
+> {
   value: number | null;
   onChange?: (value: number | null) => void;
 }

@@ -5,8 +5,10 @@ import { Option, Select, SelectProps } from "@mui/joy";
 
 import CaveNameMessages from "@/translations/messages/CaveNames";
 
-interface CaveNameSelectProps
-  extends Omit<SelectProps<string, false>, "onChange"> {
+interface CaveNameSelectProps extends Omit<
+  SelectProps<string, false>,
+  "onChange"
+> {
   onChange?: (value: string | null) => void;
   options?: string[];
 }

@@ -11,8 +11,10 @@ import TutorialContext from "@/components/contexts/TutorialContext";
 import { isTouchDevice } from "@/utils/device";
 import { useBreakpoint } from "@/utils/hooks";
 
-interface SwipeToAddTreeTooltipProps
-  extends Omit<TutorialTooltipProps, "open" | "icon" | "text"> {
+interface SwipeToAddTreeTooltipProps extends Omit<
+  TutorialTooltipProps,
+  "open" | "icon" | "text"
+> {
   disabled?: boolean;
 }
 

@@ -9,8 +9,10 @@ import { isTouchDevice } from "@/utils/device";
 
 import TutorialTooltip, { TutorialTooltipProps } from "./TutorialTooltip";
 
-interface AddTreeTooltipProps
-  extends Omit<TutorialTooltipProps, "open" | "icon" | "text"> {
+interface AddTreeTooltipProps extends Omit<
+  TutorialTooltipProps,
+  "open" | "icon" | "text"
+> {
   disabled?: boolean;
 }
 
