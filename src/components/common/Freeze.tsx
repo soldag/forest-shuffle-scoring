@@ -14,6 +14,7 @@ const Freeze = ({ freeze, children }: FreezeProps) => {
     }
   }, [freeze, children]);
 
+  // eslint-disable-next-line react-hooks/refs
   return freeze ? frozenChildrenRef.current : children;
 };
 

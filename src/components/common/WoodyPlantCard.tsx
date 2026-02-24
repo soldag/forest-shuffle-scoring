@@ -1,14 +1,12 @@
 import { useIntl } from "react-intl";
 
-import GrassIcon from "@mui/icons-material/Grass";
-import ParkIcon from "@mui/icons-material/Park";
-import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { Stack, Typography } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
 import ForestCard, { ForestCardSize } from "@/components/common/ForestCard";
 import TreeSymbol from "@/components/common/TreeSymbol";
-import { CardType, WoodyPlantCard as WoodyPlantCardType } from "@/game/types";
+import WoodyPlantIcon from "@/components/common/WoodyPlantIcon";
+import { WoodyPlantCard as WoodyPlantCardType } from "@/game/types";
 import { getLocalizedCardName } from "@/translations/messages/CardNames";
 
 interface ForestCardProps {
@@ -17,21 +15,8 @@ interface ForestCardProps {
   sx?: SxProps;
   onClick?: () => void;
 }
-
-const getIcon = (cardTypes: CardType[]) => {
-  if (cardTypes.includes(CardType.Tree)) {
-    return ParkIcon;
-  } else if (cardTypes.includes(CardType.Shrub)) {
-    return GrassIcon;
-  } else {
-    return QuestionMarkIcon;
-  }
-};
-
 const WoodyPlantCard = ({ card, size, sx, onClick }: ForestCardProps) => {
   const intl = useIntl();
-
-  const Icon = getIcon(card.types);
 
   return (
     <ForestCard card={card} onClick={onClick} size={size} sx={sx}>
@@ -50,7 +35,8 @@ const WoodyPlantCard = ({ card, size, sx, onClick }: ForestCardProps) => {
           />
         )}
 
-        <Icon
+        <WoodyPlantIcon
+          cardTypes={card.types}
           sx={{
             color: "neutral.100",
             width: "80%",

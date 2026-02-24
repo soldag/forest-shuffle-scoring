@@ -38,12 +38,6 @@ const AddPlayerDrawer = ({
 
   const [mode, setMode] = useState<AddPlayerMode>(AddPlayerMode.MANUAL);
 
-  useEffect(() => {
-    if (open) {
-      handleChangeMode(AddPlayerMode.MANUAL);
-    }
-  }, [open]);
-
   const handleChangeMode = (newMode: AddPlayerMode) => {
     setMode(newMode);
 
@@ -61,6 +55,12 @@ const AddPlayerDrawer = ({
     setMode(AddPlayerMode.MANUAL);
     onClose?.();
   };
+
+  useEffect(() => {
+    if (open) {
+      handleChangeMode(AddPlayerMode.MANUAL);
+    }
+  }, [open]);
 
   return (
     <ResponsiveDrawer open={open} onClose={handleClose}>
