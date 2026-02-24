@@ -5,14 +5,16 @@ import prettierPlugin from "eslint-plugin-prettier/recommended";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
+import { defineConfig } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(
+export default defineConfig(
   eslint.configs.recommended,
   tseslint.configs.recommended,
   react.configs.flat.recommended,
   react.configs.flat["jsx-runtime"],
+  reactHooks.configs.flat.recommended,
   importPlugin.flatConfigs.recommended,
   importPlugin.flatConfigs.react,
   eslintConfigPrettier,
@@ -36,7 +38,6 @@ export default tseslint.config(
     },
     plugins: {
       react,
-      "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
     },
     rules: {
