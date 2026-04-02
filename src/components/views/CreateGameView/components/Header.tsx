@@ -4,8 +4,8 @@ import { Stack } from "@mui/joy";
 
 import HeaderTitle from "@/components/common/HeaderTitle";
 import LanguageSelect from "@/components/common/LocaleSelect";
+import ThemeToggleButton from "@/components/common/ThemeToggleButton";
 import LocaleContext from "@/components/contexts/LocaleContext";
-import ThemeSelect from "@/components/common/ThemeSelect";
 
 const Header = () => {
   const { locale, setLocale } = useContext(LocaleContext);
@@ -14,7 +14,7 @@ const Header = () => {
     <Stack direction="row" alignItems="center" columnGap={2}>
       <HeaderTitle sx={{ flexGrow: 1 }} />
 
-      <ThemeSelect />
+      <ThemeToggleButton />
 
       <LanguageSelect
         variant="plain"
