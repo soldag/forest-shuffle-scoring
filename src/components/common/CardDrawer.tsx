@@ -47,7 +47,7 @@ const CardDrawer = <TCard extends Card>({
       open={open}
       onClose={onClose}
       sx={{
-        "--Drawer-verticalSize": "min(571px, 65%)",
+        "--Drawer-verticalSize": "100%",
       }}
     >
       <ModalClose />
@@ -66,20 +66,21 @@ const CardDrawer = <TCard extends Card>({
         )}
       </DialogTitle>
       <DialogContent sx={{ m: 1.5 }}>
-        <CardSelect
-          sx={{ height: "100%" }}
-          cards={cards}
-          cardName={cardName}
-          onCardNameChange={setCardName}
-          gameBox={gameBox}
-          onGameBoxChange={setGameBox}
-          treeSymbol={treeSymbol}
-          onTreeSymbolChange={setTreeSymbol}
-          onSelect={onSelectCard}
-          canRemove={!!selectedCard}
-          onRemove={onRemoveCard}
-          open={open}
-        />
+        {open && (
+          <CardSelect
+            sx={{ height: "100%" }}
+            cards={cards}
+            cardName={cardName}
+            onCardNameChange={setCardName}
+            gameBox={gameBox}
+            onGameBoxChange={setGameBox}
+            treeSymbol={treeSymbol}
+            onTreeSymbolChange={setTreeSymbol}
+            onSelect={onSelectCard}
+            canRemove={!!selectedCard}
+            onRemove={onRemoveCard}
+          />
+        )}
       </DialogContent>
     </ResponsiveDrawer>
   );

@@ -1,18 +1,19 @@
 import * as _ from "lodash-es";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
-import EditIcon from "@mui/icons-material/Edit";
 import ClearIcon from "@mui/icons-material/Clear";
+import EditIcon from "@mui/icons-material/Edit";
+import SearchIcon from "@mui/icons-material/Search";
 import {
   Button,
   IconButton,
+  Input,
   List,
   ListItem,
   ListSubheader,
   Stack,
   Typography,
-  Input,
 } from "@mui/joy";
 import { SxProps } from "@mui/joy/styles/types";
 
@@ -93,7 +94,6 @@ interface CardSelectProps<TCard extends Card> {
   onSelect?: (value: TCard) => void;
   canRemove?: boolean;
   onRemove?: () => void;
-  open?: boolean;
 }
 
 const CardSelect = <TCard extends Card>({
@@ -108,20 +108,21 @@ const CardSelect = <TCard extends Card>({
   onSelect,
   canRemove = false,
   onRemove,
-  open,
 }: CardSelectProps<TCard>) => {
   const intl = useIntl();
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
+
+  const matchingCards = cards.filter((card) =>
+    getLocalizedCardName(intl, card.name)
+      ?.toLowerCase()
+      ?.includes(search.toLowerCase()),
+  );
 
   const cardNameOptions = getOptions(
-    cards,
+    matchingCards,
     (c) => c.name,
     (n) => getLocalizedCardName(intl, n) ?? n,
-  ).filter(card =>
-    getLocalizedCardName(intl, card.name)!
-      .toLowerCase()
-      .includes(search.toLowerCase())
   );
 
   const cardNameOptionsByType = _.groupBy(
@@ -200,7 +201,7 @@ const CardSelect = <TCard extends Card>({
   };
 
   const handleSelectCardName = (value: TCard) => {
-    clearSearch();
+    handleClearSearch();
     handleSelect(value.name);
   };
 
@@ -227,17 +228,16 @@ const CardSelect = <TCard extends Card>({
     onGameBoxChange(undefined);
   };
 
-  const searchRef = useRef<HTMLDivElement>(null);
+  const handleClearSearch = () => {
+    setSearch("");
+  };
 
-  const clearSearch = () => {
-    setSearch('')
-  }
-
-  useEffect(() => {
-    if (open) {
-      searchRef.current?.querySelector('input')!.focus();
-    }
-  }, [searchRef, open])
+  const showSubheaders =
+    new Set(
+      cards
+        .flatMap((c) => c.types)
+        .filter((t) => !EXPANSION_CARD_TYPES.includes(t)),
+    ).size > 1;
 
   return (
     <Stack direction="column" gap={2} justifyContent="space-between" sx={sx}>
@@ -262,17 +262,38 @@ const CardSelect = <TCard extends Card>({
             </IconButton>
           </Stack>
         ) : (
-          <Stack direction="column" gap={2}>
-            <Input
-              ref={searchRef}
-              endDecorator={
-                <IconButton size="sm" onClick={clearSearch}>
-                  <ClearIcon />
-                </IconButton>
-              }
-              onChange={(event) => setSearch(event.target.value)}
-              value={search}
-            />
+          <Stack direction="column" gap={1}>
+            <FormattedMessage
+              id="CardSelect.search.placeholder"
+              defaultMessage="Search..."
+            >
+              {([placeholder]) => (
+                <Input
+                  autoFocus
+                  fullWidth
+                  startDecorator={<SearchIcon />}
+                  endDecorator={
+                    search.length > 0 && (
+                      <IconButton size="sm" onClick={handleClearSearch}>
+                        <ClearIcon />
+                      </IconButton>
+                    )
+                  }
+                  placeholder={placeholder as string}
+                  onChange={(event) => setSearch(event.target.value)}
+                  value={search}
+                />
+              )}
+            </FormattedMessage>
+
+            {search.length > 0 && cardNameOptions.length === 0 && (
+              <Typography level="body-sm" sx={{ mt: 0.5 }}>
+                <FormattedMessage
+                  id="CardSelect.search.noResults"
+                  defaultMessage="No cards found with this name."
+                />
+              </Typography>
+            )}
 
             <List
               sx={(theme) => ({
@@ -286,7 +307,7 @@ const CardSelect = <TCard extends Card>({
             >
               {sortedCardTypes.map((type) => (
                 <ListItem nested key={type}>
-                  {Object.keys(cardNameOptionsByType).length > 1 && (
+                  {showSubheaders && (
                     <ListSubheader sticky>
                       {intl.formatMessage(CardTypeMessages[type].plural)}
                     </ListSubheader>

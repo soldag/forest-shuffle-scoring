@@ -161,6 +161,8 @@
   "CardSelect.header.expansion": "Uitbreiding",
   "CardSelect.header.treeSymbol": "Boom Symbool",
   "CardSelect.remove": "Kaart verwijderen",
+  "CardSelect.search.noResults": "Geen kaarten gevonden met deze naam.",
+  "CardSelect.search.placeholder": "Zoeken...",
   "CardTypes.Alps.plural": "Alpen",
   "CardTypes.Alps.singular": "Alp",
   "CardTypes.Amphibian.plural": "Amfibieën",
