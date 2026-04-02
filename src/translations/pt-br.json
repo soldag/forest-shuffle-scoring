@@ -161,6 +161,8 @@
   "CardSelect.header.expansion": "Expansão",
   "CardSelect.header.treeSymbol": "Símbolo de árvore",
   "CardSelect.remove": "Remover carta",
+  "CardSelect.search.noResults": "Nenhuma carta encontrada com esse nome.",
+  "CardSelect.search.placeholder": "Pesquisar...",
   "CardTypes.Alps.plural": "Alpes",
   "CardTypes.Alps.singular": "Alpes",
   "CardTypes.Amphibian.plural": "Anfíbios",

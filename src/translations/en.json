@@ -161,6 +161,8 @@
   "CardSelect.header.expansion": "Expansion",
   "CardSelect.header.treeSymbol": "Tree symbol",
   "CardSelect.remove": "Remove card",
+  "CardSelect.search.noResults": "No cards found with this name.",
+  "CardSelect.search.placeholder": "Search...",
   "CardTypes.Alps.plural": "Alps",
   "CardTypes.Alps.singular": "Alps",
   "CardTypes.Amphibian.plural": "Amphibians",
