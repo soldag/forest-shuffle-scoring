@@ -11,6 +11,7 @@ import { selectPlayer } from "@/actions/game";
 import ConfirmResetModal from "@/components/common/ConfirmResetModal";
 import HeaderTitle from "@/components/common/HeaderTitle";
 import PlayerSelect from "@/components/common/PlayerSelect";
+import ThemeToggleButton from "@/components/common/ThemeToggleButton";
 import GameContext from "@/components/contexts/GameContext";
 import { scorePlayer } from "@/game";
 
@@ -44,6 +45,8 @@ const Header = () => {
       columnGap={2}
     >
       <HeaderTitle sx={{ flexGrow: 1 }} />
+
+      <ThemeToggleButton />
 
       <IconButton size="sm" sx={{ order: { sm: 5 } }} onClick={openResetModal}>
         <ReplayIcon />
