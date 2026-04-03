@@ -45,6 +45,8 @@ const ResponsiveQrCode = ({ data, sx }: ResponsiveQrCodeProps) => {
     qrCode.current.applyExtension((svg) => {
       svg.style.width = "100%";
       svg.style.height = "100%";
+      svg.style.borderRadius = theme.radius.sm;
+      svg.style.overflow = "hidden;";
     });
 
     if (containerRef.current) {
