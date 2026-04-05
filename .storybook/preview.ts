@@ -40,10 +40,10 @@ const preview: Preview = {
   initialGlobals: {
     locale: "en",
     locales: {
-      en: { title: "English" },
-      de: { title: "German" },
-      nl: { title: "Dutch" },
-      ptBr: { title: "Portuguese - Brazil" },
+      "en": { title: "English" },
+      "de": { title: "German" },
+      "nl": { title: "Dutch" },
+      "pt-br": { title: "Portuguese - Brazil" },
     },
   },
 };
