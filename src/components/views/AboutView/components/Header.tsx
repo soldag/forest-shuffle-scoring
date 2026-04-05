@@ -23,6 +23,7 @@ const Header = () => {
         slotProps={{
           listbox: { placement: "bottom-start" },
         }}
+        sx={{ flexShrink: 0 }}
       />
     </Stack>
   );
