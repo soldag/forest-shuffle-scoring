@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useIntl } from "react-intl";
 
-import { useTheme } from "@mui/joy";
+import { useColorScheme, useTheme } from "@mui/joy";
 
 import LocaleContext from "@/components/contexts/LocaleContext";
 import CommonMessages from "@/translations/messages/Common";
@@ -10,6 +10,9 @@ import { resolvePublic } from "@/utils/assets";
 
 const DocumentMetaProvider = () => {
   const theme = useTheme();
+
+  const { mode = "light", systemMode = "light" } = useColorScheme();
+  const effectiveMode = mode === "system" ? systemMode : mode;
 
   const intl = useIntl();
   const { locale } = useContext(LocaleContext);
@@ -31,7 +34,7 @@ const DocumentMetaProvider = () => {
       />
       <link
         rel="manifest"
-        href={resolvePublic(`manifests/${locale}.webmanifest`)}
+        href={resolvePublic(`manifests/${locale}-${effectiveMode}.webmanifest`)}
       />
       {Object.values(Locale).map((locale) => (
         <link

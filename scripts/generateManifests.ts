@@ -8,7 +8,17 @@ import { fileURLToPath } from "url";
 import { Locale } from "../src/types";
 import viteConfig from "../vite.config";
 
+enum ColorMode {
+  Light = "light",
+  Dark = "dark",
+}
+
 type Translations = { [key: string]: string };
+
+type ManifestConfig = {
+  colorMode: ColorMode;
+  locale: Locale;
+};
 
 const rootDir = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
@@ -28,8 +38,8 @@ const getIconPath = (filename: string) => {
   return `${base}/icons/${filename}`;
 };
 
-const getManifestPath = (locale: Locale) =>
-  path.resolve(outputDir, `${locale}.webmanifest`);
+const getManifestPath = ({ colorMode, locale }: ManifestConfig) =>
+  path.resolve(outputDir, `${locale}-${colorMode}.webmanifest`);
 
 const writeFormattedFile = async (
   filename: string,
@@ -44,7 +54,7 @@ const writeFormattedFile = async (
   await fs.writeFile(filename, formattedData);
 };
 
-const generateManifests = async (locale: Locale) => {
+const generateManifests = async ({ colorMode, locale }: ManifestConfig) => {
   const translations = await getTranslations(locale);
 
   return {
@@ -52,7 +62,7 @@ const generateManifests = async (locale: Locale) => {
     short_name: translations["Common.gameName"],
     description: translations["Common.appDescription"],
     theme_color: "#9ac81d",
-    background_color: "#ffffff",
+    background_color: colorMode === ColorMode.Dark ? "#0b0d0e" : "#ffffff",
     display: "standalone",
     icons: [
       {
@@ -100,8 +110,8 @@ const printError = (filename: string, message: string) => {
   console.log();
 };
 
-const checkManifest = async (locale: Locale): Promise<boolean> => {
-  const filename = getManifestPath(locale);
+const checkManifest = async (config: ManifestConfig): Promise<boolean> => {
+  const filename = getManifestPath(config);
 
   let existingFileContent;
   try {
@@ -109,7 +119,9 @@ const checkManifest = async (locale: Locale): Promise<boolean> => {
   } catch (e) {
     printError(
       filename,
-      e.code === "ENOENT" ? `File does not exist` : `File could not be read`,
+      (e as NodeJS.ErrnoException).code === "ENOENT"
+        ? `File does not exist`
+        : `File could not be read`,
     );
     return false;
   }
@@ -122,7 +134,7 @@ const checkManifest = async (locale: Locale): Promise<boolean> => {
     return false;
   }
 
-  const expectedManifest = await generateManifests(locale);
+  const expectedManifest = await generateManifests(config);
   if (!isEqual(existingManifest, expectedManifest)) {
     printError(filename, "File is outdated");
     return false;
@@ -131,14 +143,21 @@ const checkManifest = async (locale: Locale): Promise<boolean> => {
   return true;
 };
 
-const writeManifest = async (locale: Locale) => {
-  const filename = getManifestPath(locale);
-  const manifest = await generateManifests(locale);
+const writeManifest = async (config: ManifestConfig) => {
+  const filename = getManifestPath(config);
+  const manifest = await generateManifests(config);
   await writeFormattedFile(filename, JSON.stringify(manifest), "json");
 };
 
+const configs: ManifestConfig[] = [];
+for (const colorMode of Object.values(ColorMode)) {
+  for (const locale of Object.values(Locale)) {
+    configs.push({ colorMode, locale });
+  }
+}
+
 if (process.argv.includes("--check")) {
-  const results = await Promise.all(Object.values(Locale).map(checkManifest));
+  const results = await Promise.all(configs.map(checkManifest));
   if (results.includes(false)) {
     console.log(
       `Some web manifest files are outdated or missing. Please run ${"npm run manifests:generate".yellow} to regenerate them.`,
@@ -146,5 +165,5 @@ if (process.argv.includes("--check")) {
     process.exit(1);
   }
 } else {
-  await Promise.all(Object.values(Locale).map(writeManifest));
+  await Promise.all(configs.map(writeManifest));
 }
