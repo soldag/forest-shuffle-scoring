@@ -4,6 +4,16 @@
   "version": "0.5.0",
   "homepage": "https://soldag.github.io/forest-shuffle-scoring",
   "type": "module",
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^24"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": "^11"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
