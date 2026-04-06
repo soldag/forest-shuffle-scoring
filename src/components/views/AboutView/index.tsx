@@ -4,13 +4,13 @@ import { FormattedMessage, defineMessage, useIntl } from "react-intl";
 import { List, ListItem, Typography } from "@mui/joy";
 
 import ExternalLink from "@/components/common/ExternalLink";
+import Header from "@/components/common/Header";
 import View from "@/components/common/View";
 import LocaleContext from "@/components/contexts/LocaleContext";
 import CommonMessages from "@/translations/messages/Common";
 import { Locale } from "@/types";
 
 import Footer from "./components/Footer";
-import Header from "./components/Header";
 
 const gameUrls = {
   [Locale.De]: "https://lookout-spiele.de/de/games/mischwald.html",
@@ -65,7 +65,10 @@ const AboutView = () => {
   const gameName = intl.formatMessage(CommonMessages.gameName);
 
   return (
-    <View header={<Header />} footer={<Footer />}>
+    <View
+      header={<Header showThemeButton showLanguageSelect />}
+      footer={<Footer />}
+    >
       <Headline>
         <FormattedMessage
           id="AboutView.about.headline"

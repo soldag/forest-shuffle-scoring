@@ -7,6 +7,7 @@ import { Stack } from "@mui/joy";
 
 import { createGame } from "@/actions/game";
 import AppUpdateModal from "@/components/common/AppUpdateModal";
+import Header from "@/components/common/Header";
 import View from "@/components/common/View";
 import AppUpdateContext from "@/components/contexts/AppUpdateContext";
 import GameContext from "@/components/contexts/GameContext";
@@ -15,7 +16,6 @@ import { ScoringMode } from "@/types";
 
 import CreateGameForm from "./components/CreateGameForm";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
 import ScoringModeSection from "./components/ScoringModeSection";
 import { CreateGameFormFields } from "./types";
 
@@ -54,7 +54,7 @@ const CreateGameView = () => {
 
   return (
     <View
-      header={<Header />}
+      header={<Header showThemeButton showLanguageSelect />}
       footer={
         <Footer
           canCreate={form.formState.isValid}

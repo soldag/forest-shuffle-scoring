@@ -3,6 +3,7 @@ import { useLocalStorage } from "usehooks-ts";
 
 import { Box, Stack, Typography } from "@mui/joy";
 
+import Header from "@/components/common/Header";
 import View from "@/components/common/View";
 import { scoreGame } from "@/game";
 import { requireGame } from "@/utils/hoc";
@@ -13,7 +14,6 @@ import BasicScoringTable from "./components/BasicScoringTable";
 import DetailedScoringTable from "./components/DetailedScoringTable";
 import DetailsSwitch from "./components/DetailsSwitch";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
 import WinnersCard from "./components/WinnersCard";
 
 const ScoringView = requireGame(({ game }) => {
@@ -26,7 +26,10 @@ const ScoringView = requireGame(({ game }) => {
   const showBGStatsButton = isAndroid() || isIOS() || import.meta.env.DEV;
 
   return (
-    <View header={<Header />} footer={<Footer />}>
+    <View
+      header={<Header showThemeButton showResetButton />}
+      footer={<Footer />}
+    >
       <WinnersCard game={game} scoring={scoring} sx={{ mb: 4 }} />
 
       <Stack direction="row" justifyContent="space-between">

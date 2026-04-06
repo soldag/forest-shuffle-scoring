@@ -12,6 +12,7 @@ import {
   removeWoodyPlant,
 } from "@/actions/game";
 import CardDrawer from "@/components/common/CardDrawer";
+import Header from "@/components/common/Header";
 import View from "@/components/common/View";
 import WoodyPlantStack from "@/components/common/WoodyPlantStack";
 import SwipeToAddTreeTooltip from "@/components/common/tutorial/SwipeToAddTreeTooltip";
@@ -26,7 +27,6 @@ import {
 import { requireGame } from "@/utils/hoc";
 
 import Footer from "./components/Footer";
-import Header from "./components/Header";
 
 const useResponsiveSize = () => {
   const isLg = useMediaQuery("(min-height: 900px)");
@@ -176,7 +176,12 @@ const ForestView = requireGame(({ game }) => {
   };
 
   return (
-    <View disableGutters fullWidth header={<Header />} footer={<Footer />}>
+    <View
+      disableGutters
+      fullWidth
+      header={<Header showThemeButton showResetButton showPlayerDetails />}
+      footer={<Footer />}
+    >
       <Box
         sx={{
           height: "100%",

@@ -2,13 +2,13 @@ import { useMemo } from "react";
 
 import { Stack } from "@mui/joy";
 
+import Header from "@/components/common/Header";
 import ResponsiveQrCode from "@/components/common/ResponsiveQrCode";
 import View from "@/components/common/View";
 import { encodePlayer } from "@/game/sharing";
 import { requireGame } from "@/utils/hoc";
 
 import Footer from "./components/Footer";
-import Header from "./components/Header";
 import InstructionsCard from "./components/InstructionsCard";
 
 const ExportView = requireGame(({ game }) => {
@@ -18,7 +18,10 @@ const ExportView = requireGame(({ game }) => {
   );
 
   return (
-    <View header={<Header />} footer={<Footer />}>
+    <View
+      header={<Header showThemeButton showResetButton />}
+      footer={<Footer />}
+    >
       <Stack direction="column" sx={{ height: "100%" }}>
         <InstructionsCard />
         <Stack

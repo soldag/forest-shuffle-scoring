@@ -1,12 +1,12 @@
 import { Stack } from "@mui/joy";
 
-import HeaderTitle from "@/components/common/HeaderTitle";
+import Header from "@/components/common/Header";
 import View from "@/components/common/View";
 
 import ErrorCard from "./components/ErrorCard";
 
 const ErrorView = () => (
-  <View header={<HeaderTitle />}>
+  <View header={<Header />}>
     <Stack
       direction="column"
       alignItems="center"
